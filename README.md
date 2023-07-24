@@ -1,6 +1,5 @@
 # React
 
-
 ## React v18 basic setup:
 
 ```js
@@ -15,8 +14,8 @@ function App() {
   );
 }
 
-const root = ReactDOM.createRoot( document.getElementById( "root" ) );
-root.render( <App /> );
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
 ```
 
 > With previous versions of react:
@@ -34,5 +33,4 @@ function App() {
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
-
 ```
