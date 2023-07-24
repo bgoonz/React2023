@@ -1,5 +1,5 @@
 import React from "react";
-
+import data from "../data.js";
 function Pizza() {
   return (
     <div>
