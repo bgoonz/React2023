@@ -40,4 +40,22 @@ ReactDOM.render(<App />, document.getElementById("root"));
 - state is updated using an event handler or a callback function.
 - React is called react because it reacts to state changes by re-rendering the UI.
 
+- In the following code we would expect the incrementStep function to update the state twice...
 
+```js
+const incrementStep = () => {
+  setStep(step === 3 ? 1 : step + 1);
+  setStep(step === 3 ? 1 : step + 1);
+};
+```
+
+- In reality it only updates once.
+- We should not rely on the previous state when updating state.
+- If we want to update state based on previous state we should provide a callback function to the setter function.
+
+```js
+const incrementStep = () => {
+  setStep((prevStep) => (prevStep === 3 ? 1 : prevStep + 1));
+  setStep((prevStep) => (prevStep === 3 ? 1 : prevStep + 1));
+};
+```

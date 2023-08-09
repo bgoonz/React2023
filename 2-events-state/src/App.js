@@ -1,18 +1,24 @@
 import { useState } from "react";
-const messages = ["Learn React ⚛️", "Apply for jobs 💼", "Invest your new income 🤑"];
+const messages = [
+  "Learn React ⚛️",
+  "Apply for jobs 💼",
+  "Invest your new income 🤑",
+];
 export default function App() {
   const [step, setStep] = useState(1);
   const [show, setShow] = useState(true);
   const incrementStep = () => {
-    setStep(step === 3 ? 1 : step + 1);
+    // setStep((prevStep) => (prevStep === 3 ? 1 : prevStep + 1));
+    setStep((prevStep) => (prevStep === 3 ? 1 : prevStep + 1));
   };
-
   const decrementStep = () => {
     setStep(step === 1 ? 3 : step - 1);
   };
   return (
-    <div>
-        <button className="close" onClick={() => setShow(!show)}>&times;</button>
+    <>
+      <button className="close" onClick={() => setShow((is) => !is)}>
+        &times;
+      </button>
       {show && (
         <div className="steps">
           <div className="numbers">
@@ -21,18 +27,24 @@ export default function App() {
             <div className={step === 3 ? "active" : ""}>3</div>
           </div>
           <p className="message">
-            Step {step} {messages[step - 1]}
+            Step {step}: {messages[step - 1]}
           </p>
           <div className="buttons">
-            <button style={{ backgroundColor: "#7950f2", color: "#fff" }} onClick={decrementStep}>
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={decrementStep}
+            >
               Previous
             </button>
-            <button style={{ backgroundColor: "#7950f2", color: "#fff" }} onClick={incrementStep}>
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={incrementStep}
+            >
               Next
             </button>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
