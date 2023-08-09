@@ -34,3 +34,8 @@ function App() {
 
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
+
+- When a component is removed from the view, this is called unmounting.
+- When state or props change, the component is re-rendered (this means the component is removed and replaced with the component function using updated state or props).
+- state is updated using an event handler or a callback function.
+- 
