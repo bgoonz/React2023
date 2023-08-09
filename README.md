@@ -60,7 +60,6 @@ const incrementStep = () => {
 };
 ```
 
-
 > Each instance of a component has and manages it's own state.
 
 ## Guidlines for using state:
@@ -68,5 +67,3 @@ const incrementStep = () => {
 - Use a state variable for any data the component should keep track of over time. (like a `let` or `var` variable or a `const` array or object that you mutate over time).
 
 - For data that should not trigger a component re-render use a regular variable instead or use a ref.
-
-

@@ -5,15 +5,15 @@ const messages = [
   "Invest your new income 🤑",
 ];
 
-export default function App(){
-    return (
-        <div className="App">
-        <Steps />
-        <Steps />
-        </div>
-    );
+export default function App() {
+  return (
+    <div className="App">
+      <Steps />
+      <Steps />
+    </div>
+  );
 }
- function Steps() {
+function Steps() {
   const [step, setStep] = useState(1);
   const [show, setShow] = useState(true);
   const incrementStep = () => {
