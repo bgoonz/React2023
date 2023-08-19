@@ -110,3 +110,13 @@ function Form() {
 - In the above example, the input element is a controlled element because it's value is controlled by the state variable `description`, and the state variable is updated by the `onChange` event handler.
 
 ---
+
+
+### Difference between props and state:
+
+- State is interal to the component and props are passed in from the parent component.
+- State can be changed by the component itself, props cannot be changed by the component itself.
+- Props are passed in as attributes to the component.
+- When the child compponent recieves new props from the parent component, the child component is re-rendered.
+
+
