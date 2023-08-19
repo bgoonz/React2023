@@ -67,3 +67,46 @@ const incrementStep = () => {
 - Use a state variable for any data the component should keep track of over time. (like a `let` or `var` variable or a `const` array or object that you mutate over time).
 
 - For data that should not trigger a component re-render use a regular variable instead or use a ref.
+
+---
+
+### Controled Elements:
+
+- by default, input elements like `<input>` and `<select>` maintain their own state in the DOM.
+- In React development we like to keep track of state internally in our app... not in the DOM.
+- In order to do that we use a technique called controlled elements...
+
+> Example of a controlled element:
+
+```js
+function Form() {
+  const [description, setDescription] = useState("");
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+  return (
+    <form className="add-form" onSubmit={handleSubmit}>
+      <h3>What do you need for your trip?🧳</h3>
+      <select>
+        {Array.from({ length: 20 }, (_, index) => (
+          <option key={index + 1} value={index + 1}>
+            {index + 1}
+          </option>
+        ))}
+      </select>
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
+      <button>Add</button>
+    </form>
+  );
+}
+```
+
+- In the above example, the input element is a controlled element because it's value is controlled by the state variable `description`, and the state variable is updated by the `onChange` event handler.
+
+---

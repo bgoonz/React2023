@@ -1,3 +1,4 @@
+import { useState } from "react";
 const initialItems = [
   { id: 1, description: "Passports", quantity: 2, packed: false },
   { id: 2, description: "Socks", quantity: 12, packed: false },
@@ -5,7 +6,6 @@ const initialItems = [
   { id: 4, description: "Phone charger", quantity: 1, packed: true },
   { id: 5, description: "Water bottle", quantity: 1, packed: false },
 ];
-
 function App() {
   return (
     <>
@@ -16,16 +16,33 @@ function App() {
     </>
   );
 }
-
 function Logo() {
   return <h1>🚢✈️🧳 Far Away🌴🥥🏖️</h1>;
 }
-
 function Form() {
+  const [description, setDescription] = useState("");
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
   return (
-    <div className="add-form">
+    <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-    </div>
+      <select>
+        {Array.from({ length: 20 }, (_, index) => (
+          <option key={index + 1} value={index + 1}>
+            {index + 1}
+          </option>
+        ))}
+      </select>
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
+      <button>Add</button>
+    </form>
   );
 }
 const Item = ({ item }) => {
@@ -38,20 +55,18 @@ const Item = ({ item }) => {
     </li>
   );
 };
-
 function PackingList() {
   return (
     <div>
       {" "}
       <ul className="list">
         {initialItems.map((item) => {
-          return <Item item={item} />;
+          return <Item key={item.id} item={item} />;
         })}
       </ul>
     </div>
   );
 }
-
 function Stats() {
   return (
     <footer className="stats">
