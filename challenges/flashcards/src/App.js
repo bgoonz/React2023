@@ -21,8 +21,14 @@ function FlashCards() {
     <div className="flashcards">
       {questions.map((question) => {
         return (
-          <div className={selected === question.id ? "selected" : ""} key={question.id} onClick={() => handleClick(question.id)}>
-            <p>{selected !== question.id ? question.question : question.answer}</p>
+          <div
+            className={selected === question.id ? "selected" : ""}
+            key={question.id}
+            onClick={() => handleClick(question.id)}
+          >
+            <p>
+              {selected !== question.id ? question.question : question.answer}
+            </p>
           </div>
         );
       })}

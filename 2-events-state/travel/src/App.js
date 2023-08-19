@@ -4,7 +4,7 @@ const initialItems = [
   { id: 2, description: "Socks", quantity: 12, packed: false },
   { id: 3, description: "Toothbrush", quantity: 1, packed: true },
   { id: 4, description: "Phone charger", quantity: 1, packed: true },
-  { id: 5, description: "Water bottle", quantity: 1, packed: false }
+  { id: 5, description: "Water bottle", quantity: 1, packed: false },
 ];
 function App() {
   return (
@@ -31,22 +31,28 @@ function Form() {
     //reset the form
     setDescription("");
     setQuantity(1);
-    
   }
-  
-  
-  
+
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
+      <select
+        value={quantity}
+        onChange={(event) => setQuantity(Number(event.target.value))}
+      >
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <button>Add</button>
     </form>
   );
