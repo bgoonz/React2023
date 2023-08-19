@@ -8,12 +8,12 @@ const initialItems = [
 ];
 function App() {
   return (
-    <>
+    <div className="app">
       <Logo />
       <Form />
       <PackingList />
       <Stats />
-    </>
+    </div>
   );
 }
 function Logo() {
@@ -21,13 +21,14 @@ function Logo() {
 }
 function Form() {
   const [description, setDescription] = useState("");
+  const [quantity, setQuantity] = useState(1);
   function handleSubmit(event) {
     event.preventDefault();
   }
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select>
+      <select value={quantity} onChange={(event)=>setQuantity(event.target.value)}>
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
@@ -57,9 +58,9 @@ const Item = ({ item }) => {
 };
 function PackingList() {
   return (
-    <div>
+    <div className="list">
       {" "}
-      <ul className="list">
+      <ul >
         {initialItems.map((item) => {
           return <Item key={item.id} item={item} />;
         })}
