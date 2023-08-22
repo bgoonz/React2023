@@ -76,6 +76,7 @@ const Item = ({ item }) => {
   );
 };
 
+
 function PackingList({ items }) {
   return (
     <div className="list">

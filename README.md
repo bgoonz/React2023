@@ -322,3 +322,19 @@ function Stats() {
 }
 export default App;
 ```
+
+
+### Instructions for lifting up state...
+
+
+1. Identify the common state: Determine which component(s) need access to the shared state. Look for any data that needs to be shared or updated across these components.
+
+2. Find the closest common ancestor: Identify the closest common ancestor of the components that need access to the shared state. This ancestor component will be responsible for managing and updating the state.
+
+3. Define the state in the ancestor component: Add the necessary state variables to the ancestor component. These state variables will hold the shared data.
+
+4. Pass the state as props: Pass the state variables as props from the ancestor component to the child components that need access to the shared state. This way, the child components can read the state and render accordingly.
+
+5. Update the state: If any component needs to update the shared state, define a function in the ancestor component that modifies the state. Pass this function as a prop to the child components that need to update the shared state.
+
+6. Handle state updates: In the child components, use the passed down function prop to update the state. Call this function whenever the component needs to modify the shared state.
