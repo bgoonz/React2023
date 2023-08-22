@@ -122,9 +122,7 @@ function Form() {
 
 ### Lifting State Up:
 
-
 #### Instructions for lifting up state...
-
 
 1. Identify the common state: Determine which component(s) need access to the shared state. Look for any data that needs to be shared or updated across these components.
 
@@ -218,7 +216,6 @@ function PackingList() {
     </div>
   );
 }
-
 ```
 
 #### After lifting item state up from Form component:
@@ -306,7 +303,4 @@ function PackingList({ items }) {
     </div>
   );
 }
-
 ```
-
-
