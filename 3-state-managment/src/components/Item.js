@@ -4,7 +4,10 @@ const Item = ({ item, onDeleteItem, onUpdateItem }) => {
 
   return (
     <li key={item.id}>
-        <input type="checkbox" onChange={()=>onUpdateItem(item.id)}/>
+      <span>{item.packed ? "Packed" : "Unpacked"}</span>
+
+      <input type="checkbox" onChange={() => onUpdateItem(item.id)} />
+
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {description}
       </span>
@@ -12,4 +15,5 @@ const Item = ({ item, onDeleteItem, onUpdateItem }) => {
     </li>
   );
 };
+
 export default Item;

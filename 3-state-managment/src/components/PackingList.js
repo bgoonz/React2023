@@ -5,7 +5,14 @@ function PackingList({ items, onDeleteItem, onUpdateItem }) {
       {" "}
       <ul>
         {items.map((item) => {
-          return <Item key={item.id} item={item} onDeleteItem={onDeleteItem} onUpdateItem={onUpdateItem}/>;
+          return (
+            <Item
+              key={item.id}
+              item={item}
+              onDeleteItem={onDeleteItem}
+              onUpdateItem={onUpdateItem}
+            />
+          );
         })}
       </ul>
     </div>

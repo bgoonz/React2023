@@ -13,16 +13,22 @@ function App() {
     setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   }
   function handleUpdateItem(id) {
-    setItems(prevItems =>
-      prevItems.map(item => item.id === id ? { ...item, packed: !item.packed } : item)
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
     );
   }
-  
+
   return (
     <div className="app">
       <Logo />
       <Form onAddItem={handleAddItems} />
-      <PackingList items={items} onDeleteItem={handleDeleteItem} onUpdateItem={handleUpdateItem} />
+      <PackingList
+        items={items}
+        onDeleteItem={handleDeleteItem}
+        onUpdateItem={handleUpdateItem}
+      />
       <Stats />
     </div>
   );
