@@ -4,7 +4,7 @@ const Item = ({ item, onDeleteItem, onUpdateItem }) => {
 
   return (
     <li key={item.id}>
-      <span>{item.packed ? "Packed" : "Unpacked"}</span>
+      {/* <span>{item.packed ? "Packed" : "Unpacked"}</span> */}
 
       <input type="checkbox" onChange={() => onUpdateItem(item.id)} />
 

@@ -305,9 +305,7 @@ function PackingList({ items }) {
 }
 ```
 
-
 ---
-
 
 ### Derived State:
 

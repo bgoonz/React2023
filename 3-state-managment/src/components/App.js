@@ -19,7 +19,9 @@ function App() {
       )
     );
   }
-
+  function clearList() {
+    setItems([]);
+  }
   return (
     <div className="app">
       <Logo />
@@ -28,8 +30,9 @@ function App() {
         items={items}
         onDeleteItem={handleDeleteItem}
         onUpdateItem={handleUpdateItem}
+        onClear={clearList}
       />
-      <Stats items={items}/>
+      <Stats items={items} />
     </div>
   );
 }
