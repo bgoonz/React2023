@@ -122,17 +122,27 @@ function Form() {
 
 ### Lifting State Up:
 
+
+#### Instructions for lifting up state...
+
+
+1. Identify the common state: Determine which component(s) need access to the shared state. Look for any data that needs to be shared or updated across these components.
+
+2. Find the closest common ancestor: Identify the closest common ancestor of the components that need access to the shared state. This ancestor component will be responsible for managing and updating the state.
+
+3. Define the state in the ancestor component: Add the necessary state variables to the ancestor component. These state variables will hold the shared data.
+
+4. Pass the state as props: Pass the state variables as props from the ancestor component to the child components that need access to the shared state. This way, the child components can read the state and render accordingly.
+
+5. Update the state: If any component needs to update the shared state, define a function in the ancestor component that modifies the state. Pass this function as a prop to the child components that need to update the shared state.
+
+6. Handle state updates: In the child components, use the passed down function prop to update the state. Call this function whenever the component needs to modify the shared state.
+
 #### Before lifting item state up from Form component:
 
 ```js
 import { useState } from "react";
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
-  { id: 3, description: "Toothbrush", quantity: 1, packed: true },
-  { id: 4, description: "Phone charger", quantity: 1, packed: true },
-  { id: 5, description: "Water bottle", quantity: 1, packed: false },
-];
+
 function App() {
   return (
     <div className="app">
@@ -143,9 +153,7 @@ function App() {
     </div>
   );
 }
-function Logo() {
-  return <h1>🚢✈️🧳 Far Away🌴🥥🏖️</h1>;
-}
+
 function Form() {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -210,27 +218,14 @@ function PackingList() {
     </div>
   );
 }
-function Stats() {
-  return (
-    <footer className="stats">
-      <em>You have X items on your list and you already packed X (X%)</em>
-    </footer>
-  );
-}
-export default App;
+
 ```
 
 #### After lifting item state up from Form component:
 
 ```js
 import { useState } from "react";
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
-  { id: 3, description: "Toothbrush", quantity: 1, packed: true },
-  { id: 4, description: "Phone charger", quantity: 1, packed: true },
-  { id: 5, description: "Water bottle", quantity: 1, packed: false },
-];
+
 function App() {
   const [items, setItems] = useState([]);
   function handleAddItems(item) {
@@ -245,9 +240,7 @@ function App() {
     </div>
   );
 }
-function Logo() {
-  return <h1>🚢✈️🧳 Far Away🌴🥥🏖️</h1>;
-}
+
 function Form({ onAddItem }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -313,28 +306,7 @@ function PackingList({ items }) {
     </div>
   );
 }
-function Stats() {
-  return (
-    <footer className="stats">
-      <em>You have X items on your list and you already packed X (X%)</em>
-    </footer>
-  );
-}
-export default App;
+
 ```
 
 
-### Instructions for lifting up state...
-
-
-1. Identify the common state: Determine which component(s) need access to the shared state. Look for any data that needs to be shared or updated across these components.
-
-2. Find the closest common ancestor: Identify the closest common ancestor of the components that need access to the shared state. This ancestor component will be responsible for managing and updating the state.
-
-3. Define the state in the ancestor component: Add the necessary state variables to the ancestor component. These state variables will hold the shared data.
-
-4. Pass the state as props: Pass the state variables as props from the ancestor component to the child components that need access to the shared state. This way, the child components can read the state and render accordingly.
-
-5. Update the state: If any component needs to update the shared state, define a function in the ancestor component that modifies the state. Pass this function as a prop to the child components that need to update the shared state.
-
-6. Handle state updates: In the child components, use the passed down function prop to update the state. Call this function whenever the component needs to modify the shared state.
