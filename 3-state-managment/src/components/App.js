@@ -7,11 +7,15 @@ const initialItems = [
   { id: 5, description: "Water bottle", quantity: 1, packed: false },
 ];
 function App() {
+  const [items, setItems] = useState([]);
+  function handleAddItems(item) {
+    setItems((prevItems) => [...prevItems, item]);
+  }
   return (
     <div className="app">
       <Logo />
-      <Form />
-      <PackingList />
+      <Form onAddItem={handleAddItems} />
+      <PackingList items={items} />
       <Stats />
     </div>
   );
@@ -19,20 +23,21 @@ function App() {
 function Logo() {
   return <h1>🚢✈️🧳 Far Away🌴🥥🏖️</h1>;
 }
-function Form() {
+function Form({ onAddItem }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
+
   function handleSubmit(event) {
     event.preventDefault();
     //guard clause against empty description
     if (!description) return;
     const newItem = { description, quantity, packed: false, id: Date.now() };
     console.log(newItem);
+    onAddItem(newItem);
     //reset the form
     setDescription("");
     setQuantity(1);
   }
-
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
@@ -58,21 +63,25 @@ function Form() {
   );
 }
 const Item = ({ item }) => {
+  const description =
+    item.quantity > 1 ? `${item.description}s` : item.description;
+
   return (
     <li key={item.id}>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
-        {item.description} {item.quantity}
+        {item.quantity} {description}
       </span>
       <button>❌</button>
     </li>
   );
 };
-function PackingList() {
+
+function PackingList({ items }) {
   return (
     <div className="list">
       {" "}
       <ul>
-        {initialItems.map((item) => {
+        {items.map((item) => {
           return <Item key={item.id} item={item} />;
         })}
       </ul>
