@@ -1,9 +1,10 @@
-const Item = ({ item, onDeleteItem }) => {
+const Item = ({ item, onDeleteItem, onUpdateItem }) => {
   const description =
     item.quantity > 1 ? `${item.description}s` : item.description;
 
   return (
     <li key={item.id}>
+        <input type="checkbox" onChange={()=>onUpdateItem(item.id)}/>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {description}
       </span>

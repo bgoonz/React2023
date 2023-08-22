@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Logo from "./Logo";
 import Form from "./Form";
-import Item from "./Item";
+
 import PackingList from "./PackingList";
 import Stats from "./Stats";
 function App() {
@@ -12,11 +12,17 @@ function App() {
   function handleDeleteItem(id) {
     setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   }
+  function handleUpdateItem(id) {
+    setItems(prevItems =>
+      prevItems.map(item => item.id === id ? { ...item, packed: !item.packed } : item)
+    );
+  }
+  
   return (
     <div className="app">
       <Logo />
       <Form onAddItem={handleAddItems} />
-      <PackingList items={items} onDeleteItem={handleDeleteItem} />
+      <PackingList items={items} onDeleteItem={handleDeleteItem} onUpdateItem={handleUpdateItem} />
       <Stats />
     </div>
   );
