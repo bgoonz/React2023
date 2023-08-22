@@ -29,7 +29,7 @@ function App() {
         onDeleteItem={handleDeleteItem}
         onUpdateItem={handleUpdateItem}
       />
-      <Stats />
+      <Stats items={items}/>
     </div>
   );
 }

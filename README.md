@@ -304,3 +304,12 @@ function PackingList({ items }) {
   );
 }
 ```
+
+
+---
+
+
+### Derived State:
+
+- Derived state is state that is calculated from other state or props.
+- If state can be derived from existing state then we do not want to create a new state to represent it because this will result in unnecessary rerendering any time the related state changes.
