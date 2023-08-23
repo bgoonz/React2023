@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "./components/Button";
+import StepMessage from "./components/StepMessage";
 const messages = [
   "Learn React ⚛️",
   "Apply for jobs 💼",
@@ -35,9 +36,8 @@ function Steps() {
             <div className={step === 2 ? "active" : ""}>2</div>
             <div className={step === 3 ? "active" : ""}>3</div>
           </div>
-          <p className="message">
-            Step {step}: {messages[step - 1]}
-          </p>
+          <StepMessage step={step}>{messages[step - 1]}</StepMessage>
+
           <div className="buttons">
             <Button
               clickHandler={decrementStep}

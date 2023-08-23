@@ -311,3 +311,54 @@ function PackingList({ items }) {
 
 - Derived state is state that is calculated from other state or props.
 - If state can be derived from existing state then we do not want to create a new state to represent it because this will result in unnecessary rerendering any time the related state changes.
+
+### Props.children:
+
+- An empty hole that can be filled with any jsx the component recieves as children. The children prop allows us to pass jsx into an element. The only difference is that the children prop is not an html attribute but rather a prop that allows us to access jsx that is passed into the component as children.
+
+````js
+function Button(props) {
+  const { clickHandler, backgroundColor, textColor } = props;
+  return (
+    <button
+      style={{ backgroundColor: backgroundColor, color: textColor }}
+      onClick={clickHandler}
+    >
+      {props.children}
+    </button>
+  );
+}
+
+export default Button;
+
+// App.js
+<Button
+clickHandler={decrementStep}
+backgroundColor="#7950f2"
+textColor="#fff"
+>
+<span>⏮️</span> Previous
+</Button>
+
+<Button
+clickHandler={incrementStep}
+backgroundColor="#7950f2"
+textColor="#fff"
+emoji="⏭️"
+>
+{" "}
+Next<span>⏭️</span>
+</Button>
+```
+
+
+
+
+
+
+
+
+
+
+
+````
