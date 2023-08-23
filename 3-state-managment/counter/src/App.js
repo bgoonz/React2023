@@ -40,18 +40,22 @@ function Steps() {
           </p>
           <div className="buttons">
             <Button
-              text="Previous"
               clickHandler={decrementStep}
               backgroundColor="#7950f2"
               textColor="#fff"
-            />
+            >
+              <span>⏮️</span> Previous
+            </Button>
 
             <Button
-              text="Next"
               clickHandler={incrementStep}
               backgroundColor="#7950f2"
               textColor="#fff"
-            />
+              emoji="⏭️"
+            >
+              {" "}
+              Next<span>⏭️</span>
+            </Button>
           </div>
         </div>
       )}

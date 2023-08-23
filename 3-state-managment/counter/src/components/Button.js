@@ -1,10 +1,11 @@
-function Button({ textColor, backgroundColor, clickHandler, text }) {
+function Button(props) {
+  const { clickHandler, backgroundColor, textColor } = props;
   return (
     <button
       style={{ backgroundColor: backgroundColor, color: textColor }}
       onClick={clickHandler}
     >
-      {text}
+      {props.children}
     </button>
   );
 }
