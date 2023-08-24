@@ -395,3 +395,9 @@ Next<span>⏭️</span>
 - Name components according to what it does or what it displays... don't be afraid to use long component names.
 - NEVER declare a new component inside of another component.
 - Colocate related components inside the same file. Don't seperate components into different files too early in development.
+
+
+---
+
+
+
