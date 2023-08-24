@@ -396,8 +396,53 @@ Next<span>⏭️</span>
 - NEVER declare a new component inside of another component.
 - Colocate related components inside the same file. Don't seperate components into different files too early in development.
 
-
 ---
 
+## How React Works:
+
+- A component is a function that describes of a part of the UI.
+- A component is a function that returns React elements (jsx).
+- A component is a generic blueprint or template for which different data will produce different UI.
+- Instances are created when we use components in our code.
+
+```js
+function Tabbed({ content }) {
+  const [activeTab, setActiveTab] = useState(0);
+
+  return (
+    <div>
+      <div className="tabs">
+        <Tab num={0} activeTab={activeTab} onClick={setActiveTab} />
+        <Tab num={1} activeTab={activeTab} onClick={setActiveTab} />
+        <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
+        <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
+      </div>
+
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} />
+      ) : (
+        <DifferentContent />
+      )}
+    </div>
+  );
+}
+
+function Tab({ num, activeTab, onClick }) {
+  return (
+    <button
+      className={activeTab === num ? "tab active" : "tab"}
+      onClick={() => onClick(num)}
+    >
+      Tab {num + 1}
+    </button>
+  );
+}
+```
+
+> In the above example, the Tabbed component returns multiple instances of the Tab component.
+
+
+
+*An instance is the actual manifestation of a component that has it's own state and props (and has a lifecycle... i.e. it can be mounted and unmounted).*
 
 
