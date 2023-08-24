@@ -12,7 +12,7 @@ export default function App() {
 function AccordionItem({ num, title, current, onOpen, children }) {
   const isOpen = current === num;
   const handleClick = () => {
-    onOpen(isOpen?null:num);
+    onOpen(isOpen ? null : num);
   };
   return (
     <div className={isOpen ? "item open" : "item"} onClick={handleClick}>
