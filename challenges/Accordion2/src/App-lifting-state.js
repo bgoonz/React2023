@@ -9,17 +9,17 @@ export default function App() {
     </div>
   );
 }
-function AccordionItem({ num, title, current, onOpen, children }) {
+function AccordionItem({ num, title, text, current, onOpen }) {
   const isOpen = current === num;
   const handleClick = () => {
-    onOpen(isOpen?null:num);
+    onOpen(num);
   };
   return (
     <div className={isOpen ? "item open" : "item"} onClick={handleClick}>
       <p className="number">{num < 9 ? `0${num + 1}` : num + 1}</p>
       <p className="title">{title}</p>
       <p className="icon">{isOpen ? "-" : "+"}</p>
-      {isOpen ? <div className="content-box">{children}</div> : null}
+      {isOpen ? <div className="content-box">{text}</div> : null}
     </div>
   );
 }
@@ -33,12 +33,10 @@ function Accordion({ data }) {
           <AccordionItem
             title={ele.title}
             num={index}
-            key={index}
+            text={ele.text}
             current={current}
             onOpen={setCurrent}
-          >
-            {ele.text}
-          </AccordionItem>
+          />
         );
       })}
     </div>
