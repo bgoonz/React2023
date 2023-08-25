@@ -94,13 +94,7 @@ function Form() {
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
@@ -173,23 +167,14 @@ function Form() {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      >
+      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
@@ -256,30 +241,20 @@ function Form({ onAddItem }) {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      >
+      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
 }
 const Item = ({ item }) => {
-  const description =
-    item.quantity > 1 ? `${item.description}s` : item.description;
+  const description = item.quantity > 1 ? `${item.description}s` : item.description;
 
   return (
     <li key={item.id}>
@@ -418,21 +393,14 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
     </div>
   );
 }
 
 function Tab({ num, activeTab, onClick }) {
   return (
-    <button
-      className={activeTab === num ? "tab active" : "tab"}
-      onClick={() => onClick(num)}
-    >
+    <button className={activeTab === num ? "tab active" : "tab"} onClick={() => onClick(num)}>
       Tab {num + 1}
     </button>
   );
@@ -499,6 +467,12 @@ Two common misconceptions about React:
 
 ![Reconciliation](./images/2023-08-25-11-45-39.png)
 
--> In the example in the image above the Btn element (yellow) has different text depending on the state in question and so the work to be done in the fiber tree is to update the DOM with the new text.
+![Component Tree](./images/2023-08-25-12-00-26.png)
 
--> The Modal, Overlay, H3, and Button (red) are no longer in the React Element Tree and are thus marked for deletion in the Updated Fiber tree.
+- -> In the example in the image above the Btn element (yellow) has different text depending on the state in question and so the work to be done in the fiber tree is to update the DOM with the new text.
+
+- -> The Modal, Overlay, H3, and Button (red) are no longer in the React Element Tree and are thus marked for deletion in the Updated Fiber tree.
+
+- -> Finally we have the Video component which is a child of the App component but it did not change between renders and thus after reconciliation the dom element for the video will not be updated.
+
+- -> Once reconciliation takes place all the dom mutations will be placed into a list called the _list of effects_ which will be used in the next (Commit) phase to update the DOM.
