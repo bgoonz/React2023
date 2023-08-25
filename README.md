@@ -480,12 +480,16 @@ function Tab({ num, activeTab, onClick }) {
 1. Two elements of different types will produce different trees.
 2. Elements with a stable key prop stay the same across renders.
 
-- Two cases we need to consider when diffing...
+#### Two cases we need to consider when diffing...
 
 1. Same position, different element.
    ![Same position, different element.](./images/2023-08-25-13-32-06.png)
    > React will assume that the element it's self plus all of it's children are no longer valid. Old components are destroyed and removed from the DOM including state.
-   > ![Subtree is no longer valid.](./images/2023-08-25-13-34-28.png)
+   
+![Subtree is no longer valid.](./images/2023-08-25-13-34-28.png)
+
    > The same logic applies to different React elements (component instances) as for differing DOM elements.
-   > ![Different React Elements](./images/2023-08-25-13-36-17.png)
+   
+ ![Different React Elements](./images/2023-08-25-13-36-17.png)
+   
 2. Same position, same element.
