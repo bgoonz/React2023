@@ -94,13 +94,7 @@ function Form() {
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
@@ -173,23 +167,14 @@ function Form() {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      >
+      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
@@ -256,30 +241,20 @@ function Form({ onAddItem }) {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      >
+      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
 }
 const Item = ({ item }) => {
-  const description =
-    item.quantity > 1 ? `${item.description}s` : item.description;
+  const description = item.quantity > 1 ? `${item.description}s` : item.description;
 
   return (
     <li key={item.id}>
@@ -418,21 +393,14 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
     </div>
   );
 }
 
 function Tab({ num, activeTab, onClick }) {
   return (
-    <button
-      className={activeTab === num ? "tab active" : "tab"}
-      onClick={() => onClick(num)}
-    >
+    <button className={activeTab === num ? "tab active" : "tab"} onClick={() => onClick(num)}>
       Tab {num + 1}
     </button>
   );
@@ -441,8 +409,18 @@ function Tab({ num, activeTab, onClick }) {
 
 > In the above example, the Tabbed component returns multiple instances of the Tab component.
 
+_An instance is the actual manifestation of a component that has it's own state and props (and has a lifecycle... i.e. it can be mounted and unmounted)._
 
+- A component instance returns a React element (jsx) The react element is the result of the component function call.
 
-*An instance is the actual manifestation of a component that has it's own state and props (and has a lifecycle... i.e. it can be mounted and unmounted).*
+> Component instance: `console.log(<DifferentContent  test={23}/>);` --> type: DifferentContent
+> React element: `console.log(DifferentContent({test: 23}));` --> type: div
 
+- Finally the react element is rendered to the DOM using the ReactDOM.render() function(html)
 
+**How React Renders Components:**
+
+1. Render is triggered (By updating state somewhere)
+2. React calls the component functions and figures out how the Dom should be updated (Render phase). DOM is not actually updated in this phase.
+   > In React, rendering is not updating the DOM or displaying elements on the screen. Rendering is the process of figuring out what changes need to be made to the DOM.
+3.

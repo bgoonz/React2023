@@ -43,6 +43,7 @@ function Tabbed({ content }) {
       ) : (
         <DifferentContent />
       )}
+      
     </div>
   );
 }
