@@ -473,3 +473,7 @@ Two common misconceptions about React:
 **Virtual DOM (React Element Tree):**
 
 1. Initial Render (Component Tree) gets converted to a React Element Tree (Virtual DOM) by React. This tree of react elements is what we refer to as the virtual dom. In practice this is a tree of all react elements freated from all instances in the component tree. It is cheap and fast to create multiple trees because behind the scenes they are JS-objects not DOM elements.
+
+- In react documentation the term `virtual dom` has been replaced with `react element tree` , but it is still a common term in the community. (**Nothing to do with Shadow Dom.. which is a browser concept that has to do with isolating a branch of the DOM from the rest of the DOM**)
+
+**Rendering a component will cause all of it's child comonents to be rerendered as well (even if props has not changed)**
