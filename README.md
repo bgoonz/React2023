@@ -476,3 +476,31 @@ Two common misconceptions about React:
 - -> Finally we have the Video component which is a child of the App component but it did not change between renders and thus after reconciliation the dom element for the video will not be updated.
 
 - -> Once reconciliation takes place all the dom mutations will be placed into a list called the _list of effects_ which will be used in the next (Commit) phase to update the DOM.
+
+**Render Phase**
+
+![Render Phase](./images/2023-08-25-12-06-17.png)
+--> results in a list of DOM updates to be done.
+
+---
+
+### Commit Phase
+
+- In the commit phase list of insertions, deletions and updates are "flushed" to the DOM.
+- Commit phase is synchronous... DOM is updated in one go, it can't be interrupted. This is necessary so that the DOM never shows partial results, ensuring a consistent UI (in sync with state at all times).
+- After the commit phase ompletes the workInProgress fiber tree becomes the current tree for the next render cycle.
+- The Render phase is exicuted by the react library and the Browser Paint phase is exicuted by the browser... what about the commit phase?  The commit phase is exicuted by the react-dom library.
+- The React library is agnostic to the commit phase and the browser paint phase.
+- The reason for this is that React can be used with other "hosts" such as react-native or react-three-fiber.
+  
+![The Commit Phase](./images/2023-08-25-13-08-25.png)  
+
+---
+
+### Putting it all together:
+
+1. First step is a trigger... (initial render or state update in a component instance)
+2. Render phase:  In react render means to call the component functions...React creates a new React Element Tree (virtual dom) and recconciles (finds what changes need to be made to current DOM to reflect change in state) it with the current Fiber Tree (work in progress tree) ...Rendering a component will also render all of it's children components (regardless of a change in props). The fiber tree has a fiber for each react component and DOM element. 
+
+![Render Phase](./images/2023-08-25-13-17-21.png)
+
