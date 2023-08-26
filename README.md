@@ -604,3 +604,7 @@ function add(a, b) {
 ---
 
 #### State Update Batching:
+
+- Renders are not triggered immediatly , but scheduled for when the JS engine has some "free time". There is also batching of multiple setState calls in event handlers.
+
+![Example](./images/2023-08-26-13-51-52.png)
