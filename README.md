@@ -469,6 +469,11 @@ function Tab({ num, activeTab, onClick }) {
 1. First step is a trigger... (initial render or state update in a component instance)
 2. Render phase: In react render means to call the component functions...React creates a new React Element Tree (virtual dom) and recconciles (finds what changes need to be made to current DOM to reflect change in state) it with the current Fiber Tree (work in progress tree) ...Rendering a component will also render all of it's children components (regardless of a change in props). The fiber tree has a fiber for each react component and DOM element.
    ![Render Phase](./images/2023-08-25-13-17-21.png)
+   
+   
+ - Complete update
+
+
    ![Complete Update](./images/2023-08-25-13-26-21.png)
 
 ---
@@ -493,3 +498,66 @@ function Tab({ num, activeTab, onClick }) {
  ![Different React Elements](./images/2023-08-25-13-36-17.png)
    
 2. Same position, same element.
+![Same position, same element.](./images/2023-08-25-13-40-53.png)
+
+> Elements will be kept (as well as child elements) including state.
+> New props / attributes are passed if they changed between renders.
+
+- Sometimes this behavior is not what we want... in that case we can use the `key` prop.
+
+
+```js
+function Tabbed({ content }) {
+  const [activeTab, setActiveTab] = useState(0);
+
+  return (
+    <div>
+      <div className="tabs">
+        <Tab num={0} activeTab={activeTab} onClick={setActiveTab} />
+        <Tab num={1} activeTab={activeTab} onClick={setActiveTab} />
+        <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
+        <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
+      </div>
+
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} />
+      ) : (
+        <DifferentContent />
+      )}
+    </div>
+  );
+}
+```
+
+In the case of the TabContent component we have the same component in the same place... so the state (i.e. how many likes or the show hide state) is preserved as we navigate through the tabs.
+
+- Once we navigate to the Tab 4 we have a different component in the same place... so the state is lost and as such, when we navigate to tabs 1-3 we see that the description is shown and the like count is reset to 0.
+
+
+#### The Key Prop:
+
+- The key prop is a special prop we use to tell the diffing algorithm that the element is unique (works for both DOM elements and React Elements)
+- This allows React to distinguish between multiple instances of the same component type.
+- When a key stays the same across renders, the element will be kept in the DOM (even if the position in the tree changes).
+- We generally use the key prop in lists.
+- When a key changes between renders, the element will be destroyed and a new one will be created (even if the position in the tree is the same as before).
+- We can use keys to reset state.
+
+```js
+
+<ul>
+    <Question question={q[1]}>
+    <Question question={q[2]}>
+</ul>    
+```
+> adding new list item:
+
+```js
+// now they will appear in different positions in the React Element Tree
+// They are no longer the first and second children.. but the second and third children.
+<ul>
+    <Question question={q[0]}>
+    <Question question={q[1]}>
+    <Question question={q[2]}>
+
+```
