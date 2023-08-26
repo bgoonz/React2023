@@ -469,12 +469,10 @@ function Tab({ num, activeTab, onClick }) {
 1. First step is a trigger... (initial render or state update in a component instance)
 2. Render phase: In react render means to call the component functions...React creates a new React Element Tree (virtual dom) and recconciles (finds what changes need to be made to current DOM to reflect change in state) it with the current Fiber Tree (work in progress tree) ...Rendering a component will also render all of it's children components (regardless of a change in props). The fiber tree has a fiber for each react component and DOM element.
    ![Render Phase](./images/2023-08-25-13-17-21.png)
-   
-   
- - Complete update
 
+- Complete update
 
-   ![Complete Update](./images/2023-08-25-13-26-21.png)
+  ![Complete Update](./images/2023-08-25-13-26-21.png)
 
 ---
 
@@ -490,21 +488,20 @@ function Tab({ num, activeTab, onClick }) {
 1. Same position, different element.
    ![Same position, different element.](./images/2023-08-25-13-32-06.png)
    > React will assume that the element it's self plus all of it's children are no longer valid. Old components are destroyed and removed from the DOM including state.
-   
+
 ![Subtree is no longer valid.](./images/2023-08-25-13-34-28.png)
 
-   > The same logic applies to different React elements (component instances) as for differing DOM elements.
-   
- ![Different React Elements](./images/2023-08-25-13-36-17.png)
-   
+> The same logic applies to different React elements (component instances) as for differing DOM elements.
+
+![Different React Elements](./images/2023-08-25-13-36-17.png)
+
 2. Same position, same element.
-![Same position, same element.](./images/2023-08-25-13-40-53.png)
+   ![Same position, same element.](./images/2023-08-25-13-40-53.png)
 
 > Elements will be kept (as well as child elements) including state.
 > New props / attributes are passed if they changed between renders.
 
 - Sometimes this behavior is not what we want... in that case we can use the `key` prop.
-
 
 ```js
 function Tabbed({ content }) {
@@ -533,7 +530,6 @@ In the case of the TabContent component we have the same component in the same p
 
 - Once we navigate to the Tab 4 we have a different component in the same place... so the state is lost and as such, when we navigate to tabs 1-3 we see that the description is shown and the like count is reset to 0.
 
-
 #### The Key Prop:
 
 - The key prop is a special prop we use to tell the diffing algorithm that the element is unique (works for both DOM elements and React Elements)
@@ -548,8 +544,9 @@ In the case of the TabContent component we have the same component in the same p
 <ul>
     <Question question={q[1]}>
     <Question question={q[2]}>
-</ul>    
+</ul>
 ```
+
 > adding new list item:
 
 ```js
@@ -559,5 +556,49 @@ In the case of the TabContent component we have the same component in the same p
     <Question question={q[0]}>
     <Question question={q[1]}>
     <Question question={q[2]}>
+</ul>
+```
 
+**Adding Keys**
+
+```js
+<ul>
+    <Question key="q1" question={q[1]}>
+    <Question key="q2" question={q[2]}>
+</ul>
+```
+
+**Adding new list Item**
+
+```js
+<ul>
+    <Question key="q0" question={q[0]}>
+    <Question key="q1" question={q[1]}>
+    <Question key="q2" question={q[2]}>
+</ul>
+```
+
+**How to reset state using keys**
+
+```js
+function Tabbed({ content }) {
+  const [activeTab, setActiveTab] = useState(0);
+
+  return (
+    <div>
+      <div className="tabs">
+        <Tab num={0} activeTab={activeTab} onClick={setActiveTab} />
+        <Tab num={1} activeTab={activeTab} onClick={setActiveTab} />
+        <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
+        <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
+      </div>
+
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} key={activeTab} />
+      ) : (
+        <DifferentContent />
+      )}
+    </div>
+  );
+}
 ```
