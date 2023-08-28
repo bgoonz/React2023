@@ -4,17 +4,16 @@ const content = [
   {
     summary: "React is a library for building UIs",
     details:
-      "Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "Components must be pure when it comes to render logic: given the same props(input), a component instance sould always return the same JSX(output).",
   },
   {
     summary: "State management is like giving state a home",
-    details:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    details: "Render logic must produce no side effects:",
   },
   {
     summary: "We can think of props as the component API",
     details:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Render Logic: Logic that determines what the UI should look like. Code that lives at the top level of a component function.",
   },
 ];
 
@@ -61,7 +60,7 @@ function Tab({ num, activeTab, onClick }) {
 function TabContent({ item }) {
   const [showDetails, setShowDetails] = useState(true);
   const [likes, setLikes] = useState(0);
-console.log('rendering')
+  console.log("rendering");
   function handleInc() {
     setLikes(likes + 1);
   }
@@ -70,12 +69,17 @@ console.log('rendering')
     setLikes((prevLikes) => prevLikes + 1);
     setLikes((prevLikes) => prevLikes + 1);
   }
-  
-  function handleUndo(){
+
+  function handleUndo() {
     setShowDetails(true);
     setLikes(0);
-    console.log(likes)
+    console.log(likes);
   }
+
+  function handleUndoLater() {
+    setTimeout(handleUndo, 2000);
+  }
+
   return (
     <div className="tab-content">
       <h4>{item.summary}</h4>
@@ -95,7 +99,7 @@ console.log('rendering')
 
       <div className="tab-undo">
         <button onClick={handleUndo}>Undo</button>
-        <button>Undo in 2s</button>
+        <button onClick={handleUndoLater}>Undo in 2s</button>
       </div>
     </div>
   );
