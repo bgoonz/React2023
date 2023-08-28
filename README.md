@@ -606,5 +606,45 @@ function add(a, b) {
 #### State Update Batching:
 
 - Renders are not triggered immediatly , but scheduled for when the JS engine has some "free time". There is also batching of multiple setState calls in event handlers.
+- Updating state is asynchronous.
+  ![Example](./images/2023-08-26-13-51-52.png)
+  > example:
 
-![Example](./images/2023-08-26-13-51-52.png)
+```js
+function App() {
+  const [answer, setAnswer] = useState("");
+  const [best, setBest] = useState(true);
+  const [solved, setSolved] = useState(false);
+  function reset() {
+    setAnswer("");
+    console.log(answer);
+    setBest(true);
+    setSolved(false);
+  }
+  return (
+    <div>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+}
+```
+
+- In the above example you might think that a render cycle takes place for each call to setState... but in reality the state updates are batched together and the render cycle is only triggered once.
+- All three pieces of state in the event handler are updated at once.
+  ![Batched State Update](./images/2023-08-26-14-00-09.png)
+
+- If we need to update state based on a previous update, we use setState with a callback function.
+  `setAnswer((prevAnswer) => prevAnswer + 'a');`
+
+**Makin the tripple like button work:**
+
+```js
+function handleInc() {
+  setLikes(likes + 1);
+}
+function trippleInc() {
+  setLikes((prevLikes) => prevLikes + 1);
+  setLikes((prevLikes) => prevLikes + 1);
+  setLikes((prevLikes) => prevLikes + 1);
+}
+```
