@@ -744,3 +744,11 @@ function trippleInc() {
 ---
 
 ---
+
+### Effects & Data Fetching:
+
+**Component (instance) Lifecycle:**
+
+- **Mount/ Initial Render** : component instance is rendered for the first time. Fresh state and props are created.
+- **Update / Rerender** : component instance is rerendered because state or props changed, or because a parent component rerendered or Context changed.
+- **Unmount** : component instance is removed from the DOM, state and props are destroyed as well.
