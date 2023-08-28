@@ -705,3 +705,42 @@ function trippleInc() {
 #### How React Handles Events:
 
 ![React Events](./images/2023-08-28-11-18-11.png)
+
+**Synthetic Events:**
+
+- When we create an event listener... react gives us access to an event object. In react, this event object is called a synthetic event... native events such as :(pointer event, mouse event, keyboard event) have wrappers around them to create synthetic events which expose the same interface... i.e. `stopPropagation()` and `preventDefault()` methods.
+- The main difference between native events and synthetic events is that synthetic events are made such that they have the same behavior regardless of the browser.
+- Most synthetic events bubble (including focus, blur and change), except for scroll (which does not bubble in react).
+- In react event handlers are written with camel case... i.e. `onClick` instead of `onclick`.
+- In vanilla JS default behavior can be prevented by returning false from the event handler... in react we use the `preventDefault()` method on the event object.
+- In the rare case that you need to handle an event during the capture phase rather than the bubbling phase... you can use the `onClickCapture` prop instead of the `onClick` prop.
+
+---
+
+#### Libraries vs. Frameworks & The React Ecosystem:
+
+- A framework is an all in one kit... it has everything you need but it locks you into certain ways of doing things.
+- A library is a collection of tools that you can use to build your own solution.
+- React is a library, Angular is a Framework.
+- Next.js, Gatsby and Remix are frameworks built on top of React.
+
+![React Ecosystem](./images/2023-08-28-12-06-09.png)
+
+---
+
+### Summary of React Fundamentals:
+
+- A component is like a blueprint for a piece of UI that will eventually exist on the screen, when we use a component, React creates a component instance, which is the physical manifestation of the component, contaning props, state...etc. A component instance, when rendered will return a React element.
+- Rendering only means calling component functions and calculating what DOM elements need to be inserted, deleted or updated. It has nothing to do with actually writing to the DOM. Therefore, each time a component instance is rendered and rerendered, the function is called again.
+- Only the initial app render and state updates can cause a render, which happens for the entire application, not just one single component.
+- When a component instance get's rerendered, all it's children will get rerendered as well. This does not mean that all children will get updated in the DOM, thanks to reconciliation, which checks which elements have actually changed between two renders.
+- Diffing is how React decides which DOM elements need to be added or modified. If between renders, a certain React element stays at the same position in the element tree, the corresponding DOM elment and component state will stay the same. If the element changed to a different position, or if its a different element type, the DOM element and state will be destroyed.
+- Giving elements a key prop allows React to distinguish between multiple component instances. When a key stays the same across renders, the element is kept int the DOM. This is why we use keys in lists. When we change the key between renders, the DOM element will be destroyed and rebuilt... this behavior can be leveraged to reset state.
+- The logic that produces JSX output for a component instance ('render logic') is not allowed to produce any side effects: no API calls, no timersm no object or variable mutations, no state updates. Side effects are allowed in event handlers and useEffect hooks.
+- The DOM is updated in the commit phase, but not by React, but by a 'renderer' called ReactDOM.
+- Multiple state updates inside an event handler function are batched, so they all happen at once, causing only one rerender. This means we can not access a state variable immediatly after updating it: state updates are asynchronus. Since react 18, batching also happens in timeouts, promises and native event handlers.
+- When uing events in event handlers, we get access to a synthetic event object, not the browser's native object, so events work the same way across all browsers. This difference is that most synthetic events bubble, including focus, blur and change, which do not bubble as native browser events. Only the scroll event does not bubble.
+
+---
+
+---
