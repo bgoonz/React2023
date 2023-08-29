@@ -87,13 +87,7 @@ function Form() {
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
@@ -159,23 +153,14 @@ function Form() {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      >
+      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
@@ -239,30 +224,20 @@ function Form({ onAddItem }) {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      >
+      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
 }
 const Item = ({ item }) => {
-  const description =
-    item.quantity > 1 ? `${item.description}s` : item.description;
+  const description = item.quantity > 1 ? `${item.description}s` : item.description;
   return (
     <li key={item.id}>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
@@ -379,20 +354,13 @@ function Tabbed({ content }) {
         <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
     </div>
   );
 }
 function Tab({ num, activeTab, onClick }) {
   return (
-    <button
-      className={activeTab === num ? "tab active" : "tab"}
-      onClick={() => onClick(num)}
-    >
+    <button className={activeTab === num ? "tab active" : "tab"} onClick={() => onClick(num)}>
       Tab {num + 1}
     </button>
   );
@@ -516,11 +484,7 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
     </div>
   );
 }
@@ -593,11 +557,7 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} key={activeTab} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} key={activeTab} /> : <DifferentContent />}
     </div>
   );
 }
@@ -755,6 +715,8 @@ function trippleInc() {
 
 **Why we need the useEffect Hook:**
 
+- Effects run asynchronously after the component is painted to the browser.
+
 ```js
 const [movies, setMovies] = useState([]);
 const [watched, setWatched] = useState([]);
@@ -798,9 +760,7 @@ useEffect(() => {
 ```js
 useEffect(() => {
   async function fetchMovies() {
-    const response = await fetch(
-      `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-    );
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
     const data = await response.json();
     setMovies(data.Search);
   }
@@ -815,11 +775,8 @@ useEffect(() => {
   async function fetchMovies() {
     try {
       setLoading(true);
-      const response = await fetch(
-        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-      );
-      if (!response.ok)
-        throw new Error("Something went wrong while fetching the movies");
+      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
       const data = await response.json();
       setMovies(data.Search);
       // setLoading(false);
@@ -840,13 +797,26 @@ useEffect(() => {
 
 **Every state variable and prop used inside the effect MUST be included in the dependency array.**
 
-
 > You can think of useEffect as an event listener that is listening for one dependency to change. When that dependency changes, the effect will run again.
 
-
 |                        | Synchronization                          | Lifecycle                                                |
-|------------------------|------------------------------------------|----------------------------------------------------------|
+| ---------------------- | ---------------------------------------- | -------------------------------------------------------- |
 | useEffect(fn, [x,y,z]) | Effect synchronizez with x,y and z       | Runs on mount and re-renders triggered by updating x,y,z |
 | useEffect(fn, [])      | Effect synchronizes with not state/props | Runs only on mount(initial render)                       |
 | useEffect(fn)          | Effect synchronizes with everything      | runs on every render (usually bad)                       |
 
+**Order of effects based on dependency array**
+
+```js
+export default function App() {
+  useEffect(() => {
+    console.log("After initial render");
+  }, []);
+  useEffect(() => {
+    console.log("After every render");
+  });
+  
+  //----------------------
+  console.log("During Render");
+}
+```

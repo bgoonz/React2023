@@ -6,14 +6,19 @@ const KEY = "35a9bf11";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
-  const [query, setQuery] = useState("star wars");
+  const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+const tempQuery = "batman"
+
+
+
 
   useEffect(() => {
     async function fetchMovies() {
       try {
         setLoading(true);
+        setError("");
         const response = await fetch(
           `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
         );
@@ -35,7 +40,7 @@ export default function App() {
   return (
     <>
       <NavBar>
-        <Search />
+        <Search query={query} setQuery={setQuery}/>
         <NumResults movies={movies} />
       </NavBar>
 
@@ -91,8 +96,8 @@ function Logo() {
   );
 }
 
-function Search() {
-  const [query, setQuery] = useState("");
+function Search({query, setQuery}) {
+
 
   return (
     <input
