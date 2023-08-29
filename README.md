@@ -796,12 +796,40 @@ useEffect(() => {
 - The function that is the first argument to useEffect must be synchronus so you have to put another function inside of it if you want to do something asyncronus.
 
 ```js
-  useEffect(() => {
-    async function fetchMovies() {
-      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+useEffect(() => {
+  async function fetchMovies() {
+    const response = await fetch(
+      `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+    );
+    const data = await response.json();
+    setMovies(data.Search);
+  }
+  fetchMovies();
+}, [query]);
+```
+
+**With error and loading states... plus a finally block to run at the end incase of error or sucess to prevent loading state being true in case of error**
+
+```js
+useEffect(() => {
+  async function fetchMovies() {
+    try {
+      setLoading(true);
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+      );
+      if (!response.ok)
+        throw new Error("Something went wrong while fetching the movies");
       const data = await response.json();
       setMovies(data.Search);
+      // setLoading(false);
+    } catch (err) {
+      console.error(err.message);
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-    fetchMovies();
-  }, [query]);
+  }
+  fetchMovies();
+}, [query]);
 ```

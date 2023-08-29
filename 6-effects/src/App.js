@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
-const average = (arr) => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+const average = (arr) =>
+  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 const KEY = "35a9bf11";
 export default function App() {
   const [movies, setMovies] = useState([]);
@@ -13,14 +14,19 @@ export default function App() {
     async function fetchMovies() {
       try {
         setLoading(true);
-        const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
-        if (!response.ok) throw new Error("Something went wrong while fetching the movies");
+        const response = await fetch(
+          `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+        );
+        if (!response.ok)
+          throw new Error("Something went wrong while fetching the movies");
         const data = await response.json();
         setMovies(data.Search);
-        setLoading(false);
+        // setLoading(false);
       } catch (err) {
         console.error(err.message);
         setError(err.message);
+      } finally {
+        setLoading(false);
       }
     }
     fetchMovies();
@@ -88,7 +94,15 @@ function Logo() {
 function Search() {
   const [query, setQuery] = useState("");
 
-  return <input className="search" type="text" placeholder="Search movies..." value={query} onChange={(e) => setQuery(e.target.value)} />;
+  return (
+    <input
+      className="search"
+      type="text"
+      placeholder="Search movies..."
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+    />
+  );
 }
 
 function NumResults({ movies }) {
