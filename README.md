@@ -779,4 +779,12 @@ function trippleInc() {
 ```
 
 - In the case where the dependency array is empty, the callback function will only be called after the initial render (onMount).
+
+
+- In the context of React... a side effect is any interaction between a component and the world outside the component. We can think of a side effect as 'code that actualy does something'. Examples include data fetching, setting up subscriptions, setting up timers, manually accessing the DOM etc...
+
+**Where to create a side effect**
+- Sometimes we want to initiate a side effect as a result of an event but other times we want to initiate a side effect when the component renders.
+
+- The useEffect hook allows us to write code that will run at different points in the lifecycle of the component (mount, update, unmount).
 - 

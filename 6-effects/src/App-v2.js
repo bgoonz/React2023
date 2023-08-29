@@ -244,7 +244,7 @@ function Box({ children }) {
   return (
     <div className="box">
       <button className="btn-toggle" onClick={() => setIsOpen((open) => !open)}>
-        {isOpen ? "–" : "+"}
+        {isOpen ? "-" : "+"}
       </button>
 
       {isOpen && children}
@@ -263,7 +263,7 @@ function WatchedBox() {
         className="btn-toggle"
         onClick={() => setIsOpen2((open) => !open)}
       >
-        {isOpen2 ? "–" : "+"}
+        {isOpen2 ? "-" : "+"}
       </button>
 
       {isOpen2 && (
