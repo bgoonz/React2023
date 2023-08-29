@@ -753,38 +753,48 @@ function trippleInc() {
 - **Update / Rerender** : component instance is rerendered because state or props changed, or because a parent component rerendered or Context changed.
 - **Unmount** : component instance is removed from the DOM, state and props are destroyed as well.
 
-
-
 **Why we need the useEffect Hook:**
+
 ```js
-  const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
-  fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=batman`)
-    .then((res) => res.json())
-    .then((data) => setMovies(data.Search));
+const [movies, setMovies] = useState([]);
+const [watched, setWatched] = useState([]);
+fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=batman`)
+  .then((res) => res.json())
+  .then((data) => setMovies(data.Search));
 ```
+
 - This code results in an infinite loop of network requests
 
-
 **useEffect** takes two arguments... a callback function and a dependency array.
+
 - The callback function is called after the component is rendered for the first time and after every rerender.
 - The dependency array is an array of values that the useEffect hook will watch for changes. If any of the values in the dependency array change between renders, the callback function will be called again.
 
 ```js
-  useEffect(()=>{
-    fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=batman`)
+useEffect(() => {
+  fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=batman`)
     .then((res) => res.json())
     .then((data) => setMovies(data.Search));
-  },[])
+}, []);
 ```
 
 - In the case where the dependency array is empty, the callback function will only be called after the initial render (onMount).
 
-
 - In the context of React... a side effect is any interaction between a component and the world outside the component. We can think of a side effect as 'code that actualy does something'. Examples include data fetching, setting up subscriptions, setting up timers, manually accessing the DOM etc...
 
 **Where to create a side effect**
+
 - Sometimes we want to initiate a side effect as a result of an event but other times we want to initiate a side effect when the component renders.
 
 - The useEffect hook allows us to write code that will run at different points in the lifecycle of the component (mount, update, unmount).
-- 
+
+![Event Handlers vs Effects](./images/2023-08-29-09-46-33.png)
+
+- We use effects to keep a component synchronized with some external system... i.e. an API of movie data.
+
+- Whenever possible...create side effects inside of an event handler rather than a useEffect hook.
+- The function that is the first argument to useEffect must be synchronus so you have to put another function inside of it if you want to do something asyncronus.
+
+```js
+
+```

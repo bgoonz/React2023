@@ -1,22 +1,23 @@
-import { useState , useEffect} from "react";
+import { useState, useEffect } from "react";
 
-
-const average = (arr) => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+const average = (arr) =>
+  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 const KEY = "35a9bf11";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
-  
-  useEffect(()=>{
-    fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=batman`)
-    .then((res) => res.json())
-    .then((data) => setMovies(data.Search));
-  },[])
-  
 
-    
+  useEffect(() => {
+    async function fetchMovies() {
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${KEY}&s=star wars`
+      );
+      const data = await response.json();
+      setMovies(data.Search);
+    }
+    fetchMovies();
+  }, []);
 
-    
   return (
     <>
       <NavBar>
@@ -59,7 +60,15 @@ function Logo() {
 function Search() {
   const [query, setQuery] = useState("");
 
-  return <input className="search" type="text" placeholder="Search movies..." value={query} onChange={(e) => setQuery(e.target.value)} />;
+  return (
+    <input
+      className="search"
+      type="text"
+      placeholder="Search movies..."
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+    />
+  );
 }
 
 function NumResults({ movies }) {
@@ -87,8 +96,6 @@ function Box({ children }) {
     </div>
   );
 }
-
-
 
 function MovieList({ movies }) {
   return (
@@ -177,6 +184,3 @@ function WatchedMovie({ movie }) {
     </li>
   );
 }
-
-
-
