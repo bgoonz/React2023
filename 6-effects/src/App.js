@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import StarRating from "./components/StarRating";
+
 import Loader from "./components/Loader";
 import ErrorMessage from "./components/ErrorMessage";
 import NavBar from "./components/NavBar";
@@ -36,11 +36,8 @@ export default function App() {
       try {
         setLoading(true);
         setError("");
-        const response = await fetch(
-          `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-        );
-        if (!response.ok)
-          throw new Error("Something went wrong while fetching the movies");
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+        if (!response.ok) throw new Error("Something went wrong while fetching the movies");
         const data = await response.json();
         if (data.Response === "False") throw new Error("No movies found");
         setMovies(data.Search);
@@ -57,6 +54,7 @@ export default function App() {
     }
     fetchMovies();
   }, [query]);
+  //----------JSX----------//
   return (
     <>
       <NavBar>
@@ -66,17 +64,12 @@ export default function App() {
       <Main>
         <Box>
           {loading && <Loader />}
-          {!loading && !error && (
-            <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
-          )}
+          {!loading && !error && <MovieList movies={movies} onSelectMovie={handleSelectMovie} />}
           {error && <ErrorMessage message={error} />}
         </Box>
         <Box>
           {selectedId ? (
-            <MovieDetails
-              selectedId={selectedId}
-              onCloseMovie={handleCloseMovie}
-            />
+            <MovieDetails selectedId={selectedId} onCloseMovie={handleCloseMovie} onAddWatched={handleAddWatched} />
           ) : (
             <>
               <WatchedSummary watched={watched} />
