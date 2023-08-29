@@ -8,15 +8,12 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
-
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (selectedId ? null : id));
   }
-
   function handleCloseMovie() {
     setSelectedId(null);
   }
-
   useEffect(() => {
     async function fetchMovies() {
       try {
@@ -25,7 +22,6 @@ export default function App() {
         const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
         if (!response.ok) throw new Error("Something went wrong while fetching the movies");
         const data = await response.json();
-
         if (data.Response === "False") throw new Error("No movies found");
         setMovies(data.Search);
       } catch (err) {
@@ -41,7 +37,6 @@ export default function App() {
     }
     fetchMovies();
   }, [query]);
-
   return (
     <>
       <NavBar>
@@ -207,23 +202,44 @@ function WatchedMovie({ movie }) {
     </li>
   );
 }
-
 function MovieDetails({ selectedId, onCloseMovie }) {
+  const [movie, setMovie] = useState({});
+  const { Title: title, Year: year, Poster: poster, Runtime: runtime, imdbRating, Plot: plot, Released: released, Actors: actors, Director: director, Genre: genre } = movie;
   useEffect(() => {
     async function getMovieDetails() {
       const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`);
       const data = await response.json();
-      console.log(data);
+      setMovie(data);
     }
     getMovieDetails();
-  }, []);
-
+  }, [selectedId]);
   return (
     <div className="details">
-      <button className="btn-back" onClick={onCloseMovie}>
-        &larr;
-      </button>
-      {selectedId}
+      <header>
+        <button className="btn-back" onClick={onCloseMovie}>
+          &larr;
+        </button>
+        <img src={poster} alt={`${title} poster`} />
+        <div className="details-overview">
+          <h2>{title}</h2>
+          <p>
+            {released}&bull; {runtime}
+          </p>
+          <p>{genre}</p>
+
+          <p>
+            <span>⭐️</span>
+            <span>{imdbRating}</span>
+          </p>
+        </div>
+      </header>
+      <section>
+        <p>
+          <em>{plot}</em>
+        </p>
+        <p>Staring: {actors}</p>
+        <p> Directed by {director}</p>
+      </section>
     </div>
   );
 }
