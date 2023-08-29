@@ -839,3 +839,14 @@ useEffect(() => {
 - By default, effects run after every render. We can prevent that by passing a dependency array. Without the dependency array react doesn't know when to run the effect. Each time one of the dependencies changes, the effect will run again. If the dependency array is empty, the effect will only run after the initial render.
 
 **Every state variable and prop used inside the effect MUST be included in the dependency array.**
+
+
+> You can think of useEffect as an event listener that is listening for one dependency to change. When that dependency changes, the effect will run again.
+
+
+|                        | Synchronization                          | Lifecycle                                                |
+|------------------------|------------------------------------------|----------------------------------------------------------|
+| useEffect(fn, [x,y,z]) | Effect synchronizez with x,y and z       | Runs on mount and re-renders triggered by updating x,y,z |
+| useEffect(fn, [])      | Effect synchronizes with not state/props | Runs only on mount(initial render)                       |
+| useEffect(fn)          | Effect synchronizes with everything      | runs on every render (usually bad)                       |
+
