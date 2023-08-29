@@ -833,3 +833,9 @@ useEffect(() => {
   fetchMovies();
 }, [query]);
 ```
+
+**useEffect Dependency Array:**
+
+- By default, effects run after every render. We can prevent that by passing a dependency array. Without the dependency array react doesn't know when to run the effect. Each time one of the dependencies changes, the effect will run again. If the dependency array is empty, the effect will only run after the initial render.
+
+**Every state variable and prop used inside the effect MUST be included in the dependency array.**

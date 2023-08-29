@@ -19,11 +19,11 @@ export default function App() {
         );
         if (!response.ok)
           throw new Error("Something went wrong while fetching the movies");
+
         const data = await response.json();
+        if (data.Response === "False") throw new Error("No movies found");
         setMovies(data.Search);
-        // setLoading(false);
       } catch (err) {
-        console.error(err.message);
         setError(err.message);
       } finally {
         setLoading(false);
