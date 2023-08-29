@@ -9,14 +9,14 @@ export default function App() {
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
 
-  function handleSelectMovie(id){
-    setSelectedId(selectedId=>selectedId?null:id);
+  function handleSelectMovie(id) {
+    setSelectedId((selectedId) => (selectedId ? null : id));
   }
-  
-  function handleCloseMovie(){
+
+  function handleCloseMovie() {
     setSelectedId(null);
   }
-  
+
   useEffect(() => {
     async function fetchMovies() {
       try {
@@ -41,7 +41,6 @@ export default function App() {
     }
     fetchMovies();
   }, [query]);
-  
 
   return (
     <>
@@ -52,12 +51,12 @@ export default function App() {
       <Main>
         <Box>
           {loading && <Loader />}
-          {!loading && !error && <MovieList movies={movies} onSelectMovie={handleSelectMovie}/>}
+          {!loading && !error && <MovieList movies={movies} onSelectMovie={handleSelectMovie} />}
           {error && <ErrorMessage message={error} />}
         </Box>
         <Box>
           {selectedId ? (
-            <MovieDetails selectedId={selectedId} onCloseMovie={handleCloseMovie}/>
+            <MovieDetails selectedId={selectedId} onCloseMovie={handleCloseMovie} />
           ) : (
             <>
               <WatchedSummary watched={watched} />
@@ -130,14 +129,14 @@ function MovieList({ movies, onSelectMovie }) {
   return (
     <ul className="list list-movies">
       {movies?.map((movie) => (
-        <Movie movie={movie} key={movie.imdbID} onSelectMovie={onSelectMovie}/>
+        <Movie movie={movie} key={movie.imdbID} onSelectMovie={onSelectMovie} />
       ))}
     </ul>
   );
 }
 function Movie({ movie, onSelectMovie }) {
   return (
-    <li onClick={()=>onSelectMovie(movie.imdbID)}>
+    <li onClick={() => onSelectMovie(movie.imdbID)}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>
@@ -210,7 +209,21 @@ function WatchedMovie({ movie }) {
 }
 
 function MovieDetails({ selectedId, onCloseMovie }) {
-  return (<div className="details">
-    <button className="btn-back" onClick={onCloseMovie}>&larr;</button>
-    {selectedId}</div>);
+  useEffect(() => {
+    async function getMovieDetails() {
+      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`);
+      const data = await response.json();
+      console.log(data);
+    }
+    getMovieDetails();
+  }, []);
+
+  return (
+    <div className="details">
+      <button className="btn-back" onClick={onCloseMovie}>
+        &larr;
+      </button>
+      {selectedId}
+    </div>
+  );
 }
