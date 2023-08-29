@@ -35,12 +35,8 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       poster,
       runtime: Number(runtime.split(" ")[0]), // Corrected runtime extraction
       imdbRating: Number(imdbRating),
-      plot,
-      released,
-      actors,
-      director,
-      genre,
     };
+
     onAddWatched(newMovie);
     onCloseMovie();
   }
@@ -57,6 +53,10 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     }
     getMovieDetails();
   }, [selectedId]);
+
+  useEffect(() => {
+    document.title = movie.Title || "Movie Details";
+  }, [movie.Title]);
 
   return (
     <div className="details">
