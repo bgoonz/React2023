@@ -1,22 +1,30 @@
 import { useState, useEffect } from "react";
 
-const average = (arr) =>
-  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+const average = (arr) => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 const KEY = "35a9bf11";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
+  const [query, setQuery] = useState("star wars");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     async function fetchMovies() {
-      const response = await fetch(
-        `https://www.omdbapi.com/?apikey=${KEY}&s=star wars`
-      );
-      const data = await response.json();
-      setMovies(data.Search);
+      try {
+        setLoading(true);
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+        if (!response.ok) throw new Error("Something went wrong while fetching the movies");
+        const data = await response.json();
+        setMovies(data.Search);
+        setLoading(false);
+      } catch (err) {
+        console.error(err.message);
+        setError(err.message);
+      }
     }
     fetchMovies();
-  }, []);
+  }, [query]);
 
   return (
     <>
@@ -27,15 +35,35 @@ export default function App() {
 
       <Main>
         <Box>
-          <MovieList movies={movies} />
+          {loading && <Loader />}
+          {!loading && !error && <MovieList movies={movies} />}
+          {error && <ErrorMessage message={error} />}
         </Box>
-
         <Box>
           <WatchedSummary watched={watched} />
           <WatchedMoviesList watched={watched} />
         </Box>
       </Main>
     </>
+  );
+}
+
+function Loader() {
+  return (
+    <div className="loader">
+      <span role="img" aria-label="popcorn">
+        🍿Loading...
+      </span>
+    </div>
+  );
+}
+
+function ErrorMessage({ message }) {
+  return (
+    <p className="error">
+      <span>🚫</span>
+      {message}
+    </p>
   );
 }
 
@@ -60,15 +88,7 @@ function Logo() {
 function Search() {
   const [query, setQuery] = useState("");
 
-  return (
-    <input
-      className="search"
-      type="text"
-      placeholder="Search movies..."
-      value={query}
-      onChange={(e) => setQuery(e.target.value)}
-    />
-  );
+  return <input className="search" type="text" placeholder="Search movies..." value={query} onChange={(e) => setQuery(e.target.value)} />;
 }
 
 function NumResults({ movies }) {

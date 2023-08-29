@@ -796,5 +796,12 @@ useEffect(() => {
 - The function that is the first argument to useEffect must be synchronus so you have to put another function inside of it if you want to do something asyncronus.
 
 ```js
-
+  useEffect(() => {
+    async function fetchMovies() {
+      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+      const data = await response.json();
+      setMovies(data.Search);
+    }
+    fetchMovies();
+  }, [query]);
 ```
