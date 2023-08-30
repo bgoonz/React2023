@@ -55,8 +55,8 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   }, [selectedId]);
 
   useEffect(() => {
-    document.title = movie.Title || "Movie Details";
-  }, [movie.Title]);
+    document.title = title || "Movie Details";
+  }, [title]);
 
   return (
     <div className="details">

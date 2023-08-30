@@ -872,3 +872,18 @@ export default function App() {
   console.log("During Render");
 }
 ```
+
+
+**Cleanup Function:**
+- In useEffect a cleanup function is a function that is returned from the callback function. This function will be called before the next effect is run and before the component is unmounted.
+- The cleanup function is also exicuted on rerenders before the effect is run again.
+- The cleanup function is optional and if used is returned from the callback function in the useEffect hook.
+- It runs on two occasions:
+  1. Before the next effect is run.
+  2. Before the component is unmounted.
+
+**Use Case for Cleanup Function:**
+- Whenever the side effect keeps happening after the component has been re-rendered or unmounted.
+- For example you may have a http request in your effect and during the process of the request the component gets rerendered causing a new http request to be fired off (this specific issue is called a race condition).
+
+![Cleanup Use Cases](./images/2023-08-30-10-26-21.png)
