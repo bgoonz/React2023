@@ -72,15 +72,6 @@ export default function App() {
       controller.abort();
     };
   }, [query]);
-  //-----Escape Key Effect-----//
-  useEffect(() => {
-    document.addEventListener("keydown", (event) => {
-      if (event.code === "Escape") {
-        handleCloseMovie();
-        console.log("Escape key pressed")
-      }
-    });
-  }, []);
 
   //----------JSX----------//
   return (

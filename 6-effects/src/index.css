@@ -1,3 +1,9 @@
+.box::-webkit-scrollbar,
+.list::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth;
+}
+
 :root {
   --color-primary: #6741d9;
   --color-primary-light: #7950f2;
@@ -29,11 +35,6 @@ body {
   padding: 2.4rem;
 }
 
-.box::-webkit-scrollbar,
-.list::-webkit-scrollbar {
-  display: none;
-  scroll-behavior: smooth;
-}
 /* ******* */
 
 .nav-bar {

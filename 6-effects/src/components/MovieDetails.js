@@ -62,6 +62,18 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     };
   }, [title]);
 
+    //-----Escape Key Effect-----//
+    useEffect(() => {
+        document.addEventListener("keydown", (event) => {
+          if (event.code === "Escape") {
+            onCloseMovie();
+            console.log("Escape key pressed")
+          }
+        });
+      }, [onCloseMovie]);
+    
+  
+  
   return (
     <div className="details">
       {isLoading ? (
