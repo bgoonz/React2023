@@ -62,18 +62,21 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     };
   }, [title]);
 
-    //-----Escape Key Effect-----//
-    useEffect(() => {
-        document.addEventListener("keydown", (event) => {
-          if (event.code === "Escape") {
-            onCloseMovie();
-            console.log("Escape key pressed")
-          }
-        });
-      }, [onCloseMovie]);
-    
-  
-  
+  //-----Escape Key Effect-----//
+  useEffect(() => {
+    function handleKeyPress(event) {
+      if (event.code === "Escape") {
+        onCloseMovie();
+        console.log("Escape key pressed");
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyPress);
+    return function () {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [onCloseMovie]);
+
   return (
     <div className="details">
       {isLoading ? (
