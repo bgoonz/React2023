@@ -887,3 +887,10 @@ export default function App() {
 - For example you may have a http request in your effect and during the process of the request the component gets rerendered causing a new http request to be fired off (this specific issue is called a race condition).
 
 ![Cleanup Use Cases](./images/2023-08-30-10-26-21.png)
+
+
+**Each effect should only do one thing**
+- This makes effects easier to understand and it makes cleanup easier to write.
+
+
+

@@ -9,22 +9,9 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const [userRating, setUserRating] = useState("");
 
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
-  const watchedUserRating = watched.find(
-    (movie) => movie.imdbID === selectedId
-  )?.userRating;
+  const watchedUserRating = watched.find((movie) => movie.imdbID === selectedId)?.userRating;
 
-  const {
-    Title: title,
-    Year: year,
-    Poster: poster,
-    Runtime: runtime,
-    imdbRating,
-    Plot: plot,
-    Released: released,
-    Actors: actors,
-    Director: director,
-    Genre: genre,
-  } = movie;
+  const { Title: title, Year: year, Poster: poster, Runtime: runtime, imdbRating, Plot: plot, Released: released, Actors: actors, Director: director, Genre: genre } = movie;
 
   function handleAdd() {
     const newMovie = {
@@ -34,7 +21,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       userRating,
       poster,
       runtime: Number(runtime.split(" ")[0]), // Corrected runtime extraction
-      imdbRating: Number(imdbRating),
+      imdbRating: Number(imdbRating)
     };
 
     onAddWatched(newMovie);
@@ -44,9 +31,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   useEffect(() => {
     async function getMovieDetails() {
       setIsLoading(true);
-      const response = await fetch(
-        `https://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
-      );
+      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`);
       const data = await response.json();
       setMovie(data);
       setIsLoading(false);
@@ -56,6 +41,10 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
   useEffect(() => {
     document.title = title || "Movie Details";
+    
+    return function(){
+        document.title = "Movie List";
+    }
   }, [title]);
 
   return (
@@ -86,11 +75,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
             <div className="rating">
               {!isWatched ? (
                 <>
-                  <StarRating
-                    maxRating={10}
-                    size={24}
-                    onSetRating={setUserRating}
-                  />
+                  <StarRating maxRating={10} size={24} onSetRating={setUserRating} />
                   {userRating > 0 && (
                     <button className="btn-add" onClick={handleAdd}>
                       + Add to list
