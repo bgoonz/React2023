@@ -907,3 +907,49 @@ useEffect(() => {
 ```
 
 - This cleanup function runs after the component has unmounted but the title is still star wars because the cleanup function is a closure which means it remembers all the variables that existed when it was created.
+
+**How to abort excess http requests using cleanup function**
+
+```js
+useEffect(() => {
+  const controller = new AbortController();
+
+  async function fetchMovies() {
+    try {
+      setLoading(true);
+      setError("");
+
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+        { signal: controller.signal }
+      );
+
+      if (!response.ok)
+        throw new Error("Something went wrong while fetching the movies");
+
+      const data = await response.json();
+      if (data.Response === "False") throw new Error("No movies found");
+
+      setMovies(data.Search);
+      setError("");
+    } catch (err) {
+      //if check prevents the error from being set if the request was aborted (JS considers this an error but in this case we meant to do it)
+      if (err.name === "AbortError") {
+        setError(err.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+  if (query.length < 3) {
+    setMovies([]);
+    setError("");
+    return;
+  }
+
+  fetchMovies();
+  return function () {
+    controller.abort();
+  };
+}, [query]);
+```
