@@ -41,10 +41,10 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
   useEffect(() => {
     document.title = title || "Movie Details";
-    
-    return function(){
-        document.title = "Movie List";
-    }
+
+    return function () {
+      document.title = "Movie List";
+    };
   }, [title]);
 
   return (
