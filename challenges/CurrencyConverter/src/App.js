@@ -18,18 +18,26 @@ export default function App() {
 
   useEffect(() => {
     async function fetchConversion() {
-        const response = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`);
-        const data = await response.json();
-        console.log(data); // Add this line to check the structure of the data object
-        setOutput(data.rates[toCurrency]);
-      }
-      
+      const response = await fetch(
+        `https://api.frankfurter.app/latest?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`
+      );
+      const data = await response.json();
+      console.log(data); // Add this line to check the structure of the data object
+      setOutput(data.rates[toCurrency]);
+    }
+
     fetchConversion();
   }, [amount, fromCurrency, toCurrency]);
 
   return (
     <div>
-      <input type="text" name="amount" placeholder={`Amount in ${fromCurrency}`} value={amount} onChange={handleAmount} />
+      <input
+        type="text"
+        name="amount"
+        placeholder={`Amount in ${fromCurrency}`}
+        value={amount}
+        onChange={handleAmount}
+      />
       <select value={fromCurrency} onChange={handleFromCurrency}>
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
