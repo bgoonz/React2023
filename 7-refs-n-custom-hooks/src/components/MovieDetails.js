@@ -25,6 +25,8 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     Director: director,
     Genre: genre,
   } = movie;
+  
+
 
   function handleAdd() {
     const newMovie = {
@@ -101,6 +103,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
               </p>
             </div>
           </header>
+          
           <section>
             <div className="rating">
               {!isWatched ? (

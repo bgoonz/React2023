@@ -1013,3 +1013,7 @@ useEffect(() => {
 - This means you can only call a hook from a function component or a custom hook.
 
 **You don't need to wory about these rules if you use a linter like eslint-plugin-react-hooks**
+
+
+**useState Hook:**
+- 
