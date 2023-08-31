@@ -985,3 +985,30 @@ useEffect(() => {
   };
 }, [onCloseMovie]);
 ```
+
+
+---
+---
+
+## React Hooks
+
+- React hooks are special built in functions that allow us to hook into the internal functionality of React.
+  -i.e. Creating and accesing state from the Fiber Tree
+  - registering side effects in the Fiber tree.
+  - Manual manipulation of the DOM.
+
+- Hooks always start with the word `use` i.e. `useState` or `useEffect` or `useRef` etc...
+- Enable easy reuse of non-visual logic: we can compose multiple hooks into our own custom hooks.
+- Hooks gave functional components the ability to have their own state and run side effects at different points in the lifecycle of the component (previously, this was only possible with class components).
+
+
+**Rules of Hooks**
+1. Hooks can only be used at the top level of the component.
+  - This means do not call hooks inside conditionals, loops or nested functions or after early return. (this ensures that hooks are always called in the same order which is important for the fiber tree which is a linked list of hooks... that only have a link to the next hook in the list)
+2. Only call hooks from React Functions.
+  - This means you can only call a hook from a function component or a custom hook.
+
+**You don't need to wory about these rules if you use a linter like eslint-plugin-react-hooks**
+
+
+
