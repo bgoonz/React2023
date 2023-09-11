@@ -1266,3 +1266,9 @@ export function useMovies(query, callback, key) {
   return { movies, loading, error };
 }
 ```
+
+---
+
+---
+
+### useReducer hook:
