@@ -5,8 +5,12 @@ function Search({ query, setQuery }) {
   // With an empty dependency array, the effect will only run once when the component mounts.
   useEffect(() => {
     function focusOnEnter(event) {
+      // If the search input is already focused, do nothing.
+      if (document.activeElement === searchInputRef.current) return;
       if (event.key === "Enter") {
         searchInputRef.current.focus();
+        //clear text in search bar.
+        setQuery("");
       }
     }
     searchInputRef.current.focus();
