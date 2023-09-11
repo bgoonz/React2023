@@ -64,7 +64,7 @@ const incrementStep = () => {
 
 ---
 
-### Controled Elements:
+## Controled Elements:
 
 - by default, input elements like `<input>` and `<select>` maintain their own state in the DOM.
 - In React development we like to keep track of state internally in our app... not in the DOM.
@@ -104,7 +104,7 @@ function Form() {
 
 ---
 
-### Difference between props and state:
+## Difference between props and state:
 
 - State is interal to the component and props are passed in from the parent component.
 - State can be changed by the component itself, props cannot be changed by the component itself.
@@ -113,9 +113,9 @@ function Form() {
 
 ---
 
-### Lifting State Up:
+## Lifting State Up:
 
-#### Instructions for lifting up state...
+### Instructions for lifting up state...
 
 1. Identify the common state: Determine which component(s) need access to the shared state. Look for any data that needs to be shared or updated across these components.
 2. Find the closest common ancestor: Identify the closest common ancestor of the components that need access to the shared state. This ancestor component will be responsible for managing and updating the state.
@@ -124,7 +124,7 @@ function Form() {
 5. Update the state: If any component needs to update the shared state, define a function in the ancestor component that modifies the state. Pass this function as a prop to the child components that need to update the shared state.
 6. Handle state updates: In the child components, use the passed down function prop to update the state. Call this function whenever the component needs to modify the shared state.
 
-#### Before lifting item state up from Form component:
+### Before lifting item state up from Form component:
 
 ```js
 import { useState } from "react";
@@ -204,7 +204,7 @@ function PackingList() {
 }
 ```
 
-#### After lifting item state up from Form component:
+### After lifting item state up from Form component:
 
 ```js
 import { useState } from "react";
@@ -288,12 +288,12 @@ function PackingList({ items }) {
 
 ---
 
-### Derived State:
+## Derived State:
 
 - Derived state is state that is calculated from other state or props.
 - If state can be derived from existing state then we do not want to create a new state to represent it because this will result in unnecessary rerendering any time the related state changes.
 
-### Props.children:
+## Props.children:
 
 - An empty hole that can be filled with any jsx the component recieves as children. The children prop allows us to pass jsx into an element. The only difference is that the children prop is not an html attribute but rather a prop that allows us to access jsx that is passed into the component as children.
 
@@ -350,7 +350,7 @@ Next<span>⏭️</span>
 👉 [react-use: Reusable React Hook Library](https://github.com/streamich/react-use?ref=jonas.io) (GitHub repository)
 👉 [react-hookz: React hooks done right](https://github.com/react-hookz/web?ref=jonas.io) (GitHub repository)
 
-#### Reusability:
+### Reusability:
 
 ** General Guidlines**
 
@@ -452,7 +452,7 @@ function Tab({ num, activeTab, onClick }) {
 
 ---
 
-### Commit Phase
+## Commit Phase
 
 - In the commit phase list of insertions, deletions and updates are "flushed" to the DOM.
 - Commit phase is synchronous... DOM is updated in one go, it can't be interrupted. This is necessary so that the DOM never shows partial results, ensuring a consistent UI (in sync with state at all times).
@@ -464,7 +464,7 @@ function Tab({ num, activeTab, onClick }) {
 
 ---
 
-### Putting it all together:
+## Putting it all together:
 
 1. First step is a trigger... (initial render or state update in a component instance)
 2. Render phase: In react render means to call the component functions...React creates a new React Element Tree (virtual dom) and recconciles (finds what changes need to be made to current DOM to reflect change in state) it with the current Fiber Tree (work in progress tree) ...Rendering a component will also render all of it's children components (regardless of a change in props). The fiber tree has a fiber for each react component and DOM element.
@@ -476,14 +476,14 @@ function Tab({ num, activeTab, onClick }) {
 
 ---
 
-### How Diffing Works:
+## How Diffing Works:
 
 - Diffing follows two fundamental rules:
 
 1. Two elements of different types will produce different trees.
 2. Elements with a stable key prop stay the same across renders.
 
-#### Two cases we need to consider when diffing...
+### Two cases we need to consider when diffing...
 
 1. Same position, different element.
    ![Same position, different element.](./images/2023-08-25-13-32-06.png)
@@ -530,7 +530,7 @@ In the case of the TabContent component we have the same component in the same p
 
 - Once we navigate to the Tab 4 we have a different component in the same place... so the state is lost and as such, when we navigate to tabs 1-3 we see that the description is shown and the like count is reset to 0.
 
-#### The Key Prop:
+### The Key Prop:
 
 - The key prop is a special prop we use to tell the diffing algorithm that the element is unique (works for both DOM elements and React Elements)
 - This allows React to distinguish between multiple instances of the same component type.
@@ -605,7 +605,7 @@ function Tabbed({ content }) {
 
 ---
 
-##### Logic in React Components:
+#### Logic in React Components:
 
 **Two types of logic:**
 
@@ -631,7 +631,7 @@ function add(a, b) {
 }
 ```
 
-#### Rules for Render Logic:
+### Rules for Render Logic:
 
 - **Components must be pure when it comes to render logic:** given the same props(input), a component instance sould always return the same JSX(output).
 - **Render logic must produce no side effects:** no interaction with the "outside world" is allowed.
@@ -643,7 +643,7 @@ function add(a, b) {
 
 ---
 
-#### State Update Batching:
+### State Update Batching:
 
 - Renders are not triggered immediatly , but scheduled for when the JS engine has some "free time". There is also batching of multiple setState calls in event handlers.
 - Updating state is asynchronous.
@@ -691,7 +691,7 @@ function trippleInc() {
 
 ---
 
-### Events in React:
+## Events in React:
 
 - Event propagation and delegation: when a click event takes place on a button in the DOM tree... an event object is created at the root of the document.
 - The event will travel down the DOM tree (until it reaches the target) during what is called the capturing phase.
@@ -702,7 +702,7 @@ function trippleInc() {
 
 ![Event Delegation](./images/2023-08-28-10-31-58.png)
 
-#### How React Handles Events:
+### How React Handles Events:
 
 ![React Events](./images/2023-08-28-11-18-11.png)
 
@@ -717,7 +717,7 @@ function trippleInc() {
 
 ---
 
-#### Libraries vs. Frameworks & The React Ecosystem:
+### Libraries vs. Frameworks & The React Ecosystem:
 
 - A framework is an all in one kit... it has everything you need but it locks you into certain ways of doing things.
 - A library is a collection of tools that you can use to build your own solution.
@@ -728,7 +728,7 @@ function trippleInc() {
 
 ---
 
-### Summary of React Fundamentals:
+## Summary of React Fundamentals:
 
 - A component is like a blueprint for a piece of UI that will eventually exist on the screen, when we use a component, React creates a component instance, which is the physical manifestation of the component, contaning props, state...etc. A component instance, when rendered will return a React element.
 - Rendering only means calling component functions and calculating what DOM elements need to be inserted, deleted or updated. It has nothing to do with actually writing to the DOM. Therefore, each time a component instance is rendered and rerendered, the function is called again.
@@ -745,7 +745,7 @@ function trippleInc() {
 
 ---
 
-### Effects & Data Fetching:
+## Effects & Data Fetching:
 
 **Component (instance) Lifecycle:**
 
@@ -1051,7 +1051,7 @@ function handleDeleteWatched(id) {
 }
 ```
 
-#### useState Summary:
+### useState Summary:
 
 - We use the useState hook to create and update state.
 
@@ -1082,7 +1082,7 @@ setWatched((watched) => [...watched, movie]);
 
 ---
 
-### Refs:
+## Refs:
 
 **How not to select DOM elements in React**
 
@@ -1097,7 +1097,7 @@ useEffect(() => {
 }, []);
 ```
 
-#### useRef Hook:
+### useRef Hook:
 
 - A Ref is like a "box" with a mutable `.current` property that is persisted across renders ("normal" variables are always reset on rerenders).
 
@@ -1130,7 +1130,7 @@ useEffect(() => {
 
 ---
 
-### Custom Hooks:
+## Custom Hooks:
 
 - Allow us to reuse non-visual logic in multiple components.
 - One custom hook should have only one purpose (in order to make it reusable).
@@ -1271,4 +1271,4 @@ export function useMovies(query, callback, key) {
 
 ---
 
-### useReducer hook:
+## useReducer hook:
