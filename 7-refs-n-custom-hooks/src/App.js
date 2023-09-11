@@ -21,7 +21,7 @@ export default function App() {
     return saved ? saved : [];
   });
 
-  const { movies, loading, error } = useMovies(query);
+  const { movies, loading, error } = useMovies(query, handleCloseMovie, KEY);
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));

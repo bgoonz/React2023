@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-const KEY = "35a9bf11";
-export function useMovies(query) {
+
+export function useMovies(query, callback, key) {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
+    callback?.();
     const controller = new AbortController();
 
     async function fetchMovies() {
@@ -14,7 +15,7 @@ export function useMovies(query) {
         setError("");
 
         const response = await fetch(
-          `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+          `https://www.omdbapi.com/?apikey=${key}&s=${query}`,
           { signal: controller.signal }
         );
 
@@ -44,6 +45,6 @@ export function useMovies(query) {
     return function () {
       controller.abort();
     };
-  }, [query]);
+  }, [query, key]);
   return { movies, loading, error };
 }

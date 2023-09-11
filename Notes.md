@@ -31,3 +31,25 @@ In the above example, the `arr[-1]` returns the property of the `arr` object
 | Accessibility           | JavaScript only                                | JavaScript only                                     | JavaScript & server-side                                |
 | Use Cases               | Storing large amounts of data without expiring | Storing data for one session (like a shopping cart) | Storing small pieces of data, authentication, tracking  |
 | Security Concerns       | Vulnerable to XSS attacks                      | Vulnerable to XSS attacks                           | Vulnerable to XSS & CSRF attacks                        |
+
+**In JS function declerations are hoisted to the top of the scope, but function expressions are not.**
+
+So I can do this:
+
+```js
+const { movies, loading, error } = useMovies(query, handleCloseMovie, KEY);
+
+function handleCloseMovie() {
+  setSelectedId(null);
+}
+```
+
+But not this:
+
+```js
+const { movies, loading, error } = useMovies(query, handleCloseMovie, KEY);
+
+const handleCloseMovie = () => {
+  setSelectedId(null);
+};
+```

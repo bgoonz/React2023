@@ -1155,3 +1155,11 @@ function useFetch(url) {
   return [data, loading];
 }
 ```
+
+**Two main use cases for custom hooks:**
+1.) Reuse stateful logic between components
+2.) Abstract away complex logic into a custom hook
+
+```js
+
+```
