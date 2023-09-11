@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Box from "./components/Box";
 import ErrorMessage from "./components/ErrorMessage";
 import Loader from "./components/Loader";
@@ -17,7 +17,7 @@ const KEY = "35a9bf11";
 export default function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
-const [watched, setWatched] = useLocalStorageState( [], 'watched');
+  const [watched, setWatched] = useLocalStorageState([], "watched");
 
   const { movies, loading, error } = useMovies(query, handleCloseMovie, KEY);
 
@@ -35,8 +35,6 @@ const [watched, setWatched] = useLocalStorageState( [], 'watched');
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
-
-
 
   //----------JSX----------//
   return (

@@ -1,5 +1,6 @@
 import Loader from "./Loader";
 import StarRating from "./StarRating";
+import { useKeypress } from "../hooks/useKeypress";
 import { useState, useEffect, useRef } from "react";
 const KEY = "35a9bf11";
 
@@ -69,20 +70,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     };
   }, [title]);
 
-  //-----Escape Key Effect-----//
-  useEffect(() => {
-    function handleKeyPress(event) {
-      if (event.code === "Escape") {
-        onCloseMovie();
-        console.log("Escape key pressed");
-      }
-    }
-
-    document.addEventListener("keydown", handleKeyPress);
-    return function () {
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [onCloseMovie]);
+  useKeypress("Escape", onCloseMovie);
 
   return (
     <div className="details">

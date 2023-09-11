@@ -1,5 +1,3 @@
-
-
 function WatchedMovie({ movie, onDeleteWatched }) {
   return (
     <li key={movie.imdbID}>

@@ -1,24 +1,16 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useKeypress } from "../hooks/useKeypress";
 
 function Search({ query, setQuery }) {
   const searchInputRef = useRef(null);
   // With an empty dependency array, the effect will only run once when the component mounts.
-  useEffect(() => {
-    function focusOnEnter(event) {
-      // If the search input is already focused, do nothing.
-      if (document.activeElement === searchInputRef.current) return;
-      if (event.key === "Enter") {
-        searchInputRef.current.focus();
-        //clear text in search bar.
-        setQuery("");
-      }
-    }
+
+  useKeypress("Enter", () => {
+    if (document.activeElement === searchInputRef.current) return;
     searchInputRef.current.focus();
-    document.addEventListener("keydown", focusOnEnter);
-    return () => {
-      document.removeEventListener("keydown", focusOnEnter);
-    };
-  }, [setQuery]);
+    //clear text in search bar.
+    setQuery("");
+  });
 
   const handleChange = (e) => {
     setQuery(e.target.value);
