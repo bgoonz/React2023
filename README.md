@@ -1073,3 +1073,7 @@ useEffect(() => {
   searchInputRef.current.focus();
 }, []);
 ```
+
+> In the example above the `searchInputRef.current` is the DOM element that the ref is pointing to.
+
+
