@@ -1,4 +1,11 @@
+import { useEffect } from "react";
 function Search({ query, setQuery }) {
+  useEffect(() => {
+    const el = document.querySelector(".search");
+    console.log(el);
+    el.focus();
+  }, []);
+
   const handleChange = (e) => {
     setQuery(e.target.value);
   };

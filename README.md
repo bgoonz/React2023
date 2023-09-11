@@ -87,7 +87,13 @@ function Form() {
           </option>
         ))}
       </select>
-      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <button>Add</button>
     </form>
   );
@@ -153,14 +159,23 @@ function Form() {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
+      <select
+        value={quantity}
+        onChange={(event) => setQuantity(Number(event.target.value))}
+      >
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <button>Add</button>
     </form>
   );
@@ -224,20 +239,30 @@ function Form({ onAddItem }) {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
+      <select
+        value={quantity}
+        onChange={(event) => setQuantity(Number(event.target.value))}
+      >
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <button>Add</button>
     </form>
   );
 }
 const Item = ({ item }) => {
-  const description = item.quantity > 1 ? `${item.description}s` : item.description;
+  const description =
+    item.quantity > 1 ? `${item.description}s` : item.description;
   return (
     <li key={item.id}>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
@@ -354,13 +379,20 @@ function Tabbed({ content }) {
         <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
-      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} />
+      ) : (
+        <DifferentContent />
+      )}
     </div>
   );
 }
 function Tab({ num, activeTab, onClick }) {
   return (
-    <button className={activeTab === num ? "tab active" : "tab"} onClick={() => onClick(num)}>
+    <button
+      className={activeTab === num ? "tab active" : "tab"}
+      onClick={() => onClick(num)}
+    >
       Tab {num + 1}
     </button>
   );
@@ -484,7 +516,11 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} />
+      ) : (
+        <DifferentContent />
+      )}
     </div>
   );
 }
@@ -557,7 +593,11 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} key={activeTab} /> : <DifferentContent />}
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} key={activeTab} />
+      ) : (
+        <DifferentContent />
+      )}
     </div>
   );
 }
@@ -760,7 +800,9 @@ useEffect(() => {
 ```js
 useEffect(() => {
   async function fetchMovies() {
-    const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+    const response = await fetch(
+      `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+    );
     const data = await response.json();
     setMovies(data.Search);
   }
@@ -776,8 +818,11 @@ useEffect(() => {
     try {
       setLoading(true);
       setError("");
-      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
-      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+      );
+      if (!response.ok)
+        throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -874,9 +919,13 @@ useEffect(() => {
       setLoading(true);
       setError("");
 
-      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`, { signal: controller.signal });
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+        { signal: controller.signal }
+      );
 
-      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
+      if (!response.ok)
+        throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -995,6 +1044,57 @@ useEffect(() => {
 //We do not need to do this because the useEffect runs every time the component is rendered and the state is updated... which does the same thing anyway.
 function handleDeleteWatched(id) {
   setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
-  localStorage.setItem("watched", JSON.stringify(watched.filter((movie) => movie.imdbID !== id)));
+  localStorage.setItem(
+    "watched",
+    JSON.stringify(watched.filter((movie) => movie.imdbID !== id))
+  );
 }
 ```
+
+#### useState Summary:
+
+- We use the useState hook to create and update state.
+
+```js
+const [state, setState] = useState(initialState);
+```
+
+- We can also use a callback function to initialize state (lazy initial state).
+- In this case, the function must be pure(no side effects) and accept no arguments, it is only called on the initial render.
+
+```js
+const [watched, setWatched] = useState(() => {
+  const saved = JSON.parse(localStorage.getItem("watched"));
+  return saved ? saved : [];
+});
+```
+
+- **Updating State**
+- We can update state by calling the setState function returned from useState and passing in a value or a callback function.
+
+```js
+setWatched({imdbID: "tt2527336", title: "Star Wars: Episode VIII - The Last Jedi", year: "2017", userRating: 8,…})
+// or
+setWatched((watched) => [...watched, movie]);
+```
+
+- Remember that when updating state you must NOT mutate objects or arrays... instead you must replace them.
+
+---
+
+### Refs:
+
+**How not to select DOM elements in React**
+
+- This works but it is not the React way of doing things and the direct DOM manipulation will at best slow down the performance.
+- Also, if you were to add a dependency to the useEffect you would focus the element over and over again...
+
+```js
+useEffect(() => {
+  const el = document.querySelector(".search");
+  console.log(el);
+  el.focus();
+}, []);
+```
+
+#### useRef Hook:
