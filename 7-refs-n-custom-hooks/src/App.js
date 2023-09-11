@@ -37,7 +37,7 @@ export default function App() {
 
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
-    localStorage.setItem("watched", JSON.stringify(watched.filter((movie) => movie.imdbID !== id)));
+
   }
 
   //----------Save watched movie to local storage----------//
