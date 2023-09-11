@@ -17,3 +17,17 @@ The reason is that JavaScript also uses square brackets `[]` for accessing a p
 For example, the `obj[1]` returns a property of the object `obj` with the key `"1"`. Hence, the `obj[-1]` returns the property of an object with the key `"-1"`.
 
 In the above example, the `arr[-1]` returns the property of the `arr` object with the key `"-1"`. Note that the type of an array is `object`. Since the `"-1"` property doesn't exist in the `arr` object, it returns `undefined`.
+
+---
+
+**Local Storage vs. Session Storage vs. Cookie**
+
+| Feature                 | Local Storage                                  | Session Storage                                     | Cookies                                                 |
+| ----------------------- | ---------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------- |
+| Lifespan                | Persistent (until manually cleared)            | Limited to session (cleared when tab is closed)     | Defined expiration (can be persistent or session-based) |
+| Storage Limit           | ~5-10 MB                                       | ~5-10 MB                                            | ~4 KB                                                   |
+| Scope                   | Origin-based (same protocol, domain, and port) | Origin-based (same protocol, domain, and port)      | Domain-based (can be sent across subdomains)            |
+| Sent with HTTP Requests | No                                             | No                                                  | Yes (in headers)                                        |
+| Accessibility           | JavaScript only                                | JavaScript only                                     | JavaScript & server-side                                |
+| Use Cases               | Storing large amounts of data without expiring | Storing data for one session (like a shopping cart) | Storing small pieces of data, authentication, tracking  |
+| Security Concerns       | Vulnerable to XSS attacks                      | Vulnerable to XSS attacks                           | Vulnerable to XSS & CSRF attacks                        |

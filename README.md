@@ -1014,6 +1014,15 @@ useEffect(() => {
 
 **You don't need to wory about these rules if you use a linter like eslint-plugin-react-hooks**
 
+**Persisting watched movies in local storage (Method 1):**
+
+```js
+function handleAddWatched(movie) {
+  setWatched((watched) => [...watched, movie]);
+  localStorage.setItem("watched", JSON.stringify([...watched, movie]));
+}
+```
 
 **useState Hook:**
-- 
+
+- We can use a callback to update state... but we can also use a callback to initialize state(lazy initial state).
