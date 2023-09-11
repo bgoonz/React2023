@@ -18,13 +18,22 @@ function Search({ query, setQuery }) {
     return () => {
       document.removeEventListener("keydown", focusOnEnter);
     };
-  }, []);
+  }, [setQuery]);
 
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
 
-  return <input className="search" type="text" placeholder="Search movies..." value={query} onChange={handleChange} ref={searchInputRef} />;
+  return (
+    <input
+      className="search"
+      type="text"
+      placeholder="Search movies..."
+      value={query}
+      onChange={handleChange}
+      ref={searchInputRef}
+    />
+  );
 }
 
 export default Search;
