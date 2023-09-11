@@ -1,25 +1,23 @@
-import { useState, useEffect } from "react";
-import { useMovies } from "./hooks/useMovies";
-import Loader from "./components/Loader";
-import ErrorMessage from "./components/ErrorMessage";
-import NavBar from "./components/NavBar";
-import Search from "./components/Search";
-import NumResults from "./components/NumResults";
-import Main from "./components/Main";
+import { useEffect, useState } from "react";
 import Box from "./components/Box";
-import MovieList from "./components/MovieList";
-import WatchedSummary from "./components/WatchedSummary";
-import WatchedMoviesList from "./components/WatchedMoviesList";
+import ErrorMessage from "./components/ErrorMessage";
+import Loader from "./components/Loader";
+import Main from "./components/Main";
 import MovieDetails from "./components/MovieDetails";
+import MovieList from "./components/MovieList";
+import NavBar from "./components/NavBar";
+import NumResults from "./components/NumResults";
+import Search from "./components/Search";
+import WatchedMoviesList from "./components/WatchedMoviesList";
+import WatchedSummary from "./components/WatchedSummary";
+import { useMovies } from "./hooks/useMovies";
+import { useLocalStorageState } from "./hooks/useLocalStorageState";
 const KEY = "35a9bf11";
 
 export default function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
-  const [watched, setWatched] = useState(() => {
-    const saved = JSON.parse(localStorage.getItem("watched"));
-    return saved ? saved : [];
-  });
+const [watched, setWatched] = useLocalStorageState( [], 'watched');
 
   const { movies, loading, error } = useMovies(query, handleCloseMovie, KEY);
 
@@ -38,11 +36,7 @@ export default function App() {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
 
-  //----------Save watched movie to local storage----------//
 
-  useEffect(() => {
-    localStorage.setItem("watched", JSON.stringify(watched));
-  }, [watched]);
 
   //----------JSX----------//
   return (
