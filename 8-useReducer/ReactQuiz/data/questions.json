@@ -30,7 +30,7 @@
         "From parents to children",
         "From children to parents",
         "Both ways",
-        "The developers decides"
+        "The developer decides"
       ],
       "correctOption": 0,
       "points": 10
@@ -134,6 +134,942 @@
       ],
       "correctOption": 3,
       "points": 20
+    },
+    {
+      "question": "What is a PureComponent in React used for?",
+      "options": [
+        "Handling asynchronous operations",
+        "Optimizing rendering performance",
+        "Managing state in class components",
+        "Styling React components"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of React Router?",
+      "options": [
+        "Managing server-side logic",
+        "Managing API requests",
+        "Handling forms and user input",
+        "Enabling navigation in single-page applications"
+      ],
+      "correctOption": 3,
+      "points": 10
+    },
+    {
+      "question": "What is JSX in React?",
+      "options": [
+        "A JavaScript package manager",
+        "A syntax extension for JavaScript",
+        "A server-side rendering framework",
+        "A build tool for React applications"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of ReactDOM in React?",
+      "options": [
+        "Managing state in React components",
+        "Rendering React components to the DOM",
+        "Handling API requests in React",
+        "Creating reusable React components"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What does the 'key' prop in React help with?",
+      "options": [
+        "Styling React components",
+        "Optimizing component rendering performance",
+        "Handling user input in forms",
+        "Managing state in class components"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is a React fragment?",
+      "options": [
+        "A JavaScript package manager",
+        "A build tool for React applications",
+        "A way to group multiple React elements without adding extra nodes to the DOM",
+        "A component for rendering text"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'key' prop in React lists?",
+      "options": [
+        "It specifies the position of an element in the list",
+        "It uniquely identifies elements in a list and helps React optimize updates",
+        "It defines the styling for list items",
+        "It adds a unique class name to list items"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the role of the 'ref' attribute in React?",
+      "options": [
+        "It defines the order of rendering for components",
+        "It references a DOM element or React component created in the render method",
+        "It specifies the default props for a component",
+        "It manages the component's state"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "Which lifecycle method is used to fetch data in a class component?",
+      "options": [
+        "render",
+        "componentDidMount",
+        "componentWillUnmount",
+        "constructor"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "In React, what is the purpose of the 'super' keyword in a constructor?",
+      "options": [
+        "It calls the component's render method",
+        "It initializes the component's state",
+        "It calls the constructor of the parent class",
+        "It adds event listeners to the component"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "Which hook is used to perform side effects in a functional component?",
+      "options": ["useState", "useEffect", "useRef", "useContext"],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'key' prop in React lists?",
+      "options": [
+        "It specifies the position of an element in the list",
+        "It uniquely identifies elements in a list and helps React optimize updates",
+        "It defines the styling for list items",
+        "It adds a unique class name to list items"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is a React fragment?",
+      "options": [
+        "A JavaScript package manager",
+        "A build tool for React applications",
+        "A way to group multiple React elements without adding extra nodes to the DOM",
+        "A component for rendering text"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'ref' attribute in React?",
+      "options": [
+        "It defines the order of rendering for components",
+        "It references a DOM element or React component created in the render method",
+        "It specifies the default props for a component",
+        "It manages the component's state"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "Which lifecycle method is used to fetch data in a class component?",
+      "options": [
+        "render",
+        "componentDidMount",
+        "componentWillUnmount",
+        "constructor"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "In React, what is the purpose of the 'super' keyword in a constructor?",
+      "options": [
+        "It calls the component's render method",
+        "It initializes the component's state",
+        "It calls the constructor of the parent class",
+        "It adds event listeners to the component"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "Which hook is used to perform side effects in a functional component?",
+      "options": ["useState", "useEffect", "useRef", "useContext"],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is a controlled component in React?",
+      "options": [
+        "A component that is manually controlled by the developer",
+        "A component that manages its own state",
+        "A component that relies on context for state management",
+        "A component that is controlled by the DOM"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'componentDidUpdate' lifecycle method in React?",
+      "options": [
+        "To fetch data from an API",
+        "To update the component's state",
+        "To perform side effects after a component re-renders",
+        "To render the component's children"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is Redux used for in React applications?",
+      "options": [
+        "Managing component styling",
+        "Managing component rendering",
+        "Managing global state",
+        "Managing routing logic"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'map' function in React?",
+      "options": [
+        "To create a new array by applying a function to each element of an existing array",
+        "To render a list of React components",
+        "To define the routing in a React application",
+        "To manage the state of a React component"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the Virtual DOM in React?",
+      "options": [
+        "A virtual representation of a React component's state",
+        "A virtual representation of the actual DOM structure",
+        "A virtual reality framework for React",
+        "A virtual component used for testing"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'dangerouslySetInnerHTML' prop in React?",
+      "options": [
+        "To add styles to a component",
+        "To render HTML content from a string as is, without escaping it",
+        "To create a new React component",
+        "To define the structure of a React component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'key' prop in React forms?",
+      "options": [
+        "It specifies the order of form elements",
+        "It uniquely identifies form elements and helps React manage their state",
+        "It defines the styling for form elements",
+        "It adds validation rules to form elements"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'context' API in React?",
+      "options": [
+        "To define the styles of a React component",
+        "To manage the state of a React component",
+        "To share data between components without passing props manually",
+        "To handle routing in a React application"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is a higher-order component (HOC) in React?",
+      "options": [
+        "A component that renders at a higher position in the component tree",
+        "A component that takes another component as input and returns a new component",
+        "A component that is above the fold in the browser",
+        "A component that is rendered conditionally"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'shouldComponentUpdate' lifecycle method in React?",
+      "options": [
+        "To fetch data from an API",
+        "To determine if a component should re-render",
+        "To update the component's state",
+        "To define the initial state of a component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'render' method in a React component?",
+      "options": [
+        "To update the component's state",
+        "To perform side effects",
+        "To define the component's UI",
+        "To fetch data from an API"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'useState' hook in React?",
+      "options": [
+        "To define the initial state of a component",
+        "To perform side effects in a functional component",
+        "To update the component's state in a class component",
+        "To manage component rendering"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'useEffect' hook in React?",
+      "options": [
+        "To define the initial state of a component",
+        "To perform side effects in a functional component",
+        "To update the component's state in a class component",
+        "To manage component rendering"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the role of the 'return' statement in a React component?",
+      "options": [
+        "To define the component's initial state",
+        "To define the component's props",
+        "To specify what the component should render",
+        "To define the component's context"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'propTypes' library in React?",
+      "options": [
+        "To define the types of props that a React component can receive",
+        "To define the types of state that a React component can have",
+        "To define the types of context that a React component can use",
+        "To define the types of hooks that a React component can use"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'defaultProps' property in a React component?",
+      "options": [
+        "To define the default state of a component",
+        "To define the default props for a component",
+        "To define the default context for a component",
+        "To define the default hooks for a component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is a React portal used for?",
+      "options": [
+        "To create a new React component",
+        "To render a React component outside its parent component's DOM hierarchy",
+        "To define the routing in a React application",
+        "To handle API requests in a React component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'dangerouslySetInnerHTML' prop in React?",
+      "options": [
+        "To add styles to a component",
+        "To render HTML content from a string as is, without escaping it",
+        "To create a new React component",
+        "To define the structure of a React component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'key' prop in React forms?",
+      "options": [
+        "It specifies the order of form elements",
+        "It uniquely identifies form elements and helps React manage their state",
+        "It defines the styling for form elements",
+        "It adds validation rules to form elements"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'context' API in React?",
+      "options": [
+        "To define the styles of a React component",
+        "To manage the state of a React component",
+        "To share data between components without passing props manually",
+        "To handle routing in a React application"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is a higher-order component (HOC) in React?",
+      "options": [
+        "A component that renders at a higher position in the component tree",
+        "A component that takes another component as input and returns a new component",
+        "A component that is above the fold in the browser",
+        "A component that is rendered conditionally"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'shouldComponentUpdate' lifecycle method in React?",
+      "options": [
+        "To fetch data from an API",
+        "To determine if a component should re-render",
+        "To update the component's state",
+        "To define the initial state of a component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'render' method in a React component?",
+      "options": [
+        "To update the component's state",
+        "To perform side effects",
+        "To define the component's UI",
+        "To fetch data from an API"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'useState' hook in React?",
+      "options": [
+        "To define the initial state of a component",
+        "To perform side effects in a functional component",
+        "To update the component's state in a class component",
+        "To manage component rendering"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'useEffect' hook in React?",
+      "options": [
+        "To define the initial state of a component",
+        "To perform side effects in a functional component",
+        "To update the component's state in a class component",
+        "To manage component rendering"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the role of the 'return' statement in a React component?",
+      "options": [
+        "To define the component's initial state",
+        "To define the component's props",
+        "To specify what the component should render",
+        "To define the component's context"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'propTypes' library in React?",
+      "options": [
+        "To define the types of props that a React component can receive",
+        "To define the types of state that a React component can have",
+        "To define the types of context that a React component can use",
+        "To define the types of hooks that a React component can use"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'defaultProps' property in a React component?",
+      "options": [
+        "To define the default state of a component",
+        "To define the default props for a component",
+        "To define the default context for a component",
+        "To define the default hooks for a component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is a React portal used for?",
+      "options": [
+        "To create a new React component",
+        "To render a React component outside its parent component's DOM hierarchy",
+        "To define the routing in a React application",
+        "To handle API requests in a React component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'dangerouslySetInnerHTML' prop in React?",
+      "options": [
+        "To add styles to a component",
+        "To render HTML content from a string as is, without escaping it",
+        "To create a new React component",
+        "To define the structure of a React component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'key' prop in React forms?",
+      "options": [
+        "It specifies the order of form elements",
+        "It uniquely identifies form elements and helps React manage their state",
+        "It defines the styling for form elements",
+        "It adds validation rules to form elements"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'context' API in React?",
+      "options": [
+        "To define the styles of a React component",
+        "To manage the state of a React component",
+        "To share data between components without passing props manually",
+        "To handle routing in a React application"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is a higher-order component (HOC) in React?",
+      "options": [
+        "A component that renders at a higher position in the component tree",
+        "A component that takes another component as input and returns a new component",
+        "A component that is above the fold in the browser",
+        "A component that is rendered conditionally"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'shouldComponentUpdate' lifecycle method in React?",
+      "options": [
+        "To fetch data from an API",
+        "To determine if a component should re-render",
+        "To update the component's state",
+        "To define the initial state of a component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'render' method in a React component?",
+      "options": [
+        "To update the component's state",
+        "To perform side effects",
+        "To define the component's UI",
+        "To fetch data from an API"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'useState' hook in React?",
+      "options": [
+        "To define the initial state of a component",
+        "To perform side effects in a functional component",
+        "To update the component's state in a class component",
+        "To manage component rendering"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'useEffect' hook in React?",
+      "options": [
+        "To define the initial state of a component",
+        "To perform side effects in a functional component",
+        "To update the component's state in a class component",
+        "To manage component rendering"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the role of the 'return' statement in a React component?",
+      "options": [
+        "To define the component's initial state",
+        "To define the component's props",
+        "To specify what the component should render",
+        "To define the component's context"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'propTypes' library in React?",
+      "options": [
+        "To define the types of props that a React component can receive",
+        "To define the types of state that a React component can have",
+        "To define the types of context that a React component can use",
+        "To define the types of hooks that a React component can use"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'defaultProps' property in a React component?",
+      "options": [
+        "To define the default state of a component",
+        "To define the default props for a component",
+        "To define the default context for a component",
+        "To define the default hooks for a component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is a React portal used for?",
+      "options": [
+        "To create a new React component",
+        "To render a React component outside its parent component's DOM hierarchy",
+        "To define the routing in a React application",
+        "To handle API requests in a React component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'dangerouslySetInnerHTML' prop in React?",
+      "options": [
+        "To add styles to a component",
+        "To render HTML content from a string as is, without escaping it",
+        "To create a new React component",
+        "To define the structure of a React component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'key' prop in React forms?",
+      "options": [
+        "It specifies the order of form elements",
+        "It uniquely identifies form elements and helps React manage their state",
+        "It defines the styling for form elements",
+        "It adds validation rules to form elements"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'context' API in React?",
+      "options": [
+        "To define the styles of a React component",
+        "To manage the state of a React component",
+        "To share data between components without passing props manually",
+        "To handle routing in a React application"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is a higher-order component (HOC) in React?",
+      "options": [
+        "A component that renders at a higher position in the component tree",
+        "A component that takes another component as input and returns a new component",
+        "A component that is above the fold in the browser",
+        "A component that is rendered conditionally"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'shouldComponentUpdate' lifecycle method in React?",
+      "options": [
+        "To fetch data from an API",
+        "To determine if a component should re-render",
+        "To update the component's state",
+        "To define the initial state of a component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'render' method in a React component?",
+      "options": [
+        "To update the component's state",
+        "To perform side effects",
+        "To define the component's UI",
+        "To fetch data from an API"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'useState' hook in React?",
+      "options": [
+        "To define the initial state of a component",
+        "To perform side effects in a functional component",
+        "To update the component's state in a class component",
+        "To manage component rendering"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'useEffect' hook in React?",
+      "options": [
+        "To define the initial state of a component",
+        "To perform side effects in a functional component",
+        "To update the component's state in a class component",
+        "To manage component rendering"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the role of the 'return' statement in a React component?",
+      "options": [
+        "To define the component's initial state",
+        "To define the component's props",
+        "To specify what the component should render",
+        "To define the component's context"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'propTypes' library in React?",
+      "options": [
+        "To define the types of props that a React component can receive",
+        "To define the types of state that a React component can have",
+        "To define the types of context that a React component can use",
+        "To define the types of hooks that a React component can use"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'defaultProps' property in a React component?",
+      "options": [
+        "To define the default state of a component",
+        "To define the default props for a component",
+        "To define the default context for a component",
+        "To define the default hooks for a component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is a React portal used for?",
+      "options": [
+        "To create a new React component",
+        "To render a React component outside its parent component's DOM hierarchy",
+        "To define the routing in a React application",
+        "To handle API requests in a React component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'dangerouslySetInnerHTML' prop in React?",
+      "options": [
+        "To add styles to a component",
+        "To render HTML content from a string as is, without escaping it",
+        "To create a new React component",
+        "To define the structure of a React component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'key' prop in React forms?",
+      "options": [
+        "It specifies the order of form elements",
+        "It uniquely identifies form elements and helps React manage their state",
+        "It defines the styling for form elements",
+        "It adds validation rules to form elements"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'context' API in React?",
+      "options": [
+        "To define the styles of a React component",
+        "To manage the state of a React component",
+        "To share data between components without passing props manually",
+        "To handle routing in a React application"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is a higher-order component (HOC) in React?",
+      "options": [
+        "A component that renders at a higher position in the component tree",
+        "A component that takes another component as input and returns a new component",
+        "A component that is above the fold in the browser",
+        "A component that is rendered conditionally"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'shouldComponentUpdate' lifecycle method in React?",
+      "options": [
+        "To fetch data from an API",
+        "To determine if a component should re-render",
+        "To update the component's state",
+        "To define the initial state of a component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'render' method in a React component?",
+      "options": [
+        "To update the component's state",
+        "To perform side effects",
+        "To define the component's UI",
+        "To fetch data from an API"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'useState' hook in React?",
+      "options": [
+        "To define the initial state of a component",
+        "To perform side effects in a functional component",
+        "To update the component's state in a class component",
+        "To manage component rendering"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'useEffect' hook in React?",
+      "options": [
+        "To define the initial state of a component",
+        "To perform side effects in a functional component",
+        "To update the component's state in a class component",
+        "To manage component rendering"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the role of the 'return' statement in a React component?",
+      "options": [
+        "To define the component's initial state",
+        "To define the component's props",
+        "To specify what the component should render",
+        "To define the component's context"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'propTypes' library in React?",
+      "options": [
+        "To define the types of props that a React component can receive",
+        "To define the types of state that a React component can have",
+        "To define the types of context that a React component can use",
+        "To define the types of hooks that a React component can use"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'defaultProps' property in a React component?",
+      "options": [
+        "To define the default state of a component",
+        "To define the default props for a component",
+        "To define the default context for a component",
+        "To define the default hooks for a component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is a React portal used for?",
+      "options": [
+        "To create a new React component",
+        "To render a React component outside its parent component's DOM hierarchy",
+        "To define the routing in a React application",
+        "To handle API requests in a React component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'dangerouslySetInnerHTML' prop in React?",
+      "options": [
+        "To add styles to a component",
+        "To render HTML content from a string as is, without escaping it",
+        "To create a new React component",
+        "To define the structure of a React component"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'key' prop in React forms?",
+      "options": [
+        "It specifies the order of form elements",
+        "It uniquely identifies form elements and helps React manage their state",
+        "It defines the styling for form elements",
+        "It adds validation rules to form elements"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of the 'context' API in React?",
+      "options": [
+        "To define the styles of a React component",
+        "To manage the state of a React component",
+        "To share data between components without passing props manually",
+        "To handle routing in a React application"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is a higher-order component (HOC) in React?",
+      "options": [
+        "A component that renders at a higher position in the component tree",
+        "A component that takes another component as input and returns a new component",
+        "A component that is above the fold in the browser",
+        "A component that is rendered conditionally"
+      ],
+      "correctOption": 1,
+      "points": 10
     }
   ]
 }
