@@ -1272,3 +1272,77 @@ export function useMovies(query, callback, key) {
 ---
 
 ## useReducer hook:
+
+```js
+const [state, dispatch] = useReducer(reducer, initialState, init);
+// example of a reducer function
+function reducer(state, action) {
+  switch (action.type) {
+    case "ACTION_TYPE_1":
+      // logic for ACTION_TYPE_1
+      return newState1;
+    case "ACTION_TYPE_2":
+      // logic for ACTION_TYPE_2
+      return newState2;
+    default:
+      return state;
+  }
+}
+
+// example of a dispatch function
+dispatch({ type: "ACTION_TYPE_1", payload: data });
+
+//------------------------------------------------------------//
+//putting it all together:
+
+import React, { useReducer } from "react";
+
+// Reducer function
+function counterReducer(state, action) {
+  switch (action.type) {
+    case "INCREMENT":
+      return { count: state.count + 1 };
+    case "DECREMENT":
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(counterReducer, { count: 0 });
+
+  return (
+    <div>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: "INCREMENT" })}>+</button>
+      <button onClick={() => dispatch({ type: "DECREMENT" })}>-</button>
+    </div>
+  );
+}
+```
+
+- A reducer function is a pure function that will always take in the previous state and an action as arguments and return the new state.
+- In ` const [count, dispatch] = useReducer(reducer, 0);` the `useReducer` hook returns state... i.e. `count` and a dispatch function... i.e. `dispatch`, that can also be used to update state.
+  > Example: If we have the following code:
+
+```js
+function reducer(state, action) {
+  console.log(state, action);
+}
+
+function DateCounter() {
+  //   const [count, setCount] = useState(0);
+
+  const [count, dispatch] = useReducer(reducer, 0);
+
+  const inc = function () {
+    dispatch(1);
+    // setCount((count) => count + 1);
+    // setCount((count) => count + step);
+  };
+  //...
+}
+```
+
+- When we press the increment button we get an output of 0,1 in the console... this is because the reducer function is called with the current state and the action that we dispatch... in this case the action is 1 `dispatch(1);`.
