@@ -1,23 +1,30 @@
-import { useState, useReducer } from "react";
+import { useReducer } from "react";
 
 function reducer(state, action) {
   console.log("State:", state, "action:", action);
   switch (action.type) {
     case "increment":
-      return state + 1;
+      return { ...state, count: state.count + state.step };
     case "decrement":
-      return state - 1;
+      return { ...state, count: state.count - state.step };
     case "setCount":
-      return action.payload;
+      return { ...state, count: action.payload };
+    case "setStep":
+      return { ...state, step: action.payload };
+      case "reset":
+        return { ...state, count: 0, step: 1}
     default:
-      return state;
+      throw new Error("Unexpected action");
   }
 }
 
 function DateCounter() {
-  const [count, dispatch] = useReducer(reducer, 0);
-
-  const [step, setStep] = useState(1);
+  const initialState = {
+    count: 0,
+    step: 1
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { count, step } = state;
 
   // This mutates the date object.
   const date = new Date("june 21 2023");
@@ -36,23 +43,18 @@ function DateCounter() {
   };
 
   const defineStep = function (e) {
-    setStep(Number(e.target.value));
+    dispatch({ type: "setStep", payload: Number(e.target.value) });
   };
 
   const reset = function () {
-    setStep(1);
+    dispatch({ type: "reset" });
   };
 
   return (
     <div className="counter">
+      <label htmlFor="step">Step Size</label>
       <div>
-        <input
-          type="range"
-          min="0"
-          max="10"
-          value={step}
-          onChange={defineStep}
-        />
+        <input type="range" min="0" max="10" value={step} onChange={defineStep} />
         <span>{step}</span>
       </div>
 
