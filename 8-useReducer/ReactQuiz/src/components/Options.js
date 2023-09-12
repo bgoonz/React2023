@@ -1,8 +1,12 @@
-function Options({ question }) {
+function Options({ question, dispatch, answer }) {
   return (
     <div className="options">
       {question.options.map((option, index) => (
-        <button key={index} className="btn btn-option">
+        <button
+          key={index}
+          className={`btn btn-option`}
+          onClick={() => dispatch({type: "newAnswer", payload: index})}
+        >
           {option}
         </button>
       ))}
