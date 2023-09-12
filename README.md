@@ -87,13 +87,7 @@ function Form() {
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
@@ -159,23 +153,14 @@ function Form() {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      >
+      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
@@ -239,30 +224,20 @@ function Form({ onAddItem }) {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      >
+      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
 }
 const Item = ({ item }) => {
-  const description =
-    item.quantity > 1 ? `${item.description}s` : item.description;
+  const description = item.quantity > 1 ? `${item.description}s` : item.description;
   return (
     <li key={item.id}>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
@@ -379,20 +354,13 @@ function Tabbed({ content }) {
         <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
     </div>
   );
 }
 function Tab({ num, activeTab, onClick }) {
   return (
-    <button
-      className={activeTab === num ? "tab active" : "tab"}
-      onClick={() => onClick(num)}
-    >
+    <button className={activeTab === num ? "tab active" : "tab"} onClick={() => onClick(num)}>
       Tab {num + 1}
     </button>
   );
@@ -516,11 +484,7 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
     </div>
   );
 }
@@ -593,11 +557,7 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} key={activeTab} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} key={activeTab} /> : <DifferentContent />}
     </div>
   );
 }
@@ -800,9 +760,7 @@ useEffect(() => {
 ```js
 useEffect(() => {
   async function fetchMovies() {
-    const response = await fetch(
-      `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-    );
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
     const data = await response.json();
     setMovies(data.Search);
   }
@@ -818,11 +776,8 @@ useEffect(() => {
     try {
       setLoading(true);
       setError("");
-      const response = await fetch(
-        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-      );
-      if (!response.ok)
-        throw new Error("Something went wrong while fetching the movies");
+      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -919,13 +874,9 @@ useEffect(() => {
       setLoading(true);
       setError("");
 
-      const response = await fetch(
-        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-        { signal: controller.signal }
-      );
+      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`, { signal: controller.signal });
 
-      if (!response.ok)
-        throw new Error("Something went wrong while fetching the movies");
+      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -1044,10 +995,7 @@ useEffect(() => {
 //We do not need to do this because the useEffect runs every time the component is rendered and the state is updated... which does the same thing anyway.
 function handleDeleteWatched(id) {
   setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
-  localStorage.setItem(
-    "watched",
-    JSON.stringify(watched.filter((movie) => movie.imdbID !== id))
-  );
+  localStorage.setItem("watched", JSON.stringify(watched.filter((movie) => movie.imdbID !== id)));
 }
 ```
 
@@ -1230,13 +1178,9 @@ export function useMovies(query, callback, key) {
         setLoading(true);
         setError("");
 
-        const response = await fetch(
-          `https://www.omdbapi.com/?apikey=${key}&s=${query}`,
-          { signal: controller.signal }
-        );
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${key}&s=${query}`, { signal: controller.signal });
 
-        if (!response.ok)
-          throw new Error("Something went wrong while fetching the movies");
+        if (!response.ok) throw new Error("Something went wrong while fetching the movies");
 
         const data = await response.json();
         if (data.Response === "False") throw new Error("No movies found");
@@ -1354,30 +1298,36 @@ function DateCounter() {
 
 ![Basic Reducer](./images/2023-09-12-11-04-14.png)
 
-
 > MVP for date counter using useReducer:
 
 ```js
-import { useState, useReducer } from "react";
+import { useReducer } from "react";
 
 function reducer(state, action) {
   console.log("State:", state, "action:", action);
   switch (action.type) {
     case "increment":
-      return state + 1;
+      return { ...state, count: state.count + state.step };
     case "decrement":
-      return state - 1;
+      return { ...state, count: state.count - state.step };
     case "setCount":
-      return action.payload;
+      return { ...state, count: action.payload };
+    case "setStep":
+      return { ...state, step: action.payload };
+    case "reset":
+      return { ...state, count: 0, step: 1 };
     default:
-      return state;
+      throw new Error("Unexpected action");
   }
 }
 
 function DateCounter() {
-  const [count, dispatch] = useReducer(reducer, 0);
-
-  const [step, setStep] = useState(1);
+  const initialState = {
+    count: 0,
+    step: 1
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { count, step } = state;
 
   // This mutates the date object.
   const date = new Date("june 21 2023");
@@ -1396,23 +1346,18 @@ function DateCounter() {
   };
 
   const defineStep = function (e) {
-    setStep(Number(e.target.value));
+    dispatch({ type: "setStep", payload: Number(e.target.value) });
   };
 
   const reset = function () {
-    setStep(1);
+    dispatch({ type: "reset" });
   };
 
   return (
     <div className="counter">
+      <label htmlFor="step">Step Size</label>
       <div>
-        <input
-          type="range"
-          min="0"
-          max="10"
-          value={step}
-          onChange={defineStep}
-        />
+        <input type="range" min="0" max="10" value={step} onChange={defineStep} />
         <span>{step}</span>
       </div>
 
@@ -1432,3 +1377,6 @@ function DateCounter() {
 }
 export default DateCounter;
 ```
+
+
+![state & action for useReducer version of Date picker](./images/2023-09-12-13-07-34.png)
