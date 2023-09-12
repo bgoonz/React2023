@@ -1,5 +1,8 @@
 import { useReducer } from "react";
-
+const initialState = {
+  count: 0,
+  step: 1,
+};
 function reducer(state, action) {
   console.log("State:", state, "action:", action);
   switch (action.type) {
@@ -11,18 +14,14 @@ function reducer(state, action) {
       return { ...state, count: action.payload };
     case "setStep":
       return { ...state, step: action.payload };
-      case "reset":
-        return { ...state, count: 0, step: 1}
+    case "reset":
+      return { ...initialState };
     default:
       throw new Error("Unexpected action");
   }
 }
 
 function DateCounter() {
-  const initialState = {
-    count: 0,
-    step: 1
-  };
   const [state, dispatch] = useReducer(reducer, initialState);
   const { count, step } = state;
 
@@ -54,7 +53,13 @@ function DateCounter() {
     <div className="counter">
       <label htmlFor="step">Step Size</label>
       <div>
-        <input type="range" min="0" max="10" value={step} onChange={defineStep} />
+        <input
+          type="range"
+          min="0"
+          max="10"
+          value={step}
+          onChange={defineStep}
+        />
         <span>{step}</span>
       </div>
 
