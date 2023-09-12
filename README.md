@@ -1458,3 +1458,9 @@ export default DateCounter;
   - When updating one piece of state depends on one or multiple other pieces of state.
 
 **How reducers update state**
+
+
+![How reducers update state](./images/2023-09-12-14-15-40.png)
+
+![Real world analogy](./images/2023-09-12-14-19-11.png)
+
