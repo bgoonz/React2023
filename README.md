@@ -1273,6 +1273,8 @@ export function useMovies(query, callback, key) {
 
 ## useReducer hook:
 
+#### the useReducer hook is another state managment hook that is used to manage more complex state, when the current state depends on the previous state.
+
 ```js
 const [state, dispatch] = useReducer(reducer, initialState, init);
 // example of a reducer function
@@ -1328,7 +1330,8 @@ function Counter() {
 
 ```js
 function reducer(state, action) {
-  console.log(state, action);
+  console.log("State:", state, "action:", action);
+  return state + action;
 }
 
 function DateCounter() {
@@ -1346,3 +1349,7 @@ function DateCounter() {
 ```
 
 - When we press the increment button we get an output of 0,1 in the console... this is because the reducer function is called with the current state and the action that we dispatch... in this case the action is 1 `dispatch(1);`.
+
+- dispatch is a state updating function that takes in an action as an argument and returns the new state, you can think of it as being similar to setState.
+
+![Basic Reducer](./images/2023-09-12-11-04-14.png)
