@@ -1456,3 +1456,5 @@ export default DateCounter;
   - When components have lots of state variables & state updates, spread across many event handlers all over the component.
   - When multiple state updates need to happen at the same time as a reaction to the same event (i.e. a form submission, or starting a game).
   - When updating one piece of state depends on one or multiple other pieces of state.
+
+**How reducers update state**
