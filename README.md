@@ -1600,3 +1600,31 @@ export default App;
 ---
 
 ## React Router:
+
+<details>
+<summary>using VITE</summary>
+- When using vite don't forget to configure eslint.
+
+```bash
+npm i eslint vite-plugin-eslint eslint-config-react-app --save-dev
+```
+
+> create file `.eslintrc.json`
+
+```json
+{
+  "extends": ["react-app"]
+}
+```
+
+```bash
+npm create vite@latest
+```
+
+</details>
+
+##### With routing we match different URLs to different UI views(react components):routes
+
+![Routing](./images/2023-09-13-16-28-46.png)
+
+**This allows the ueer to navigate between different application screens using the browser url**
