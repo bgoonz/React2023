@@ -87,13 +87,7 @@ function Form() {
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
@@ -159,23 +153,14 @@ function Form() {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      >
+      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
@@ -239,30 +224,20 @@ function Form({ onAddItem }) {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      >
+      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
 }
 const Item = ({ item }) => {
-  const description =
-    item.quantity > 1 ? `${item.description}s` : item.description;
+  const description = item.quantity > 1 ? `${item.description}s` : item.description;
   return (
     <li key={item.id}>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
@@ -379,20 +354,13 @@ function Tabbed({ content }) {
         <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
     </div>
   );
 }
 function Tab({ num, activeTab, onClick }) {
   return (
-    <button
-      className={activeTab === num ? "tab active" : "tab"}
-      onClick={() => onClick(num)}
-    >
+    <button className={activeTab === num ? "tab active" : "tab"} onClick={() => onClick(num)}>
       Tab {num + 1}
     </button>
   );
@@ -516,11 +484,7 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
     </div>
   );
 }
@@ -593,11 +557,7 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} key={activeTab} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} key={activeTab} /> : <DifferentContent />}
     </div>
   );
 }
@@ -800,9 +760,7 @@ useEffect(() => {
 ```js
 useEffect(() => {
   async function fetchMovies() {
-    const response = await fetch(
-      `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-    );
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
     const data = await response.json();
     setMovies(data.Search);
   }
@@ -818,11 +776,8 @@ useEffect(() => {
     try {
       setLoading(true);
       setError("");
-      const response = await fetch(
-        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-      );
-      if (!response.ok)
-        throw new Error("Something went wrong while fetching the movies");
+      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -919,13 +874,9 @@ useEffect(() => {
       setLoading(true);
       setError("");
 
-      const response = await fetch(
-        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-        { signal: controller.signal }
-      );
+      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`, { signal: controller.signal });
 
-      if (!response.ok)
-        throw new Error("Something went wrong while fetching the movies");
+      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -1044,10 +995,7 @@ useEffect(() => {
 //We do not need to do this because the useEffect runs every time the component is rendered and the state is updated... which does the same thing anyway.
 function handleDeleteWatched(id) {
   setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
-  localStorage.setItem(
-    "watched",
-    JSON.stringify(watched.filter((movie) => movie.imdbID !== id))
-  );
+  localStorage.setItem("watched", JSON.stringify(watched.filter((movie) => movie.imdbID !== id)));
 }
 ```
 
@@ -1230,13 +1178,9 @@ export function useMovies(query, callback, key) {
         setLoading(true);
         setError("");
 
-        const response = await fetch(
-          `https://www.omdbapi.com/?apikey=${key}&s=${query}`,
-          { signal: controller.signal }
-        );
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${key}&s=${query}`, { signal: controller.signal });
 
-        if (!response.ok)
-          throw new Error("Something went wrong while fetching the movies");
+        if (!response.ok) throw new Error("Something went wrong while fetching the movies");
 
         const data = await response.json();
         if (data.Response === "False") throw new Error("No movies found");
@@ -1387,7 +1331,7 @@ function reducer(state, action) {
 function DateCounter() {
   const initialState = {
     count: 0,
-    step: 1,
+    step: 1
   };
   const [state, dispatch] = useReducer(reducer, initialState);
   const { count, step } = state;
@@ -1420,13 +1364,7 @@ function DateCounter() {
     <div className="counter">
       <label htmlFor="step">Step Size</label>
       <div>
-        <input
-          type="range"
-          min="0"
-          max="10"
-          value={step}
-          onChange={defineStep}
-        />
+        <input type="range" min="0" max="10" value={step} onChange={defineStep} />
         <span>{step}</span>
       </div>
 
@@ -1475,7 +1413,7 @@ const initialState = {
   index: 0,
   answer: null,
   points: 0,
-  highscore: 0,
+  highscore: 0
 };
 
 function reducer(state, action) {
@@ -1492,10 +1430,7 @@ function reducer(state, action) {
       return {
         ...state,
         answer: action.payload,
-        points:
-          action.payload === curQuestion.correctOption
-            ? state.points + curQuestion.points
-            : state.points,
+        points: action.payload === curQuestion.correctOption ? state.points + curQuestion.points : state.points
       };
     case "nextQuestion":
       return { ...state, index: state.index + 1, answer: null };
@@ -1503,8 +1438,7 @@ function reducer(state, action) {
       return {
         ...state,
         status: "finished",
-        highscore:
-          state.points > state.highscore ? state.points : state.highscore,
+        highscore: state.points > state.highscore ? state.points : state.highscore
       };
     case "restart":
       return {
@@ -1512,7 +1446,7 @@ function reducer(state, action) {
         status: "ready",
         highscore: state.highscore,
         index: 0,
-        questions: state.questions,
+        questions: state.questions
       };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
@@ -1520,8 +1454,7 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [{ questions, status, index, answer, points, highscore }, dispatch] =
-    useReducer(reducer, initialState);
+  const [{ questions, status, index, answer, points, highscore }, dispatch] = useReducer(reducer, initialState);
 
   //derived state
   const numQuestions = questions.length;
@@ -1546,41 +1479,15 @@ function App() {
       <Main>
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
-        {status === "ready" && (
-          <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
-        )}
+        {status === "ready" && <StartScreen numQuestions={numQuestions} dispatch={dispatch} />}
         {status === "active" && (
           <>
-            <Progress
-              index={index}
-              numQuestions={numQuestions}
-              points={points}
-              maxPoints={maxPoints}
-              answer={answer}
-            />
-            <Question
-              question={questions[index]}
-              dispatch={dispatch}
-              answer={answer}
-            />
-            <NextButton
-              dispatch={dispatch}
-              answer={answer}
-              index={index}
-              numQuestions={numQuestions}
-            />
+            <Progress index={index} numQuestions={numQuestions} points={points} maxPoints={maxPoints} answer={answer} />
+            <Question question={questions[index]} dispatch={dispatch} answer={answer} />
+            <NextButton dispatch={dispatch} answer={answer} index={index} numQuestions={numQuestions} />
           </>
         )}
-        {status === "finished" && (
-          <FinishedScreen
-            points={points}
-            maxPoints={maxPoints}
-            index={index}
-            numQuestions={numQuestions}
-            highscore={highscore}
-            dispatch={dispatch}
-          />
-        )}
+        {status === "finished" && <FinishedScreen points={points} maxPoints={maxPoints} index={index} numQuestions={numQuestions} highscore={highscore} dispatch={dispatch} />}
       </Main>
     </div>
   );
@@ -1600,6 +1507,77 @@ export default App;
 ---
 
 ## React Router:
+
+- React Router is a powerful routing library built on top of React, which helps in adding new screens and flows to your application. This library keeps your UI in sync with the URL.
+
+## Installation
+
+To get started with React Router, you need to install it:
+
+```bash
+npm install react-router-dom
+```
+
+## Basic Components
+
+React Router provides a set of core components to implement routing:
+
+1. `BrowserRouter`: Uses the HTML5 history API to keep your UI in sync with the URL.
+2. `Route`: Renders some UI when its path matches the current URL.
+3. `Link`: Provides declarative, accessible navigation around your application.
+
+## Basic Usage
+
+Here's a simple example of setting up routing for a React application:
+
+```jsx
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+function App() {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Route path="/" exact component={Home} />
+        <Route path="/about" component={About} />
+      </div>
+    </Router>
+  );
+}
+
+function Home() {
+  return <h2>Home</h2>;
+}
+
+function About() {
+  return <h2>About</h2>;
+}
+
+export default App;
+```
+
+In the above example, when the user clicks on the "Home" or "About" links, the corresponding component (`Home` or `About`) gets rendered below the navigation.
+
+## Nested Routes
+
+React Router also supports nested routes, allowing for more complex layouts and routing logic.
+
+## Conclusion
+
+React Router is an essential tool for building single-page applications (SPAs) with React. It provides a way to manage and handle different views of your application efficiently.
+
+For more advanced features and configurations, refer to the [official React Router documentation](https://reactrouter.com/).
 
 <details>
 <summary>using VITE</summary>
