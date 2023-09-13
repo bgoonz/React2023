@@ -1,14 +1,17 @@
 import { useEffect, useReducer } from "react";
-import Header from "./components/Header";
-import Main from "./components/Main";
-import Loader from "./components/Loader";
 import Error from "./components/Error";
-import StartScreen from "./components/StartScreen";
-import Question from "./components/Question";
+import FinishedScreen from "./components/FinishedScreen";
+import Header from "./components/Header";
+import Loader from "./components/Loader";
+import Main from "./components/Main";
 import NextButton from "./components/NextButton";
 import Progress from "./components/Progress";
-import FinishedScreen from "./components/FinishedScreen";
+import Question from "./components/Question";
+import StartScreen from "./components/StartScreen";
+import Timer from "./components/Timer";
+import Footer from "./components/Footer";
 
+const SECONDS_PER_QUESTION = 30;
 const initialState = {
   questions: [],
   // loading, error, ready, active,finished
@@ -17,6 +20,7 @@ const initialState = {
   answer: null,
   points: 0,
   highscore: 0,
+  secondsRemaining: null
 };
 
 function reducer(state, action) {
@@ -26,17 +30,14 @@ function reducer(state, action) {
     case "dataFailed":
       return { ...state, status: "error" };
     case "start":
-      return { ...state, status: "active" };
+      return { ...state, status: "active", secondsRemaining: SECONDS_PER_QUESTION * state.questions.length };
     case "newAnswer":
       const curQuestion = state.questions.at(state.index);
       // recieved answer from user is action.payload
       return {
         ...state,
         answer: action.payload,
-        points:
-          action.payload === curQuestion.correctOption
-            ? state.points + curQuestion.points
-            : state.points,
+        points: action.payload === curQuestion.correctOption ? state.points + curQuestion.points : state.points
       };
     case "nextQuestion":
       return { ...state, index: state.index + 1, answer: null };
@@ -44,8 +45,7 @@ function reducer(state, action) {
       return {
         ...state,
         status: "finished",
-        highscore:
-          state.points > state.highscore ? state.points : state.highscore,
+        highscore: state.points > state.highscore ? state.points : state.highscore
       };
     case "restart":
       return {
@@ -53,16 +53,17 @@ function reducer(state, action) {
         status: "ready",
         highscore: state.highscore,
         index: 0,
-        questions: state.questions,
+        questions: state.questions
       };
+    case "tick":
+      return { ...state, secondsRemaining: state.secondsRemaining - 1, status: state.secondsRemaining === 0 ? "finished" : state.status };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
 }
 
 function App() {
-  const [{ questions, status, index, answer, points, highscore }, dispatch] =
-    useReducer(reducer, initialState);
+  const [{ questions, status, index, answer, points, highscore, secondsRemaining }, dispatch] = useReducer(reducer, initialState);
 
   //derived state
   const numQuestions = questions.length;
@@ -87,41 +88,18 @@ function App() {
       <Main>
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
-        {status === "ready" && (
-          <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
-        )}
+        {status === "ready" && <StartScreen numQuestions={numQuestions} dispatch={dispatch} />}
         {status === "active" && (
           <>
-            <Progress
-              index={index}
-              numQuestions={numQuestions}
-              points={points}
-              maxPoints={maxPoints}
-              answer={answer}
-            />
-            <Question
-              question={questions[index]}
-              dispatch={dispatch}
-              answer={answer}
-            />
-            <NextButton
-              dispatch={dispatch}
-              answer={answer}
-              index={index}
-              numQuestions={numQuestions}
-            />
+            <Progress index={index} numQuestions={numQuestions} points={points} maxPoints={maxPoints} answer={answer} />
+            <Question question={questions[index]} dispatch={dispatch} answer={answer} />
+            <Footer>
+              <NextButton dispatch={dispatch} answer={answer} index={index} numQuestions={numQuestions} />
+              <Timer dispatch={dispatch} secondsRemaining={secondsRemaining} />
+            </Footer>
           </>
         )}
-        {status === "finished" && (
-          <FinishedScreen
-            points={points}
-            maxPoints={maxPoints}
-            index={index}
-            numQuestions={numQuestions}
-            highscore={highscore}
-            dispatch={dispatch}
-          />
-        )}
+        {status === "finished" && <FinishedScreen points={points} maxPoints={maxPoints} index={index} numQuestions={numQuestions} highscore={highscore} dispatch={dispatch} />}
       </Main>
     </div>
   );
