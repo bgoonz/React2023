@@ -1463,7 +1463,6 @@ export default DateCounter;
 
 ![Real world analogy](./images/2023-09-12-14-19-11.png)
 
-
 ##### React Quiz Reducer Logic:
 
 ```js
@@ -1589,3 +1588,15 @@ function App() {
 
 export default App;
 ```
+
+---
+
+#### useState vs. useReducer:
+
+![useState vs useReducer](./images/2023-09-13-14-33-54.png)
+
+---
+
+---
+
+## React Router:

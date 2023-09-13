@@ -12,7 +12,8 @@ function Timer({ dispatch, secondsRemaining }) {
   }, [dispatch]);
   return (
     <div className="timer">
-      <span className="minutes">{minutes.toString().padStart(2, "0")}</span>:<span className="seconds">{seconds.toString().padStart(2, "0")}</span>
+      <span className="minutes">{minutes.toString().padStart(2, "0")}</span>:
+      <span className="seconds">{seconds.toString().padStart(2, "0")}</span>
     </div>
   );
 }
