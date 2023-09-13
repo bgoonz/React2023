@@ -19,7 +19,12 @@ function Options({ question, dispatch, answer }) {
         }
 
         return (
-          <button key={index} className={btnClass} onClick={() => dispatch({ type: "newAnswer", payload: index })} disabled={hasAnswered}>
+          <button
+            key={index}
+            className={btnClass}
+            onClick={() => dispatch({ type: "newAnswer", payload: index })}
+            disabled={hasAnswered}
+          >
             {option}
           </button>
         );
