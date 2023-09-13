@@ -16,6 +16,7 @@ const initialState = {
   index: 0,
   answer: null,
   points: 0,
+  highscore: 0,
 };
 
 function reducer(state, action) {
@@ -40,17 +41,28 @@ function reducer(state, action) {
     case "nextQuestion":
       return { ...state, index: state.index + 1, answer: null };
     case "finish":
-      return { ...state, status: "finished" };
+      return {
+        ...state,
+        status: "finished",
+        highscore:
+          state.points > state.highscore ? state.points : state.highscore,
+      };
+    case "restart":
+      return {
+        ...initialState,
+        status: "ready",
+        highscore: state.highscore,
+        index: 0,
+        questions: state.questions,
+      };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
 }
 
 function App() {
-  const [{ questions, status, index, answer, points }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [{ questions, status, index, answer, points, highscore }, dispatch] =
+    useReducer(reducer, initialState);
 
   //derived state
   const numQuestions = questions.length;
@@ -106,6 +118,8 @@ function App() {
             maxPoints={maxPoints}
             index={index}
             numQuestions={numQuestions}
+            highscore={highscore}
+            dispatch={dispatch}
           />
         )}
       </Main>
