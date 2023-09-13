@@ -1,11 +1,13 @@
-function NextButton({ dispatch, answer }) {
-  // If the user hasn't answered the question
-  if (answer === null) return null;
-  return (
-    <>
-      <button className="btn btn-ui">Next </button>
-    </>
-  );
-}
-
-export default NextButton;
+function NextButton({ dispatch, answer, index, numQuestions }) {
+    // If the user hasn't answered the question
+    if (answer === null || index >= numQuestions - 1) return null;
+  
+    return (
+      <>
+        <button className="btn btn-ui" onClick={()=>dispatch({type:"nextQuestion"})}>Next </button>
+      </>
+    );
+  }
+  
+  export default NextButton;
+  
