@@ -5,6 +5,7 @@ on:
     branches-ignore:
       - 'master' # Avoid infinite loop of formatting and PRs
 
+
 jobs:
   prettier:
     runs-on: ubuntu-latest
