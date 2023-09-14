@@ -1717,6 +1717,8 @@ import Home from "./pages/Home";
 import Pricing from "./pages/Pricing";
 function App() {
   return (
+    <div>
+    <h1>This H1 would appear on all routes...</h1>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -1724,8 +1726,27 @@ function App() {
         <Route path="pricing" element={<Pricing />} />
       </Routes>
     </BrowserRouter>
+    </div>
   );
 }
 
 export default App;
+```
+
+
+**How to match any route that was not matched by any other route:**
+
+```js
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="product" element={<Product />} />
+        <Route path="pricing" element={<Pricing />} />
+        <Route path="*" element={<NotFound />} /> <----------this is how
+      </Routes>
+    </BrowserRouter>
+  );
+}
 ```
