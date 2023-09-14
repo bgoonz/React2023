@@ -1718,21 +1718,20 @@ import Pricing from "./pages/Pricing";
 function App() {
   return (
     <div>
-    <h1>This H1 would appear on all routes...</h1>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="product" element={<Product />} />
-        <Route path="pricing" element={<Pricing />} />
-      </Routes>
-    </BrowserRouter>
+      <h1>This H1 would appear on all routes...</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="product" element={<Product />} />
+          <Route path="pricing" element={<Pricing />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
 ```
-
 
 **How to match any route that was not matched by any other route:**
 
@@ -1750,3 +1749,22 @@ function App() {
   );
 }
 ```
+
+![React Router Component Tree](./images/2023-09-14-10-58-38.png)
+
+**Why we don't use anchor tags for navigation with React Router**
+
+```js
+function Home() {
+  return (
+    <div>
+      <h1>Home Worldwise</h1>
+      <a href="/pricing">Pricing</a>
+    </div>
+  );
+}
+
+export default Home;
+```
+
+- Tha above code does technically work and will navigate to the pricing page... but it does cause the page to reload.
