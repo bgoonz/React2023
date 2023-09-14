@@ -21,11 +21,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Checkout 'prettier' branch and rebase with master
+    - name: Create or switch to 'prettier' branch
       run: |
-        git fetch origin prettier:prettier
-        git checkout prettier
-        git rebase origin/master
+        git checkout -B prettier
 
     - name: Run Prettier
       run: npx prettier --write .
