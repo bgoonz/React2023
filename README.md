@@ -1866,3 +1866,68 @@ export default Nav;
 ```
 
 - The above example would apply to any className of `nav` in the app.
+
+---
+
+#### Nested Routes:
+
+> `http://127.0.0.1:5173/app/cities/` <--- this is a nested route
+
+- This is how we would set up nested routes in React Router:
+
+```js
+<Route path="app" element={<AppLayout />}>
+  <Route
+    path="cities"
+    element={<p>This could be a react component or just JSX</p>}
+  />
+</Route>
+```
+
+**The `<Outlet />` component**
+-The Outlet component serves as a placeholder where the child routes will render. When you have nested routes, the parent route's component will typically render an Outlet to indicate where its child routes should appear.
+
+>example:
+
+```js
+// App.js
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="dashboard" element={<Dashboard />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
+}
+
+function MainLayout() {
+  return (
+    <div>
+      <h1>Welcome to Our App</h1>
+      <Outlet />  {/* This is where child routes will render */}
+    </div>
+  );
+}
+
+function Home() {
+  return <h2>Home Page</h2>;
+}
+
+function Dashboard() {
+  return <h2>Dashboard Page</h2>;
+}
+```
+- In the above example, when the user navigates to the root path /, they'll see "Welcome to Our App" followed by "Home Page". If they navigate to /dashboard, they'll see "Welcome to Our App" followed by "Dashboard Page". This is because the Outlet in MainLayout serves as the placeholder for the child routes.
+
+###### Key Takeaways:
+1. The Outlet component is essential for nested routing in React Router.
+2. It acts as a placeholder, indicating where child routes should render within their parent route's component.
+3. If no nested route matches, the Outlet will render nothing.
+
+![Outlet Use](./images/2023-09-14-16-21-27.png)

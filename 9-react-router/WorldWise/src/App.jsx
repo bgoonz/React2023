@@ -3,6 +3,7 @@ import Product from "./pages/Product";
 import Homepage from "./pages/Homepage";
 import Pricing from "./pages/Pricing";
 import PageNotFound from "./pages/PageNotFound";
+import AppLayout from "./pages/AppLayout";
 import Login from "./pages/Login";
 
 function App() {
@@ -13,6 +14,14 @@ function App() {
         <Route path="product" element={<Product />} />
         <Route path="pricing" element={<Pricing />} />
         <Route path="login" element={<Login />} />
+        <Route path="app" element={<AppLayout />}>
+          <Route
+            path="cities"
+            element={<p>This could be a react component or just JSX</p>}
+          />
+          <Route path="countries" element={<p>sibling route to cities</p>} />
+          <Route path="form" element={<p>another sibling route</p>} />
+        </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
