@@ -1768,3 +1768,58 @@ export default Home;
 ```
 
 - Tha above code does technically work and will navigate to the pricing page... but it does cause the page to reload.
+
+
+**Showing currently active link**
+- We can replace this:
+
+```js
+import { Link } from "react-router-dom";
+function Nav() {
+  return (
+    <nav>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/product">Product</Link>
+        </li>
+        <li>
+          <Link to="/pricing">Pricing</Link>
+        </li>
+      </ul>
+    </nav>
+  );
+}
+
+export default Nav;
+
+```
+
+- with this:
+
+```js
+import { NavLink } from "react-router-dom";
+function Nav() {
+  return (
+    <nav>
+      <ul>
+        <li>
+          <NavLink to="/">Home</NavLink>
+        </li>
+        <li>
+          <NavLink to="/product">Product</NavLink>
+        </li>
+        <li>
+          <NavLink to="/pricing">Pricing</NavLink>
+        </li>
+      </ul>
+    </nav>
+  );
+}
+
+export default Nav;
+```
+
+- The NavLink component adds a class `"active"` to the currently active link.
