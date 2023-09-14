@@ -1769,8 +1769,8 @@ export default Home;
 
 - Tha above code does technically work and will navigate to the pricing page... but it does cause the page to reload.
 
-
 **Showing currently active link**
+
 - We can replace this:
 
 ```js
@@ -1794,7 +1794,6 @@ function Nav() {
 }
 
 export default Nav;
-
 ```
 
 - with this:
@@ -1823,3 +1822,47 @@ export default Nav;
 ```
 
 - The NavLink component adds a class `"active"` to the currently active link.
+
+### Styling Options for React:
+
+![Styling In React](./images/2023-09-14-11-18-06.png)
+
+**Using CSS modules**
+
+- CSS modules are a way to scope CSS to a specific component.
+- CSS modules are enabled by default in create-react-app & vite.
+- In order to create a CSS module you need to name the file with the `.module.css` extension.
+
+How to apply styles to a component using CSS modules:
+
+```js
+import { NavLink } from "react-router-dom";
+import styles from "./Nav.module.css";
+function Nav() {
+  return <nav className={styles.nav}>//...</nav>;
+}
+
+export default Nav;
+```
+
+> Nav.module.css
+
+```css
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+```
+
+**When using css modules you _do not want to use element selectors_ like `ul{...}` because they will apply to all ul elements in the app... instead you want to use class selectors like `.nav{...}`**
+
+> If we don't want to scope a style specifically to the component for which we created the module wew can use the `:global` selector.
+
+```css
+:global(.nav) {
+  display: flex;
+  justify-content: space-between;
+}
+```
+
+- The above example would apply to any className of `nav` in the app.
