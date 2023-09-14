@@ -1,5 +1,5 @@
 import styles from "./Sidebar.module.css";
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Logo from "./Logo.jsx";
 import AppNav from "./AppNav.jsx";
 import Footer from "./Footer.jsx"; // Import the Footer component
@@ -10,7 +10,6 @@ function Sidebar() {
       <Logo />
       <AppNav />
       <Outlet />
-      
       <Footer /> {/* Use Footer component here */}
     </div>
   );

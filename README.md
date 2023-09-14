@@ -1885,13 +1885,19 @@ export default Nav;
 ```
 
 **The `<Outlet />` component**
--The Outlet component serves as a placeholder where the child routes will render. When you have nested routes, the parent route's component will typically render an Outlet to indicate where its child routes should appear.
 
->example:
+- The Outlet component serves as a placeholder where the child routes will render. When you have nested routes, the parent route's component will typically render an Outlet to indicate where its child routes should appear.
+
+> example:
 
 ```js
 // App.js
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Outlet,
+} from "react-router-dom";
 
 function App() {
   return (
@@ -1910,7 +1916,7 @@ function MainLayout() {
   return (
     <div>
       <h1>Welcome to Our App</h1>
-      <Outlet />  {/* This is where child routes will render */}
+      <Outlet /> {/* This is where child routes will render */}
     </div>
   );
 }
@@ -1923,9 +1929,11 @@ function Dashboard() {
   return <h2>Dashboard Page</h2>;
 }
 ```
+
 - In the above example, when the user navigates to the root path /, they'll see "Welcome to Our App" followed by "Home Page". If they navigate to /dashboard, they'll see "Welcome to Our App" followed by "Dashboard Page". This is because the Outlet in MainLayout serves as the placeholder for the child routes.
 
 ###### Key Takeaways:
+
 1. The Outlet component is essential for nested routing in React Router.
 2. It acts as a placeholder, indicating where child routes should render within their parent route's component.
 3. If no nested route matches, the Outlet will render nothing.
