@@ -1939,3 +1939,21 @@ function Dashboard() {
 3. If no nested route matches, the Outlet will render nothing.
 
 ![Outlet Use](./images/2023-09-14-16-21-27.png)
+
+**An index route is the default child route if the last part of the nested route doesn't match any of the child routes.**
+
+- In React Router, the index prop on a `<Route />`` component is used to specify a default child route that _should render when its parent route is matched exactly_.
+
+- When you have nested routes, sometimes you want to render a specific child route by default when the parent's path is accessed. The index prop helps in achieving this behavior.
+
+```js
+<Route path="app" element={<AppLayout />}>
+  <Route index element={<p>Index Route</p>} />
+  <Route
+    path="cities"
+    element={<p>This could be a react component or just JSX</p>}
+  />
+  <Route path="countries" element={<p>sibling route to cities</p>} />
+  <Route path="form" element={<p>another sibling route</p>} />
+</Route>
+```
