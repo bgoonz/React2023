@@ -1863,7 +1863,48 @@ function Dashboard() {
   - It's also a good way to pass data from one page to the next page.
   - This also makes it possible to bookmark and share the page with the exact UI state it had at the time.
 
-
 ![State in URL](./images/2023-09-15-12-02-58.png)
 
 ![Params & Query String](./images/2023-09-15-12-04-45.png)
+
+**How to use Params with React Router**
+
+- Create a new route.
+
+```js
+  <Route path="app" element={<AppLayout />}>
+          <Route index element={<CityList />} />
+          <Route
+            path="cities"
+            element={<CityList cities={cities} isLoading={isLoading} />}
+          />
+          <Route path="cities/:id" element={<City />} />
+```
+
+- Link to that new route.
+  > Inside CityItem.jsx:
+
+```js
+function CityItem({ city }) {
+  const { cityName, emoji, date, id } = city;
+  return (
+    <li>
+      <Link className={styles.cityItem} to={`${id}`}>
+        <span className={styles.emoji}>{emoji}</span>
+        <h3 className={styles.name}>{cityName}</h3>
+        <time className={styles.date}>{formatDate(date)}</time>
+        <button className={styles.deleteBtn}>&times;</button>
+      </Link>
+    </li>
+  );
+}
+```
+
+- Read the state from the url.
+
+```js
+import { useParams } from "react-router-dom";
+
+function City() {
+  const {id} = useParams();
+```
