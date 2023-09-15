@@ -776,6 +776,9 @@ function trippleInc() {
 
 ## Effects & Data Fetching:
 
+<details>
+    <summary>Click to expand</summary>
+
 **Component (instance) Lifecycle:**
 
 - **Mount/ Initial Render** : component instance is rendered for the first time. Fresh state and props are created.
@@ -1015,11 +1018,16 @@ useEffect(() => {
 }, [onCloseMovie]);
 ```
 
+</details>
+
 ---
 
 ---
 
 ## React Hooks
+
+<details>
+    <summary>Click to expand</summary>
 
 - React hooks are special built in functions that allow us to hook into the internal functionality of React.
   -i.e. Creating and accesing state from the Fiber Tree
@@ -1109,9 +1117,14 @@ setWatched((watched) => [...watched, movie]);
 
 - Remember that when updating state you must NOT mutate objects or arrays... instead you must replace them.
 
+</details>
+
 ---
 
 ## Refs:
+
+<details>
+    <summary>Click to expand</summary>
 
 **How not to select DOM elements in React**
 
@@ -1157,9 +1170,14 @@ useEffect(() => {
 
 > In the example above the `searchInputRef.current` is the DOM element that the ref is pointing to.
 
+</details>
+
 ---
 
 ## Custom Hooks:
+
+<details>
+    <summary>Click to expand</summary>
 
 - Allow us to reuse non-visual logic in multiple components.
 - One custom hook should have only one purpose (in order to make it reusable).
@@ -1296,11 +1314,16 @@ export function useMovies(query, callback, key) {
 }
 ```
 
+</details>
+
 ---
 
 ---
 
 ## useReducer hook:
+
+<details>
+    <summary>Click to expand</summary>
 
 #### the useReducer hook is another state managment hook that is used to manage more complex state, when the current state depends on the previous state.
 
@@ -1624,11 +1647,16 @@ export default App;
 
 ![useState vs useReducer](./images/2023-09-13-14-33-54.png)
 
+</details>
+
 ---
 
 ---
 
 ## React Router:
+
+<details>
+    <summary>Click to expand</summary>
 
 - React Router is a powerful routing library built on top of React, which helps in adding new screens and flows to your application. This library keeps your UI in sync with the URL.
 
@@ -2041,3 +2069,5 @@ import { useParams } from "react-router-dom";
 function City() {
   const {id} = useParams();
 ```
+
+</details>
