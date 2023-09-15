@@ -59,3 +59,27 @@ const handleCloseMovie = () => {
   setSelectedId(null);
 };
 ```
+
+### Countries Array From WorldWise (explination):
+
+```js
+// 'countries' is a constant which will contain the final array of unique countries
+const countries = cities.reduce((arr, city) => {
+  // For each 'city' in the 'cities' array
+
+  // .map() creates a new array with the results of calling a provided function
+  // on every element in the array it was called upon. Here we are mapping over 'arr',
+  // and for each element (el), we are returning its 'country' property.
+  // After that, .includes() method is used to check if the 'country' property of the current 'city'
+  // exists in the newly formed array of country names.
+  if (!arr.map((el) => el.country).includes(city.country))
+    // If the 'country' property of 'city' doesn't exist in 'arr',
+    // then we return a new array which includes all previous elements in 'arr'
+    // plus a new object which has 'country' and 'emoji' properties of the current 'city'.
+    return [...arr, { country: city.country, emoji: city.emoji }];
+  // If the 'country' property of 'city' exists in 'arr', we simply return the 'arr' as is.
+  else return arr;
+
+  // The second argument to .reduce() provides an initial value for 'arr'. Here it's an empty array.
+}, []);
+```

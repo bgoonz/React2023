@@ -87,13 +87,7 @@ function Form() {
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
@@ -159,23 +153,14 @@ function Form() {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      >
+      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
@@ -239,30 +224,20 @@ function Form({ onAddItem }) {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      >
+      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input
-        type="text"
-        name="item"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
       <button>Add</button>
     </form>
   );
 }
 const Item = ({ item }) => {
-  const description =
-    item.quantity > 1 ? `${item.description}s` : item.description;
+  const description = item.quantity > 1 ? `${item.description}s` : item.description;
   return (
     <li key={item.id}>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
@@ -379,20 +354,13 @@ function Tabbed({ content }) {
         <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
     </div>
   );
 }
 function Tab({ num, activeTab, onClick }) {
   return (
-    <button
-      className={activeTab === num ? "tab active" : "tab"}
-      onClick={() => onClick(num)}
-    >
+    <button className={activeTab === num ? "tab active" : "tab"} onClick={() => onClick(num)}>
       Tab {num + 1}
     </button>
   );
@@ -516,11 +484,7 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
     </div>
   );
 }
@@ -593,11 +557,7 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} key={activeTab} />
-      ) : (
-        <DifferentContent />
-      )}
+      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} key={activeTab} /> : <DifferentContent />}
     </div>
   );
 }
@@ -800,9 +760,7 @@ useEffect(() => {
 ```js
 useEffect(() => {
   async function fetchMovies() {
-    const response = await fetch(
-      `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-    );
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
     const data = await response.json();
     setMovies(data.Search);
   }
@@ -818,11 +776,8 @@ useEffect(() => {
     try {
       setLoading(true);
       setError("");
-      const response = await fetch(
-        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-      );
-      if (!response.ok)
-        throw new Error("Something went wrong while fetching the movies");
+      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -919,13 +874,9 @@ useEffect(() => {
       setLoading(true);
       setError("");
 
-      const response = await fetch(
-        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-        { signal: controller.signal }
-      );
+      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`, { signal: controller.signal });
 
-      if (!response.ok)
-        throw new Error("Something went wrong while fetching the movies");
+      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -1044,10 +995,7 @@ useEffect(() => {
 //We do not need to do this because the useEffect runs every time the component is rendered and the state is updated... which does the same thing anyway.
 function handleDeleteWatched(id) {
   setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
-  localStorage.setItem(
-    "watched",
-    JSON.stringify(watched.filter((movie) => movie.imdbID !== id))
-  );
+  localStorage.setItem("watched", JSON.stringify(watched.filter((movie) => movie.imdbID !== id)));
 }
 ```
 
@@ -1230,13 +1178,9 @@ export function useMovies(query, callback, key) {
         setLoading(true);
         setError("");
 
-        const response = await fetch(
-          `https://www.omdbapi.com/?apikey=${key}&s=${query}`,
-          { signal: controller.signal }
-        );
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${key}&s=${query}`, { signal: controller.signal });
 
-        if (!response.ok)
-          throw new Error("Something went wrong while fetching the movies");
+        if (!response.ok) throw new Error("Something went wrong while fetching the movies");
 
         const data = await response.json();
         if (data.Response === "False") throw new Error("No movies found");
@@ -1387,7 +1331,7 @@ function reducer(state, action) {
 function DateCounter() {
   const initialState = {
     count: 0,
-    step: 1,
+    step: 1
   };
   const [state, dispatch] = useReducer(reducer, initialState);
   const { count, step } = state;
@@ -1420,13 +1364,7 @@ function DateCounter() {
     <div className="counter">
       <label htmlFor="step">Step Size</label>
       <div>
-        <input
-          type="range"
-          min="0"
-          max="10"
-          value={step}
-          onChange={defineStep}
-        />
+        <input type="range" min="0" max="10" value={step} onChange={defineStep} />
         <span>{step}</span>
       </div>
 
@@ -1475,7 +1413,7 @@ const initialState = {
   index: 0,
   answer: null,
   points: 0,
-  highscore: 0,
+  highscore: 0
 };
 
 function reducer(state, action) {
@@ -1492,10 +1430,7 @@ function reducer(state, action) {
       return {
         ...state,
         answer: action.payload,
-        points:
-          action.payload === curQuestion.correctOption
-            ? state.points + curQuestion.points
-            : state.points,
+        points: action.payload === curQuestion.correctOption ? state.points + curQuestion.points : state.points
       };
     case "nextQuestion":
       return { ...state, index: state.index + 1, answer: null };
@@ -1503,8 +1438,7 @@ function reducer(state, action) {
       return {
         ...state,
         status: "finished",
-        highscore:
-          state.points > state.highscore ? state.points : state.highscore,
+        highscore: state.points > state.highscore ? state.points : state.highscore
       };
     case "restart":
       return {
@@ -1512,7 +1446,7 @@ function reducer(state, action) {
         status: "ready",
         highscore: state.highscore,
         index: 0,
-        questions: state.questions,
+        questions: state.questions
       };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
@@ -1520,8 +1454,7 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [{ questions, status, index, answer, points, highscore }, dispatch] =
-    useReducer(reducer, initialState);
+  const [{ questions, status, index, answer, points, highscore }, dispatch] = useReducer(reducer, initialState);
 
   //derived state
   const numQuestions = questions.length;
@@ -1546,41 +1479,15 @@ function App() {
       <Main>
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
-        {status === "ready" && (
-          <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
-        )}
+        {status === "ready" && <StartScreen numQuestions={numQuestions} dispatch={dispatch} />}
         {status === "active" && (
           <>
-            <Progress
-              index={index}
-              numQuestions={numQuestions}
-              points={points}
-              maxPoints={maxPoints}
-              answer={answer}
-            />
-            <Question
-              question={questions[index]}
-              dispatch={dispatch}
-              answer={answer}
-            />
-            <NextButton
-              dispatch={dispatch}
-              answer={answer}
-              index={index}
-              numQuestions={numQuestions}
-            />
+            <Progress index={index} numQuestions={numQuestions} points={points} maxPoints={maxPoints} answer={answer} />
+            <Question question={questions[index]} dispatch={dispatch} answer={answer} />
+            <NextButton dispatch={dispatch} answer={answer} index={index} numQuestions={numQuestions} />
           </>
         )}
-        {status === "finished" && (
-          <FinishedScreen
-            points={points}
-            maxPoints={maxPoints}
-            index={index}
-            numQuestions={numQuestions}
-            highscore={highscore}
-            dispatch={dispatch}
-          />
-        )}
+        {status === "finished" && <FinishedScreen points={points} maxPoints={maxPoints} index={index} numQuestions={numQuestions} highscore={highscore} dispatch={dispatch} />}
       </Main>
     </div>
   );
@@ -1877,10 +1784,7 @@ export default Nav;
 
 ```js
 <Route path="app" element={<AppLayout />}>
-  <Route
-    path="cities"
-    element={<p>This could be a react component or just JSX</p>}
-  />
+  <Route path="cities" element={<p>This could be a react component or just JSX</p>} />
 </Route>
 ```
 
@@ -1892,12 +1796,7 @@ export default Nav;
 
 ```js
 // App.js
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Outlet,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 
 function App() {
   return (
@@ -1949,11 +1848,22 @@ function Dashboard() {
 ```js
 <Route path="app" element={<AppLayout />}>
   <Route index element={<p>Index Route</p>} />
-  <Route
-    path="cities"
-    element={<p>This could be a react component or just JSX</p>}
-  />
+  <Route path="cities" element={<p>This could be a react component or just JSX</p>} />
   <Route path="countries" element={<p>sibling route to cities</p>} />
   <Route path="form" element={<p>another sibling route</p>} />
 </Route>
 ```
+
+---
+
+#### Storing State in the URL:
+
+- The URL is an excellent place to store UI state and an alternative to useState in some situations. Examples: open/closed panels, currently selected list item, list sorting order, applied list filters.
+  - The advantage of this is that it's an easy way to store state in a global place accessable to all components in the app.
+  - It's also a good way to pass data from one page to the next page.
+  - This also makes it possible to bookmark and share the page with the exact UI state it had at the time.
+
+
+![State in URL](./images/2023-09-15-12-02-58.png)
+
+![Params & Query String](./images/2023-09-15-12-04-45.png)
