@@ -5,7 +5,7 @@ const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
     month: "long",
-    year: "numeric"
+    year: "numeric",
   }).format(new Date(date));
 function CityItem({ city }) {
   const { cityName, emoji, date } = city;

@@ -1,12 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CityList from "./components/CityList";
+import CountryList from "./components/CountryList";
+import useFetch from "./hooks/useFetch";
 import AppLayout from "./pages/AppLayout";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import Pricing from "./pages/Pricing";
 import Product from "./pages/Product";
-import useFetch from "./hooks/useFetch";
 
 const BASE_URL = "http://localhost:8000";
 
@@ -26,7 +27,10 @@ function App() {
             path="cities"
             element={<CityList cities={cities} isLoading={isLoading} />}
           />
-          <Route path="countries" element={<p>sibling route to cities</p>} />
+          <Route
+            path="countries"
+            element={<CountryList cities={cities} isLoading={isLoading} />}
+          />
           <Route path="form" element={<p>another sibling route</p>} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
