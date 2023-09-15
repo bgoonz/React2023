@@ -64,7 +64,10 @@ const incrementStep = () => {
 
 ---
 
-## Controled Elements:
+### Controled Elements:
+
+<details>
+    <summary>Click to expand</summary>
 
 - by default, input elements like `<input>` and `<select>` maintain their own state in the DOM.
 - In React development we like to keep track of state internally in our app... not in the DOM.
@@ -97,8 +100,10 @@ function Form() {
 - In the above example, the input element is a controlled element because it's value is controlled by the state variable `description`, and the state variable is updated by the `onChange` event handler.
 
 ---
+</details>
 
-## Difference between props and state:
+
+### Difference between props and state:
 
 - State is interal to the component and props are passed in from the parent component.
 - State can be changed by the component itself, props cannot be changed by the component itself.
@@ -109,7 +114,10 @@ function Form() {
 
 ## Lifting State Up:
 
-### Instructions for lifting up state...
+<details>
+    <summary>Click to expand</summary>
+
+#### Instructions for lifting up state...
 
 1. Identify the common state: Determine which component(s) need access to the shared state. Look for any data that needs to be shared or updated across these components.
 2. Find the closest common ancestor: Identify the closest common ancestor of the components that need access to the shared state. This ancestor component will be responsible for managing and updating the state.
@@ -263,12 +271,14 @@ function PackingList({ items }) {
 
 ---
 
-## Derived State:
+</details>
+
+### Derived State:
 
 - Derived state is state that is calculated from other state or props.
 - If state can be derived from existing state then we do not want to create a new state to represent it because this will result in unnecessary rerendering any time the related state changes.
 
-## Props.children:
+### Props.children:
 
 - An empty hole that can be filled with any jsx the component recieves as children. The children prop allows us to pass jsx into an element. The only difference is that the children prop is not an html attribute but rather a prop that allows us to access jsx that is passed into the component as children.
 
@@ -307,7 +317,7 @@ Next<span>⏭️</span>
 ---
 
 ## Resources:
-
+```
 👉 [Writing Resilient Components](https://overreacted.io/writing-resilient-components/?ref=jonas.io) (By Dan Abramov from the React team)
 👉 [Things I think about when I write React code](https://github.com/mithi/react-philosophies?ref=jonas.io) (GitHub repository)
 👉 [A (Mostly) Complete Guide to React Rendering Behavior](https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/?ref=jonas.io) (By Mark Erikson from the redux team)
@@ -324,6 +334,8 @@ Next<span>⏭️</span>
 👉 [So you think you know everything about React refs](https://blog.thoughtspile.tech/2021/05/17/everything-about-react-refs/?ref=jonas.io)
 👉 [react-use: Reusable React Hook Library](https://github.com/streamich/react-use?ref=jonas.io) (GitHub repository)
 👉 [react-hookz: React hooks done right](https://github.com/react-hookz/web?ref=jonas.io) (GitHub repository)
+```
+
 
 ### Reusability:
 
@@ -337,6 +349,9 @@ Next<span>⏭️</span>
 ---
 
 ## How React Works:
+
+<details>
+    <summary>Click to expand</summary>
 
 - A component is a function that describes of a part of the UI.
 - A component is a function that returns React elements (jsx).
@@ -704,7 +719,7 @@ function trippleInc() {
 ---
 
 ---
-
+</details>
 ## Effects & Data Fetching:
 
 **Component (instance) Lifecycle:**
@@ -1503,8 +1518,8 @@ export default App;
 ![useState vs useReducer](./images/2023-09-13-14-33-54.png)
 
 ---
-
 ---
+
 
 ## React Router:
 
@@ -1908,3 +1923,5 @@ import { useParams } from "react-router-dom";
 function City() {
   const {id} = useParams();
 ```
+
+
