@@ -90,7 +90,13 @@ function Form() {
           </option>
         ))}
       </select>
-      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <button>Add</button>
     </form>
   );
@@ -100,8 +106,8 @@ function Form() {
 - In the above example, the input element is a controlled element because it's value is controlled by the state variable `description`, and the state variable is updated by the `onChange` event handler.
 
 ---
-</details>
 
+</details>
 
 ### Difference between props and state:
 
@@ -161,14 +167,23 @@ function Form() {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
+      <select
+        value={quantity}
+        onChange={(event) => setQuantity(Number(event.target.value))}
+      >
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <button>Add</button>
     </form>
   );
@@ -232,20 +247,30 @@ function Form({ onAddItem }) {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
+      <select
+        value={quantity}
+        onChange={(event) => setQuantity(Number(event.target.value))}
+      >
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <button>Add</button>
     </form>
   );
 }
 const Item = ({ item }) => {
-  const description = item.quantity > 1 ? `${item.description}s` : item.description;
+  const description =
+    item.quantity > 1 ? `${item.description}s` : item.description;
   return (
     <li key={item.id}>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
@@ -317,25 +342,37 @@ Next<span>⏭️</span>
 ---
 
 ## Resources:
-```
+
 👉 [Writing Resilient Components](https://overreacted.io/writing-resilient-components/?ref=jonas.io) (By Dan Abramov from the React team)
+
 👉 [Things I think about when I write React code](https://github.com/mithi/react-philosophies?ref=jonas.io) (GitHub repository)
+
 👉 [A (Mostly) Complete Guide to React Rendering Behavior](https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/?ref=jonas.io) (By Mark Erikson from the redux team)
+
 👉 [A Visual Guide to React Rendering](https://alexsidorenko.com/blog/react-render-always-rerenders/?ref=jonas.io) (A multi-part series, check out the other ones)
+
 👉 [Inside Fiber: in-depth overview of the new reconciliation algorithm in React](https://indepth.dev/posts/1008/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react?ref=jonas.io)
+
 👉 [A Cartoon Intro to Fiber](https://www.youtube.com/watch?v=ZCuYPiUIONs?ref=jonas.io) (YouTube video)
+
 👉 [What Is React Fiber? React.js Deep Dive](https://www.youtube.com/watch?v=0ympFIwQFJw?ref=jonas.io) (YouTube video)
+
 👉 [The React and React Native Event System Explained](https://levelup.gitconnected.com/how-exactly-does-react-handles-events-71e8b5e359f2?ref=jonas.io)
+
 👉 [Under the hood of event listeners in React](https://gist.github.com/romain-trotard/76313af8170809970daa7ff9d87b0dd5?ref=jonas.io)
+
 👉 [A DIY guide to build your own React](https://github.com/pomber/didact?ref=jonas.io)
+
 👉 [useSyncExternalStore First Look](https://julesblom.com/writing/usesyncexternalstore?ref=jonas.io)
+
 👉 [Under the hood of React's hooks system](https://the-guild.dev/blog/react-hooks-system?ref=jonas.io)
+
 👉 [Why Do React Hooks Rely on Call Order?](https://overreacted.io/why-do-hooks-rely-on-call-order/?ref=jonas.io) (By Dan Abramov
 👉 [So you think you know everything about React refs](https://blog.thoughtspile.tech/2021/05/17/everything-about-react-refs/?ref=jonas.io)
-👉 [react-use: Reusable React Hook Library](https://github.com/streamich/react-use?ref=jonas.io) (GitHub repository)
-👉 [react-hookz: React hooks done right](https://github.com/react-hookz/web?ref=jonas.io) (GitHub repository)
-```
 
+👉 [react-use: Reusable React Hook Library](https://github.com/streamich/react-use?ref=jonas.io) (GitHub repository)
+
+👉 [react-hookz: React hooks done right](https://github.com/react-hookz/web?ref=jonas.io) (GitHub repository)
 
 ### Reusability:
 
@@ -369,13 +406,20 @@ function Tabbed({ content }) {
         <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
-      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} />
+      ) : (
+        <DifferentContent />
+      )}
     </div>
   );
 }
 function Tab({ num, activeTab, onClick }) {
   return (
-    <button className={activeTab === num ? "tab active" : "tab"} onClick={() => onClick(num)}>
+    <button
+      className={activeTab === num ? "tab active" : "tab"}
+      onClick={() => onClick(num)}
+    >
       Tab {num + 1}
     </button>
   );
@@ -499,7 +543,11 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} />
+      ) : (
+        <DifferentContent />
+      )}
     </div>
   );
 }
@@ -572,7 +620,11 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} key={activeTab} /> : <DifferentContent />}
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} key={activeTab} />
+      ) : (
+        <DifferentContent />
+      )}
     </div>
   );
 }
@@ -719,7 +771,9 @@ function trippleInc() {
 ---
 
 ---
+
 </details>
+
 ## Effects & Data Fetching:
 
 **Component (instance) Lifecycle:**
@@ -775,7 +829,9 @@ useEffect(() => {
 ```js
 useEffect(() => {
   async function fetchMovies() {
-    const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+    const response = await fetch(
+      `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+    );
     const data = await response.json();
     setMovies(data.Search);
   }
@@ -791,8 +847,11 @@ useEffect(() => {
     try {
       setLoading(true);
       setError("");
-      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
-      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+      );
+      if (!response.ok)
+        throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -889,9 +948,13 @@ useEffect(() => {
       setLoading(true);
       setError("");
 
-      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`, { signal: controller.signal });
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+        { signal: controller.signal }
+      );
 
-      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
+      if (!response.ok)
+        throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -1010,7 +1073,10 @@ useEffect(() => {
 //We do not need to do this because the useEffect runs every time the component is rendered and the state is updated... which does the same thing anyway.
 function handleDeleteWatched(id) {
   setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
-  localStorage.setItem("watched", JSON.stringify(watched.filter((movie) => movie.imdbID !== id)));
+  localStorage.setItem(
+    "watched",
+    JSON.stringify(watched.filter((movie) => movie.imdbID !== id))
+  );
 }
 ```
 
@@ -1193,9 +1259,13 @@ export function useMovies(query, callback, key) {
         setLoading(true);
         setError("");
 
-        const response = await fetch(`https://www.omdbapi.com/?apikey=${key}&s=${query}`, { signal: controller.signal });
+        const response = await fetch(
+          `https://www.omdbapi.com/?apikey=${key}&s=${query}`,
+          { signal: controller.signal }
+        );
 
-        if (!response.ok) throw new Error("Something went wrong while fetching the movies");
+        if (!response.ok)
+          throw new Error("Something went wrong while fetching the movies");
 
         const data = await response.json();
         if (data.Response === "False") throw new Error("No movies found");
@@ -1346,7 +1416,7 @@ function reducer(state, action) {
 function DateCounter() {
   const initialState = {
     count: 0,
-    step: 1
+    step: 1,
   };
   const [state, dispatch] = useReducer(reducer, initialState);
   const { count, step } = state;
@@ -1379,7 +1449,13 @@ function DateCounter() {
     <div className="counter">
       <label htmlFor="step">Step Size</label>
       <div>
-        <input type="range" min="0" max="10" value={step} onChange={defineStep} />
+        <input
+          type="range"
+          min="0"
+          max="10"
+          value={step}
+          onChange={defineStep}
+        />
         <span>{step}</span>
       </div>
 
@@ -1428,7 +1504,7 @@ const initialState = {
   index: 0,
   answer: null,
   points: 0,
-  highscore: 0
+  highscore: 0,
 };
 
 function reducer(state, action) {
@@ -1445,7 +1521,10 @@ function reducer(state, action) {
       return {
         ...state,
         answer: action.payload,
-        points: action.payload === curQuestion.correctOption ? state.points + curQuestion.points : state.points
+        points:
+          action.payload === curQuestion.correctOption
+            ? state.points + curQuestion.points
+            : state.points,
       };
     case "nextQuestion":
       return { ...state, index: state.index + 1, answer: null };
@@ -1453,7 +1532,8 @@ function reducer(state, action) {
       return {
         ...state,
         status: "finished",
-        highscore: state.points > state.highscore ? state.points : state.highscore
+        highscore:
+          state.points > state.highscore ? state.points : state.highscore,
       };
     case "restart":
       return {
@@ -1461,7 +1541,7 @@ function reducer(state, action) {
         status: "ready",
         highscore: state.highscore,
         index: 0,
-        questions: state.questions
+        questions: state.questions,
       };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
@@ -1469,7 +1549,8 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [{ questions, status, index, answer, points, highscore }, dispatch] = useReducer(reducer, initialState);
+  const [{ questions, status, index, answer, points, highscore }, dispatch] =
+    useReducer(reducer, initialState);
 
   //derived state
   const numQuestions = questions.length;
@@ -1494,15 +1575,41 @@ function App() {
       <Main>
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
-        {status === "ready" && <StartScreen numQuestions={numQuestions} dispatch={dispatch} />}
+        {status === "ready" && (
+          <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
+        )}
         {status === "active" && (
           <>
-            <Progress index={index} numQuestions={numQuestions} points={points} maxPoints={maxPoints} answer={answer} />
-            <Question question={questions[index]} dispatch={dispatch} answer={answer} />
-            <NextButton dispatch={dispatch} answer={answer} index={index} numQuestions={numQuestions} />
+            <Progress
+              index={index}
+              numQuestions={numQuestions}
+              points={points}
+              maxPoints={maxPoints}
+              answer={answer}
+            />
+            <Question
+              question={questions[index]}
+              dispatch={dispatch}
+              answer={answer}
+            />
+            <NextButton
+              dispatch={dispatch}
+              answer={answer}
+              index={index}
+              numQuestions={numQuestions}
+            />
           </>
         )}
-        {status === "finished" && <FinishedScreen points={points} maxPoints={maxPoints} index={index} numQuestions={numQuestions} highscore={highscore} dispatch={dispatch} />}
+        {status === "finished" && (
+          <FinishedScreen
+            points={points}
+            maxPoints={maxPoints}
+            index={index}
+            numQuestions={numQuestions}
+            highscore={highscore}
+            dispatch={dispatch}
+          />
+        )}
       </Main>
     </div>
   );
@@ -1518,8 +1625,8 @@ export default App;
 ![useState vs useReducer](./images/2023-09-13-14-33-54.png)
 
 ---
----
 
+---
 
 ## React Router:
 
@@ -1799,7 +1906,10 @@ export default Nav;
 
 ```js
 <Route path="app" element={<AppLayout />}>
-  <Route path="cities" element={<p>This could be a react component or just JSX</p>} />
+  <Route
+    path="cities"
+    element={<p>This could be a react component or just JSX</p>}
+  />
 </Route>
 ```
 
@@ -1811,7 +1921,12 @@ export default Nav;
 
 ```js
 // App.js
-import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Outlet,
+} from "react-router-dom";
 
 function App() {
   return (
@@ -1863,7 +1978,10 @@ function Dashboard() {
 ```js
 <Route path="app" element={<AppLayout />}>
   <Route index element={<p>Index Route</p>} />
-  <Route path="cities" element={<p>This could be a react component or just JSX</p>} />
+  <Route
+    path="cities"
+    element={<p>This could be a react component or just JSX</p>}
+  />
   <Route path="countries" element={<p>sibling route to cities</p>} />
   <Route path="form" element={<p>another sibling route</p>} />
 </Route>
@@ -1923,5 +2041,3 @@ import { useParams } from "react-router-dom";
 function City() {
   const {id} = useParams();
 ```
-
-
