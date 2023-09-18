@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { PostContext } from "../App";
+import { PostContext } from "../context/PostContext";
 import Results from "./Results";
 import SearchPosts from "./SearchPosts";
 
