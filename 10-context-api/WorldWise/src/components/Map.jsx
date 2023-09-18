@@ -9,6 +9,7 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import { useCities } from "../context/CitiesContext";
+import { useGeolocation } from "../hooks/useGeolocation";
 import styles from "./Map.module.css";
 
 function ChangeCenter({ position }) {
@@ -28,6 +29,8 @@ function Map() {
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const [searchParams] = useSearchParams();
+  
+  const {} = useGeolocation();
   const mapLat = parseFloat(searchParams.get("lat")) || 40;
   const mapLng = parseFloat(searchParams.get("lng")) || 0;
 
