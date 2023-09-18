@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-import Button from "./Button";
 import BackButton from "./BackButton";
+import Button from "./Button";
 import styles from "./Form.module.css";
 
 // import { convertToEmoji } from "../utils/convertToEmoji";
@@ -13,7 +13,6 @@ function Form() {
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
-
 
   return (
     <form className={styles.form}>

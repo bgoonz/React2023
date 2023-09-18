@@ -1,8 +1,8 @@
-import styles from "./Sidebar.module.css";
 import { Outlet } from "react-router-dom";
-import Logo from "./Logo.jsx";
 import AppNav from "./AppNav.jsx";
 import Footer from "./Footer.jsx"; // Import the Footer component
+import Logo from "./Logo.jsx";
+import styles from "./Sidebar.module.css";
 
 function Sidebar() {
   return (
