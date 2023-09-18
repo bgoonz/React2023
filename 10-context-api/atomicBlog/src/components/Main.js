@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import Posts from "./Posts";
 import FormAddPost from "./FormAddPost";
-import { PostContext } from "../context/PostContext";
+import { usePosts } from "../context/PostContext";
 
 function Main() {
-  const { posts, onAddPost } = useContext(PostContext);
+  const { posts, onAddPost } = usePosts()
   return (
     <main>
       <FormAddPost onAddPost={onAddPost} />
