@@ -5,6 +5,8 @@ import { useCities } from "../context/CitiesContext";
 import styles from "./City.module.css";
 import Spinner from "./Spinner";
 
+import BackButton from "./BackButton";
+
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -55,7 +57,9 @@ if (isLoading) return <Spinner />;
         </a>
       </div>
 
-      <div>{/* <ButtonBack /> */}</div>
+      <div>
+        <BackButton />
+      </div>
     </div>
   );
 }
