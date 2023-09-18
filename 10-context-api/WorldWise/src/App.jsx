@@ -6,8 +6,7 @@ import City from "./components/City";
 import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
 import Form from "./components/Form";
-//Hooks
-import useFetch from "./hooks/useFetch";
+
 
 //Pages
 import AppLayout from "./pages/AppLayout";
@@ -16,13 +15,17 @@ import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import Pricing from "./pages/Pricing";
 import Product from "./pages/Product";
-//Constants
-const BASE_URL = "http://localhost:8000";
+//Context
+import { CitiesProvider, useCities } from "./context/CitiesContext";
+
+
+
 
 function App() {
-  const [cities, isLoading] = useFetch(`${BASE_URL}/cities`);
+
 
   return (
+    <CitiesProvider>
     <BrowserRouter>
       <Routes>
         <Route index element={<Homepage />} />
@@ -33,18 +36,19 @@ function App() {
           <Route index element={<Navigate replace to="cities" />} />
           <Route
             path="cities"
-            element={<CityList cities={cities} isLoading={isLoading} />}
+            element={<CityList  />}
           />
           <Route path="cities/:id" element={<City />} />
           <Route
             path="countries"
-            element={<CountryList cities={cities} isLoading={isLoading} />}
+            element={<CountryList  />}
           />
           <Route path="form" element={<Form />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
+    </CitiesProvider>
   );
 }
 

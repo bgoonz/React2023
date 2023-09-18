@@ -2302,15 +2302,16 @@ export default Header;
 
 
 **State Domain(_Remote state vs UI state_)**
+- Remote state is all application data loaded from a remote server (API), (usually asynchronus) needs re-fetching/updating.
+- UI state is all state that is used to control the UI (i.e. open/closed panels, currently selected list item, list sorting order, applied list filters) (usually synchronus and stored in the application).
 
 
+**Where to place state**
+
+![Where to place state](./images/2023-09-18-06-34-16.png)
 
 
-
-
-
-
-
+![State Accessibility](./images/2023-09-18-06-35-51.png)
 
 
 
