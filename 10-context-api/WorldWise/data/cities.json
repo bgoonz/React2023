@@ -1,0 +1,124 @@
+{
+  "cities": [
+    {
+      "cityName": "Lisbon",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2022-10-31T15:59:59.138Z",
+      "notes": "My favorite city so far!",
+      "position": {
+        "lat": 38.727881642324164,
+        "lng": -9.140900099907554
+      },
+      "id": 73930385
+    },
+    {
+      "cityName": "Madrid",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2022-07-15T08:22:53.976Z",
+      "notes": "",
+      "position": {
+        "lat": 40.46635901755316,
+        "lng": -3.7133789062500004
+      },
+      "id": 17806751
+    },
+    {
+      "cityName": "Berlin",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2022-02-12T09:24:11.863Z",
+      "notes": "Amazing 😃",
+      "position": {
+        "lat": 52.53586782505711,
+        "lng": 13.376933665713324
+      },
+      "id": 98443197
+    },
+    {
+      "cityName": "Paris",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2022-03-18T12:00:00.000Z",
+      "notes": "The city of love ❤️",
+      "position": {
+        "lat": 48.8566,
+        "lng": 2.3522
+      },
+      "id": 45678901
+    },
+    {
+      "cityName": "Rome",
+      "country": "Italy",
+      "emoji": "🇮🇹",
+      "date": "2022-04-20T14:30:00.000Z",
+      "notes": "Historical beauty!",
+      "position": {
+        "lat": 41.9028,
+        "lng": 12.4964
+      },
+      "id": 23456789
+    },
+    {
+      "cityName": "Amsterdam",
+      "country": "Netherlands",
+      "emoji": "🇳🇱",
+      "date": "2022-05-22T16:45:00.000Z",
+      "notes": "Canals everywhere!",
+      "position": {
+        "lat": 52.3676,
+        "lng": 4.9041
+      },
+      "id": 34567890
+    },
+    {
+      "cityName": "Prague",
+      "country": "Czech Republic",
+      "emoji": "🇨🇿",
+      "date": "2022-06-24T18:55:00.000Z",
+      "notes": "A fairy tale city.",
+      "position": {
+        "lat": 50.0755,
+        "lng": 14.4378
+      },
+      "id": 56789012
+    },
+    {
+      "cityName": "Vienna",
+      "country": "Austria",
+      "emoji": "🇦🇹",
+      "date": "2022-08-28T20:05:00.000Z",
+      "notes": "Classical music and coffee.",
+      "position": {
+        "lat": 48.2082,
+        "lng": 16.3738
+      },
+      "id": 67890123
+    },
+    {
+      "cityName": "Budapest",
+      "country": "Hungary",
+      "emoji": "🇭🇺",
+      "date": "2022-09-30T21:15:00.000Z",
+      "notes": "Thermal baths are amazing.",
+      "position": {
+        "lat": 47.4979,
+        "lng": 19.0402
+      },
+      "id": 78901234
+    },
+    {
+      "cityName": "Brussels",
+      "country": "Belgium",
+      "emoji": "🇧🇪",
+      "date": "2022-11-02T23:25:00.000Z",
+      "notes": "Chocolate and waffles!",
+      "position": {
+        "lat": 50.8503,
+        "lng": 4.3517
+      },
+      "id": 89012345
+    }
+  ]
+}

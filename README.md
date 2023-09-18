@@ -2070,7 +2070,6 @@ function City() {
   const {id} = useParams();
 ```
 
-
 **How to use Query Strings with React Router**
 
 ```js
@@ -2082,18 +2081,18 @@ const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
     month: "long",
-    year: "numeric"
+    year: "numeric",
   }).format(new Date(date));
-  
-  
+
 function CityItem({ city }) {
-    
   const { cityName, emoji, date, id, position } = city;
-  
 
   return (
     <li>
-      <Link className={styles.cityItem} to={`${id}?lat=${position.lat}&lng=${position.lng}`}>
+      <Link
+        className={styles.cityItem}
+        to={`${id}?lat=${position.lat}&lng=${position.lng}`}
+      >
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>{formatDate(date)}</time>
@@ -2104,7 +2103,6 @@ function CityItem({ city }) {
 }
 
 export default CityItem;
-
 ```
 
 ![Query String State in Url](./images/2023-09-17-19-10-46.png)
@@ -2121,17 +2119,17 @@ function Map() {
   return (
     <div className={styles.mapContainer}>
       <h1>Map</h1>
-     <h1>Position: {lat}, {lng}</h1>
+      <h1>
+        Position: {lat}, {lng}
+      </h1>
     </div>
   );
 }
 
 export default Map;
-
 ```
 
 **Programatic Navigation with useNavigate**
-
 
 ```js
 import styles from "./Map.module.css";
@@ -2144,9 +2142,11 @@ function Map() {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.mapContainer} onClick={() => navigate('form')}>
+    <div className={styles.mapContainer} onClick={() => navigate("form")}>
       <h1>Map</h1>
-      <h1>Position: {lat}, {lng}</h1>
+      <h1>
+        Position: {lat}, {lng}
+      </h1>
       <button onClick={() => setSearchParams({ lat: 24, lng: 50 })}>
         Change Position
       </button>
@@ -2156,11 +2156,5 @@ function Map() {
 
 export default Map;
 ```
-
-
-
-
-
-
 
 </details>
