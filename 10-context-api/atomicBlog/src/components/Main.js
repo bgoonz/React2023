@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Posts from "./Posts";
 import FormAddPost from "./FormAddPost";
+import { PostContext } from "../App";
 
-function Main({ posts, onAddPost }) {
+function Main() {
+    const { posts, onAddPost } = useContext(PostContext);
   return (
     <main>
       <FormAddPost onAddPost={onAddPost} />

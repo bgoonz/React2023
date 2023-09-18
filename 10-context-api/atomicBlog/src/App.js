@@ -16,14 +16,17 @@ function App() {
   const [isFakeDark, setIsFakeDark] = useState(false);
 
   // Derived state. These are the posts that will actually be displayed
-  const searchedPosts =
-    searchQuery.length > 0
-      ? posts.filter((post) =>
+  let searchedPosts;
+  if (searchQuery.length > 0) {
+      searchedPosts = posts.filter((post) =>
           `${post.title} ${post.body}`
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase())
-        )
-      : posts;
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase())
+      );
+  } else {
+      searchedPosts = posts;
+  }
+  
 
   function handleAddPost(post) {
     setPosts((posts) => [post, ...posts]);
