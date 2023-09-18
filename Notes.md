@@ -83,3 +83,37 @@ const countries = cities.reduce((arr, city) => {
   // The second argument to .reduce() provides an initial value for 'arr'. Here it's an empty array.
 }, []);
 ```
+
+---
+
+---
+
+## Leaflet
+
+**Installing Leaflet for Map Functionality**
+
+##### [Leaflet Documentation](https://react-leaflet.js.org/)
+
+```bash
+npm i react-leaflet leaflet
+```
+
+**Css for Leaflet**
+
+```css
+/* Taken from getting started guide at: https://leafletjs.com/examples/quick-start/ */
+@import "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css";
+```
+
+**Date Picker**
+
+###### [React Date Picker](https://www.npmjs.com/package/react-datepicker)
+
+```bash
+npm install react-datepicker
+```
+
+
+```js
+      <DatePicker id="date" onChange={(date) => setDate(date)} selected={date} dateFormat="dd/MM/yyyy" />
+```
