@@ -2290,7 +2290,6 @@ export default Header;
 > As you can see in the image below, for the results component even though we only need the posts state we are being provided with the entire context value.
 > ![Context Value](./images/2023-09-17-21-22-29.png)
 
-
 #### Advanced State Managment:
 
 **Types of State**
@@ -2298,23 +2297,17 @@ export default Header;
 - Local State: state that is only used in one component(and it's children... as props).
 - Global State: state that is used in multiple components.
 
-    - You can determine which it is by asking yourself this: _If this component was rendered twice, should a state update in one of them be reflected in the other one?_ If the answer is yes, then it's global state, otherwise it's local state.
-
+  - You can determine which it is by asking yourself this: _If this component was rendered twice, should a state update in one of them be reflected in the other one?_ If the answer is yes, then it's global state, otherwise it's local state.
 
 **State Domain(_Remote state vs UI state_)**
+
 - Remote state is all application data loaded from a remote server (API), (usually asynchronus) needs re-fetching/updating.
 - UI state is all state that is used to control the UI (i.e. open/closed panels, currently selected list item, list sorting order, applied list filters) (usually synchronus and stored in the application).
-
 
 **Where to place state**
 
 ![Where to place state](./images/2023-09-18-06-34-16.png)
 
-
 ![State Accessibility](./images/2023-09-18-06-35-51.png)
-
-
-
-
 
 </details>

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import styles from "./Form.module.css";
 
-import {convertToEmoji} from "../utils/convertToEmoji";
+import { convertToEmoji } from "../utils/convertToEmoji";
 
 function Form() {
   const [cityName, setCityName] = useState("");
