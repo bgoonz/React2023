@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 
 import BackButton from "./BackButton";
 import Button from "./Button";
+import Message from "./Message";
+import Spinner from "./Spinner";
 import styles from "./Form.module.css";
-
+import { convertToEmoji } from "../utils/convertToEmoji";
 import { useUrlPosition } from "../hooks/useUrlPosition";
 
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
@@ -14,25 +16,40 @@ function Form() {
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
   const [lat, lng] = useUrlPosition();
+  const [emoji, setEmoji] = useState("");
+  const [geocodingError, setGeocodingError] = useState("");
 
   useEffect(() => {
+    if (!lat && !lng) return;
     async function fetchCityData() {
       try {
         setIsLoadingGeocoding(true);
+        setGeocodingError("");
         const response = await fetch(
           `${BASE_URL}?latitude=${lat}&longitude=${lng}`
         );
         const data = await response.json();
         console.log(data);
-        setCityName(data.city);
+        if (!data.countryCode)
+          throw new Error("There's no city there, click somewhere else");
+        setCityName(data.city || data.locality || "");
+        setCountry(data.countryName || "");
+        setEmoji(convertToEmoji(data.countryCode));
       } catch (error) {
-        console.error(error);
+        setGeocodingError(error.message);
       } finally {
         setIsLoadingGeocoding(false);
       }
     }
     if (lat && lng) fetchCityData();
   }, [lat, lng]);
+//loading
+  if (isLoadingGeocoding) return <Spinner />;
+
+  if (!lat && !lng)
+    return <Message message="Start by clicking somewhere on the map" />;
+  
+  if (geocodingError) return <Message message={geocodingError}></Message>;
 
   return (
     <form className={styles.form}>
@@ -43,7 +60,7 @@ function Form() {
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
-        {/* <span className={styles.flag}>{emoji}</span> */}
+        <span className={`${styles.flag} ${styles.emoji}`}>{emoji}</span>
       </div>
 
       <div className={styles.row}>

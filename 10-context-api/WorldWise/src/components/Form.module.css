@@ -42,3 +42,7 @@
   font-family: inherit;
   font-size: 1.2rem;
 }
+
+.emoji {
+  font-family: "Noto Color Emoji", sans-serif;
+}
