@@ -2310,20 +2310,19 @@ export default Header;
 
 ![State Accessibility](./images/2023-09-18-06-35-51.png)
 
-
 **Installing Leaflet for Map Functionality**
+
 ##### [Leaflet Documentation](https://react-leaflet.js.org/)
+
 ```bash
 npm i react-leaflet leaflet
 ```
 
 **Css for Leaflet**
+
 ```css
 /* Taken from getting started guide at: https://leafletjs.com/examples/quick-start/ */
 @import "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css";
 ```
-
-
-
 
 </details>
