@@ -2158,3 +2158,14 @@ export default Map;
 ```
 
 </details>
+
+---
+
+---
+
+## Context API:
+
+<details>
+    <summary>Click to expand</summary>
+
+</details>
