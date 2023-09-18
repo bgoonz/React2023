@@ -119,6 +119,18 @@
         "lng": 4.3517
       },
       "id": 89012345
+    },
+    {
+      "cityName": "Prenzlau",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2023-09-18T20:34:46.766Z",
+      "notes": "I've never been here",
+      "position": {
+        "lat": 53.269961280005546,
+        "lng": 13.888092041015625
+      },
+      "id": 98443198
     }
   ]
 }
