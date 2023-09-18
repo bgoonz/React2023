@@ -4,7 +4,7 @@ import Results from "./Results";
 import SearchPosts from "./SearchPosts";
 
 function Header() {
-  const { onClearPosts } = usePosts()
+  const { onClearPosts } = usePosts();
   return (
     <header>
       <h1>

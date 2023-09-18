@@ -4,7 +4,7 @@ import FormAddPost from "./FormAddPost";
 import { usePosts } from "../context/PostContext";
 
 function Main() {
-  const { posts, onAddPost } = usePosts()
+  const { posts, onAddPost } = usePosts();
   return (
     <main>
       <FormAddPost onAddPost={onAddPost} />

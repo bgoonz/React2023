@@ -3,7 +3,7 @@ import { usePosts } from "../context/PostContext";
 import List from "./List";
 
 function Posts() {
-  const { posts } = usePosts()
+  const { posts } = usePosts();
   return (
     <section>
       <List posts={posts} />
