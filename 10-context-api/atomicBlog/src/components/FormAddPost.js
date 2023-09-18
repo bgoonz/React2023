@@ -3,7 +3,7 @@ import { PostContext } from "../App";
 function FormAddPost() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-const { onAddPost } = useContext(PostContext);
+  const { onAddPost } = useContext(PostContext);
   const handleSubmit = function (e) {
     e.preventDefault();
     if (!body || !title) return;

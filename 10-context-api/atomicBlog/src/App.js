@@ -18,15 +18,14 @@ function App() {
   // Derived state. These are the posts that will actually be displayed
   let searchedPosts;
   if (searchQuery.length > 0) {
-      searchedPosts = posts.filter((post) =>
-          `${post.title} ${post.body}`
-              .toLowerCase()
-              .includes(searchQuery.toLowerCase())
-      );
+    searchedPosts = posts.filter((post) =>
+      `${post.title} ${post.body}`
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
+    );
   } else {
-      searchedPosts = posts;
+    searchedPosts = posts;
   }
-  
 
   function handleAddPost(post) {
     setPosts((posts) => [post, ...posts]);

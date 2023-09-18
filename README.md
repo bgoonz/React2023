@@ -2286,8 +2286,8 @@ function Header() {
 
 export default Header;
 ```
-> As you can see in the image below, for the results component even though we only need the posts state we are being provided with the entire context value.
-![Context Value](./images/2023-09-17-21-22-29.png)
 
+> As you can see in the image below, for the results component even though we only need the posts state we are being provided with the entire context value.
+> ![Context Value](./images/2023-09-17-21-22-29.png)
 
 </details>
