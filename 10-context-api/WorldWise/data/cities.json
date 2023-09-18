@@ -131,6 +131,30 @@
         "lng": 13.888092041015625
       },
       "id": 98443198
+    },
+    {
+      "cityName": "Weehawken",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2023-09-18T20:34:46.766Z",
+      "notes": "This is where I live. NJ is under rated\n",
+      "position": {
+        "lat": 40.766357346600266,
+        "lng": -74.02167320251466
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "New York City",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2023-09-18T20:37:04.925Z",
+      "notes": "This is where most of my friends live.",
+      "position": {
+        "lat": 40.75711158505271,
+        "lng": -73.98141860961915
+      },
+      "id": 98443200
     }
   ]
 }
