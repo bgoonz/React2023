@@ -3,6 +3,7 @@ import { createRandomPost } from "./utils/CreateRandomPost";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Archive from "./components/Archive";
+import Footer from "./components/Footer";
 
 function App() {
   const [posts, setPosts] = useState(() =>
@@ -57,10 +58,6 @@ function App() {
       <Footer />
     </section>
   );
-}
-
-function Footer() {
-  return <footer>&copy; by The Atomic Blog ✌️</footer>;
 }
 
 export default App;
