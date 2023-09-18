@@ -2167,5 +2167,124 @@ export default Map;
 
 <details>
     <summary>Click to expand</summary>
+    
+    
+### What is the Context API and why do we need it?
+
+- The context api is a solution to prop drilling.
+  ![Prop Drilling](./images/2023-09-17-20-48-41.png)
+- It is a system to pass data througout the app without manually passing props down the tree.
+- It allows us to broadcast global state to the entire app.
+- It helps us with passing state into multiple deeply nested child components.
+
+**Provider**
+
+- The provider gives all child components access to a value.
+- The value is data we want to make available (usually state and functions)
+
+**Consumer**
+
+- The consumer is a component that subscribes to the context and renders something based on the context value.
+  ![Consumer](./images/2023-09-17-20-51-45.png) - Whenever the value is updated all consumers are re-rendered.
+
+#### Creating and providing context:
+
+**Steps**
+
+1. Create a context
+
+```js
+import { createContext } from "react";
+//Here the variable starts with a capital because this creates a react component.
+const PostContext = createContext();
+```
+
+2. Provide value to child components:
+
+```js
+const PostContext = createContext();
+
+function App() {
+  const [posts, setPosts] = useState(() =>
+    Array.from({ length: 30 }, () => createRandomPost())
+  );
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isFakeDark, setIsFakeDark] = useState(false);
+
+  const searchedPosts =
+    searchQuery.length > 0
+      ? posts.filter((post) =>
+          `${post.title} ${post.body}`
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase())
+        )
+      : posts;
+
+  function handleAddPost(post) {
+    setPosts((posts) => [post, ...posts]);
+  }
+
+  function handleClearPosts() {
+    setPosts([]);
+  }
+  return (
+    <PostContext.Provider
+      value={{
+        posts: searchedPosts,
+        onClearPosts: handleClearPosts,
+        onAddPost: handleAddPost,
+        searchQuery,
+        setSearchQuery,
+      }}
+    >
+      <section>
+        <button
+          onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
+          className="btn-fake-dark-mode"
+        >
+          {isFakeDark ? "☀️" : "🌙"}
+        </button>
+
+        <Header
+          posts={searchedPosts}
+          onClearPosts={handleClearPosts}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
+        <Main posts={searchedPosts} onAddPost={handleAddPost} />
+        <Archive onAddPost={handleAddPost} />
+        <Footer />
+      </section>
+    </PostContext.Provider>
+  );
+}
+```
+
+3. Consume the context value:
+
+```js
+import React, { useContext } from "react";
+import { PostContext } from "../App";
+import Results from "./Results";
+import SearchPosts from "./SearchPosts";
+
+function Header() {
+  const { onClearPosts } = useContext(PostContext);
+  return (
+    <header>
+      <h1>
+        <span>⚛️</span>The Atomic Blog
+      </h1>
+      <div>
+        <Results />
+        <SearchPosts />
+        <button onClick={onClearPosts}>Clear posts</button>
+      </div>
+    </header>
+  );
+}
+
+export default Header;
+```
 
 </details>
