@@ -1,18 +1,6 @@
 {
   "cities": [
     {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2022-07-15T08:22:53.976Z",
-      "notes": "",
-      "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": 17806751
-    },
-    {
       "cityName": "Berlin",
       "country": "Germany",
       "emoji": "🇩🇪",
@@ -191,6 +179,18 @@
         "lng": 2.361373901367188
       },
       "id": 98443209
+    },
+    {
+      "cityName": "Madrid",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-09-19T16:38:55.868Z",
+      "notes": "Center of city",
+      "position": {
+        "lat": 40.40710775935241,
+        "lng": -3.701705932617188
+      },
+      "id": 98443210
     }
   ]
 }
