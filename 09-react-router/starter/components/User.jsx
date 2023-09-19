@@ -1,10 +1,10 @@
 import styles from "./User.module.css";
 
 const FAKE_USER = {
-  name: "Jack",
-  email: "jack@example.com",
+  name: "Bryan",
+  email: "bryan.guner@gmail.com",
   password: "qwerty",
-  avatar: "https://i.pravatar.cc/100?u=zz",
+  avatar: "https://avatars.githubusercontent.com/u/66654881?v=4",
 };
 
 function User() {
