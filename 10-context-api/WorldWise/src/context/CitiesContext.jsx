@@ -8,7 +8,7 @@ const initialState = {
   cities: [],
   isLoading: false,
   error: "",
-  currentCity: {},
+  currentCity: {}
 };
 
 function reducer(state, action) {
@@ -24,12 +24,13 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         cities: [...state.cities, action.payload],
+        currentCity: action.payload
       };
     case "cities/deleted":
       return {
         ...state,
         isLoading: false,
-        cities: state.cities.filter((city) => city.id !== action.payload),
+        cities: state.cities.filter((city) => city.id !== action.payload)
       };
     case "rejected":
       return { ...state, isLoading: false, error: action.payload };
@@ -39,10 +40,7 @@ function reducer(state, action) {
 }
 
 function CitiesProvider({ children }) {
-  const [{ cities, isLoading, currentCity }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     const fetchCities = async () => {
       dispatch({ type: "loading" });
@@ -53,7 +51,7 @@ function CitiesProvider({ children }) {
       } catch (error) {
         dispatch({
           type: "rejected",
-          payload: `There was an error fetching cities: ${error.message}`,
+          payload: `There was an error fetching cities: ${error.message}`
         });
       }
     };
@@ -61,6 +59,9 @@ function CitiesProvider({ children }) {
   }, [dispatch]);
 
   async function getCity(id) {
+    //don't fetch city if it's already loaded
+    if (Number(id) === currentCity.id) return;
+    
     try {
       dispatch({ type: "loading" });
       const response = await fetch(`${BASE_URL}/cities/${id}`);
@@ -69,7 +70,7 @@ function CitiesProvider({ children }) {
     } catch (error) {
       dispatch({
         type: "rejected",
-        payload: `There was an error getting city: ${error.message}`,
+        payload: `There was an error getting city: ${error.message}`
       });
     }
   }
@@ -80,9 +81,9 @@ function CitiesProvider({ children }) {
       const response = await fetch(`${BASE_URL}/cities/`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(newCity),
+        body: JSON.stringify(newCity)
       });
       const data = await response.json();
 
@@ -90,7 +91,7 @@ function CitiesProvider({ children }) {
     } catch (error) {
       dispatch({
         type: "rejected",
-        payload: `There was an error creating city: ${error.message}`,
+        payload: `There was an error creating city: ${error.message}`
       });
     }
   }
@@ -99,14 +100,14 @@ function CitiesProvider({ children }) {
     try {
       dispatch({ type: "loading" });
       const response = await fetch(`${BASE_URL}/cities/${id}`, {
-        method: "DELETE",
+        method: "DELETE"
       });
 
       dispatch({ type: "cities/deleted", payload: id });
     } catch (error) {
       dispatch({
         type: "rejected",
-        payload: `There was an error deleting city: ${error.message}`,
+        payload: `There was an error deleting city: ${error.message}`
       });
       alert("Error deleting city");
     }
@@ -118,9 +119,10 @@ function CitiesProvider({ children }) {
         cities,
         isLoading,
         currentCity,
+        error,
         getCity,
         createCity,
-        deleteCity,
+        deleteCity
       }}
     >
       {children}

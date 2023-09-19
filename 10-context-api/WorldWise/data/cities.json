@@ -109,18 +109,6 @@
       "id": 98443202
     },
     {
-      "cityName": "Garfield",
-      "country": "United States of America (the)",
-      "emoji": "🇺🇸",
-      "date": "2023-09-19T13:32:38.954Z",
-      "notes": "Where Jess grew up",
-      "position": {
-        "lat": 40.87660381388415,
-        "lng": -74.11067962646486
-      },
-      "id": 98443204
-    },
-    {
       "cityName": "Hackensack",
       "country": "United States of America (the)",
       "emoji": "🇺🇸",
@@ -191,6 +179,18 @@
         "lng": -3.701705932617188
       },
       "id": 98443210
+    },
+    {
+      "cityName": "Beijing",
+      "country": "China",
+      "emoji": "🇨🇳",
+      "date": "2023-09-19T17:51:49.053Z",
+      "notes": "Never been there...",
+      "position": {
+        "lat": 39.88000439955006,
+        "lng": 116.41525268554689
+      },
+      "id": 98443211
     }
   ]
 }
