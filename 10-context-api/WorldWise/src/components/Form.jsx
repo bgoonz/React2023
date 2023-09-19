@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useUrlPosition } from "../hooks/useUrlPosition";
@@ -23,7 +24,9 @@ function Form() {
 
   const [emoji, setEmoji] = useState("");
   const [geocodingError, setGeocodingError] = useState("");
-
+const navigate = useNavigate();
+  
+  
   useEffect(() => {
     if (!lat && !lng) return;
     async function fetchCityData() {
@@ -46,8 +49,8 @@ function Form() {
     if (lat && lng) fetchCityData();
   }, [lat, lng]);
 
-  //Submit handler
-  function handleSubmit(event) {
+  //Submit handler (async because createCity is async) so we need to await it before navigating
+  async function handleSubmit(event) {
     event.preventDefault();
     if (!cityName || !date) return;
     const newCity = {
@@ -58,7 +61,8 @@ function Form() {
       notes,
       position: { lat, lng }
     };
-    createCity(newCity);
+    await createCity(newCity);
+    navigate("/app")
   }
 
   //loading
