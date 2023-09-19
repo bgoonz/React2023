@@ -1,18 +1,6 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2022-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": 73930385
-    },
-    {
       "cityName": "Madrid",
       "country": "Spain",
       "emoji": "🇪🇸",
@@ -37,30 +25,6 @@
       "id": 98443197
     },
     {
-      "cityName": "Paris",
-      "country": "France",
-      "emoji": "🇫🇷",
-      "date": "2022-03-18T12:00:00.000Z",
-      "notes": "The city of love ❤️",
-      "position": {
-        "lat": 48.8566,
-        "lng": 2.3522
-      },
-      "id": 45678901
-    },
-    {
-      "cityName": "Rome",
-      "country": "Italy",
-      "emoji": "🇮🇹",
-      "date": "2022-04-20T14:30:00.000Z",
-      "notes": "Historical beauty!",
-      "position": {
-        "lat": 41.9028,
-        "lng": 12.4964
-      },
-      "id": 23456789
-    },
-    {
       "cityName": "Amsterdam",
       "country": "Netherlands",
       "emoji": "🇳🇱",
@@ -71,18 +35,6 @@
         "lng": 4.9041
       },
       "id": 34567890
-    },
-    {
-      "cityName": "Prague",
-      "country": "Czech Republic",
-      "emoji": "🇨🇿",
-      "date": "2022-06-24T18:55:00.000Z",
-      "notes": "A fairy tale city.",
-      "position": {
-        "lat": 50.0755,
-        "lng": 14.4378
-      },
-      "id": 56789012
     },
     {
       "cityName": "Vienna",
@@ -166,31 +118,7 @@
         "lat": 40.92798336338365,
         "lng": -74.13127899169923
       },
-      "id": 98443201
-    },
-    {
-      "cityName": "Fair Lawn",
-      "country": "United States of America (the)",
-      "emoji": "🇺🇸",
-      "date": "2023-09-19T13:30:29.788Z",
-      "notes": "My hometown where I grew up.",
-      "position": {
-        "lat": 40.92798336338365,
-        "lng": -74.13127899169923
-      },
       "id": 98443202
-    },
-    {
-      "cityName": "Paterson",
-      "country": "United States of America (the)",
-      "emoji": "🇺🇸",
-      "date": "2023-09-19T13:32:38.954Z",
-      "notes": "Where Delvin was born",
-      "position": {
-        "lat": 40.90982343737562,
-        "lng": -74.16973114013673
-      },
-      "id": 98443203
     },
     {
       "cityName": "Garfield",

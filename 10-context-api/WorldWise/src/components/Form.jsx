@@ -24,19 +24,21 @@ function Form() {
 
   const [emoji, setEmoji] = useState("");
   const [geocodingError, setGeocodingError] = useState("");
-const navigate = useNavigate();
-  
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!lat && !lng) return;
     async function fetchCityData() {
       try {
         setIsLoadingGeocoding(true);
         setGeocodingError("");
-        const response = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
+        const response = await fetch(
+          `${BASE_URL}?latitude=${lat}&longitude=${lng}`
+        );
         const data = await response.json();
         console.log(data);
-        if (!data.countryCode) throw new Error("There's no city there, click somewhere else");
+        if (!data.countryCode)
+          throw new Error("There's no city there, click somewhere else");
         setCityName(data.city || data.locality || "");
         setCountry(data.countryName || "");
         setEmoji(convertToEmoji(data.countryCode));
@@ -59,36 +61,53 @@ const navigate = useNavigate();
       emoji,
       date,
       notes,
-      position: { lat, lng }
+      position: { lat, lng },
     };
     await createCity(newCity);
-    navigate("/app")
+    navigate("/app");
   }
 
   //loading
   if (isLoadingGeocoding) return <Spinner />;
 
-  if (!lat && !lng) return <Message message="Start by clicking somewhere on the map" />;
+  if (!lat && !lng)
+    return <Message message="Start by clicking somewhere on the map" />;
 
   if (geocodingError) return <Message message={geocodingError}></Message>;
 
   return (
-    <form className={`${styles.form} ${isLoading ? styles.loading : ""}`} onSubmit={handleSubmit}>
+    <form
+      className={`${styles.form} ${isLoading ? styles.loading : ""}`}
+      onSubmit={handleSubmit}
+    >
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
-        <input id="cityName" onChange={(e) => setCityName(e.target.value)} value={cityName} />
+        <input
+          id="cityName"
+          onChange={(e) => setCityName(e.target.value)}
+          value={cityName}
+        />
 
         <span className={`${styles.flag} ${styles.emoji}`}>{emoji}</span>
       </div>
 
       <div className={styles.row}>
         <label htmlFor="date">When did you go to {cityName}?</label>
-        <DatePicker id="date" onChange={(date) => setDate(date)} selected={date} dateFormat="dd/MM/yyyy" />
+        <DatePicker
+          id="date"
+          onChange={(date) => setDate(date)}
+          selected={date}
+          dateFormat="dd/MM/yyyy"
+        />
       </div>
 
       <div className={styles.row}>
         <label htmlFor="notes">Notes about your trip to {cityName}</label>
-        <textarea id="notes" onChange={(e) => setNotes(e.target.value)} value={notes} />
+        <textarea
+          id="notes"
+          onChange={(e) => setNotes(e.target.value)}
+          value={notes}
+        />
       </div>
 
       <div className={styles.buttons}>

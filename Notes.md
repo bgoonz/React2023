@@ -113,7 +113,11 @@ npm i react-leaflet leaflet
 npm install react-datepicker
 ```
 
-
 ```js
-      <DatePicker id="date" onChange={(date) => setDate(date)} selected={date} dateFormat="dd/MM/yyyy" />
+<DatePicker
+  id="date"
+  onChange={(date) => setDate(date)}
+  selected={date}
+  dateFormat="dd/MM/yyyy"
+/>
 ```

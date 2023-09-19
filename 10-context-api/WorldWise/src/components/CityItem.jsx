@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+// eslint-disable-next-line react/prop-types
 import { Link } from "react-router-dom";
 import { useCities } from "../context/CitiesContext";
 import styles from "./CityItem.module.css";
@@ -11,8 +11,13 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function CityItem({ city }) {
-  const { currentCity } = useCities();
+  const { currentCity, deleteCity } = useCities();
   const { cityName, emoji, date, id, position } = city;
+
+  function handleDelete(event) {
+    event.preventDefault();
+    deleteCity(id);
+  }
 
   return (
     <li>
@@ -25,7 +30,9 @@ function CityItem({ city }) {
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>{formatDate(date)}</time>
-        <button className={styles.deleteBtn}>&times;</button>
+        <button className={styles.deleteBtn} onClick={handleDelete}>
+          &times;
+        </button>
       </Link>
     </li>
   );
