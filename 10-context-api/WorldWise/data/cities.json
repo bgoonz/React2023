@@ -155,6 +155,54 @@
         "lng": -73.98141860961915
       },
       "id": 98443200
+    },
+    {
+      "cityName": "Fair Lawn",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2023-09-19T13:30:29.788Z",
+      "notes": "My hometown where I grew up.",
+      "position": {
+        "lat": 40.92798336338365,
+        "lng": -74.13127899169923
+      },
+      "id": 98443201
+    },
+    {
+      "cityName": "Fair Lawn",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2023-09-19T13:30:29.788Z",
+      "notes": "My hometown where I grew up.",
+      "position": {
+        "lat": 40.92798336338365,
+        "lng": -74.13127899169923
+      },
+      "id": 98443202
+    },
+    {
+      "cityName": "Paterson",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2023-09-19T13:32:38.954Z",
+      "notes": "Where Delvin was born",
+      "position": {
+        "lat": 40.90982343737562,
+        "lng": -74.16973114013673
+      },
+      "id": 98443203
+    },
+    {
+      "cityName": "Garfield",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2023-09-19T13:32:38.954Z",
+      "notes": "Where Jess grew up",
+      "position": {
+        "lat": 40.87660381388415,
+        "lng": -74.11067962646486
+      },
+      "id": 98443204
     }
   ]
 }
