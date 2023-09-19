@@ -1,13 +1,31 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 const BASE_URL = "http://localhost:8000";
 
 const CitiesContext = createContext();
 
+const initialState = {
+  cities: [],
+  isLoading: false,
+  currentCity: {}
+};
+
+function reducer(state, action) {
+    // eslint-disable-next-line default-case
+    switch(action.type){
+        case 'cities/loaded':
+            return {...state, cities: action.payload};
+            
+    }
+    
+}
+
 function CitiesProvider({ children }) {
-  const [cities, setCities] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentCity, setCurrentCity] = useState({});
+    const [{cities,isLoading,currentCity}, dispatch] = useReducer(reducer, initialState);
+    
+//   const [cities, setCities] = useState([]);
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [currentCity, setCurrentCity] = useState({});
 
   useEffect(() => {
     async function fetchCities() {
@@ -44,9 +62,9 @@ function CitiesProvider({ children }) {
       const response = await fetch(`${BASE_URL}/cities/`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(newCity),
+        body: JSON.stringify(newCity)
       });
       const data = await response.json();
       setCities([...cities, data]);
@@ -58,14 +76,11 @@ function CitiesProvider({ children }) {
     }
   }
 
-  
-  
-  
   async function deleteCity(id) {
     try {
       setIsLoading(true);
       const response = await fetch(`${BASE_URL}/cities/${id}`, {
-        method: "DELETE",
+        method: "DELETE"
       });
 
       setCities((cities) => cities.filter((city) => city.id !== id));
@@ -85,7 +100,7 @@ function CitiesProvider({ children }) {
         currentCity,
         getCity,
         createCity,
-        deleteCity,
+        deleteCity
       }}
     >
       {children}

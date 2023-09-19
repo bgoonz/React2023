@@ -179,6 +179,18 @@
         "lng": 0.013132095336914064
       },
       "id": 98443208
+    },
+    {
+      "cityName": "Paris",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2023-09-19T15:00:34.295Z",
+      "notes": "Traveled here when I was a kid, I hardly remember it. Lot's of walking.",
+      "position": {
+        "lat": 48.84292950020138,
+        "lng": 2.361373901367188
+      },
+      "id": 98443209
     }
   ]
 }
