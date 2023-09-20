@@ -2819,25 +2819,42 @@ const handleAddPost = useCallback(function handleAddPost(post) {
 
 **Note: _state setter functions are automatically memoized by react and so it is ok to omit them from useCallback dependecy arrays... they don't need to be memoized manually_**.
 
-
 ### Optimizing Context:
 
 **You only need to optimize context if the following three things are true simultaneously:**
+
 1. The state in the context needs to change often
 2. The context has multiple consumers
 3. The app is performance poorly.
 
+**Preventing an infinite loop of requests in WorldWise CityContext**
 
+```js
+function City() {
+  const { id } = useParams();
+  const { getCity, currentCity, isLoading } = useCities();
 
+  useEffect(() => {
+    getCity(id);
+  }, [id, getCity]);
 
+ // In CitiesContext
+  const getCity= useCallback(async function getCity(id) {
+    //don't fetch city if it's already loaded
+    if (Number(id) === currentCity.id) return;
 
-
-
-
-
-
-
-
-
+    try {
+      dispatch({ type: "loading" });
+      const response = await fetch(`${BASE_URL}/cities/${id}`);
+      const data = await response.json();
+      dispatch({ type: "city/loaded", payload: data });
+    } catch (error) {
+      dispatch({
+        type: "rejected",
+        payload: `There was an error getting city: ${error.message}`,
+      });
+    }
+  },[currentCity.id])
+```
 
 </details>
