@@ -23,9 +23,9 @@ function Counter({ children }) {
   );
 }
 export default function Test() {
-    return (
-        <Counter>
-        <SlowComponent />
-        </Counter>
-    );
+  return (
+    <Counter>
+      <SlowComponent />
+    </Counter>
+  );
 }

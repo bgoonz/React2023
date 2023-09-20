@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { createRandomPost } from "../utils/CreateRandomPost";
 import { usePosts } from "../context/PostContext";
 

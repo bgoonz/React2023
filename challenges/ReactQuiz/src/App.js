@@ -13,7 +13,16 @@ import Footer from "./components/Footer";
 import { useQuiz } from "./context/QuizContext";
 
 function App() {
-  const { questions, status, index, answer, points, highscore, secondsRemaining, dispatch } = useQuiz();
+  const {
+    questions,
+    status,
+    index,
+    answer,
+    points,
+    highscore,
+    secondsRemaining,
+    dispatch,
+  } = useQuiz();
 
   //derived state
   const numQuestions = questions.length;
@@ -33,27 +42,51 @@ function App() {
   }, [dispatch]);
 
   return (
-
-      <div className="app">
-        <Header />
-        <Main>
-          {status === "loading" && <Loader />}
-          {status === "error" && <Error />}
-          {status === "ready" && <StartScreen numQuestions={numQuestions} dispatch={dispatch} />}
-          {status === "active" && (
-            <>
-              <Progress index={index} numQuestions={numQuestions} points={points} maxPoints={maxPoints} answer={answer} />
-              <Question question={questions[index]} dispatch={dispatch} answer={answer} />
-              <Footer>
-                <NextButton dispatch={dispatch} answer={answer} index={index} numQuestions={numQuestions} />
-                <Timer dispatch={dispatch} secondsRemaining={secondsRemaining} />
-              </Footer>
-            </>
-          )}
-          {status === "finished" && <FinishedScreen points={points} maxPoints={maxPoints} index={index} numQuestions={numQuestions} highscore={highscore} dispatch={dispatch} />}
-        </Main>
-      </div>
-
+    <div className="app">
+      <Header />
+      <Main>
+        {status === "loading" && <Loader />}
+        {status === "error" && <Error />}
+        {status === "ready" && (
+          <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
+        )}
+        {status === "active" && (
+          <>
+            <Progress
+              index={index}
+              numQuestions={numQuestions}
+              points={points}
+              maxPoints={maxPoints}
+              answer={answer}
+            />
+            <Question
+              question={questions[index]}
+              dispatch={dispatch}
+              answer={answer}
+            />
+            <Footer>
+              <NextButton
+                dispatch={dispatch}
+                answer={answer}
+                index={index}
+                numQuestions={numQuestions}
+              />
+              <Timer dispatch={dispatch} secondsRemaining={secondsRemaining} />
+            </Footer>
+          </>
+        )}
+        {status === "finished" && (
+          <FinishedScreen
+            points={points}
+            maxPoints={maxPoints}
+            index={index}
+            numQuestions={numQuestions}
+            highscore={highscore}
+            dispatch={dispatch}
+          />
+        )}
+      </Main>
+    </div>
   );
 }
 

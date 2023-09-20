@@ -1,0 +1,196 @@
+{
+  "cities": [
+    {
+      "cityName": "Berlin",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2022-02-12T09:24:11.863Z",
+      "notes": "Amazing 😃",
+      "position": {
+        "lat": 52.53586782505711,
+        "lng": 13.376933665713324
+      },
+      "id": 98443197
+    },
+    {
+      "cityName": "Amsterdam",
+      "country": "Netherlands",
+      "emoji": "🇳🇱",
+      "date": "2022-05-22T16:45:00.000Z",
+      "notes": "Canals everywhere!",
+      "position": {
+        "lat": 52.3676,
+        "lng": 4.9041
+      },
+      "id": 34567890
+    },
+    {
+      "cityName": "Vienna",
+      "country": "Austria",
+      "emoji": "🇦🇹",
+      "date": "2022-08-28T20:05:00.000Z",
+      "notes": "Classical music and coffee.",
+      "position": {
+        "lat": 48.2082,
+        "lng": 16.3738
+      },
+      "id": 67890123
+    },
+    {
+      "cityName": "Budapest",
+      "country": "Hungary",
+      "emoji": "🇭🇺",
+      "date": "2022-09-30T21:15:00.000Z",
+      "notes": "Thermal baths are amazing.",
+      "position": {
+        "lat": 47.4979,
+        "lng": 19.0402
+      },
+      "id": 78901234
+    },
+    {
+      "cityName": "Brussels",
+      "country": "Belgium",
+      "emoji": "🇧🇪",
+      "date": "2022-11-02T23:25:00.000Z",
+      "notes": "Chocolate and waffles!",
+      "position": {
+        "lat": 50.8503,
+        "lng": 4.3517
+      },
+      "id": 89012345
+    },
+    {
+      "cityName": "Prenzlau",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2023-09-18T20:34:46.766Z",
+      "notes": "I've never been here",
+      "position": {
+        "lat": 53.269961280005546,
+        "lng": 13.888092041015625
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Weehawken",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2023-09-18T20:34:46.766Z",
+      "notes": "This is where I live. NJ is under rated\n",
+      "position": {
+        "lat": 40.766357346600266,
+        "lng": -74.02167320251466
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "New York City",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2023-09-18T20:37:04.925Z",
+      "notes": "This is where most of my friends live.",
+      "position": {
+        "lat": 40.75711158505271,
+        "lng": -73.98141860961915
+      },
+      "id": 98443200
+    },
+    {
+      "cityName": "Fair Lawn",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2023-09-19T13:30:29.788Z",
+      "notes": "My hometown where I grew up.",
+      "position": {
+        "lat": 40.92798336338365,
+        "lng": -74.13127899169923
+      },
+      "id": 98443202
+    },
+    {
+      "cityName": "Hackensack",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2023-09-19T13:37:01.637Z",
+      "notes": "Where I went to School of Rock growing up.",
+      "position": {
+        "lat": 40.88023802260021,
+        "lng": -74.03514862060548
+      },
+      "id": 98443205
+    },
+    {
+      "cityName": "I-n-Amguel",
+      "country": "Algeria",
+      "emoji": "🇩🇿",
+      "date": "2023-09-19T13:38:05.768Z",
+      "notes": "A place I've never been.",
+      "position": {
+        "lat": 24.492147541216028,
+        "lng": 4.394531250000001
+      },
+      "id": 98443206
+    },
+    {
+      "cityName": "Harrai",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2023-09-19T13:39:33.675Z",
+      "notes": "Somewhere in India.",
+      "position": {
+        "lat": 22.558220454844044,
+        "lng": 78.92578125000001
+      },
+      "id": 98443207
+    },
+    {
+      "cityName": "Castello de la Plana",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-09-07T13:40:41.000Z",
+      "notes": "Changing date test.",
+      "position": {
+        "lat": 39.99328374713821,
+        "lng": 0.013132095336914064
+      },
+      "id": 98443208
+    },
+    {
+      "cityName": "Paris",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2023-09-19T15:00:34.295Z",
+      "notes": "Traveled here when I was a kid, I hardly remember it. Lot's of walking.",
+      "position": {
+        "lat": 48.84292950020138,
+        "lng": 2.361373901367188
+      },
+      "id": 98443209
+    },
+    {
+      "cityName": "Madrid",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-09-19T16:38:55.868Z",
+      "notes": "Center of city",
+      "position": {
+        "lat": 40.40710775935241,
+        "lng": -3.701705932617188
+      },
+      "id": 98443210
+    },
+    {
+      "cityName": "Beijing",
+      "country": "China",
+      "emoji": "🇨🇳",
+      "date": "2023-09-19T17:51:49.053Z",
+      "notes": "Never been there...",
+      "position": {
+        "lat": 39.88000439955006,
+        "lng": 116.41525268554689
+      },
+      "id": 98443211
+    }
+  ]
+}

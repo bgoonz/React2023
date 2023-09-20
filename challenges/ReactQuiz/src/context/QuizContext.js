@@ -11,7 +11,7 @@ const initialState = {
   answer: null,
   points: 0,
   highscore: 0,
-  secondsRemaining: null
+  secondsRemaining: null,
 };
 
 function reducer(state, action) {
@@ -24,7 +24,7 @@ function reducer(state, action) {
       return {
         ...state,
         status: "active",
-        secondsRemaining: SECONDS_PER_QUESTION * state.questions.length
+        secondsRemaining: SECONDS_PER_QUESTION * state.questions.length,
       };
     case "newAnswer":
       const curQuestion = state.questions[state.index];
@@ -33,7 +33,10 @@ function reducer(state, action) {
       return {
         ...state,
         answer: action.payload,
-        points: action.payload === curQuestion.correctOption ? state.points + curQuestion.points : state.points
+        points:
+          action.payload === curQuestion.correctOption
+            ? state.points + curQuestion.points
+            : state.points,
       };
     case "nextQuestion":
       return { ...state, index: state.index + 1, answer: null };
@@ -41,7 +44,8 @@ function reducer(state, action) {
       return {
         ...state,
         status: "finished",
-        highscore: state.points > state.highscore ? state.points : state.highscore
+        highscore:
+          state.points > state.highscore ? state.points : state.highscore,
       };
     case "restart":
       return {
@@ -49,13 +53,13 @@ function reducer(state, action) {
         status: "ready",
         highscore: state.highscore,
         index: 0,
-        questions: state.questions
+        questions: state.questions,
       };
     case "tick":
       return {
         ...state,
         secondsRemaining: Math.max(0, state.secondsRemaining - 1),
-        status: state.secondsRemaining - 1 <= 0 ? "finished" : state.status
+        status: state.secondsRemaining - 1 <= 0 ? "finished" : state.status,
       };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
@@ -63,7 +67,10 @@ function reducer(state, action) {
 }
 
 function QuizProvider({ children }) {
-  const [{ questions, status, index, answer, points, highscore, secondsRemaining }, dispatch] = useReducer(reducer, initialState);
+  const [
+    { questions, status, index, answer, points, highscore, secondsRemaining },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   return (
     <QuizContext.Provider
@@ -75,7 +82,7 @@ function QuizProvider({ children }) {
         points,
         highscore,
         secondsRemaining,
-        dispatch
+        dispatch,
       }}
     >
       {children}
