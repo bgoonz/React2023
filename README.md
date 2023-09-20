@@ -2455,10 +2455,9 @@ export { AuthProvider, useAuth };
 
 </details>
 
-
----
 ---
 
+---
 
 ## Performance Optimization & Advanced useEffect:
 
@@ -2471,16 +2470,13 @@ export { AuthProvider, useAuth };
 
 1. When state changes
 2. When context changes
-3. A parent of the component re-renders (Creates the false impression that changing props re-renders the component but this is **NOT** true)   
+3. A parent of the component re-renders (Creates the false impression that changing props re-renders the component but this is **NOT** true)
 
 **Remember: a render does not mean that the DOM actually gets updated, it just means the component function gets called. But this can be an expensive operation**
 
 - This can lead to a **Wasted Render** in which a render does not result in any changes to the DOM, _usually this is not a problem because react is very fast_
-    
-
 
 ![React Dev Tools Profiler](./images/2023-09-20-13-20-07.png)
-
 
 ### Slow Test:
 
@@ -2513,11 +2509,9 @@ export default function Test() {
     </div>
   );
 }
-
 ```
 
 - It takes a very long time to rerender and icrease the count because it needs to rerender the slow component (which has 100,000 entries)... despite the fact that you shouldn't really need to rerender the component to increment the counter.
-
 
 ```js
 import { useState } from "react";
@@ -2545,50 +2539,70 @@ function Counter({ children }) {
   );
 }
 export default function Test() {
-    return (
-        <Counter>
-        <SlowComponent />
-        </Counter>
-    );
+  return (
+    <Counter>
+      <SlowComponent />
+    </Counter>
+  );
 }
 ```
+
 - If you modify the Test component as seen above... the conter now works at a reasonable speed.
   - replacing `<SlowComponent />` with `{children}` in the Counter component means that the SlowComponent is no longer a child of the Test component and therefore is not re-rendered when the counter is incremented.
 
 ![Slow Component not ReRendered](./images/2023-09-20-13-41-12.png)
 
+---
+
+#### What is Memoization:
+
+- Memoization is a technique that executes a pure function once, and saves the result in memory. If we try to exicute the function again with the same arguments as the first time it was called, the previously saved result will be returned instead of executing the function again.
+- **In react we can memoize components with `memo`, we can memoize objects with `useMemo`, and we can memoize functions with `useCallback`.**
+
+**Memo**: used to create a component that will not re-render when it's parent re-renders, as long as the props stay the same between renders.
+
+![Default re-render behavior](./images/2023-09-20-13-52-34.png)
+
+- This only affects props, a memoized component will still re-render when it's own state changes or when a context that it's subscribed to changes.
+  - This only makes sese when the component is heavy (slow re-rendering), re-renders often, and does so with the same props.
+
+**How to override default re-rendering of children (when props don't change) using memo**
+
+```js
+import { useEffect, useState, memo } from "react";
+
+const Archive = memo(function Archive({ show }) {
+  const [posts] = useState(() =>
+    // 💥 WARNING: This might make your computer slow! Try a smaller `length` first
+    Array.from({ length: 10000 }, () => createRandomPost())
+  );
+
+  const [showArchive, setShowArchive] = useState(show);
+
+  return (
+    <aside>
+      <h2>Post archive</h2>
+      <button onClick={() => setShowArchive((s) => !s)}>{showArchive ? "Hide archive posts" : "Show archive posts"}</button>
+
+      {showArchive && (
+        <ul>
+          {posts.map((post, i) => (
+            <li key={i}>
+              <p>
+                <strong>{post.title}:</strong> {post.body}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </aside>
+  );
+});
+```
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</details>    
+</details>
