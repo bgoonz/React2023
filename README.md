@@ -2857,4 +2857,64 @@ function City() {
   },[currentCity.id])
 ```
 
+
+---
+
+### Bundling & Code Splitting:
+
+![Bundeling](./images/2023-09-20-17-34-33.png)
+
+**Bundeling**: The process of combining multiple files into a single file (bundle) that can be loaded by the browser... this happens when we have a SPA.
+
+**Code Splitting**: The process of splitting a bundle into multiple bundles that can be loaded on demand by the browser (i.e. lazy loading)
+
+- The easiest way to achive code splitting is to split your code into multiple bundles based on routes (pages).
+
+```js
+import { lazy } from "react";
+//Pages
+const  AppLayout =lazy(()=> import( "./pages/AppLayout"));
+const  Homepage =lazy(()=> import( "./pages/Homepage"));
+const  Login =lazy(()=> import( "./pages/Login"));
+const  PageNotFound =lazy(()=> import( "./pages/PageNotFound"));
+const  Pricing =lazy(()=> import( "./pages/Pricing"));
+const  Product =lazy(()=> import( "./pages/Product"));
+```
+
+#### Suspense
+
+
+
+##### Overview
+
+- Suspense allows your components to “wait” for something before rendering, which is often used in conjunction with lazy loading.
+
+##### Features
+
+- **Lazy Loading**: Load components as they're needed rather than all at once.
+- **Placeholder Content**: Show fallback content while waiting.
+
+##### Usage
+
+### Lazy Loading Components
+
+Use `React.lazy()` to create a dynamic import of your component.
+
+```jsx
+const LazyComponent = React.lazy(() => import('./LazyComponent'));
+```
+
+```js
+import React, { Suspense } from 'react';
+
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LazyComponent />
+    </Suspense>
+  );
+}
+
+```
+
 </details>
