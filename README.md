@@ -2633,11 +2633,62 @@ _If objects or functions are passed as props, the child component will always se
     - Like useEffect, useMemo and useCallback have a dependency array... whenever a dependency changes the value will be recalculated and stored in memory.
 
 
+![useMemo Behavior](./images/2023-09-20-14-44-17.png)
 
 
+> Example:
+
+```js
+  const archiveOptions = useMemo(() => {
+    return { show: false, title: "Post archive" };
+  }, []);
+// The empty dependency array specifies that this value will only be calculated once
 
 
+    <Archive archiveOptions={archiveOptions} />
+
+const Archive = memo(function Archive({ archiveOptions }) {
+  const [posts] = useState(() =>
+    // 💥 WARNING: This might make your computer slow! Try a smaller `length` first
+    Array.from({ length: 10000 }, () => createRandomPost())
+  );
+
+  const [showArchive, setShowArchive] = useState(archiveOptions.show);
+
+  return (
+    <aside>
+      <h2>{archiveOptions.title}</h2>
+      <button onClick={() => setShowArchive((s) => !s)}>{showArchive ? "Hide archive posts" : "Show archive posts"}</button>
+
+      {showArchive && (
+        <ul>
+          {posts.map((post, i) => (
+            <li key={i}>
+              <p>
+                <strong>{post.title}:</strong> {post.body}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </aside>
+  );
+});
+```
+> The combination of code above fixes the issue and does not trigger a re-render of the Archive component when it's parent (App) re-renders.
+
+**useCallback**
+
+- If we add back our onAddPost(handleAddPost) prop to the Archive component, when we change the isDark state (at top of app component) the Archive component will need to be rerendered because it is a child of the App component and the App component is rerendered when the isDark state changes.
+- If we use useCallback on handleAddPost however, the Archive component will not be rerendered when the isDark state changes.
+
+```js
+  const handleAddPost = useCallback(function handleAddPost(post) {
+    setPosts((posts) => [post, ...posts]);
+  },[])
+```
 
 
+**Note: _state setter functions are automatically memoized by react and so it is ok to omit them from useCallback dependecy arrays... they don't need to be memoized manually_**.
 
 </details>
