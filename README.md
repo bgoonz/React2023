@@ -2600,6 +2600,41 @@ const Archive = memo(function Archive({ show }) {
 });
 ```
 
+#### When we replace the props to archive with an object instead of a boolean:
+
+```js
+
+  const archiveOptions={
+    show: false,
+    title: "Post archive"
+  }
+  
+ <Archive archiveOptions={archiveOptions} />
+
+```
+
+- We see that typing in the search component does cause Archive to re-render... despite the use of the memo function...
+
+![Archive Re-render](./images/2023-09-20-14-20-34.png)
+
+
+- In react everything is recreated on every render... (including objects and functions).
+
+- In JavaScript, two objects or functions that look the same are actually different `{} !== {}` and `() => {} !== () => {}` 
+
+_If objects or functions are passed as props, the child component will always see them as new props on each re-render._
+
+- If pops are different between re-renders, `memo` will not work.
+
+**In order to solve this problem (memoizing values between renders) react gives us two hooks `useMemo` - for objects and `useCallback` - for functions**
+
+
+- Values passed into useMemo and useCallback will be stored in memory (_cached_) and returned in subsequent re-renders as long as dependencies (_inputs_) stay the same.
+    - Like useEffect, useMemo and useCallback have a dependency array... whenever a dependency changes the value will be recalculated and stored in memory.
+
+
+
+
 
 
 
