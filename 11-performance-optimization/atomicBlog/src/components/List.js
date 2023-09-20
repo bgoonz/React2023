@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { usePosts } from "../context/PostContext";
+import Test from "./../Test"
 
 function List() {
   const { posts } = usePosts();
   return (
+    <>
     <ul>
       {posts.map((post, i) => (
         <li key={i}>
@@ -11,7 +13,10 @@ function List() {
           <p>{post.body}</p>
         </li>
       ))}
+       
     </ul>
+    <Test />
+    </>
   );
 }
 

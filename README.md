@@ -2467,7 +2467,128 @@ export { AuthProvider, useAuth };
     
 ![Performance Optimization Options](./images/2023-09-20-12-48-19.png)    
     
+**In React a component instance only gets re-rendered in three different situations**
+
+1. When state changes
+2. When context changes
+3. A parent of the component re-renders (Creates the false impression that changing props re-renders the component but this is **NOT** true)   
+
+**Remember: a render does not mean that the DOM actually gets updated, it just means the component function gets called. But this can be an expensive operation**
+
+- This can lead to a **Wasted Render** in which a render does not result in any changes to the DOM, _usually this is not a problem because react is very fast_
     
-    
+
+
+![React Dev Tools Profiler](./images/2023-09-20-13-20-07.png)
+
+
+### Slow Test:
+
+If we add our test component to the list in atomic blog
+
+```js
+import { useState } from "react";
+
+function SlowComponent() {
+  // If this is too slow on your maching, reduce the `length`
+  const words = Array.from({ length: 100_000 }, () => "WORD");
+  return (
+    <ul>
+      {words.map((word, i) => (
+        <li key={i}>
+          {i}: {word}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default function Test() {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <h1>Slow counter?!?</h1>
+      <button onClick={() => setCount((c) => c + 1)}>Increase: {count}</button>
+      <SlowComponent />
+    </div>
+  );
+}
+
+```
+
+- It takes a very long time to rerender and icrease the count because it needs to rerender the slow component (which has 100,000 entries)... despite the fact that you shouldn't really need to rerender the component to increment the counter.
+
+
+```js
+import { useState } from "react";
+function SlowComponent() {
+  // If this is too slow on your maching, reduce the `length`
+  const words = Array.from({ length: 100_000 }, () => "WORD");
+  return (
+    <ul>
+      {words.map((word, i) => (
+        <li key={i}>
+          {i}: {word}
+        </li>
+      ))}
+    </ul>
+  );
+}
+function Counter({ children }) {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <h1>Slow counter?!?</h1>
+      <button onClick={() => setCount((c) => c + 1)}>Increase: {count}</button>
+      {children}
+    </div>
+  );
+}
+export default function Test() {
+    return (
+        <Counter>
+        <SlowComponent />
+        </Counter>
+    );
+}
+```
+- If you modify the Test component as seen above... the conter now works at a reasonable speed.
+  - replacing `<SlowComponent />` with `{children}` in the Counter component means that the SlowComponent is no longer a child of the Test component and therefore is not re-rendered when the counter is incremented.
+
+![Slow Component not ReRendered](./images/2023-09-20-13-41-12.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </details>    
