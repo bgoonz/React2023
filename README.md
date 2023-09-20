@@ -2819,4 +2819,25 @@ const handleAddPost = useCallback(function handleAddPost(post) {
 
 **Note: _state setter functions are automatically memoized by react and so it is ok to omit them from useCallback dependecy arrays... they don't need to be memoized manually_**.
 
+
+### Optimizing Context:
+
+**You only need to optimize context if the following three things are true simultaneously:**
+1. The state in the context needs to change often
+2. The context has multiple consumers
+3. The app is performance poorly.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </details>
