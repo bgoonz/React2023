@@ -2454,3 +2454,20 @@ export { AuthProvider, useAuth };
 ```
 
 </details>
+
+
+---
+---
+
+
+## Performance Optimization & Advanced useEffect:
+
+<details>
+    <summary>Click to expand</summary>
+    
+![Performance Optimization Options](./images/2023-09-20-12-48-19.png)    
+    
+    
+    
+
+</details>    
