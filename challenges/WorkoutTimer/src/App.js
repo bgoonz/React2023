@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Calculator from "./Calculator";
 import ToggleSounds from "./ToggleSounds";
 
@@ -9,7 +9,8 @@ function App() {
   // Will be be AM or PM
   const partOfDay = time.slice(-2);
 
-  const workouts = [
+  const workouts = useMemo(()=>{
+    return[
     {
       name: "Full-body workout",
       numExercises: partOfDay === "AM" ? 9 : 8,
@@ -30,7 +31,7 @@ function App() {
       name: "Core only",
       numExercises: partOfDay === "AM" ? 5 : 4,
     },
-  ];
+  ]},[partOfDay]);
 
   function formatTime(date) {
     return new Intl.DateTimeFormat("en", {
