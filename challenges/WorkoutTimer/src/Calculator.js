@@ -28,10 +28,8 @@ function Calculator({ workouts, allowSound }) {
 
   useEffect(() => {
     document.title = `Your ${number}-exercise workout`;
-  }, [number ]);
-  
-  
-  
+  }, [number]);
+
   // Handlers
   function handleIncrement() {
     setDuration((duration) => Math.floor(duration + 1));
@@ -57,17 +55,36 @@ function Calculator({ workouts, allowSound }) {
         </div>
         <div>
           <label>How many sets?</label>
-          <input type="range" min="1" max="5" value={sets} onChange={(e) => setSets(e.target.value)} />
+          <input
+            type="range"
+            min="1"
+            max="5"
+            value={sets}
+            onChange={(e) => setSets(e.target.value)}
+          />
           <span>{sets}</span>
         </div>
         <div>
           <label>How fast are you?</label>
-          <input type="range" min="30" max="180" step="30" value={speed} onChange={(e) => setSpeed(e.target.value)} />
+          <input
+            type="range"
+            min="30"
+            max="180"
+            step="30"
+            value={speed}
+            onChange={(e) => setSpeed(e.target.value)}
+          />
           <span>{speed} sec/exercise</span>
         </div>
         <div>
           <label>Break length</label>
-          <input type="range" min="1" max="10" value={durationBreak} onChange={(e) => setDurationBreak(e.target.value)} />
+          <input
+            type="range"
+            min="1"
+            max="10"
+            value={durationBreak}
+            onChange={(e) => setDurationBreak(e.target.value)}
+          />
           <span>{durationBreak} minutes/break</span>
         </div>
       </form>
