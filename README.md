@@ -3074,4 +3074,71 @@ store.dispatch({ type: "acount/deposit", payload: 1000 });
 console.log("State:", store.getState());
 ```
 
+**Modifying the store state**
+
+![Store State](./images/2023-09-21-17-15-51.png)
+
+![Testing Reducer](./images/2023-09-21-17-28-57.png)
+
+**Action Creators**
+- Action Creators are functions that return actions.
+
+>Before using action creators:
+
+
+```js
+store.dispatch({ type: "acount/deposit", payload: 1000 });
+console.log("Action: Deposit\nState:", store.getState());
+
+store.dispatch({ type: "acount/withdraw", payload: 100 });
+console.log("Action: Withdraw\nState:", store.getState());
+store.dispatch({
+  type: "account/requestLoan",
+  payload: {
+    amount: 1000,
+    purpose: "Home Loan"
+  }
+});
+console.log("Action: Request Loan\nState:", store.getState());
+store.dispatch({ type: "account/payLoan" });
+console.log("Action: Pay Loan\nState:", store.getState());
+```
+>After using action creators:
+
+```js
+
+function deposit(amount) {
+  return { type: "acount/deposit", payload: amount };
+}
+function withdraw(amount) {
+  return { type: "acount/withdraw", payload: amount };
+}
+function requestLoan(amount, purpose) {
+  return {
+    type: "account/requestLoan",
+    payload: {
+      amount: amount,
+      purpose: purpose
+    }
+  };
+}
+function payLoan() {
+  return { type: "account/payLoan" };
+}
+
+
+store.dispatch(deposit(1000));
+console.log("Action: Deposit\nState:", store.getState());
+store.dispatch(withdraw(100));
+console.log("Action: Withdraw\nState:", store.getState());
+store.dispatch(requestLoan(1000, "Home Loan"));
+console.log("Action: Request Loan\nState:", store.getState());
+store.dispatch(payLoan());
+console.log("Action: Pay Loan\nState:", store.getState());
+```
+
+**Note that action creators are not necessary but they are a good idea because they make the code more readable and easier to maintain.**
+
+
+
 </details>
