@@ -26,7 +26,7 @@ function Calculator({ workouts, allowSound }) {
   }
 
   function handleDecrement() {
-    setDuration((duration) => Math.floor(duration - 1));
+    setDuration((duration) => (duration > 1 ? Math.floor(duration - 1) : 0));
   }
   return (
     <>
