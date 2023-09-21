@@ -2867,3 +2867,54 @@ useEffect(() => {
 - Without adding number to the dependency array... the title will remain the same regardless of what you update the number state to.
 
 </details>
+
+
+---
+---
+
+
+## Redux:
+
+<details>
+    <summary>Click to expand</summary>
+    
+### Redux is a 3rd party library that we can use to manage global application state.
+
+**Redux is a standalone library but it is easy to integrate with React apps using the react-redux library**
+
+- All global state is stored in one globally accessable store, which is easy to update by dispatching actions (like we do in `useReducer`)   
+- Redux is similar to the combination of useReducer and Context in the sense that when the global store is updated all consuming components are re-rendered.
+- There are two different conventions for writing redux...
+1. Classic Redux
+2. Modern Redux Toolkit
+
+![Redux & UI vs Remote state](./images/2023-09-21-15-10-48.png)
+    
+![Mechanism of useReducer](./images/2023-09-21-15-12-28.png)    
+    
+![Mechanism of Redux](./images/2023-09-21-15-14-28.png)    
+    
+**Redux cycle**:
+- Call an action creator inside a component and dispatch the action to the store.   
+- In the store the action will be processed by the appropriate reducer which will update the state acording to the instructons. 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</details>
