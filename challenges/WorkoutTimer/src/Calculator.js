@@ -2,6 +2,7 @@ import { useEffect, useState, memo } from "react";
 import clickSound from "./ClickSound.m4a";
 
 function Calculator({ workouts, allowSound }) {
+  // States
   const [number, setNumber] = useState(workouts.at(0).numExercises);
   const [sets, setSets] = useState(3);
   const [speed, setSpeed] = useState(90);
@@ -11,12 +12,12 @@ function Calculator({ workouts, allowSound }) {
   const mins = Math.floor(duration);
   const seconds = (duration - mins) * 60;
 
+  // Effects
   useEffect(() => {
     setDuration((number * sets * speed) / 60 + (sets - 1) * durationBreak);
   }, [number, sets, speed, durationBreak]);
 
   useEffect(() => {
-    //Playsound could not be moved out of component because it uses allowSound.
     function playSound() {
       if (!allowSound) return;
       const sound = new Audio(clickSound);
@@ -25,6 +26,13 @@ function Calculator({ workouts, allowSound }) {
     playSound();
   }, [duration, allowSound]);
 
+  useEffect(() => {
+    document.title = `Your ${number}-exercise workout`;
+  }, [number ]);
+  
+  
+  
+  // Handlers
   function handleIncrement() {
     setDuration((duration) => Math.floor(duration + 1));
   }
@@ -32,6 +40,8 @@ function Calculator({ workouts, allowSound }) {
   function handleDecrement() {
     setDuration((duration) => (duration > 1 ? Math.floor(duration - 1) : 0));
   }
+
+  // Render
   return (
     <>
       <form>
