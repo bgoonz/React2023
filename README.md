@@ -302,7 +302,6 @@ export default Button;
         {" "}
         Next<span>⏭️</span>
       </Button>
-
 ```
 
 ---
@@ -2610,7 +2609,6 @@ const Archive = memo(function Archive({ show }) {
   }
 
  <Archive archiveOptions={archiveOptions} />
-
 ```
 
 - We see that typing in the search component does cause Archive to re-render... despite the use of the memo function...
@@ -3188,7 +3186,6 @@ console.log("------------------------------------");
 
 store.dispatch(createCustomer("Bryan Guner", "123456789"));
 console.log("Action: Create Customer\nState:", store.getState());
-
 ```
 
 </details>
@@ -3230,8 +3227,6 @@ export default Customer;
 ```
 
 - In react redux we gain access to the dispatch function by using the `useDispatch` hook.
-
-
 ```js
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -3244,7 +3239,6 @@ function Customer() {
   function handleClick() {
     dispatch(createCustomer(fullName, nationalId));
   }
-
 ```
 
 ### Redux Middleware (Redux Thunk):
@@ -3258,6 +3252,55 @@ function Customer() {
 - Middlware is the perfect pace for API calls, timers, logging, and other side effects (even pausing or canceling the action alltogether).
 
 #### When using Redux Thunk... we dispatch to the thunk middlewhere where (for example) we fetch some data and then attach that data to the action payload, which sends the data to the store.
+
+
+> How to import thunk as our middlewhere in our store.js
+
+```js
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import accountReducer from "./features/accounts/accountSlice";
+import customerReducer from "./features/customers/customerSlice";
+
+const rootReducer = combineReducers({
+  account: accountReducer,
+  customer: customerReducer,
+});
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
+export default store;
+```
+
+##### Redux Thunk Cycle:
+
+```js
+//AccountOperations.js
+
+  function handleDeposit() {
+    if (!depositAmount) return;
+    dispatch(deposit(depositAmount, currency));
+    setDepositAmount("");
+    setCurrency("")
+  }
+// accountSlice.js
+
+export function deposit(amount, currency) {
+    if(currency === "USD")   return { type: "account/deposit", payload: amount };
+    //This (function below) is the async action we want to preform before we dispatch the action
+    return async function (dispatch,getState){
+        //API call
+        const result = await fetch(
+            `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
+          );
+            const data = await result.json();
+            console.log(data)
+            const toUSD = data.rates.USD;
+        //dispatch the action
+        dispatch({ type: "account/deposit", payload: toUSD });
+    }
+}
+```
 
 
 

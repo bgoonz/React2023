@@ -30,8 +30,20 @@ export default function accountReducer(state = initialStateAccount, action) {
   }
 }
 
-export function deposit(amount) {
-  return { type: "account/deposit", payload: amount };
+export function deposit(amount, currency) {
+    if(currency === "USD")   return { type: "account/deposit", payload: amount };
+    //This (function below) is the async action we want to preform before we dispatch the action
+    return async function (dispatch,getState){
+        //API call
+        const result = await fetch(
+            `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
+          );
+            const data = await result.json();
+            console.log(data)
+            const toUSD = data.rates.USD;
+        //dispatch the action
+        dispatch({ type: "account/deposit", payload: toUSD });
+    }
 }
 
 export function withdraw(amount) {
