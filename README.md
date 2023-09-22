@@ -3247,11 +3247,19 @@ function Customer() {
 
 ```
 
+### Redux Middleware (Redux Thunk):
 
+- Middleware is where to make an asynchronus API call (or any other async operation) in Redux.
+- You technically can fetch data in a component and dispatch it to the store from the component... but generally we want to avoid this approach.
+- In Redux **A Middleware is a function that sits between dispatching the action and the store** _it allows us to run code after dispatching, but before reaching the reducer in the store._
 
+![Middleware](./images/2023-09-22-13-14-30.png)
 
+- Middlware is the perfect pace for API calls, timers, logging, and other side effects (even pausing or canceling the action alltogether).
+
+#### When using Redux Thunk... we dispatch to the thunk middlewhere where (for example) we fetch some data and then attach that data to the action payload, which sends the data to the store.
 
 
 
 </details>
-```
+
