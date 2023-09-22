@@ -3332,6 +3332,17 @@ export default store;
 ![Redux Dev Tools](./images/2023-09-22-14-18-36.png)
 
 
+---
+
+### Redux Toolkit:
+
+- Modern and prefered way of writing redux
+- An opinionated approach, forcing the use of redux best practices.
+- Classic redux and redux toolkit are compatible (you can use them together)
+- Advantages:
+  - We an write code that 'mutates' state inside reducers (because redux toolkit uses immer under the hood)
+  - Action creators are automatically generated from our reducers
+  - Automatically sets up thunk middleware and Redux Dev Tools
 
 
 
