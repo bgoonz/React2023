@@ -90,7 +90,13 @@ function Form() {
           </option>
         ))}
       </select>
-      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <button>Add</button>
     </form>
   );
@@ -161,14 +167,23 @@ function Form() {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
+      <select
+        value={quantity}
+        onChange={(event) => setQuantity(Number(event.target.value))}
+      >
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <button>Add</button>
     </form>
   );
@@ -232,20 +247,30 @@ function Form({ onAddItem }) {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
+      <select
+        value={quantity}
+        onChange={(event) => setQuantity(Number(event.target.value))}
+      >
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <button>Add</button>
     </form>
   );
 }
 const Item = ({ item }) => {
-  const description = item.quantity > 1 ? `${item.description}s` : item.description;
+  const description =
+    item.quantity > 1 ? `${item.description}s` : item.description;
   return (
     <li key={item.id}>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
@@ -369,13 +394,20 @@ function Tabbed({ content }) {
         <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
-      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} />
+      ) : (
+        <DifferentContent />
+      )}
     </div>
   );
 }
 function Tab({ num, activeTab, onClick }) {
   return (
-    <button className={activeTab === num ? "tab active" : "tab"} onClick={() => onClick(num)}>
+    <button
+      className={activeTab === num ? "tab active" : "tab"}
+      onClick={() => onClick(num)}
+    >
       Tab {num + 1}
     </button>
   );
@@ -499,7 +531,11 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} />
+      ) : (
+        <DifferentContent />
+      )}
     </div>
   );
 }
@@ -572,7 +608,11 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} key={activeTab} /> : <DifferentContent />}
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} key={activeTab} />
+      ) : (
+        <DifferentContent />
+      )}
     </div>
   );
 }
@@ -780,7 +820,9 @@ useEffect(() => {
 ```js
 useEffect(() => {
   async function fetchMovies() {
-    const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+    const response = await fetch(
+      `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+    );
     const data = await response.json();
     setMovies(data.Search);
   }
@@ -796,8 +838,11 @@ useEffect(() => {
     try {
       setLoading(true);
       setError("");
-      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
-      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+      );
+      if (!response.ok)
+        throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -894,9 +939,13 @@ useEffect(() => {
       setLoading(true);
       setError("");
 
-      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`, { signal: controller.signal });
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+        { signal: controller.signal }
+      );
 
-      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
+      if (!response.ok)
+        throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -1020,7 +1069,10 @@ useEffect(() => {
 //We do not need to do this because the useEffect runs every time the component is rendered and the state is updated... which does the same thing anyway.
 function handleDeleteWatched(id) {
   setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
-  localStorage.setItem("watched", JSON.stringify(watched.filter((movie) => movie.imdbID !== id)));
+  localStorage.setItem(
+    "watched",
+    JSON.stringify(watched.filter((movie) => movie.imdbID !== id))
+  );
 }
 ```
 
@@ -1213,9 +1265,13 @@ export function useMovies(query, callback, key) {
         setLoading(true);
         setError("");
 
-        const response = await fetch(`https://www.omdbapi.com/?apikey=${key}&s=${query}`, { signal: controller.signal });
+        const response = await fetch(
+          `https://www.omdbapi.com/?apikey=${key}&s=${query}`,
+          { signal: controller.signal }
+        );
 
-        if (!response.ok) throw new Error("Something went wrong while fetching the movies");
+        if (!response.ok)
+          throw new Error("Something went wrong while fetching the movies");
 
         const data = await response.json();
         if (data.Response === "False") throw new Error("No movies found");
@@ -1371,7 +1427,7 @@ function reducer(state, action) {
 function DateCounter() {
   const initialState = {
     count: 0,
-    step: 1
+    step: 1,
   };
   const [state, dispatch] = useReducer(reducer, initialState);
   const { count, step } = state;
@@ -1404,7 +1460,13 @@ function DateCounter() {
     <div className="counter">
       <label htmlFor="step">Step Size</label>
       <div>
-        <input type="range" min="0" max="10" value={step} onChange={defineStep} />
+        <input
+          type="range"
+          min="0"
+          max="10"
+          value={step}
+          onChange={defineStep}
+        />
         <span>{step}</span>
       </div>
 
@@ -1453,7 +1515,7 @@ const initialState = {
   index: 0,
   answer: null,
   points: 0,
-  highscore: 0
+  highscore: 0,
 };
 
 function reducer(state, action) {
@@ -1470,7 +1532,10 @@ function reducer(state, action) {
       return {
         ...state,
         answer: action.payload,
-        points: action.payload === curQuestion.correctOption ? state.points + curQuestion.points : state.points
+        points:
+          action.payload === curQuestion.correctOption
+            ? state.points + curQuestion.points
+            : state.points,
       };
     case "nextQuestion":
       return { ...state, index: state.index + 1, answer: null };
@@ -1478,7 +1543,8 @@ function reducer(state, action) {
       return {
         ...state,
         status: "finished",
-        highscore: state.points > state.highscore ? state.points : state.highscore
+        highscore:
+          state.points > state.highscore ? state.points : state.highscore,
       };
     case "restart":
       return {
@@ -1486,7 +1552,7 @@ function reducer(state, action) {
         status: "ready",
         highscore: state.highscore,
         index: 0,
-        questions: state.questions
+        questions: state.questions,
       };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
@@ -1494,7 +1560,8 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [{ questions, status, index, answer, points, highscore }, dispatch] = useReducer(reducer, initialState);
+  const [{ questions, status, index, answer, points, highscore }, dispatch] =
+    useReducer(reducer, initialState);
 
   //derived state
   const numQuestions = questions.length;
@@ -1519,15 +1586,41 @@ function App() {
       <Main>
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
-        {status === "ready" && <StartScreen numQuestions={numQuestions} dispatch={dispatch} />}
+        {status === "ready" && (
+          <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
+        )}
         {status === "active" && (
           <>
-            <Progress index={index} numQuestions={numQuestions} points={points} maxPoints={maxPoints} answer={answer} />
-            <Question question={questions[index]} dispatch={dispatch} answer={answer} />
-            <NextButton dispatch={dispatch} answer={answer} index={index} numQuestions={numQuestions} />
+            <Progress
+              index={index}
+              numQuestions={numQuestions}
+              points={points}
+              maxPoints={maxPoints}
+              answer={answer}
+            />
+            <Question
+              question={questions[index]}
+              dispatch={dispatch}
+              answer={answer}
+            />
+            <NextButton
+              dispatch={dispatch}
+              answer={answer}
+              index={index}
+              numQuestions={numQuestions}
+            />
           </>
         )}
-        {status === "finished" && <FinishedScreen points={points} maxPoints={maxPoints} index={index} numQuestions={numQuestions} highscore={highscore} dispatch={dispatch} />}
+        {status === "finished" && (
+          <FinishedScreen
+            points={points}
+            maxPoints={maxPoints}
+            index={index}
+            numQuestions={numQuestions}
+            highscore={highscore}
+            dispatch={dispatch}
+          />
+        )}
       </Main>
     </div>
   );
@@ -1829,7 +1922,10 @@ export default Nav;
 
 ```js
 <Route path="app" element={<AppLayout />}>
-  <Route path="cities" element={<p>This could be a react component or just JSX</p>} />
+  <Route
+    path="cities"
+    element={<p>This could be a react component or just JSX</p>}
+  />
 </Route>
 ```
 
@@ -1841,7 +1937,12 @@ export default Nav;
 
 ```js
 // App.js
-import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Outlet,
+} from "react-router-dom";
 
 function App() {
   return (
@@ -1893,7 +1994,10 @@ function Dashboard() {
 ```js
 <Route path="app" element={<AppLayout />}>
   <Route index element={<p>Index Route</p>} />
-  <Route path="cities" element={<p>This could be a react component or just JSX</p>} />
+  <Route
+    path="cities"
+    element={<p>This could be a react component or just JSX</p>}
+  />
   <Route path="countries" element={<p>sibling route to cities</p>} />
   <Route path="form" element={<p>another sibling route</p>} />
 </Route>
@@ -1965,7 +2069,7 @@ const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
     month: "long",
-    year: "numeric"
+    year: "numeric",
   }).format(new Date(date));
 
 function CityItem({ city }) {
@@ -1973,7 +2077,10 @@ function CityItem({ city }) {
 
   return (
     <li>
-      <Link className={styles.cityItem} to={`${id}?lat=${position.lat}&lng=${position.lng}`}>
+      <Link
+        className={styles.cityItem}
+        to={`${id}?lat=${position.lat}&lng=${position.lng}`}
+      >
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>{formatDate(date)}</time>
@@ -2028,7 +2135,9 @@ function Map() {
       <h1>
         Position: {lat}, {lng}
       </h1>
-      <button onClick={() => setSearchParams({ lat: 24, lng: 50 })}>Change Position</button>
+      <button onClick={() => setSearchParams({ lat: 24, lng: 50 })}>
+        Change Position
+      </button>
     </div>
   );
 }
@@ -2084,11 +2193,20 @@ const PostContext = createContext();
 const PostContext = createContext();
 
 function App() {
-  const [posts, setPosts] = useState(() => Array.from({ length: 30 }, () => createRandomPost()));
+  const [posts, setPosts] = useState(() =>
+    Array.from({ length: 30 }, () => createRandomPost())
+  );
   const [searchQuery, setSearchQuery] = useState("");
   const [isFakeDark, setIsFakeDark] = useState(false);
 
-  const searchedPosts = searchQuery.length > 0 ? posts.filter((post) => `${post.title} ${post.body}`.toLowerCase().includes(searchQuery.toLowerCase())) : posts;
+  const searchedPosts =
+    searchQuery.length > 0
+      ? posts.filter((post) =>
+          `${post.title} ${post.body}`
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase())
+        )
+      : posts;
 
   function handleAddPost(post) {
     setPosts((posts) => [post, ...posts]);
@@ -2104,15 +2222,23 @@ function App() {
         onClearPosts: handleClearPosts,
         onAddPost: handleAddPost,
         searchQuery,
-        setSearchQuery
+        setSearchQuery,
       }}
     >
       <section>
-        <button onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)} className="btn-fake-dark-mode">
+        <button
+          onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
+          className="btn-fake-dark-mode"
+        >
           {isFakeDark ? "☀️" : "🌙"}
         </button>
 
-        <Header posts={searchedPosts} onClearPosts={handleClearPosts} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <Header
+          posts={searchedPosts}
+          onClearPosts={handleClearPosts}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
         <Main posts={searchedPosts} onAddPost={handleAddPost} />
         <Archive onAddPost={handleAddPost} />
         <Footer />
@@ -2221,9 +2347,9 @@ function CitiesProvider({ children }) {
       const response = await fetch(`${BASE_URL}/cities/`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(newCity)
+        body: JSON.stringify(newCity),
       });
       const data = await response.json();
       setCities([...cities, data]);
@@ -2239,7 +2365,7 @@ function CitiesProvider({ children }) {
     try {
       setIsLoading(true);
       const response = await fetch(`${BASE_URL}/cities/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
       });
 
       setCities((cities) => cities.filter((city) => city.id !== id));
@@ -2259,7 +2385,7 @@ function CitiesProvider({ children }) {
         currentCity,
         getCity,
         createCity,
-        deleteCity
+        deleteCity,
       }}
     >
       {children}
@@ -2297,7 +2423,7 @@ const initialState = {
   cities: [],
   isLoading: false,
   error: "",
-  currentCity: {}
+  currentCity: {},
 };
 
 function reducer(state, action) {
@@ -2312,13 +2438,13 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: false,
-        cities: [...state.cities, action.payload]
+        cities: [...state.cities, action.payload],
       };
     case "cities/deleted":
       return {
         ...state,
         isLoading: false,
-        cities: state.cities.filter((city) => city.id !== action.payload)
+        cities: state.cities.filter((city) => city.id !== action.payload),
       };
     case "rejected":
       return { ...state, isLoading: false, error: action.payload };
@@ -2328,7 +2454,10 @@ function reducer(state, action) {
 }
 
 function CitiesProvider({ children }) {
-  const [{ cities, isLoading, currentCity }, dispatch] = useReducer(reducer, initialState);
+  const [{ cities, isLoading, currentCity }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
   useEffect(() => {
     const fetchCities = async () => {
       dispatch({ type: "loading" });
@@ -2339,7 +2468,7 @@ function CitiesProvider({ children }) {
       } catch (error) {
         dispatch({
           type: "rejected",
-          payload: `There was an error fetching cities: ${error.message}`
+          payload: `There was an error fetching cities: ${error.message}`,
         });
       }
     };
@@ -2355,7 +2484,7 @@ function CitiesProvider({ children }) {
     } catch (error) {
       dispatch({
         type: "rejected",
-        payload: `There was an error getting city: ${error.message}`
+        payload: `There was an error getting city: ${error.message}`,
       });
     }
   }
@@ -2366,9 +2495,9 @@ function CitiesProvider({ children }) {
       const response = await fetch(`${BASE_URL}/cities/`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(newCity)
+        body: JSON.stringify(newCity),
       });
       const data = await response.json();
 
@@ -2376,7 +2505,7 @@ function CitiesProvider({ children }) {
     } catch (error) {
       dispatch({
         type: "rejected",
-        payload: `There was an error creating city: ${error.message}`
+        payload: `There was an error creating city: ${error.message}`,
       });
     }
   }
@@ -2385,14 +2514,14 @@ function CitiesProvider({ children }) {
     try {
       dispatch({ type: "loading" });
       const response = await fetch(`${BASE_URL}/cities/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
       });
 
       dispatch({ type: "cities/deleted", payload: id });
     } catch (error) {
       dispatch({
         type: "rejected",
-        payload: `There was an error deleting city: ${error.message}`
+        payload: `There was an error deleting city: ${error.message}`,
       });
       alert("Error deleting city");
     }
@@ -2406,7 +2535,7 @@ function CitiesProvider({ children }) {
         currentCity,
         getCity,
         createCity,
-        deleteCity
+        deleteCity,
       }}
     >
       {children}
@@ -2579,7 +2708,9 @@ const Archive = memo(function Archive({ show }) {
   return (
     <aside>
       <h2>Post archive</h2>
-      <button onClick={() => setShowArchive((s) => !s)}>{showArchive ? "Hide archive posts" : "Show archive posts"}</button>
+      <button onClick={() => setShowArchive((s) => !s)}>
+        {showArchive ? "Hide archive posts" : "Show archive posts"}
+      </button>
 
       {showArchive && (
         <ul>
@@ -2649,7 +2780,9 @@ const Archive = memo(function Archive({ archiveOptions }) {
   return (
     <aside>
       <h2>{archiveOptions.title}</h2>
-      <button onClick={() => setShowArchive((s) => !s)}>{showArchive ? "Hide archive posts" : "Show archive posts"}</button>
+      <button onClick={() => setShowArchive((s) => !s)}>
+        {showArchive ? "Hide archive posts" : "Show archive posts"}
+      </button>
 
       {showArchive && (
         <ul>
@@ -2903,7 +3036,7 @@ import { createStore } from "redux";
 const initialState = {
   balance: 0,
   loan: 0,
-  loanPurpose: ""
+  loanPurpose: "",
 };
 
 //Remember reducers can't directly modify the state or fetch data from the server
@@ -2923,7 +3056,7 @@ function reducer(state = initialState, action) {
         ...state,
         laon: 0,
         loanPurpose: "",
-        balance: state.balance - state.loan
+        balance: state.balance - state.loan,
       };
     default:
       return state;
@@ -2959,8 +3092,8 @@ store.dispatch({
   type: "account/requestLoan",
   payload: {
     amount: 1000,
-    purpose: "Home Loan"
-  }
+    purpose: "Home Loan",
+  },
 });
 console.log("Action: Request Loan\nState:", store.getState());
 store.dispatch({ type: "account/payLoan" });
@@ -2981,8 +3114,8 @@ function requestLoan(amount, purpose) {
     type: "account/requestLoan",
     payload: {
       amount: amount,
-      purpose: purpose
-    }
+      purpose: purpose,
+    },
   };
 }
 function payLoan() {
@@ -3012,8 +3145,8 @@ function createCustomer(fullName, nationalId) {
     payload: {
       fullName: fullName,
       nationalId: nationalId,
-      createdAt: new Date().toISOString()
-    }
+      createdAt: new Date().toISOString(),
+    },
   };
 }
 ```
@@ -3033,14 +3166,14 @@ function accountReducer(state = initialStateAccount, action) {
         ...state,
         loan: action.payload.amount,
         loanPurpose: action.payload.purpose,
-        balance: state.balance + action.payload.amount
+        balance: state.balance + action.payload.amount,
       };
     case "account/payLoan":
       return {
         ...state,
         laon: 0,
         loanPurpose: "",
-        balance: state.balance - state.loan
+        balance: state.balance - state.loan,
       };
     default:
       return state;
@@ -3054,7 +3187,7 @@ function customerReducer(state = initialStateCustomer, action) {
         ...state,
         fullName: action.payload.fullName,
         nationalId: action.payload.nationalId,
-        createdAt: action.payload.createdAt
+        createdAt: action.payload.createdAt,
       };
     case "customer/updateName":
       return { ...state, fullName: action.payload };
@@ -3066,7 +3199,7 @@ function customerReducer(state = initialStateCustomer, action) {
 
 const rootReducer = combineReducers({
   account: accountReducer,
-  customer: customerReducer
+  customer: customerReducer,
 });
 
 const store = createStore(rootReducer);
@@ -3263,7 +3396,7 @@ import customerReducer from "./features/customers/customerSlice";
 
 const rootReducer = combineReducers({
   account: accountReducer,
-  customer: customerReducer
+  customer: customerReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -3289,7 +3422,9 @@ export function deposit(amount, currency) {
   //This (function below) is the async action we want to preform before we dispatch the action
   return async function (dispatch, getState) {
     //API call
-    const result = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`);
+    const result = await fetch(
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
+    );
     const data = await result.json();
     console.log(data);
     const toUSD = data.rates.USD;
@@ -3316,10 +3451,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 const rootReducer = combineReducers({
   account: accountReducer,
-  customer: customerReducer
+  customer: customerReducer,
 });
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 
 export default store;
 ```
@@ -3355,10 +3493,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 const rootReducer = combineReducers({
   account: accountReducer,
-  customer: customerReducer
+  customer: customerReducer,
 });
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 
 export default store;
 ```
@@ -3374,27 +3515,33 @@ import customerReducer from "./features/customers/customerSlice";
 const store = configureStore({
   reducer: {
     account: accountReducer,
-    customer: customerReducer
-  }
+    customer: customerReducer,
+  },
 });
 
 export default store;
 ```
 
 ###### Refactoring account slice using redux toolkit.
+
 > Previously we had our intial state, reducer, and action creators.
+
 ```js
 const initialStateAccount = {
   balance: 0,
   loan: 0,
   loanPurpose: "",
-  isLoading: false
+  isLoading: false,
 };
 
 export default function accountReducer(state = initialStateAccount, action) {
   switch (action.type) {
     case "account/deposit":
-      return { ...state, balance: state.balance + action.payload, isLoading: false  };
+      return {
+        ...state,
+        balance: state.balance + action.payload,
+        isLoading: false,
+      };
     case "account/withdraw":
       return { ...state, balance: state.balance - action.payload };
     case "account/requestLoan":
@@ -3403,14 +3550,14 @@ export default function accountReducer(state = initialStateAccount, action) {
         ...state,
         loan: action.payload.amount,
         loanPurpose: action.payload.purpose,
-        balance: state.balance + action.payload.amount
+        balance: state.balance + action.payload.amount,
       };
     case "account/payLoan":
       return {
         ...state,
         loan: 0,
         loanPurpose: "",
-        balance: state.balance - state.loan
+        balance: state.balance - state.loan,
       };
     case "account/convertingCurrency":
       return { ...state, isLoading: true };
@@ -3425,11 +3572,13 @@ export function deposit(amount, currency) {
   return async function (dispatch, getState) {
     dispatch({ type: "account/convertingCurrency" });
     //API call
-    const result = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`);
+    const result = await fetch(
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
+    );
     const data = await result.json();
     const toUSD = data.rates.USD;
     //dispatch the action
-    dispatch({ type: "account/deposit", payload: toUSD});
+    dispatch({ type: "account/deposit", payload: toUSD });
   };
 }
 
@@ -3442,8 +3591,8 @@ export function requestLoan(amount, purpose) {
     type: "account/requestLoan",
     payload: {
       amount: amount,
-      purpose: purpose
-    }
+      purpose: purpose,
+    },
   };
 }
 
@@ -3451,7 +3600,6 @@ export function payLoan() {
   return { type: "account/payLoan" };
 }
 ```
-
 
 - createSlice will create actions from the reducers and relieves the need for the switch statment and automatically handles the default case.
 
@@ -3464,7 +3612,7 @@ const initialState = {
   balance: 0,
   loan: 0,
   loanPurpose: "",
-  isLoading: false
+  isLoading: false,
 };
 
 const accountSlice = createSlice({
@@ -3487,20 +3635,20 @@ const accountSlice = createSlice({
       state.loan = 0;
       state.loanPurpose = "";
       state.balance = state.balance - state.loan;
-    }
-  }
+    },
+  },
 });
-
 
 export const { deposit, withdraw, requestLoan, payLoan } = accountSlice.actions;
 export default accountSlice.reducer;
-
 ```
+
 > In the above code: `export const { deposit, withdraw, requestLoan, payLoan } = accountSlice.actions;` is the automated version of the action creators.
 
 > The automated action creators only accept one argument... so the code above introduces a bug when you try to request a loan... the action.payload will only contain the amount and not the purpose.
 
 **This can be fixed with the prepare function**
+
 ```js
 requestLoan: {
       prepare(amount, purpose) {
@@ -3513,6 +3661,5 @@ requestLoan: {
       }
     },
 ```
-
 
 </details>

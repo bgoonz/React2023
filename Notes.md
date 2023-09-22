@@ -8,9 +8,6 @@ find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +
 
 ### [Intl API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)
 
-
-
-
 ## Introduction to the JavaScript Array at() method
 
 In JavaScript, you can use the square bracket `[]` to access an element of an [array](https://www.javascripttutorial.net/javascript-array/). For example, the `arr[0]` returns the first element in the array `arr`, the `arr[1]` returns the second element, and so on.

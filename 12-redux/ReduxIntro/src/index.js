@@ -1,17 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 import App from "./App";
 import "./index.css";
 
 import store from "./store";
 
 // store.dispatch({ type: "account/deposit", payload: 1000 })
-// 
+//
 // store.dispatch({type: "customer/createCustomer", payload: {
 //     fullName:"Bryan Guner",
 //     nationalId: "1234567890",
-//     
+//
 // }})
 console.log("State:", store.getState());
 const root = ReactDOM.createRoot(document.getElementById("root"));
