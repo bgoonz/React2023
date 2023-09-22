@@ -3194,7 +3194,40 @@ console.log("Action: Create Customer\nState:", store.getState());
 </details>
 
 
+### Using Redux in React:
 
+```js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import {Provider} from "react-redux";
+import App from "./App";
+import "./index.css";
+
+import store from "./store";
+
+
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+);
+//Customer.js
+
+import { useSelector } from "react-redux";
+
+function Customer() {
+  const customer = useSelector((store) => {
+   return store.customer.fullName;
+  });
+  return <h2>👋 Welcome, {customer}</h2>;
+}
+
+export default Customer;
+```
 
 
 
