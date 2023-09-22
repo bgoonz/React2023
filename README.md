@@ -1,7 +1,5 @@
 # React
 
-### [Changelog](./Changelog.md)
-
 ## React v18 basic setup:
 
 ```js
@@ -3186,7 +3184,8 @@ console.log("------------------------------------");
 
 store.dispatch(createCustomer("Bryan Guner", "123456789"));
 console.log("Action: Create Customer\nState:", store.getState());
-```
+
+````
 
 </details>
 
@@ -3224,9 +3223,10 @@ function Customer() {
 }
 
 export default Customer;
-```
+````
 
 - In react redux we gain access to the dispatch function by using the `useDispatch` hook.
+
 ```js
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -3234,7 +3234,7 @@ import { createCustomer } from "./customerSlice";
 function Customer() {
   const [fullName, setFullName] = useState("");
   const [nationalId, setNationalId] = useState("");
-  
+
   const dispatch = useDispatch();
   function handleClick() {
     dispatch(createCustomer(fullName, nationalId));
@@ -3253,7 +3253,6 @@ function Customer() {
 
 #### When using Redux Thunk... we dispatch to the thunk middlewhere where (for example) we fetch some data and then attach that data to the action payload, which sends the data to the store.
 
-
 > How to import thunk as our middlewhere in our store.js
 
 ```js
@@ -3264,7 +3263,7 @@ import customerReducer from "./features/customers/customerSlice";
 
 const rootReducer = combineReducers({
   account: accountReducer,
-  customer: customerReducer,
+  customer: customerReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -3277,28 +3276,26 @@ export default store;
 ```js
 //AccountOperations.js
 
-  function handleDeposit() {
-    if (!depositAmount) return;
-    dispatch(deposit(depositAmount, currency));
-    setDepositAmount("");
-    setCurrency("")
-  }
+function handleDeposit() {
+  if (!depositAmount) return;
+  dispatch(deposit(depositAmount, currency));
+  setDepositAmount("");
+  setCurrency("");
+}
 // accountSlice.js
 
 export function deposit(amount, currency) {
-    if(currency === "USD")   return { type: "account/deposit", payload: amount };
-    //This (function below) is the async action we want to preform before we dispatch the action
-    return async function (dispatch,getState){
-        //API call
-        const result = await fetch(
-            `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
-          );
-            const data = await result.json();
-            console.log(data)
-            const toUSD = data.rates.USD;
-        //dispatch the action
-        dispatch({ type: "account/deposit", payload: toUSD });
-    }
+  if (currency === "USD") return { type: "account/deposit", payload: amount };
+  //This (function below) is the async action we want to preform before we dispatch the action
+  return async function (dispatch, getState) {
+    //API call
+    const result = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`);
+    const data = await result.json();
+    console.log(data);
+    const toUSD = data.rates.USD;
+    //dispatch the action
+    dispatch({ type: "account/deposit", payload: toUSD });
+  };
 }
 ```
 
@@ -3308,7 +3305,7 @@ export function deposit(amount, currency) {
 npm i redux-devtools-extension
 ```
 
->store.js
+> store.js
 
 ```js
 import { createStore, combineReducers, applyMiddleware } from "redux";
@@ -3319,18 +3316,15 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 const rootReducer = combineReducers({
   account: accountReducer,
-  customer: customerReducer,
+  customer: customerReducer
 });
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 export default store;
-
 ```
 
-
 ![Redux Dev Tools](./images/2023-09-22-14-18-36.png)
-
 
 ---
 
@@ -3344,11 +3338,181 @@ export default store;
   - Action creators are automatically generated from our reducers
   - Automatically sets up thunk middleware and Redux Dev Tools
 
+**Install Redux Toolkit**
+
+```bash
+npm i @reduxjs/toolkit
+```
+
+> Store before redux-toolkit:
+
+```js
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import accountReducer from "./features/accounts/accountSlice";
+import customerReducer from "./features/customers/customerSlice";
+import { composeWithDevTools } from "redux-devtools-extension";
+
+const rootReducer = combineReducers({
+  account: accountReducer,
+  customer: customerReducer
+});
+
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+
+export default store;
+```
+
+> Refactor of store.js using redux toolkit
+
+```js
+import { configureStore } from "@reduxjs/toolkit";
+
+import accountReducer from "./features/accounts/accountSlice";
+import customerReducer from "./features/customers/customerSlice";
+
+const store = configureStore({
+  reducer: {
+    account: accountReducer,
+    customer: customerReducer
+  }
+});
+
+export default store;
+```
+
+###### Refactoring account slice using redux toolkit.
+> Previously we had our intial state, reducer, and action creators.
+```js
+const initialStateAccount = {
+  balance: 0,
+  loan: 0,
+  loanPurpose: "",
+  isLoading: false
+};
+
+export default function accountReducer(state = initialStateAccount, action) {
+  switch (action.type) {
+    case "account/deposit":
+      return { ...state, balance: state.balance + action.payload, isLoading: false  };
+    case "account/withdraw":
+      return { ...state, balance: state.balance - action.payload };
+    case "account/requestLoan":
+      if (state.loan > 0) return state;
+      return {
+        ...state,
+        loan: action.payload.amount,
+        loanPurpose: action.payload.purpose,
+        balance: state.balance + action.payload.amount
+      };
+    case "account/payLoan":
+      return {
+        ...state,
+        loan: 0,
+        loanPurpose: "",
+        balance: state.balance - state.loan
+      };
+    case "account/convertingCurrency":
+      return { ...state, isLoading: true };
+    default:
+      return state;
+  }
+}
+
+export function deposit(amount, currency) {
+  if (currency === "USD") return { type: "account/deposit", payload: amount };
+  //This (function below) is the async action we want to preform before we dispatch the action
+  return async function (dispatch, getState) {
+    dispatch({ type: "account/convertingCurrency" });
+    //API call
+    const result = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`);
+    const data = await result.json();
+    const toUSD = data.rates.USD;
+    //dispatch the action
+    dispatch({ type: "account/deposit", payload: toUSD});
+  };
+}
+
+export function withdraw(amount) {
+  return { type: "account/withdraw", payload: amount };
+}
+
+export function requestLoan(amount, purpose) {
+  return {
+    type: "account/requestLoan",
+    payload: {
+      amount: amount,
+      purpose: purpose
+    }
+  };
+}
+
+export function payLoan() {
+  return { type: "account/payLoan" };
+}
+```
 
 
+- createSlice will create actions from the reducers and relieves the need for the switch statment and automatically handles the default case.
+
+> acountSlice refactored using createSlice:
+
+```js
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  balance: 0,
+  loan: 0,
+  loanPurpose: "",
+  isLoading: false
+};
+
+const accountSlice = createSlice({
+  name: "account",
+  initialState: initialState,
+  reducers: {
+    deposit(state, action) {
+      state.balance = state.balance + action.payload;
+    },
+    withdraw(state, action) {
+      state.balance = state.balance - action.payload;
+    },
+    requestLoan(state, action) {
+      state.loan = action.payload.amount;
+      state.loanPurpose = action.payload.purpose;
+      state.balance = state.balance + action.payload.amount;
+    },
+    payLoan(state, action) {
+      if (state.loan > 0) return;
+      state.loan = 0;
+      state.loanPurpose = "";
+      state.balance = state.balance - state.loan;
+    }
+  }
+});
 
 
+export const { deposit, withdraw, requestLoan, payLoan } = accountSlice.actions;
+export default accountSlice.reducer;
+
+```
+> In the above code: `export const { deposit, withdraw, requestLoan, payLoan } = accountSlice.actions;` is the automated version of the action creators.
+
+> The automated action creators only accept one argument... so the code above introduces a bug when you try to request a loan... the action.payload will only contain the amount and not the purpose.
+
+**This can be fixed with the prepare function**
+```js
+requestLoan: {
+      prepare(amount, purpose) {
+        return { payload: { amount, purpose } };
+      },
+      reducer(state, action) {
+        state.loan = action.payload.amount;
+        state.loanPurpose = action.payload.purpose;
+        state.balance = state.balance + action.payload.amount;
+      }
+    },
+```
 
 
 </details>
-
