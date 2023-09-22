@@ -3229,8 +3229,23 @@ function Customer() {
 export default Customer;
 ```
 
+- In react redux we gain access to the dispatch function by using the `useDispatch` hook.
 
 
+```js
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createCustomer } from "./customerSlice";
+function Customer() {
+  const [fullName, setFullName] = useState("");
+  const [nationalId, setNationalId] = useState("");
+  
+  const dispatch = useDispatch();
+  function handleClick() {
+    dispatch(createCustomer(fullName, nationalId));
+  }
+
+```
 
 
 
