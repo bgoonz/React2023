@@ -3141,4 +3141,84 @@ console.log("Action: Pay Loan\nState:", store.getState());
 
 
 
+
+> Create Customer Action Creator...
+- normally this would go in a reducer but because we're using the current date (a side effect) this cannot go in the reducer.
+
+```js
+function createCustomer(fullName, nationalId) {
+    return {
+        type: "customer/create",
+        payload: {
+            fullName: fullName,
+            nationalId: nationalId,
+            createdAt: new Date().toISOString()
+        }
+    }
+}
+```
+
+> How to combine reducers in our store:
+
+```js
+function accountReducer(state = initialStateAccount, action) {
+  switch (action.type) {
+    case "acount/deposit":
+      return { ...state, balance: state.balance + action.payload };
+    case "acount/withdraw":
+      return { ...state, balance: state.balance - action.payload };
+    case "account/requestLoan":
+      if (state.loan > 0) return state;
+      return { ...state, loan: action.payload.amount, loanPurpose: action.payload.purpose, balance: state.balance + action.payload.amount };
+    case "account/payLoan":
+      return {
+        ...state,
+        laon: 0,
+        loanPurpose: "",
+        balance: state.balance - state.loan
+      };
+    default:
+      return state;
+  }
+}
+
+function customerReducer(state=initialStateCustomer, action){
+    switch(action.type){
+        case "customer/createCustomer":
+            return {...state, fullName: action.payload.fullName, nationalId: action.payload.nationalId, createdAt: action.payload.createdAt};
+        case "customer/updateName":
+            return {...state, fullName: action.payload};
+     
+        
+        default:
+            return state;
+    }
+    
+    
+    
+}
+
+const rootReducer = combineReducers({
+    account: accountReducer,
+    customer: customerReducer
+})
+
+
+const store = createStore(rootReducer);
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </details>
