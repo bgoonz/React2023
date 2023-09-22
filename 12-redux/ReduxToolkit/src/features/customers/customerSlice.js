@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   fullName: "",
   nationalId: "",
-  createdAt: ""
+  createdAt: "",
 };
 
 const customerSlice = createSlice({
@@ -11,19 +11,25 @@ const customerSlice = createSlice({
   reducers: {
     createCustomer: {
       prepare(fullName, nationalId) {
-        return { payload: { fullName, nationalId, createdAt: new Date().toISOString() } };
+        return {
+          payload: {
+            fullName,
+            nationalId,
+            createdAt: new Date().toISOString(),
+          },
+        };
       },
 
       reducer(state, action) {
         state.fullName = action.payload.fullName;
         state.nationalId = action.payload.nationalId;
         state.createdAt = action.payload.createdAt;
-      }
+      },
     },
     updateName(state, action) {
       state.fullName = action.payload;
-    }
-  }
+    },
+  },
 });
 
 export const { createCustomer, updateName } = customerSlice.actions;

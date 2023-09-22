@@ -3662,4 +3662,121 @@ requestLoan: {
     },
 ```
 
+**accountSlice with redux toolkit**
+
+```js
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  balance: 0,
+  loan: 0,
+  loanPurpose: "",
+  isLoading: false,
+};
+
+const accountSlice = createSlice({
+  name: "account",
+  initialState: initialState,
+  reducers: {
+    deposit(state, action) {
+      state.balance = state.balance + action.payload;
+      state.isLoading = false;
+    },
+    withdraw(state, action) {
+      state.balance = state.balance - action.payload;
+    },
+    requestLoan: {
+      prepare(amount, purpose) {
+        return { payload: { amount, purpose } };
+      },
+      reducer(state, action) {
+        state.loan = action.payload.amount;
+        state.loanPurpose = action.payload.purpose;
+        state.balance = state.balance + action.payload.amount;
+      },
+    },
+    payLoan(state) {
+      if (state.loan > 0) return;
+      state.balance = state.balance - state.loan; //this line now needs to go above the state.loan = 0
+      state.loan = 0;
+      state.loanPurpose = "";
+    },
+    convertingCurrency(state) {
+      state.isLoading = true;
+    },
+  },
+});
+
+export function deposit(amount, currency) {
+  if (currency === "USD") return { type: "account/deposit", payload: amount };
+  //This (function below) is the async action we want to preform before we dispatch the action
+  return async function (dispatch, getState) {
+    //API call
+    const result = await fetch(
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
+    );
+    const data = await result.json();
+    console.log(data);
+    const toUSD = data.rates.USD;
+    //dispatch the action
+    dispatch({ type: "account/deposit", payload: toUSD });
+  };
+}
+
+export const { withdraw, requestLoan, payLoan } = accountSlice.actions;
+export default accountSlice.reducer;
+```
+
+---
+
+### Redux vs Context API:
+
+![Pros & Cons](./images/2023-09-22-17-54-32.png)
+
+#### Tips for when to use each:
+
+- Use Context API for global state managment in small apps
+- Use Redux for global state managment in large apps
+- Use context when you need to share a value that doesn't change very often (i.e. theme, user authentication, language)
+- Use redux for global state that changes often (i.e. shopping cart, current tab, filters, search results).
+- Use Redux when you have complex state with nested objects and arrays (because you can mutate state with Redux toolkit).
+- Use context when you want to fix lots of prop drilling or share state in a local sub-tree of the app.
+-
+
 </details>
+
+## More Resources:
+
+👉 [React Libraries for 2023](https://www.robinwieruch.de/react-libraries/?ref=jonas.io) (Written in 2023, but will be up-to-date for years, as the ecosystem is relatively stable now)
+
+👉 [Styled-components best practices](https://www.joshwcomeau.com/css/styled-components/?ref=jonas.io) (By the excellent writer and educator Josh W. Comeau)
+
+👉 [A Thorough Analysis of CSS-in-JS](https://css-tricks.com/a-thorough-analysis-of-css-in-js/?ref=jonas.io)
+
+👉 [Practical React Query](https://tkdodo.eu/blog/practical-react-query?ref=jonas.io) (A huge series from one of React Query's maintainers. Started in 2020, but is still going, and still very helpful)
+
+👉 [React Query meets React Router](https://tkdodo.eu/blog/react-query-meets-react-router?ref=jonas.io) (From the same series as above)
+
+👉 [Picking the right React component pattern](https://www.benmvp.com/blog/picking-right-react-component-pattern/?ref=jonas.io)
+
+👉 [Bulletproof-react: A simple, scalable, and powerful architecture for building production-ready React applications](https://github.com/alan2207/bulletproof-react?ref=jonas.io) (GitHub repository)
+
+**Library documentation:**
+
+👉 [Tailwind CSS: Installation With Vite](https://tailwindcss.com/docs/guides/vite?ref=jonas.io)
+
+👉 [styled-components](https://styled-components.com/docs?ref=jonas.io)
+
+👉 [Supabase Javascript Client Library](https://supabase.com/docs/reference/javascript/installing?ref=jonas.io)
+
+👉 [TanStack (React) Query v4](https://tanstack.com/query/v4/docs/react/overview?ref=jonas.io)
+
+👉 [Recharts](https://recharts.org/en-US/examples?ref=jonas.io)
+
+👉 [date-fns](https://date-fns.org/docs/Getting-Started/?ref=jonas.io)
+
+---
+
+---
+
+## React Router with Data Loading
