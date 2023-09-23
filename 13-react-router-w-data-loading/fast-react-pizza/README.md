@@ -58,7 +58,12 @@
 
 
 **State Managment & Tech Decisions**
-1. User
-2. Menu
-3. Cart
-4. Order
+1. User   ---> Global UI state (no accounts, so stays in app)
+2. Menu   ---> Global Remote State (menu is fetched from api)
+3. Cart   ---> Global UI state 
+4. Order  ---> Global Remote State (fetched and submitted to API)
+
+
+**Technology Decisions**
+
+![Tech Stack](./../../images/2023-09-23-13-46-03.png)
