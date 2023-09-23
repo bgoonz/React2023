@@ -3782,3 +3782,51 @@ export default accountSlice.reducer;
 ## React Router with Data Loading
 
 ### [React Fast Pizza](./13-react-router-w-data-loading/fast-react-pizza/README.md)
+
+
+<details>
+    <summary>Click to expand</summary>
+    
+### [Documentation](https://reactrouter.com/en/main)    
+
+##### [create-browser-router](https://reactrouter.com/en/main/routers/create-browser-router)
+
+- This is the recommended router for all React Router web projects. It uses the DOM History API to update the URL and manage the history stack.
+    - It also enables the v6.4 data APIs like loaders, actions, fetchers and more.
+
+
+>Basic usage:
+- We need BrowserRouter in order to fetch data using react router.
+```js
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import Home from './ui/Home';
+import Menu from './features/menu/Menu';
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <Home />,
+    },
+    {
+        path:'/menu',
+        element: <Menu />,
+    },
+    {
+        path: '/cart',
+        element: <Cart />,
+    }
+])
+
+function App() {
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
+}
+
+export default App;
+```
+    
+
+</details>    
