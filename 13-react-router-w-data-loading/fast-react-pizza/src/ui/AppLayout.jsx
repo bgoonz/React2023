@@ -4,13 +4,12 @@ import { Outlet } from "react-router-dom";
 import { useNavigation } from "react-router-dom";
 import Loader from "./Loader";
 function AppLayout() {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
   const isLoading = navigation.state === "loading";
-    
+
   return (
     <div className="layout">
-        
-        {isLoading && <Loader />}
+      {isLoading && <Loader />}
       <Header />
       <main>
         <Outlet />

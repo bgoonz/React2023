@@ -3947,6 +3947,38 @@ const router = createBrowserRouter([
 
 - Here react will start fetching the data at the same time as it starts loading the route.
 - When we use useEffect... we start fetching the data after the component has first rendered.
-- To check the loading status of the loader we use a hook called `useNavigation`, which gives us the status of loading for the entire application. 
+- To check the loading status of the loader we use a hook called `useNavigation`, which gives us the status of loading for the entire application.
+
+**Error Handling with React Router**
+
+- Keep in mind that errors bubble up to the parent route.
+
+```js
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    errorElement: <Error />,
+  },
+  //...
+]);
+//Error.jsx
+
+import { useNavigate, useRouteError } from "react-router-dom";
+
+function Error() {
+  const navigate = useNavigate();
+  const error = useRouteError();
+
+  return (
+    <div>
+      <h1>Something went wrong 😢</h1>
+      <p>{error.data}</p>
+      <button onClick={() => navigate(-1)}>&larr; Go back</button>
+    </div>
+  );
+}
+
+export default Error;
+```
 
 </details>
