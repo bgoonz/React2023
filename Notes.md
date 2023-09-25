@@ -123,3 +123,7 @@ npm install react-datepicker
   dateFormat="dd/MM/yyyy"
 />
 ```
+
+
+
+### [Regex Library](https://uibakery.io/regex-library/email)

@@ -3981,4 +3981,52 @@ function Error() {
 export default Error;
 ```
 
+
+#### React Router Actions:
+
+- We use loaders to fetch data from an api... we can use Actions to write data to the api.
+
+> CreateOrder.jsx
+
+```js
+import {Form} from 'react-router-dom';
+
+<Form method="POST" action="/order/new">
+        <div>
+          <label>First Name</label>
+          <input type="text" name="customer" required />
+        </div>
+</Form>
+    </div>
+  );
+}
+
+export async function action({request}){
+    const formData = await request.formData();
+    console.log(formData)
+    const data = Object.fromEntries(formData);
+    console.log(data)
+    return null;
+}
+
+
+export default CreateOrder;
+```
+> App.jsx
+```js
+      {
+        path: "/order/new",
+        element: <CreateOrder />,
+        action: createOrderAction,
+      },
+
+```
+
+
+
+
+
+
+
+
 </details>
