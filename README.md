@@ -3947,6 +3947,6 @@ const router = createBrowserRouter([
 
 - Here react will start fetching the data at the same time as it starts loading the route.
 - When we use useEffect... we start fetching the data after the component has first rendered.
--
+- To check the loading status of the loader we use a hook called `useNavigation`, which gives us the status of loading for the entire application. 
 
 </details>
