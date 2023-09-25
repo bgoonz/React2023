@@ -3780,3 +3780,173 @@ export default accountSlice.reducer;
 ---
 
 ## React Router with Data Loading
+
+### [React Fast Pizza](./13-react-router-w-data-loading/fast-react-pizza/README.md)
+
+<details>
+    <summary>Click to expand</summary>
+    
+### [Documentation](https://reactrouter.com/en/main)
+
+##### [create-browser-router](https://reactrouter.com/en/main/routers/create-browser-router)
+
+- This is the recommended router for all React Router web projects. It uses the DOM History API to update the URL and manage the history stack.
+  - It also enables the v6.4 data APIs like loaders, actions, fetchers and more.
+
+> Basic usage:
+
+- We need BrowserRouter in order to fetch data using react router.
+
+```js
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./ui/Home";
+import Menu from "./features/menu/Menu";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/menu",
+    element: <Menu />,
+  },
+  {
+    path: "/cart",
+    element: <Cart />,
+  },
+]);
+
+function App() {
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
+}
+
+export default App;
+```
+
+**We can create a universal app layout that will be used for all pages by using the children prop in createBrowserRouter**
+
+```js
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/menu",
+        element: <Menu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
+        path: "/order/new",
+        element: <CreateOrder />,
+      },
+      {
+        path: "/order/:orderId",
+        element: <Order />,
+      },
+    ],
+  },
+]);
+```
+
+**Then we can use the `<Outlet />` component to render the children of the current nested route.**
+
+- We are using the AppLayout component as the parent route of all the other routes, and then we are displaying the content of the current nested route using the `<Outlet />` component.
+
+```js
+import Header from "./Header";
+import CartOverview from "./../features/cart/CartOverview";
+import { Outlet } from "react-router-dom";
+function AppLayout() {
+  return (
+    <div>
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+
+      <CartOverview />
+    </div>
+  );
+}
+
+export default AppLayout;
+```
+
+### Using React Router Loaders:
+
+- We provide a loader function to a route and the loader will load the appropriate data when we visit that route, where it will be provided to the component through a special custom hook.
+
+> apiResturant.js
+
+```js
+const API_URL = "https://react-fast-pizza-api.onrender.com/api";
+
+export async function getMenu() {
+  const res = await fetch(`${API_URL}/menu`);
+
+  // fetch won't throw error on 400 errors (e.g. when URL is wrong), so we need to do it manually. This will then go into the catch block, where the message is set
+  if (!res.ok) throw Error("Failed getting menu");
+
+  const { data } = await res.json();
+  return data;
+}
+```
+
+> Menu.js
+
+```js
+import { useLoaderData } from "react-router-dom";
+import { getMenu } from "../../services/apiRestaurant.js";
+function Menu() {
+  const menu = useLoaderData();
+  console.log(menu);
+  return <h1>Menu</h1>;
+}
+
+export async function loader() {
+  const menu = await getMenu();
+  return menu;
+}
+
+export default Menu;
+```
+
+> App.js
+
+```js
+import Menu, { loader as menuLoader } from "./features/menu/Menu";
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />
+      },
+      {
+        path: "/menu",
+        element: <Menu />,
+        loader: menuLoader,
+      },
+//...
+  }
+    ])
+```
+
+- Here react will start fetching the data at the same time as it starts loading the route.
+- When we use useEffect... we start fetching the data after the component has first rendered.
+-
+
+</details>
