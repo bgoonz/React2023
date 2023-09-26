@@ -1,7 +1,7 @@
-import { useState } from "react";
-import Button from "./../../ui/Button";
+import { useState } from 'react';
+import Button from './../../ui/Button';
 function CreateUser() {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -21,7 +21,7 @@ function CreateUser() {
         onChange={(e) => setUsername(e.target.value)}
       />
 
-      {username !== "" && (
+      {username !== '' && (
         <div>
           <Button>Start ordering</Button>
         </div>

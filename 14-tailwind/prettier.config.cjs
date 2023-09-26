@@ -1,5 +1,5 @@
 // prettier.config.js
 module.exports = {
-    plugins: ['prettier-plugin-tailwindcss'],
-    singleQuotes:true,
-  }
+  plugins: ['prettier-plugin-tailwindcss'],
+  singleQuote: true,
+};
