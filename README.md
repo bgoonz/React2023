@@ -3927,4 +3927,18 @@ npm install -D prettier prettier-plugin-tailwindcss
       <h1 className="text-center text-xl font-semibold text-yellow-500  tracking-[.25em]">
 ```
 
+##### Margin:
+
+```jsx
+    <div className="my-10 text-center"> 
+```
+- In the code above `my-10` is the same as `mt-10 mb-10` (margin-top and margin-bottom)... it stands for margin in the y-axis.
+
+
+##### Padding:
+
+```jsx
+    <header className="bg-yellow-500 uppercase px-4 py-3">
+```
+
 </details>
