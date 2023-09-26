@@ -4034,9 +4034,17 @@ export default CreateOrder;
 ### Tailwind is a utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.    
     
     
-#### [Tailwind Docs](https://v2.tailwindcss.com/docs)    
+#### [Tailwind Docs](https://tailwindcss.com/docs/installation)    
     
-    
+- With tailwind we have hundreds of utility classes each with a specific purpose that we combine to build our app layout.
+
+
+#### Setting Up Tailwind
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
     
     
     
