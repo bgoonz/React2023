@@ -3941,4 +3941,21 @@ npm install -D prettier prettier-plugin-tailwindcss
     <header className="bg-yellow-500 uppercase px-4 py-3">
 ```
 
+### Media Query Breakpoints:
+
+![Media Query Breakpoints](./images/2023-09-26-13-37-13.png)
+
+
+```jsx
+    <div className="my-10 text-center sm:my-16">
+    // This sm:my-16 overides the my-10 at a minimum width of 640px
+    // That means it applies to screens with a width over 640px not under...
+```
+
+
+
+
+
+
+
 </details>
