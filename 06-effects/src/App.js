@@ -46,7 +46,7 @@ export default function App() {
 
         const response = await fetch(
           `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-          { signal: controller.signal }
+          { signal: controller.signal },
         );
 
         if (!response.ok)

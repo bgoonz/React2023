@@ -14,5 +14,5 @@ root.render(
     <StarRating size={24} color="red" className="test" defaultRating={2} />
 
     <Test /> */}
-  </React.StrictMode>
+  </React.StrictMode>,
 );

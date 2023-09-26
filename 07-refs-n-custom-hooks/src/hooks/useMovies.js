@@ -16,7 +16,7 @@ export function useMovies(query, callback, key) {
 
         const response = await fetch(
           `https://www.omdbapi.com/?apikey=${key}&s=${query}`,
-          { signal: controller.signal }
+          { signal: controller.signal },
         );
 
         if (!response.ok)

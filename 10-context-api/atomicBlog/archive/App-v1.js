@@ -12,7 +12,7 @@ function App() {
     function () {
       document.documentElement.classList.toggle("fake-dark-mode");
     },
-    [isFakeDark]
+    [isFakeDark],
   );
 
   return (

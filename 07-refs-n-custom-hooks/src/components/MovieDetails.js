@@ -17,7 +17,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
   const watchedUserRating = watched.find(
-    (movie) => movie.imdbID === selectedId
+    (movie) => movie.imdbID === selectedId,
   )?.userRating;
 
   const {
@@ -53,7 +53,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     async function getMovieDetails() {
       setIsLoading(true);
       const response = await fetch(
-        `https://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
+        `https://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`,
       );
       const data = await response.json();
       setMovie(data);
@@ -62,6 +62,8 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     getMovieDetails();
   }, [selectedId]);
 
+  
+ 
   useEffect(() => {
     document.title = title || "Movie Details";
 

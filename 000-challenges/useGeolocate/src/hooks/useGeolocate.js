@@ -26,7 +26,7 @@ export function useGeolocate() {
       (error) => {
         setError(error.message);
         setIsLoading(false);
-      }
+      },
     );
   }
   return { getPosition, isLoading, countClicks, error, lat, lng };

@@ -210,12 +210,12 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     function () {
       if (userRating) countRef.current++;
     },
-    [userRating]
+    [userRating],
   );
 
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
   const watchedUserRating = watched.find(
-    (movie) => movie.imdbID === selectedId
+    (movie) => movie.imdbID === selectedId,
   )?.userRating;
 
   const {
@@ -274,7 +274,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       async function getMovieDetails() {
         setIsLoading(true);
         const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
+          `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`,
         );
         const data = await res.json();
         setMovie(data);
@@ -282,7 +282,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       }
       getMovieDetails();
     },
-    [selectedId]
+    [selectedId],
   );
 
   useEffect(
@@ -295,7 +295,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
         // console.log(`Clean up effect for movie ${title}`);
       };
     },
-    [title]
+    [title],
   );
 
   return (

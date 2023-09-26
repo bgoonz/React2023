@@ -46,7 +46,7 @@ export function deposit(amount, currency) {
   return async function (dispatch, getState) {
     //API call
     const result = await fetch(
-      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`,
     );
     const data = await result.json();
     console.log(data);

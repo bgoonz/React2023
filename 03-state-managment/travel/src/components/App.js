@@ -15,8 +15,8 @@ function App() {
   function handleUpdateItem(id) {
     setItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === id ? { ...item, packed: !item.packed } : item
-      )
+        item.id === id ? { ...item, packed: !item.packed } : item,
+      ),
     );
   }
   function clearList() {

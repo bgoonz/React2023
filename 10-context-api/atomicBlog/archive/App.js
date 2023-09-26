@@ -10,7 +10,7 @@ export const PostContext = createContext();
 function App() {
   // The callback function to useState is only called once, when the component is first rendered.
   const [posts, setPosts] = useState(() =>
-    Array.from({ length: 30 }, () => createRandomPost())
+    Array.from({ length: 30 }, () => createRandomPost()),
   );
   const [searchQuery, setSearchQuery] = useState("");
   const [isFakeDark, setIsFakeDark] = useState(false);
@@ -21,7 +21,7 @@ function App() {
     searchedPosts = posts.filter((post) =>
       `${post.title} ${post.body}`
         .toLowerCase()
-        .includes(searchQuery.toLowerCase())
+        .includes(searchQuery.toLowerCase()),
     );
   } else {
     searchedPosts = posts;
@@ -40,7 +40,7 @@ function App() {
     function () {
       document.documentElement.classList.toggle("fake-dark-mode");
     },
-    [isFakeDark]
+    [isFakeDark],
   );
 
   return (

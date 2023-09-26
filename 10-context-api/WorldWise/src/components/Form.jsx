@@ -33,7 +33,7 @@ function Form() {
         setIsLoadingGeocoding(true);
         setGeocodingError("");
         const response = await fetch(
-          `${BASE_URL}?latitude=${lat}&longitude=${lng}`
+          `${BASE_URL}?latitude=${lat}&longitude=${lng}`,
         );
         const data = await response.json();
         console.log(data);

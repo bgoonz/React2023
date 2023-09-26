@@ -19,7 +19,7 @@ export default function App() {
   useEffect(() => {
     async function fetchConversion() {
       const response = await fetch(
-        `https://api.frankfurter.app/latest?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`
+        `https://api.frankfurter.app/latest?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`,
       );
       const data = await response.json();
       console.log(data); // Add this line to check the structure of the data object
