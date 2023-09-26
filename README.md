@@ -3952,8 +3952,33 @@ npm install -D prettier prettier-plugin-tailwindcss
     // That means it applies to screens with a width over 640px not under...
 ```
 
+### How to reuse styles using tailwind.
 
+>index.css
 
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .input {
+        @apply w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-300 focus:outline-none focus:ring focus:ring-yellow-500 md:px-6 md:py-3;
+    }
+}
+```
+
+>CreateOrder.jsx
+
+```jsx
+       <input
+              type="text"
+              placeholder="Your Address"
+              name="address"
+              required
+              className="input"
+            />
+```
 
 
 
