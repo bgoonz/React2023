@@ -12,7 +12,7 @@ function SearchOrder() {
     event.preventDefault();
     if (!query) return;
     navigate(`/order/${query}`);
-    setQuery("")
+    setQuery("");
   }
 
   return (

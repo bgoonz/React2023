@@ -4046,7 +4046,21 @@ npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
     
+**Prettier Extension For Tailwind**
+
+```bash
+npm install -D prettier prettier-plugin-tailwindcss
+```    
     
     
+    
+#### [Tailwind Colors](https://tailwindcss.com/docs/customizing-colors)    
+
+
+```jsx
+      <h1 className="text-center text-xl font-semibold text-yellow-500">
+```
+- In the code above we are using the color text-yellow-500... if we wanted it to be darker we could use text-yellow-600 or lighter text-yellow-400.
+- 
     
 </details>
