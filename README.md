@@ -3980,6 +3980,54 @@ npm install -D prettier prettier-plugin-tailwindcss
             />
 ```
 
+#### Overiding Default Font Family:
+
+#### [Google Fonts](https://fonts.google.com/specimen/Roboto+Mono)
+> Select fonts on page and copy link and add it to your html file.
+
+>tailwind.config.js
+
+```js
+/* eslint-disable import/no-anonymous-default-export */
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    fontFamily:{
+        pizza:'Roboto Mono, monospace',
+    },
+    extend: {},
+  },
+  plugins: [],
+};
+
+```
+
+
+> Header.jsx
+```jsx
+<header className="flex items-center justify-between border-b border-stone-500 bg-yellow-400 px-4 py-3 uppercase sm:px-6 font-pizza">
+```
+
+
+##### Overiding font for entire app:
+
+> tailwind.config.js
+
+```js
+/* eslint-disable import/no-anonymous-default-export */
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    fontFamily:{
+        sans:'Roboto Mono, monospace',
+    },
+    extend: {},
+  },
+  plugins: [],
+};
+```
 
 
 
