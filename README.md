@@ -3930,10 +3930,10 @@ npm install -D prettier prettier-plugin-tailwindcss
 ##### Margin:
 
 ```jsx
-    <div className="my-10 text-center"> 
+    <div className="my-10 text-center">
 ```
-- In the code above `my-10` is the same as `mt-10 mb-10` (margin-top and margin-bottom)... it stands for margin in the y-axis.
 
+- In the code above `my-10` is the same as `mt-10 mb-10` (margin-top and margin-bottom)... it stands for margin in the y-axis.
 
 ##### Padding:
 
@@ -3945,7 +3945,6 @@ npm install -D prettier prettier-plugin-tailwindcss
 
 ![Media Query Breakpoints](./images/2023-09-26-13-37-13.png)
 
-
 ```jsx
     <div className="my-10 text-center sm:my-16">
     // This sm:my-16 overides the my-10 at a minimum width of 640px
@@ -3954,7 +3953,7 @@ npm install -D prettier prettier-plugin-tailwindcss
 
 ### How to reuse styles using tailwind.
 
->index.css
+> index.css
 
 ```css
 @tailwind base;
@@ -3962,53 +3961,46 @@ npm install -D prettier prettier-plugin-tailwindcss
 @tailwind utilities;
 
 @layer components {
-    .input {
-        @apply w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-300 focus:outline-none focus:ring focus:ring-yellow-500 md:px-6 md:py-3;
-    }
+  .input {
+    @apply w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-300 focus:outline-none focus:ring focus:ring-yellow-500 md:px-6 md:py-3;
+  }
 }
 ```
 
->CreateOrder.jsx
+> CreateOrder.jsx
 
 ```jsx
-       <input
-              type="text"
-              placeholder="Your Address"
-              name="address"
-              required
-              className="input"
-            />
+<input type="text" placeholder="Your Address" name="address" required className="input" />
 ```
 
 #### Overiding Default Font Family:
 
 #### [Google Fonts](https://fonts.google.com/specimen/Roboto+Mono)
+
 > Select fonts on page and copy link and add it to your html file.
 
->tailwind.config.js
+> tailwind.config.js
 
 ```js
 /* eslint-disable import/no-anonymous-default-export */
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    fontFamily:{
-        pizza:'Roboto Mono, monospace',
+    fontFamily: {
+      pizza: "Roboto Mono, monospace"
     },
-    extend: {},
+    extend: {}
   },
-  plugins: [],
+  plugins: []
 };
-
 ```
 
-
 > Header.jsx
+
 ```jsx
 <header className="flex items-center justify-between border-b border-stone-500 bg-yellow-400 px-4 py-3 uppercase sm:px-6 font-pizza">
 ```
-
 
 ##### Overiding font for entire app:
 
@@ -4018,16 +4010,31 @@ export default {
 /* eslint-disable import/no-anonymous-default-export */
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    fontFamily:{
-        sans:'Roboto Mono, monospace',
+    fontFamily: {
+      sans: "Roboto Mono, monospace"
     },
-    extend: {},
+    extend: {}
   },
-  plugins: [],
+  plugins: []
 };
 ```
+
+</details>
+
+---
+
+---
+
+## Redux & Advanced React Router:
+
+<details>
+    <summary>Click to expand</summary>
+
+
+
+
 
 
 
