@@ -107,7 +107,7 @@ function CreateOrder() {
 export async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-
+  console.log(data);
   const order = {
     ...data,
     cart: JSON.parse(data.cart),
@@ -115,14 +115,14 @@ export async function action({ request }) {
   };
 
   const errors = {};
-  if (!isValidPhone(order.phone))
-    errors.phone =
-      'Please give us your correct phone number. We might need it to contact you.';
+  if (!isValidPhone(order.phone)) {
+    errors.phone = 'Invalid phone number';
+  }
 
-  if (Object.keys(errors).length > 0) return errors;
-
-  // If everything is okay, create new order and redirect
-
+  if (Object.keys(errors).length > 0) {
+    return errors;
+  }
+  // If there are no errors ... create the order & redirect.
   const newOrder = await createOrder(order);
 
   return redirect(`/order/${newOrder.id}`);
