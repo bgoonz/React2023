@@ -4032,10 +4032,128 @@ export default {
 <details>
     <summary>Click to expand</summary>
 
+> Method notation:
+
+```js
+const userSlice = createSlice({
+  name: "user",
+  initialState,
+  reducers: {
+    updateName(state, action) {
+      state.username = action.payload;
+    }
+  }
+});
+```
+
+note that in the code above
+
+```js
+ reducers:{
+        updateName(state,action){
+            state.username=action.payload;
+        }
+```
+
+- is ES6 shorthand notation for a method on an object and is equivalent to:
+
+```js
+ reducers:{
+        updateName: function(state,action){
+            state.username=action.payload;
+        }
+    }
+```
+
+### Configuring Redux:
+
+> store.js
+
+```js
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "./features/user/userSlice";
+const store = configureStore({
+  reducer: {
+    user: userReducer
+  }
+});
+
+export default store;
+```
+
+> userSlice.js
+
+```js
+import { createSlice } from "@reduxjs/toolkit";
 
 
+const initialState={
+    username:'',
+}
 
 
+const userSlice = createSlice({
+    name:'user',
+    initialState,
+    reducers:{
+        updateName(state,action){
+            state.username=action.payload;
+        }
+    }
+});
+export const {updateName}=userSlice.actions;
+export default userSlice.reducer;
+```
+
+> main.js
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+import {Provider} from 'react-redux';
+import store from './store.js';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+);
+```
+>Username.jsx
+
+```js
+import {useSelector} from 'react-redux';
+function Username() {
+    const username = useSelector((state) => state.user.username);
+  return (
+    <div className="hidden text-sm font-semibold md:block">{username}</div>
+  );
+}
+
+export default Username;
+```
+
+> CreateUser.jsx
+
+```js
+import { useDispatch } from 'react-redux';
+import {updateName} from './userSlice';
+function CreateUser() {
+  const [username, setUsername] = useState('');
+
+  const dispatch = useDispatch();
+  
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (username === '') return;
+    dispatch(updateName(username));
+  }
+
+```
 
 
 </details>
