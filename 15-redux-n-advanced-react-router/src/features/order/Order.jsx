@@ -22,7 +22,7 @@ function Order() {
     cart,
   } = order;
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
-  console.log(cart);
+  
   return (
     <div className="space-y-8 px-4 py-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -76,7 +76,7 @@ function Order() {
 
 export async function loader({ params }) {
   const order = await getOrder(params.orderId);
-  console.log(order);
+  
   return order;
 }
 
