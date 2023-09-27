@@ -4156,4 +4156,29 @@ function CreateUser() {
 ```
 
 
+##### Using one reducer in another reducer:
+
+```js
+    deleteItem(state, action) {
+      //payload = itemId
+      state.cart = state.cart.filter((item) => item.pizzaId !== action.payload);
+    },
+    increaseItemQuantity(state, action) {
+      //payload = itemId
+      const item = state.cart.find((item) => item.pizzaId === action.payload);
+      item.quantity++;
+      item.totalPrice = item.quantity * item.unitPrice;
+    },
+    decreaseItemQuantity(state, action) {
+      //payload = itemId
+      const item = state.cart.find((item) => item.pizzaId === action.payload);
+      item.quantity--;
+      item.totalPrice = item.quantity * item.unitPrice;
+      //   if(item.quantity === 0) state.cart = state.cart.filter((item) => item.pizzaId !== action.payload);
+      // The line below this one is equivalent to the commented out code above
+      if (item.quantity === 0) cartSlice.caseReducers.deleteItem(state, action);
+    },
+```
+
+
 </details>

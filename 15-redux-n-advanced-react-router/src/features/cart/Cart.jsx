@@ -7,6 +7,7 @@ import EmptyCart from './EmptyCart';
 
 function Cart() {
   const cart = useSelector(getCart);
+  console.log(cart)
   const username = useSelector((state) => state.user.username);
   const dispatch = useDispatch();
 
@@ -24,7 +25,7 @@ function Cart() {
 
       <ul className="mt-3 divide-y  divide-stone-200 border-b ">
         {cart.map((item) => (
-          <CartItem key={item.id} item={item} />
+          <CartItem key={item.pizzaId} item={item} />
         ))}
       </ul>
 
