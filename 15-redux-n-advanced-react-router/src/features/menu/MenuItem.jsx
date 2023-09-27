@@ -25,6 +25,12 @@ function MenuItem({ pizza }) {
     };
     dispatch(addItem(newItem));
   }
+  let priceBreakdown = formatCurrency(unitPrice);
+  if (currentQuantity > 0) {
+    priceBreakdown += ` x ${currentQuantity} = ${formatCurrency(
+      unitPrice * currentQuantity,
+    )}`;
+  }
 
   return (
     <li className="flex gap-4 py-2" key={id}>
@@ -40,14 +46,7 @@ function MenuItem({ pizza }) {
         </p>
         <div className="mt-auto flex  items-center justify-between">
           {!soldOut ? (
-            <p className="text-sm">
-              {formatCurrency(unitPrice)} {currentQuantity > 0 ? 'x' : ''}{' '}
-              {currentQuantity > 0 ? currentQuantity : null}{' '}
-              {currentQuantity > 0 ? '=' : ''}{' '}
-              {currentQuantity > 0
-                ? formatCurrency(unitPrice * currentQuantity)
-                : null}
-            </p>
+            <p className="text-sm">{priceBreakdown}</p>
           ) : (
             <p className="text-sm font-medium uppercase text-stone-500">
               Sold out
