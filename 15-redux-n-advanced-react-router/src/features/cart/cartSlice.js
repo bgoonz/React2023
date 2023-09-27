@@ -51,3 +51,13 @@ export const {
   clearCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;
+
+
+export const getTotalCartQuantity =(state)=>{
+    return state.cart.cart.reduce((accum,item)=>accum+item.quantity,0)
+ }
+
+ 
+ export const getTotalCartPrice =(state)=>{
+    return state.cart.cart.reduce((accum,item)=>accum+item.totalPrice,0)
+ }
