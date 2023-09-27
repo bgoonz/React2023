@@ -27,4 +27,4 @@ function removeConsoleLogs(dir) {
 }
 
 // Start the process from the desired directory (e.g., './src')
-removeConsoleLogs('./src');
+removeConsoleLogs('./../../src');
