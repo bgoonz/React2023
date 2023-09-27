@@ -46,7 +46,7 @@ function MenuItem({ pizza }) {
         </p>
         <div className="mt-auto flex  items-center justify-between">
           {!soldOut ? (
-            <p className="text-sm">{priceBreakdown}</p>
+            <p className="text-xs">{priceBreakdown}</p>
           ) : (
             <p className="text-sm font-medium uppercase text-stone-500">
               Sold out
