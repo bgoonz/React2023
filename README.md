@@ -4236,3 +4236,42 @@ const userSlice = createSlice({
 ```
 
 </details>
+
+
+---
+---
+
+## Styled Components & Fullstack Apps:
+
+<details>
+    <summary>Click to expand</summary>
+
+### Client Side Rendering vs Server Side Rendering:
+
+#### Client-Side Rendering (CSR)
+- With CSR, the browser fetches a minimal HTML page and JavaScript. The React application runs and renders components in the browser. This means the page remains blank until the JavaScript is executed and the content is rendered.
+
+**Pros:**
+1. Smooth Interactions: Once the initial load is done, navigating between pages or using features of the SPA (Single Page Application) is typically smooth and fast.
+2. Flexible & Scalable: It's easier to create dynamic and interactive applications.
+3. Reduced Server Load: Since rendering takes place on the client, the server doesn't have to do the heavy lifting.
+
+**Cons:**
+1. Slower Initial Load: The browser has to download, parse, and execute the JavaScript before the user sees content.
+2. SEO Challenges: Not all search engine crawlers execute JavaScript, which may lead to indexing issues.
+
+#### Server-Side Rendering (SSR)
+- With SSR, the server processes the React application and sends the fully rendered page to the browser. The page is immediately viewable, but interactivity may be delayed until JavaScript is parsed and executed.
+
+**Pros:**
+1. Faster Initial Load: Users see content more quickly since the server sends a fully rendered page.
+2. Better SEO: The fully rendered content is more crawlable by search engine bots.
+3. Consistent Environment: The server environment is consistent, making debugging easier compared to various client devices and browsers.
+
+**Cons:**
+1. Server Load: Rendering on the server increases server load and can lead to slower performance if not optimized.
+2. More Complex Setup: Implementing SSR typically requires more setup and configuration than CSR.
+
+![CSR vs SSR](./images/2023-09-28-12-14-58.png)
+    
+</details>    
