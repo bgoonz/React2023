@@ -19,8 +19,14 @@ function CreateOrder() {
 
   const [withPriority, setWithPriority] = useState(false);
 
-  const { username, address, position, status: adressStatus } = user;
-  const isLoadingAddress = adressStatus === 'loading';
+  const {
+    username,
+    address,
+    position,
+    status: addressStatus,
+    error: addressError,
+  } = user;
+  const isLoadingAddress = addressStatus === 'loading';
 
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
@@ -69,22 +75,29 @@ function CreateOrder() {
               type="text"
               name="address"
               required
-              value={address ? address : ''}
+              defaultValue={address}
               disabled={isLoadingAddress}
             />
+            {addressStatus === 'error' && (
+              <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
+                {addressError}
+              </p>
+            )}
           </div>
-          <span className="absolute right-[3px] z-50">
-            <Button
-              type="small"
-              onClick={(event) => {
-                event.preventDefault();
-                dispatch(fetchAddress());
-              }}
-              disabled={isLoadingAddress}
-            >
-              Get Position
-            </Button>
-          </span>
+          {!position.latitude && !position.longitude && (
+            <span className="absolute right-[3px] top-[3px] z-50 md:right-[5px] md:top-[5px]">
+              <Button
+                type="small"
+                onClick={(event) => {
+                  event.preventDefault();
+                  dispatch(fetchAddress());
+                }}
+                disabled={isLoadingAddress}
+              >
+                Get Position
+              </Button>
+            </span>
+          )}
         </div>
 
         <div className="mb-12 flex items-center gap-5">
@@ -103,7 +116,16 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <Button disabled={isSubmitting} type="primary">
+          <input
+            type="hidden"
+            name="position"
+            value={
+              position.longitude
+                ? `${position.latitude},${position.longitude}`
+                : ''
+            }
+          />
+          <Button disabled={isSubmitting || isLoadingAddress} type="primary">
             {isSubmitting
               ? 'Placing order....'
               : `Order now for ${formatCurrency(totalPrice)}`}
@@ -121,6 +143,7 @@ export async function action({ request }) {
     cart: JSON.parse(data.cart),
     priority: data.priority === 'true',
   };
+  console.log('order', order)
   const errors = {};
   if (!isValidPhone(order.phone)) {
     errors.phone = 'Invalid phone number';
