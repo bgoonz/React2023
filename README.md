@@ -4273,5 +4273,51 @@ const userSlice = createSlice({
 2. More Complex Setup: Implementing SSR typically requires more setup and configuration than CSR.
 
 ![CSR vs SSR](./images/2023-09-28-12-14-58.png)
+
+
+#### [Styled Components](https://styled-components.com/docs/basics)
+
+**Installing Styled Components**
+
+```bash
+npm install styled-components
+```
+
+
+```js
+import styled from "styled-components";
+
+const H1 =  styled.h1`
+font-size:30px;
+font-weight:900;
+`
+
+```
+- The code above creates a new component called `<H1>` that has the provided styles, that we can use elsewhere in our code.
+
+```js
+import styled from "styled-components";
+
+const H1 =  styled.h1`
+font-size:30px;
+font-weight:900;
+`
+
+
+function App() {
+  return (
+    <div>
+      <span>Hello World</span>
+        <H1>Styled Components</H1>
+    </div>
+  );
+}
+export default App;
+```
+
+### Global Styles with Styled Components
+
+
+
     
 </details>    

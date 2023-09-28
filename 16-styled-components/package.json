@@ -3,5 +3,8 @@
     "eslint": "^8.50.0",
     "eslint-config-react-app": "^7.0.1",
     "vite-plugin-eslint": "^1.8.1"
+  },
+  "dependencies": {
+    "styled-components": "^6.0.8"
   }
 }
