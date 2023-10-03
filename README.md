@@ -4086,52 +4086,49 @@ export default store;
 ```js
 import { createSlice } from "@reduxjs/toolkit";
 
-
-const initialState={
-    username:'',
-}
-
+const initialState = {
+  username: ""
+};
 
 const userSlice = createSlice({
-    name:'user',
-    initialState,
-    reducers:{
-        updateName(state,action){
-            state.username=action.payload;
-        }
+  name: "user",
+  initialState,
+  reducers: {
+    updateName(state, action) {
+      state.username = action.payload;
     }
+  }
 });
-export const {updateName}=userSlice.actions;
+export const { updateName } = userSlice.actions;
 export default userSlice.reducer;
 ```
 
 > main.js
 
 ```js
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import './index.css';
-import {Provider} from 'react-redux';
-import store from './store.js';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+import { Provider } from "react-redux";
+import store from "./store.js";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
 ```
->Username.jsx
+
+> Username.jsx
 
 ```js
-import {useSelector} from 'react-redux';
+import { useSelector } from "react-redux";
 function Username() {
-    const username = useSelector((state) => state.user.username);
-  return (
-    <div className="hidden text-sm font-semibold md:block">{username}</div>
-  );
+  const username = useSelector((state) => state.user.username);
+  return <div className="hidden text-sm font-semibold md:block">{username}</div>;
 }
 
 export default Username;
@@ -4146,7 +4143,7 @@ function CreateUser() {
   const [username, setUsername] = useState('');
 
   const dispatch = useDispatch();
-  
+
   function handleSubmit(e) {
     e.preventDefault();
     if (username === '') return;
@@ -4154,7 +4151,6 @@ function CreateUser() {
   }
 
 ```
-
 
 ##### Using one reducer in another reducer:
 
@@ -4180,20 +4176,19 @@ function CreateUser() {
     },
 ```
 
-
 #### Create Async Thunk:
+
 - createAsyncThunk will create three other action creators for us:
   - pending
   - fulfilled
   - rejected
 
-
 ```js
-export const fetchAddress = createAsyncThunk('user/fetchAddress', async () => {
+export const fetchAddress = createAsyncThunk("user/fetchAddress", async () => {
   const positionObj = await getPosition();
   const position = {
     latitude: positionObj.coords.latitude,
-    longitude: positionObj.coords.longitude,
+    longitude: positionObj.coords.longitude
   };
 
   // 2) Then we use a reverse geocoding API to get a description of the user's address, so we can display it the order form, so that the user can correct it if wrong
@@ -4208,37 +4203,36 @@ export const fetchAddress = createAsyncThunk('user/fetchAddress', async () => {
 - Now we need to handle each of these cases seperatly in our reducers.
 
 ```js
-
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     updateName(state, action) {
       state.username = action.payload;
-    },
+    }
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAddress.pending, (state, action) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(fetchAddress.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = "idle";
         state.position = action.payload.position;
         state.address = action.payload.address;
       })
       .addCase(fetchAddress.rejected, (state, action) => {
-        state.status = 'error';
+        state.status = "error";
         state.error = action.error.message;
       });
-  },
+  }
 });
 ```
 
 </details>
 
-
 ---
+
 ---
 
 ## Styled Components & Fullstack Apps:
@@ -4249,31 +4243,36 @@ const userSlice = createSlice({
 ### Client Side Rendering vs Server Side Rendering:
 
 #### Client-Side Rendering (CSR)
+
 - With CSR, the browser fetches a minimal HTML page and JavaScript. The React application runs and renders components in the browser. This means the page remains blank until the JavaScript is executed and the content is rendered.
 
 **Pros:**
+
 1. Smooth Interactions: Once the initial load is done, navigating between pages or using features of the SPA (Single Page Application) is typically smooth and fast.
 2. Flexible & Scalable: It's easier to create dynamic and interactive applications.
 3. Reduced Server Load: Since rendering takes place on the client, the server doesn't have to do the heavy lifting.
 
 **Cons:**
+
 1. Slower Initial Load: The browser has to download, parse, and execute the JavaScript before the user sees content.
 2. SEO Challenges: Not all search engine crawlers execute JavaScript, which may lead to indexing issues.
 
 #### Server-Side Rendering (SSR)
+
 - With SSR, the server processes the React application and sends the fully rendered page to the browser. The page is immediately viewable, but interactivity may be delayed until JavaScript is parsed and executed.
 
 **Pros:**
+
 1. Faster Initial Load: Users see content more quickly since the server sends a fully rendered page.
 2. Better SEO: The fully rendered content is more crawlable by search engine bots.
 3. Consistent Environment: The server environment is consistent, making debugging easier compared to various client devices and browsers.
 
 **Cons:**
+
 1. Server Load: Rendering on the server increases server load and can lead to slower performance if not optimized.
 2. More Complex Setup: Implementing SSR typically requires more setup and configuration than CSR.
 
 ![CSR vs SSR](./images/2023-09-28-12-14-58.png)
-
 
 #### [Styled Components](https://styled-components.com/docs/basics)
 
@@ -4283,32 +4282,30 @@ const userSlice = createSlice({
 npm install styled-components
 ```
 
-
 ```js
 import styled from "styled-components";
 
-const H1 =  styled.h1`
-font-size:30px;
-font-weight:900;
-`
-
+const H1 = styled.h1`
+  font-size: 30px;
+  font-weight: 900;
+`;
 ```
+
 - The code above creates a new component called `<H1>` that has the provided styles, that we can use elsewhere in our code.
 
 ```js
 import styled from "styled-components";
 
-const H1 =  styled.h1`
-font-size:30px;
-font-weight:900;
-`
-
+const H1 = styled.h1`
+  font-size: 30px;
+  font-weight: 900;
+`;
 
 function App() {
   return (
     <div>
       <span>Hello World</span>
-        <H1>Styled Components</H1>
+      <H1>Styled Components</H1>
     </div>
   );
 }
@@ -4361,20 +4358,18 @@ function App() {
 }
 
 export default App;
-
 ```
 
 ![Basic Example](./images/2023-09-28-18-13-55.png)
 
 ### Global Styles with Styled Components
 
->GlobalStyles.js
-
+> GlobalStyles.js
 
 ```js
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyles= createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
 :root {
   /* Indigo */
   --color-brand-50: #eef2ff;
@@ -4523,7 +4518,6 @@ img {
 
 `;
 export default GlobalStyles;
-
 ```
 
 > How to include in App.jsx
@@ -4531,28 +4525,9 @@ export default GlobalStyles;
 ```js
 import styled from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
-
-const H1 = styled.h1`
-  font-size: 30px;
-  font-weight: 900;
-  background-color: yellow;
-`;
-
-const Button = styled.button`
-  font-size: 1.4rem;
-  padding: 1.2rem 1.6rem;
-  font-weight: 500;
-  border: none;
-  border-radius: 7px;
-  background-color: purple;
-  color: white;
-`;
-
-const Input = styled.input`
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0.8rem 1.2rem;
-`;
+import { Input } from "./ui/Input";
+import Button from "./ui/Button";
+import Heading from "./ui/Heading";
 
 const StyledApp = styled.div`
   background-color: orangered;
@@ -4562,20 +4537,59 @@ const StyledApp = styled.div`
 function App() {
   return (
     <>
-    <GlobalStyles />
-    <StyledApp>
-      <span>Hello World</span>
-      <H1>Styled Components</H1>
-      <Button>Check In</Button>
-      <Button>Check Out</Button>
-      <Input type="text" placeholder="Enter your name" />
-      <Input type="text" placeholder="Enter your email" />
-    </StyledApp>
+      <GlobalStyles />
+      <StyledApp>
+        <Heading as="h1">The Wild Oasis</Heading>
+        <Heading as="h2">Check in and out</Heading>
+        <Button>Check In</Button>
+        <Button>Check Out</Button>
+        <Heading as="h3">Form</Heading>
+        <Input type="text" placeholder="Enter your name" />
+        <Input type="text" placeholder="Enter your email" />
+      </StyledApp>
     </>
   );
 }
 
 export default App;
 ```
-    
-</details>    
+
+##### [Css Function](https://styled-components.com/docs/api#css)
+
+- A helper function to generate CSS from a template literal with interpolations. You need to use this if you return a template literal with functions inside an interpolation due to how tagged template literals work in JavaScript.
+
+- If you're interpolating a string you do not need to use this, only if you're interpolating a function.
+
+```jsx
+import styled, { css } from "styled-components";
+
+const test = css`
+  text-align: center;
+`;
+
+const Heading = styled.h1`
+  ${(props) =>
+    props.type === "h1" &&
+    css`
+      font-size: 3rem;
+      font-weight: 900;
+    `}
+  ${(props) =>
+    props.type === "h2" &&
+    css`
+      font-size: 2rem;
+      font-weight: 900;
+    `}
+    ${(props) =>
+    props.type === "h3" &&
+    css`
+      font-size: 2rem;
+      font-weight: 500;
+    `}
+    line-height: 1.4;
+`;
+
+export default Heading;
+```
+
+</details>
