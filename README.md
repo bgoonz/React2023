@@ -4592,4 +4592,55 @@ const Heading = styled.h1`
 export default Heading;
 ```
 
+**Default Props**
+
+- Has nothing to do with styled components... this is just a standard react feature:
+
+```jsx
+import styled, { css } from "styled-components";
+
+const Row = styled.div`
+  display: flex;
+  ${(props) =>
+    props.type === "horizontal" &&
+    css`
+      justify-content: space-between;
+      align-items: center;
+    `}
+  ${(props) =>
+    props.type === "vertical" &&
+    css`
+      flex-direction: column;
+      gap: 1.6rem;
+    `}
+`;
+
+Row.defaultProps = {
+  type: "vertical"
+};
+
+export default Row;
+```
+
+
+```js
+Row.defaultProps = {
+  type: "vertical"
+};
+// is equivalent to:
+
+function Row({type = "vertical"}) {
+    return (
+        <div>
+            
+        </div>
+    )
+}
+
+export default Row
+```
+
+
+
+
 </details>
