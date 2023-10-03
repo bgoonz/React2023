@@ -4757,3 +4757,16 @@ export async function getCabins() {
 ```    
     
 </details>
+
+
+
+---
+---
+
+## React Query:
+
+<details>
+    <summary>Click to expand</summary>
+    
+    
+</details>    
