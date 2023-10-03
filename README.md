@@ -4726,8 +4726,34 @@ export default MainNav;
 ### [Supabase Project Notes](./17-supabase-backend/README.md)    
     
     
-    
-    
-    
+**Usage**
+
+>subabase.js (supabase cient)    
+
+```js
+//Don't need to worry about exposing api key hear because we enabeled row level security in supabase
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://onnptmnzqsdrtgprhjuu.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ubnB0bW56cXNkcnRncHJoanV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzNTQzOTAsImV4cCI6MjAxMTkzMDM5MH0.uI0XNzJc0lWwtU8VyUhotTwBY50P9xv38YRc8c3bPeU'
+const supabase = createClient(supabaseUrl, supabaseKey)
+
+
+export default supabase;
+
+```    
+>apiCabin.js
+
+```js
+import  supabase  from "./supabase";
+export async function getCabins() {
+  const { data, error } = await supabase.from("cabins").select("*");
+    if (error) {
+    console.error(error);
+    throw new Error("Cabins could not be loaded")
+    }
+    return data;
+}
+```    
     
 </details>
