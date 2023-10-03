@@ -1,3 +1,4 @@
+import { QueryClient } from "react-query";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Account from "./pages/Account";
 import Bookings from "./pages/Bookings";
@@ -9,6 +10,15 @@ import Settings from "./pages/Settings";
 import Users from "./pages/Users";
 import GlobalStyles from "./styles/GlobalStyles";
 import AppLayout from "./ui/AppLayout";
+
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+        refetchOnWindowFocus: false,
+        retry: false,
+        },
+    },
+});
 
 function App() {
   return (

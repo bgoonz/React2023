@@ -4767,6 +4767,23 @@ export async function getCabins() {
 
 <details>
     <summary>Click to expand</summary>
+
+### [React Query Docs](https://tanstack.com/query/latest/docs/react/overview)
+
+- One of the main features of React Query is that the fetched data is stored in a cache as well as providing automatic loading and error states.
+- Can automatically re-fetch data, for example after a certain amount of time or after the user has left the browser window and then returns.
+- We can also use React Query to pre-fetch data before it is needed in the UI (i.e. pagination).
+- Easy remote state mutation (updating).
+- Offline support (when the user is offline display data from the cache).
+
+
+**Setting Up React Query**
+
+```bash
+npm i @tanstack/react-query@4
+```
+
+
     
     
 </details>    
