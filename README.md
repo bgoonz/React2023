@@ -4622,26 +4622,20 @@ Row.defaultProps = {
 export default Row;
 ```
 
-
 ```js
 Row.defaultProps = {
   type: "vertical"
 };
 // is equivalent to:
 
-function Row({type = "vertical"}) {
-    return (
-        <div>
-            
-        </div>
-    )
+function Row({ type = "vertical" }) {
+  return <div></div>;
 }
 
-export default Row
+export default Row;
 ```
 
 #### How to Style a 3rd Party Component (NavLink):
-
 
 ```jsx
 import styled from "styled-components";
@@ -4714,6 +4708,26 @@ export default MainNav;
 
 ###### [Heroicons 2](https://react-icons.github.io/react-icons/icons?name=hi2)
 
+</details>
 
 
+
+---
+---
+
+
+## Supabase Backend:
+
+<details>
+    <summary>Click to expand</summary>
+    
+### [Supabase Docs](https://supabase.com/docs)    
+    
+### [Supabase Project Notes](./17-supabase-backend/README.md)    
+    
+    
+    
+    
+    
+    
 </details>
