@@ -44,3 +44,9 @@ const Link = styled.a`
     color: var(--color-brand-600);
   }
 `;
+
+function MainNav() {
+  return <nav></nav>;
+}
+
+export default MainNav;
