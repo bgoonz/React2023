@@ -4783,6 +4783,49 @@ export async function getCabins() {
 npm i @tanstack/react-query@4
 ```
 
+**Setup**
+
+```js
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000
+    }
+  }
+});
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <GlobalStyles />
+      <BrowserRouter>
+ //...
+      </BrowserRouter>
+    </QueryClientProvider>
+  );
+}
+
+export default App;
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
     
