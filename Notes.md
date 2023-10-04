@@ -175,3 +175,23 @@ Both of the above approaches achieve the same thing, but the second one is short
 
 So, to clarify: the method shorthand is standard JavaScript notation introduced in ES6. However, the overall structure of the `createSlice` function and how it uses the `reducers` object is specific to the Redux Toolkit.
 
+---
+
+## React Table Accessibility...
+
+- If we implement a table without using the html table element then we need to add the attribute `role='table'` to the Table component.
+
+```jsx
+ <Table role='table'>
+      <TableHeader role='row'>
+        <div></div>
+        <div>Cabin</div>
+        <div>Capacity</div>
+        <div>Price</div>
+        <div>Discount</div>
+        <div></div>
+        <div></div>
+        
+      </TableHeader>
+    </Table>
+```

@@ -4815,10 +4815,51 @@ export default App;
 ```
 
 
+- The useQuery hook is how we get data using React Query.
+- It takes an object that contains a query key and a query function (this function must return a promise).
+
+
+```js
+import { useQuery } from "@tanstack/react-query";
+import styled from "styled-components";
+import { getCabins } from "../../services/apiCabins";
+import Spinner from "../../ui/Spinner";
+import CabinRow from "./CabinRow";
 
 
 
+function CabinTable() {
+  const {
+    isLoading,
+    data: cabins,
+    error,
+  } = useQuery({ queryKey: ["cabins"], queryFn: getCabins });
 
+  if (isLoading) return <Spinner />;
+
+  return (
+    <Table role="table">
+      <TableHeader role="row">
+        <div></div>
+        <div>Cabin</div>
+        <div>Capacity</div>
+        <div>Price</div>
+        <div>Discount</div>
+        <div></div>
+        <div></div>
+      </TableHeader>
+      {cabins.map((cabin) => {
+        return <CabinRow cabin={cabin} key={cabin.id} />;
+      })}
+    </Table>
+  );
+}
+
+export default CabinTable;
+
+```
+
+![Cabins Data](./images/2023-10-04-09-43-14.png)
 
 
 
