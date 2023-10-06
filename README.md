@@ -4710,11 +4710,9 @@ export default MainNav;
 
 </details>
 
-
-
----
 ---
 
+---
 
 ## Supabase Backend:
 
@@ -4728,39 +4726,38 @@ export default MainNav;
     
 **Usage**
 
->subabase.js (supabase cient)    
+> subabase.js (supabase cient)
 
 ```js
 //Don't need to worry about exposing api key hear because we enabeled row level security in supabase
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = 'https://onnptmnzqsdrtgprhjuu.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ubnB0bW56cXNkcnRncHJoanV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzNTQzOTAsImV4cCI6MjAxMTkzMDM5MH0.uI0XNzJc0lWwtU8VyUhotTwBY50P9xv38YRc8c3bPeU'
-const supabase = createClient(supabaseUrl, supabaseKey)
-
+const supabaseUrl = "https://onnptmnzqsdrtgprhjuu.supabase.co";
+const supabaseKey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ubnB0bW56cXNkcnRncHJoanV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzNTQzOTAsImV4cCI6MjAxMTkzMDM5MH0.uI0XNzJc0lWwtU8VyUhotTwBY50P9xv38YRc8c3bPeU";
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default supabase;
+```
 
-```    
->apiCabin.js
+> apiCabin.js
 
 ```js
-import  supabase  from "./supabase";
+import supabase from "./supabase";
 export async function getCabins() {
   const { data, error } = await supabase.from("cabins").select("*");
-    if (error) {
+  if (error) {
     console.error(error);
-    throw new Error("Cabins could not be loaded")
-    }
-    return data;
+    throw new Error("Cabins could not be loaded");
+  }
+  return data;
 }
-```    
-    
+```
+
 </details>
 
-
-
 ---
+
 ---
 
 ## React Query:
@@ -4776,7 +4773,6 @@ export async function getCabins() {
 - Easy remote state mutation (updating).
 - Offline support (when the user is offline display data from the cache).
 
-
 **Setting Up React Query**
 
 ```bash
@@ -4787,9 +4783,8 @@ npm i @tanstack/react-query@4
 
 ```js
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -4804,9 +4799,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyles />
-      <BrowserRouter>
- //...
-      </BrowserRouter>
+      <BrowserRouter>//...</BrowserRouter>
     </QueryClientProvider>
   );
 }
@@ -4814,10 +4807,8 @@ function App() {
 export default App;
 ```
 
-
 - The useQuery hook is how we get data using React Query.
 - It takes an object that contains a query key and a query function (this function must return a promise).
-
 
 ```js
 import { useQuery } from "@tanstack/react-query";
@@ -4826,14 +4817,8 @@ import { getCabins } from "../../services/apiCabins";
 import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
 
-
-
 function CabinTable() {
-  const {
-    isLoading,
-    data: cabins,
-    error,
-  } = useQuery({ queryKey: ["cabins"], queryFn: getCabins });
+  const { isLoading, data: cabins, error } = useQuery({ queryKey: ["cabins"], queryFn: getCabins });
 
   if (isLoading) return <Spinner />;
 
@@ -4856,43 +4841,38 @@ function CabinTable() {
 }
 
 export default CabinTable;
-
 ```
 
 ![Cabins Data](./images/2023-10-04-09-43-14.png)
-
-
 
 ### React Query Mutations:
 
 ```jsx
 import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
-import {useMutation} from "@tanstack/react-query";
-import {useQueryClient} from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { deleteCabin } from "../../services/apiCabins";
 
-
-
 function CabinRow({ cabin }) {
-  const {id:cabinId, name, maxCapacity, regularPrice, discount, image } = cabin;
-  
-  const queryClient=useQueryClient()
-  
-  const {isLoading: isDeleting, mutate} = useMutation({
-    mutationFn:(id)=>{
-        deleteCabin(id)
+  const { id: cabinId, name, maxCapacity, regularPrice, discount, image } = cabin;
+
+  const queryClient = useQueryClient();
+
+  const { isLoading: isDeleting, mutate } = useMutation({
+    mutationFn: (id) => {
+      deleteCabin(id);
     },
-    onSuccess:()=>{
-        queryClient.invalidateQueries({
-            queryKey:["cabins"]
-        })
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["cabins"]
+      });
     },
-    onError:(error)=>{
-        console.log(error)
+    onError: (error) => {
+      console.log(error);
     }
-  })
-  
+  });
+
   return (
     <TableRow role="row">
       <Img src={image} alt={cabin.name} />
@@ -4900,7 +4880,9 @@ function CabinRow({ cabin }) {
       <div>Fits up to {maxCapacity} guests</div>
       <Price>{formatCurrency(regularPrice)}</Price>
       <Discount>{formatCurrency(discount)}</Discount>
-      <button onClick={()=>mutate(cabinId)} disabled={isDeleting} >Delete</button>
+      <button onClick={() => mutate(cabinId)} disabled={isDeleting}>
+        Delete
+      </button>
     </TableRow>
   );
 }
@@ -4908,9 +4890,124 @@ function CabinRow({ cabin }) {
 export default CabinRow;
 ```
 
+#### Creating A New Cabin with React Hook Form & React Query:
+
+```js
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import styled from "styled-components";
+import { createCabin } from "../../services/apiCabins";
+import Button from "../../ui/Button";
+import FileInput from "../../ui/FileInput";
+import Form from "../../ui/Form";
+import Input from "../../ui/Input";
+import Textarea from "../../ui/Textarea";
+
+function CreateCabinForm() {
+  const { register, handleSubmit, reset } = useForm();
+
+  const queryClient = useQueryClient();
+
+  const { mutate, isLoading: isCreating } = useMutation({
+    mutationFn: (newCabin) => createCabin(newCabin),
+    onSuccess: () => {
+      toast.success("New cabin sucessfully created");
+      queryClient.invalidateQueries({
+        queryKey: ["cabins"]
+      });
+      reset();
+    },
+    onError: () => {
+      toast.error("Cabin could not be created");
+    }
+  });
+
+  function onSubmit(data) {
+    mutate(data);
+  }
+
+  return (
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormRow>
+        <Label htmlFor="name">Cabin name</Label>
+        <Input type="text" id="name" {...register("name")} />
+      </FormRow>
+
+      <FormRow>
+        <Label htmlFor="maxCapacity">Maximum capacity</Label>
+        <Input type="number" id="maxCapacity" {...register("maxCapacity")} />
+      </FormRow>
+
+      <FormRow>
+        <Label htmlFor="regularPrice">Regular price</Label>
+        <Input type="number" id="regularPrice" {...register("regularPrice")} />
+      </FormRow>
+
+      <FormRow>
+        <Label htmlFor="discount">Discount</Label>
+        <Input type="number" id="discount" defaultValue={0} {...register("discount")} />
+      </FormRow>
+
+      <FormRow>
+        <Label htmlFor="description">Description for website</Label>
+        <Textarea type="number" id="description" defaultValue="" {...register("description")} />
+      </FormRow>
+
+      <FormRow>
+        <Label htmlFor="image">Cabin photo</Label>
+        <FileInput id="image" accept="image/*" />
+      </FormRow>
+
+      <FormRow>
+        {/* type is an HTML attribute! */}
+        <Button variation="secondary" type="reset">
+          Cancel
+        </Button>
+        <Button disabled={isCreating}>Edit cabin</Button>
+      </FormRow>
+    </Form>
+  );
+}
+
+export default CreateCabinForm;
+```
+
+**Form Validation with React Hook Form**
+
+- Required Field:
+
+```jsx
+<FormRow>
+  <Label htmlFor="name">Cabin name</Label>
+  <Input type="text" id="name" {...register("name", { required: "This field is required" })} />
+</FormRow>
+```
+
+- Minimum value:
+
+```jsx
+<FormRow>
+  <Label htmlFor="maxCapacity">Maximum capacity</Label>
+  <Input type="number" id="maxCapacity" {...register("maxCapacity", { required: "This field is required", min: { value: 1, message: "Capacity should be at least 1" } })} />
+</FormRow>
+```
+
+- Custom validation:
+
+```jsx
+<FormRow>
+  <Label htmlFor="discount">Discount</Label>
+  <Input
+    type="number"
+    id="discount"
+    defaultValue={0}
+    {...register("discount", { required: "This field is required", validate: (value) => value <= getValues().regularPrice || "Discount should be less than regular price" })}
+  />
+</FormRow>
+```
 
 
 
-    
-    
-</details>    
+</details>
