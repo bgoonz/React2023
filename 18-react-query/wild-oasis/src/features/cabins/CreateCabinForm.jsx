@@ -1,5 +1,9 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import styled from "styled-components";
+import { createCabin } from "../../services/apiCabins";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Form from "../../ui/Form";
@@ -43,13 +47,28 @@ const Error = styled.span`
 `;
 
 function CreateCabinForm() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  
+  const queryClient = useQueryClient();
+  
+  const { mutate, isLoading: isCreating } = useMutation({
+    mutationFn: (newCabin) => createCabin(newCabin),
+    onSuccess: () => {
+      toast.success("New cabin sucessfully created");
+      queryClient.invalidateQueries({
+        queryKey: ["cabins"]
+      });
+      reset();
+    },
+    onError: () => {
+      toast.error("Cabin could not be created");
+    }
+  });
 
-  
-  function onSubmit(data){
-    console.log(data)
+  function onSubmit(data) {
+    mutate(data);
   }
-  
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow>
@@ -69,22 +88,12 @@ function CreateCabinForm() {
 
       <FormRow>
         <Label htmlFor="discount">Discount</Label>
-        <Input
-          type="number"
-          id="discount"
-          defaultValue={0}
-          {...register("discount")}
-        />
+        <Input type="number" id="discount" defaultValue={0} {...register("discount")} />
       </FormRow>
 
       <FormRow>
         <Label htmlFor="description">Description for website</Label>
-        <Textarea
-          type="number"
-          id="description"
-          defaultValue=""
-          {...register("description")}
-        />
+        <Textarea type="number" id="description" defaultValue="" {...register("description")} />
       </FormRow>
 
       <FormRow>
@@ -97,7 +106,7 @@ function CreateCabinForm() {
         <Button variation="secondary" type="reset">
           Cancel
         </Button>
-        <Button>Edit cabin</Button>
+        <Button disabled={isCreating}>Edit cabin</Button>
       </FormRow>
     </Form>
   );
