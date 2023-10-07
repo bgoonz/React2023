@@ -53,7 +53,14 @@ const EditButtons = styled.div`
 function CabinRow({ cabin }) {
   const [showForm, setShowForm] = useState(false);
 
-  const { id: cabinId, name, maxCapacity, regularPrice, discount, image } = cabin;
+  const {
+    id: cabinId,
+    name,
+    maxCapacity,
+    regularPrice,
+    discount,
+    image,
+  } = cabin;
 
   const { isDeleting, deleteCabin } = useDeleteCabin();
 
@@ -72,7 +79,11 @@ function CabinRow({ cabin }) {
         <Cabin>{name}</Cabin>
         <div>Fits up to {maxCapacity} guests</div>
         <Price>{formatCurrency(regularPrice)}</Price>
-        {discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
+        {discount ? (
+          <Discount>{formatCurrency(discount)}</Discount>
+        ) : (
+          <span>&mdash;</span>
+        )}
         <EditButtons>
           <button onClick={handleEditClick}>Edit</button>
           <button onClick={handleDeleteClick} disabled={isDeleting}>

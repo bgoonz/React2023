@@ -12,13 +12,13 @@ export function useDeleteCabin() {
     onSuccess: () => {
       toast.success("Cabin deleted");
       queryClient.invalidateQueries({
-        queryKey: ["cabins"]
+        queryKey: ["cabins"],
       });
     },
     onError: (error) => {
       toast.error(`Error deleting cabin: ${error.message}}`);
       console.log(error);
-    }
+    },
   });
   return { isDeleting, deleteCabin };
 }
