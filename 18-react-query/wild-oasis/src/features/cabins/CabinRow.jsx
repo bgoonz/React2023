@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteCabin } from "../../services/apiCabins";
-import { toast } from "react-hot-toast";
+import { useDeleteCabin } from "./useDeleteCabin";
 import CreateCabinForm from "./CreateCabinForm";
 
 const TableRow = styled.div`
@@ -45,44 +43,26 @@ const Discount = styled.div`
   color: var(--color-green-700);
 `;
 
+const EditButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 //-------------------Functional Component-------------------
 
 function CabinRow({ cabin }) {
   const [showForm, setShowForm] = useState(false);
 
-  const {
-    id: cabinId,
-    name,
-    maxCapacity,
-    regularPrice,
-    discount,
-    image,
-  } = cabin;
+  const { id: cabinId, name, maxCapacity, regularPrice, discount, image } = cabin;
 
-  const queryClient = useQueryClient();
-
-  const { isLoading: isDeleting, mutate } = useMutation({
-    mutationFn: (id) => {
-      deleteCabin(id);
-    },
-    onSuccess: () => {
-      toast.success("Cabin deleted");
-      queryClient.invalidateQueries({
-        queryKey: ["cabins"],
-      });
-    },
-    onError: (error) => {
-      toast.error(`Error deleting cabin: ${error.message}}`);
-      console.log(error);
-    },
-  });
+  const { isDeleting, deleteCabin } = useDeleteCabin();
 
   const handleEditClick = () => {
     setShowForm((show) => !show);
   };
 
   const handleDeleteClick = () => {
-    mutate(cabinId);
+    deleteCabin(cabinId);
   };
 
   return (
@@ -92,13 +72,13 @@ function CabinRow({ cabin }) {
         <Cabin>{name}</Cabin>
         <div>Fits up to {maxCapacity} guests</div>
         <Price>{formatCurrency(regularPrice)}</Price>
-        <Discount>{formatCurrency(discount)}</Discount>
-        <div>
+        {discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
+        <EditButtons>
           <button onClick={handleEditClick}>Edit</button>
           <button onClick={handleDeleteClick} disabled={isDeleting}>
             Delete
           </button>
-        </div>
+        </EditButtons>
       </TableRow>
       {showForm && <CreateCabinForm cabinToEdit={cabin} />}
     </>

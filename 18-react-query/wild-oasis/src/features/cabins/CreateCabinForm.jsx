@@ -8,6 +8,7 @@ import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import Textarea from "../../ui/Textarea";
+import { useCreateCabin } from "./useCreateCabin";
 
 function CreateCabinForm({ cabinToEdit = {} }) {
   const { id: editId, ...editValues } = cabinToEdit;
@@ -20,19 +21,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
   const queryClient = useQueryClient();
 
-  const { mutate: createCabin, isLoading: isCreating } = useMutation({
-    mutationFn: (newCabin) => createEditCabin(newCabin),
-    onSuccess: () => {
-      toast.success("New cabin sucessfully created");
-      queryClient.invalidateQueries({
-        queryKey: ["cabins"],
-      });
-      reset();
-    },
-    onError: () => {
-      toast.error("Cabin could not be created");
-    },
-  });
+  const {isCreating,createCabin}=useCreateCabin();
 
   const { mutate: editCabin, isLoading: isEditing } = useMutation({
     mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
@@ -55,7 +44,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     if (isEditSession) {
       return editCabin({ newCabinData: { ...data, image: image }, id: editId });
     } else {
-      createCabin({ ...data, image: image });
+      createCabin({ ...data, image: image },{onSucess:(data)=>reset()});
     }
   }
 
