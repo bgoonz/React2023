@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
 import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
-import { useDeleteCabin } from "./useDeleteCabin";
 import CreateCabinForm from "./CreateCabinForm";
+import { useDeleteCabin } from "./useDeleteCabin";
+import { useCreateCabin } from "./useCreateCabin";
 
 const TableRow = styled.div`
   display: grid;
@@ -43,26 +45,24 @@ const Discount = styled.div`
   color: var(--color-green-700);
 `;
 
-const EditButtons = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 //-------------------Functional Component-------------------
 
 function CabinRow({ cabin }) {
   const [showForm, setShowForm] = useState(false);
-
-  const {
-    id: cabinId,
-    name,
-    maxCapacity,
-    regularPrice,
-    discount,
-    image,
-  } = cabin;
-
   const { isDeleting, deleteCabin } = useDeleteCabin();
+  const { isCreating, createCabin } = useCreateCabin();
+  const { id: cabinId, name, maxCapacity, regularPrice, discount, image, description } = cabin;
+
+  function handleDuplicate() {
+    createCabin({
+      name: `Copy of ${name}`,
+      maxCapacity,
+      regularPrice,
+      discount,
+      image,
+      description
+    });
+  }
 
   const handleEditClick = () => {
     setShowForm((show) => !show);
@@ -79,17 +79,18 @@ function CabinRow({ cabin }) {
         <Cabin>{name}</Cabin>
         <div>Fits up to {maxCapacity} guests</div>
         <Price>{formatCurrency(regularPrice)}</Price>
-        {discount ? (
-          <Discount>{formatCurrency(discount)}</Discount>
-        ) : (
-          <span>&mdash;</span>
-        )}
-        <EditButtons>
-          <button onClick={handleEditClick}>Edit</button>
-          <button onClick={handleDeleteClick} disabled={isDeleting}>
-            Delete
+        {discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
+        <div>
+          <button onClick={handleDuplicate} disabled={isCreating}>
+            <HiSquare2Stack />
           </button>
-        </EditButtons>
+          <button onClick={handleEditClick}>
+            <HiPencil />
+          </button>
+          <button onClick={handleDeleteClick} disabled={isDeleting}>
+            <HiTrash />
+          </button>
+        </div>
       </TableRow>
       {showForm && <CreateCabinForm cabinToEdit={cabin} />}
     </>
