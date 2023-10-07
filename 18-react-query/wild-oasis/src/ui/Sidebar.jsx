@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Logo from "./Logo";
 import MainNav from "./MainNav";
 
+
 const StyledSidebar = styled.aside`
   background-color: var(--color-grey-0);
   padding: 3.2rem 2.4rem;
@@ -13,6 +14,7 @@ const StyledSidebar = styled.aside`
 `;
 
 function Sidebar() {
+ 
   return (
     <StyledSidebar>
       Sidebar
