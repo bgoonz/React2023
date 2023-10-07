@@ -51,7 +51,15 @@ function CabinRow({ cabin }) {
   const [showForm, setShowForm] = useState(false);
   const { isDeleting, deleteCabin } = useDeleteCabin();
   const { isCreating, createCabin } = useCreateCabin();
-  const { id: cabinId, name, maxCapacity, regularPrice, discount, image, description } = cabin;
+  const {
+    id: cabinId,
+    name,
+    maxCapacity,
+    regularPrice,
+    discount,
+    image,
+    description,
+  } = cabin;
 
   function handleDuplicate() {
     createCabin({
@@ -60,7 +68,7 @@ function CabinRow({ cabin }) {
       regularPrice,
       discount,
       image,
-      description
+      description,
     });
   }
 
@@ -79,7 +87,11 @@ function CabinRow({ cabin }) {
         <Cabin>{name}</Cabin>
         <div>Fits up to {maxCapacity} guests</div>
         <Price>{formatCurrency(regularPrice)}</Price>
-        {discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
+        {discount ? (
+          <Discount>{formatCurrency(discount)}</Discount>
+        ) : (
+          <span>&mdash;</span>
+        )}
         <div>
           <button onClick={handleDuplicate} disabled={isCreating}>
             <HiSquare2Stack />
