@@ -5056,7 +5056,7 @@ export default FileInput;
 ##### An overview of reusability in React:
 - In react we generally reusue two types of code (UI, Stateful Logic).
 
-
+![Reuse in React](./images/2023-10-08-11-08-25.png)
 
     
     
