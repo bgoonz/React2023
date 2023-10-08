@@ -5043,3 +5043,21 @@ export default FileInput;
 
 
 </details>
+
+
+---
+---
+
+## Advanced React Patterns:
+
+<details>
+    <summary>Click to expand</summary>
+
+##### An overview of reusability in React:
+- In react we generally reusue two types of code (UI, Stateful Logic).
+
+
+
+    
+    
+</details>    
