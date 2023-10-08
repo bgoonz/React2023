@@ -38,9 +38,7 @@
     width: 100%;
   }
   
-
-  
-  .list-container:has(.list) > button {
+  .list-container > button {
     display: block;
     width: 100px;
     margin: 16px auto 0 auto;
@@ -52,6 +50,8 @@
     border-radius: 100px;
     cursor: pointer;
   }
+  
+
   
   .heading {
     display: flex;
