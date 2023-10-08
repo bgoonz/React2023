@@ -5193,6 +5193,49 @@ export default function App() {
 
 ### Higher Order Components (HOC):
 
+- A HOC is a component that takes in another component and returns an enhanced version of it.
+
+> Example:
+
+```js
+import { useState } from "react";
+
+export default function withToggles(WrappedComponent) {
+  return function List(props) {
+    const [isOpen, setIsOpen] = useState(true);
+    const [isCollapsed, setIsCollapsed] = useState(false);
+
+    const displayItems = isCollapsed ? props.items.slice(0, 3) : props.items;
+
+    function toggleOpen() {
+      setIsOpen((isOpen) => !isOpen);
+      setIsCollapsed(false);
+    }
+
+    return (
+      <div className="list-container">
+        <div className="heading">
+          <h2>{props.title}</h2>
+          <button onClick={toggleOpen}>
+            {isOpen ? <span>&or;</span> : <span>&and;</span>}
+          </button>
+        </div>
+        {isOpen && <WrappedComponent {...props} items={displayItems} />}
+
+        <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
+          {isCollapsed ? `Show all ${props.items.length}` : "Show less"}
+        </button>
+      </div>
+    );
+  };
+}
+```
+
+- The `withToggles` function is a higher-order component (HOC) because it takes a component (`WrappedComponent`) as its argument and returns a new component (`List`). This new component enhances the original component with additional logic and state, specifically toggling functionality. By using the `withToggles` HOC, any component can be wrapped and provided with the ability to be opened/closed and have its list items collapsed. This pattern allows for code reusability and the separation of concerns, as you can enhance existing components without modifying their core functionalities.
+
+- It is common convention to name a higher order component with the prefix `with` followed by the name of the functionality it provides.
+    - in a similar way to how we prefix custom hooks with `use`.
+
 
 
 
