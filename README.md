@@ -328,7 +328,7 @@ export default Button;
 
 👉 [useSyncExternalStore First Look](https://julesblom.com/writing/usesyncexternalstore?ref=jonas.io)
 
-👉 [Under the hood of React's hooks system](https://the-guild.dev/blog/react-hooks-system?ref=jonas.io)
+👉 [Under the hood of React&#39;s hooks system](https://the-guild.dev/blog/react-hooks-system?ref=jonas.io)
 
 👉 [Why Do React Hooks Rely on Call Order?](https://overreacted.io/why-do-hooks-rely-on-call-order/?ref=jonas.io) (By Dan Abramov
 👉 [So you think you know everything about React refs](https://blog.thoughtspile.tech/2021/05/17/everything-about-react-refs/?ref=jonas.io)
@@ -592,7 +592,6 @@ function Tabbed({ content }) {
 **Functional Programming Principles**
 
 - **Side effect**: dependency on or modification of any data outside of the function scope. "Interaction with the outside world". Some examples are mutating external variables... HTTP requests, writing to the DOM, writing to a database, logging etc.
-
 - **Pure Functions:** _A function that has no side effects(does not change any variables outside it's scope) **Given the same input a pure function will always return the same output**_
 
 ```js
@@ -647,7 +646,6 @@ function App() {
 - In the above example you might think that a render cycle takes place for each call to setState... but in reality the state updates are batched together and the render cycle is only triggered once.
 - All three pieces of state in the event handler are updated at once.
   ![Batched State Update](./images/2023-08-26-14-00-09.png)
-
 - If we need to update state based on a previous update, we use setState with a callback function.
   `setAnswer((prevAnswer) => prevAnswer + 'a');`
 
@@ -761,19 +759,16 @@ useEffect(() => {
 ```
 
 - In the case where the dependency array is empty, the callback function will only be called after the initial render (onMount).
-
 - In the context of React... a side effect is any interaction between a component and the world outside the component. We can think of a side effect as 'code that actualy does something'. Examples include data fetching, setting up subscriptions, setting up timers, manually accessing the DOM etc...
 
 **Where to create a side effect**
 
 - Sometimes we want to initiate a side effect as a result of an event but other times we want to initiate a side effect when the component renders.
-
 - The useEffect hook allows us to write code that will run at different points in the lifecycle of the component (mount, update, unmount).
 
 ![Event Handlers vs Effects](./images/2023-08-29-09-46-33.png)
 
 - We use effects to keep a component synchronized with some external system... i.e. an API of movie data.
-
 - Whenever possible...create side effects inside of an event handler rather than a useEffect hook.
 - The function that is the first argument to useEffect must be synchronus so you have to put another function inside of it if you want to do something asyncronus.
 
@@ -1340,7 +1335,6 @@ function DateCounter() {
 ```
 
 - When we press the increment button we get an output of 0,1 in the console... this is because the reducer function is called with the current state and the action that we dispatch... in this case the action is 1 `dispatch(1);`.
-
 - dispatch is a state updating function that takes in an action as an argument and returns the new state, you can think of it as being similar to setState.
 
 ![Basic Reducer](./images/2023-09-12-11-04-14.png)
@@ -1886,8 +1880,7 @@ function Dashboard() {
 
 **An index route is the default child route if the last part of the nested route doesn't match any of the child routes.**
 
-- In React Router, the index prop on a `<Route />`` component is used to specify a default child route that _should render when its parent route is matched exactly_.
-
+- In React Router, the index prop on a ``<Route />``` component is used to specify a default child route that _should render when its parent route is matched exactly_.
 - When you have nested routes, sometimes you want to render a specific child route by default when the parent's path is accessed. The index prop helps in achieving this behavior.
 
 ```js
@@ -1938,7 +1931,7 @@ function CityItem({ city }) {
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>{formatDate(date)}</time>
-        <button className={styles.deleteBtn}>&times;</button>
+        <button className={styles.deleteBtn}>×</button>
       </Link>
     </li>
   );
@@ -1977,7 +1970,7 @@ function CityItem({ city }) {
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>{formatDate(date)}</time>
-        <button className={styles.deleteBtn}>&times;</button>
+        <button className={styles.deleteBtn}>×</button>
       </Link>
     </li>
   );
@@ -2046,8 +2039,7 @@ export default Map;
 
 <details>
     <summary>Click to expand</summary>
-    
-    
+
 ### What is the Context API and why do we need it?
 
 - The context api is a solution to prop drilling.
@@ -2460,9 +2452,9 @@ export { AuthProvider, useAuth };
 
 <details>
     <summary>Click to expand</summary>
-    
-![Performance Optimization Options](./images/2023-09-20-12-48-19.png)    
-    
+
+![Performance Optimization Options](./images/2023-09-20-12-48-19.png)
+
 **In React a component instance only gets re-rendered in three different situations**
 
 1. When state changes
@@ -2614,7 +2606,6 @@ const Archive = memo(function Archive({ show }) {
 ![Archive Re-render](./images/2023-09-20-14-20-34.png)
 
 - In react everything is recreated on every render... (including objects and functions).
-
 - In JavaScript, two objects or functions that look the same are actually different `{} !== {}` and `() => {} !== () => {}`
 
 _If objects or functions are passed as props, the child component will always see them as new props on each re-render._
@@ -2872,7 +2863,7 @@ useEffect(() => {
 
 <details>
     <summary>Click to expand</summary>
-    
+
 ### Redux is a 3rd party library that we can use to manage global application state.
 
 **Redux is a standalone library but it is easy to integrate with React apps using the react-redux library**
@@ -3076,81 +3067,81 @@ const store = createStore(rootReducer);
 
 <details>
     <summary>Click to expand</summary>
-    
+
 ```js
 import { createStore, combineReducers } from "redux";
 
 const initialStateAccount = {
-balance: 0,
-loan: 0,
-loanPurpose: ""
+  balance: 0,
+  loan: 0,
+  loanPurpose: ""
 };
 
 const initialStateCustomer = {
-fullName: "",
-nationalId: "",
-createdAt: ""
+  fullName: "",
+  nationalId: "",
+  createdAt: ""
 };
 
 function accountReducer(state = initialStateAccount, action) {
-switch (action.type) {
-case "account/deposit":
-return { ...state, balance: state.balance + action.payload };
-case "account/withdraw":
-return { ...state, balance: state.balance - action.payload };
-case "account/requestLoan":
-if (state.loan > 0) return state;
-return { ...state, loan: action.payload.amount, loanPurpose: action.payload.purpose, balance: state.balance + action.payload.amount };
-case "account/payLoan":
-return {
-...state,
-loan: 0,
-loanPurpose: "",
-balance: state.balance - state.loan
-};
-default:
-return state;
-}
+  switch (action.type) {
+    case "account/deposit":
+      return { ...state, balance: state.balance + action.payload };
+    case "account/withdraw":
+      return { ...state, balance: state.balance - action.payload };
+    case "account/requestLoan":
+      if (state.loan > 0) return state;
+      return { ...state, loan: action.payload.amount, loanPurpose: action.payload.purpose, balance: state.balance + action.payload.amount };
+    case "account/payLoan":
+      return {
+        ...state,
+        loan: 0,
+        loanPurpose: "",
+        balance: state.balance - state.loan
+      };
+    default:
+      return state;
+  }
 }
 
 function customerReducer(state = initialStateCustomer, action) {
-switch (action.type) {
-case "customer/createCustomer":
-return { ...state, fullName: action.payload.fullName, nationalId: action.payload.nationalId, createdAt: action.payload.createdAt };
-case "customer/updateName":
-return { ...state, fullName: action.payload };
-default:
-return state;
-}
+  switch (action.type) {
+    case "customer/createCustomer":
+      return { ...state, fullName: action.payload.fullName, nationalId: action.payload.nationalId, createdAt: action.payload.createdAt };
+    case "customer/updateName":
+      return { ...state, fullName: action.payload };
+    default:
+      return state;
+  }
 }
 
 const rootReducer = combineReducers({
-account: accountReducer,
-customer: customerReducer
+  account: accountReducer,
+  customer: customerReducer
 });
 
 const store = createStore(rootReducer);
 
 function deposit(amount) {
-return { type: "account/deposit", payload: amount };
+  return { type: "account/deposit", payload: amount };
 }
 
 function withdraw(amount) {
-return { type: "account/withdraw", payload: amount };
+  return { type: "account/withdraw", payload: amount };
 }
 
 function requestLoan(amount, purpose) {
-return {
-type: "account/requestLoan",
-payload: {
-amount: amount,
-purpose: purpose
-}
-};
+  return {
+    type: "account/requestLoan",
+    payload: {
+      amount: amount,
+      purpose: purpose
+    }
+  };
 }
 
 function payLoan() {
-return { type: "account/payLoan" };
+  return { type: "account/payLoan" };
 }
 
 store.dispatch(deposit(1000));
@@ -3163,45 +3154,41 @@ store.dispatch(payLoan());
 console.log("Action: Pay Loan\nState:", store.getState());
 
 function createCustomer(fullName, nationalId) {
-return {
-type: "customer/createCustomer",
-payload: {
-fullName: fullName,
-nationalId: nationalId,
-createdAt: new Date().toISOString()
-}
-};
+  return {
+    type: "customer/createCustomer",
+    payload: {
+      fullName: fullName,
+      nationalId: nationalId,
+      createdAt: new Date().toISOString()
+    }
+  };
 }
 
 function updateName(fullName) {
-return {
-type: "customer/updateName",
-payload: fullName
-};
+  return {
+    type: "customer/updateName",
+    payload: fullName
+  };
 }
 
 console.log("------------------------------------");
 
 store.dispatch(createCustomer("Bryan Guner", "123456789"));
 console.log("Action: Create Customer\nState:", store.getState());
-
-````
+```
 
 </details>
-
 
 ### Using Redux in React:
 
 ```js
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 import App from "./App";
 import "./index.css";
 
 import store from "./store";
-
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -3217,13 +3204,13 @@ import { useSelector } from "react-redux";
 
 function Customer() {
   const customer = useSelector((store) => {
-   return store.customer.fullName;
+    return store.customer.fullName;
   });
   return <h2>👋 Welcome, {customer}</h2>;
 }
 
 export default Customer;
-````
+```
 
 - In react redux we gain access to the dispatch function by using the `useDispatch` hook.
 
@@ -3640,7 +3627,7 @@ export default accountSlice.reducer;
 
 <details>
     <summary>Click to expand</summary>
-    
+
 ### [Documentation](https://reactrouter.com/en/main)
 
 ##### [create-browser-router](https://reactrouter.com/en/main/routers/create-browser-router)
@@ -3828,7 +3815,7 @@ function Error() {
     <div>
       <h1>Something went wrong 😢</h1>
       <p>{error.data}</p>
-      <button onClick={() => navigate(-1)}>&larr; Go back</button>
+      <button onClick={() => navigate(-1)}>← Go back</button>
     </div>
   );
 }
@@ -3884,12 +3871,11 @@ export default CreateOrder;
 
 <details>
     <summary>Click to expand</summary>
-    
-### Tailwind is a utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.    
-    
-    
-#### [Tailwind Docs](https://tailwindcss.com/docs/installation)    
-    
+
+### Tailwind is a utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.
+
+#### [Tailwind Docs](https://tailwindcss.com/docs/installation)
+
 - With tailwind we have hundreds of utility classes each with a specific purpose that we combine to build our app layout.
 
 #### Setting Up Tailwind
@@ -4557,7 +4543,6 @@ export default App;
 ##### [Css Function](https://styled-components.com/docs/api#css)
 
 - A helper function to generate CSS from a template literal with interpolations. You need to use this if you return a template literal with functions inside an interpolation due to how tagged template literals work in JavaScript.
-
 - If you're interpolating a string you do not need to use this, only if you're interpolating a function.
 
 ```jsx
@@ -4718,12 +4703,11 @@ export default MainNav;
 
 <details>
     <summary>Click to expand</summary>
-    
-### [Supabase Docs](https://supabase.com/docs)    
-    
-### [Supabase Project Notes](./17-supabase-backend/README.md)    
-    
-    
+
+### [Supabase Docs](https://supabase.com/docs)
+
+### [Supabase Project Notes](./17-supabase-backend/README.md)
+
 **Usage**
 
 > subabase.js (supabase cient)
@@ -5008,13 +4992,12 @@ export default CreateCabinForm;
 </FormRow>
 ```
 
-
 **How to set html attributes on a styled component:**
 
 ```jsx
 import styled from "styled-components";
 
-const FileInput = styled.input.attrs({type:"file"})`
+const FileInput = styled.input.attrs({ type: "file" })`
   font-size: 1.4rem;
   border-radius: var(--border-radius-sm);
 
@@ -5028,9 +5011,7 @@ const FileInput = styled.input.attrs({type:"file"})`
     color: var(--color-brand-50);
     background-color: var(--color-brand-600);
     cursor: pointer;
-    transition:
-      color 0.2s,
-      background-color 0.2s;
+    transition: color 0.2s, background-color 0.2s;
 
     &:hover {
       background-color: var(--color-brand-700);
@@ -5041,11 +5022,10 @@ const FileInput = styled.input.attrs({type:"file"})`
 export default FileInput;
 ```
 
-
 </details>
 
-
 ---
+
 ---
 
 ## Advanced React Patterns:
@@ -5054,16 +5034,17 @@ export default FileInput;
     <summary>Click to expand</summary>
 
 ##### An overview of reusability in React:
+
 - In react we generally reusue two types of code (UI, Stateful Logic).
 
 ![Reuse in React](./images/2023-10-08-11-08-25.png)
 
 ### Render Props Pattern:
-- passing in a prop called render which is a function the component uses to know what it should render and how to do it. 
-- When you can't directly pass in JSX with the children component because you need to tell the component how to render something then use the render props pattern.
-    
 
->Example (original):
+- passing in a prop called render which is a function the component uses to know what it should render and how to do it.
+- When you can't directly pass in JSX with the children component because you need to tell the component how to render something then use the render props pattern.
+
+> Example (original):
 
 ```js
 function List({ title, items }) {
@@ -5081,9 +5062,7 @@ function List({ title, items }) {
     <div className="list-container">
       <div className="heading">
         <h2>{title}</h2>
-        <button onClick={toggleOpen}>
-          {isOpen ? <span>&or;</span> : <span>&and;</span>}
-        </button>
+        <button onClick={toggleOpen}>{isOpen ? <span>∨</span> : <span>∧</span>}</button>
       </div>
       {isOpen && (
         <ul className="list">
@@ -5093,9 +5072,7 @@ function List({ title, items }) {
         </ul>
       )}
 
-      <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
-        {isCollapsed ? `Show all ${items.length}` : "Show less"}
-      </button>
+      <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>{isCollapsed ? `Show all ${items.length}` : "Show less"}</button>
     </div>
   );
 }
@@ -5112,10 +5089,10 @@ export default function App() {
   );
 }
 ```
+
 > Using render props pattern:
 
 ```js
-
 function List({ title, items, render }) {
   const [isOpen, setIsOpen] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -5131,19 +5108,11 @@ function List({ title, items, render }) {
     <div className="list-container">
       <div className="heading">
         <h2>{title}</h2>
-        <button onClick={toggleOpen}>
-          {isOpen ? <span>&or;</span> : <span>&and;</span>}
-        </button>
+        <button onClick={toggleOpen}>{isOpen ? <span>∨</span> : <span>∧</span>}</button>
       </div>
-      {isOpen && (
-        <ul className="list">
-          {displayItems.map(render)}
-        </ul>
-      )}
+      {isOpen && <ul className="list">{displayItems.map(render)}</ul>}
 
-      <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
-        {isCollapsed ? `Show all ${items.length}` : "Show less"}
-      </button>
+      <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>{isCollapsed ? `Show all ${items.length}` : "Show less"}</button>
     </div>
   );
 }
@@ -5154,10 +5123,7 @@ export default function App() {
       <h1>Render Props Demo</h1>
 
       <div className="col-2">
-        <List title="Products" items={products} render={(product) => (
-            <ProductItem key={product.productName} product={product} />
-          )}/>
-          
+        <List title="Products" items={products} render={(product) => <ProductItem key={product.productName} product={product} />} />
       </div>
     </div>
   );
@@ -5174,12 +5140,8 @@ export default function App() {
       <h1>Render Props Demo</h1>
 
       <div className="col-2">
-        <List title="Products" items={products} render={(product) => (
-            <ProductItem key={product.productName} product={product} />
-          )}/>
-           <List title="Companies" items={companies} render={(company) => (
-            <CompanyItem key={company.companyName} company={company} defaultVisibility={true}/>
-          )}/>
+        <List title="Products" items={products} render={(product) => <ProductItem key={product.productName} product={product} />} />
+        <List title="Companies" items={companies} render={(company) => <CompanyItem key={company.companyName} company={company} defaultVisibility={true} />} />
       </div>
     </div>
   );
@@ -5189,7 +5151,6 @@ export default function App() {
 > This results in the following:
 
 ![Render Props](./images/2023-10-08-12-38-53.png)
-
 
 ### Higher Order Components (HOC):
 
@@ -5216,15 +5177,11 @@ export default function withToggles(WrappedComponent) {
       <div className="list-container">
         <div className="heading">
           <h2>{props.title}</h2>
-          <button onClick={toggleOpen}>
-            {isOpen ? <span>&or;</span> : <span>&and;</span>}
-          </button>
+          <button onClick={toggleOpen}>{isOpen ? <span>∨</span> : <span>∧</span>}</button>
         </div>
         {isOpen && <WrappedComponent {...props} items={displayItems} />}
 
-        <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
-          {isCollapsed ? `Show all ${props.items.length}` : "Show less"}
-        </button>
+        <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>{isCollapsed ? `Show all ${props.items.length}` : "Show less"}</button>
       </div>
     );
   };
@@ -5232,12 +5189,96 @@ export default function withToggles(WrappedComponent) {
 ```
 
 - The `withToggles` function is a higher-order component (HOC) because it takes a component (`WrappedComponent`) as its argument and returns a new component (`List`). This new component enhances the original component with additional logic and state, specifically toggling functionality. By using the `withToggles` HOC, any component can be wrapped and provided with the ability to be opened/closed and have its list items collapsed. This pattern allows for code reusability and the separation of concerns, as you can enhance existing components without modifying their core functionalities.
-
 - It is common convention to name a higher order component with the prefix `with` followed by the name of the functionality it provides.
-    - in a similar way to how we prefix custom hooks with `use`.
+
+  - in a similar way to how we prefix custom hooks with `use`.
+
+### Compound Component Pattern:
+
+- When we have a set of related components that together form a single component.
+- For example a form component that has a label, input, and error message. Or html select and option elements.
+
+**How to create a compound component**
+
+1. Create a context
+2. Create a parent component
+3. create child components that will help implementing common task of compound component.
+4. (Optional) Add child components as properties to the parent component.
+
+**Implementation**
+
+> Counter.js
+
+```js
+import { createContext, useContext, useState } from "react";
+//1. Create a context
+const counterContext = createContext();
+
+//2. Create a parent component
+function Counter({ children }) {
+  const [count, setCount] = useState(0);
+
+  const increase = () => setCount(count + 1);
+  const decrease = () => setCount(count - 1);
+
+  return (
+    <counterContext.Provider value={{ count, increase, decrease }}>
+      <span>{children}</span>
+    </counterContext.Provider>
+  );
+}
+
+//3. Create a child component
+
+function Count() {
+  const { count } = useContext(counterContext);
+  return <span>{count}</span>;
+}
+
+function Label({ children }) {
+  return <label>{children}</label>;
+}
+
+function Increase({ icon }) {
+  const { increase } = useContext(counterContext);
+  return <button onClick={increase}>{icon}</button>;
+}
+function Decrease({ icon }) {
+  const { decrease } = useContext(counterContext);
+  return <button onClick={decrease}>{icon}</button>;
+}
+
+//4. add child component as property of parent.
+Counter.Count = Count;
+Counter.Label = Label;
+Counter.Increase = Increase;
+Counter.Decrease = Decrease;
+
+export default Counter;
+```
+
+> App.js
+
+```js
+import Counter from "./Counter";
+
+export default function App() {
+  return (
+    <div>
+      <h1>Compound Component Pattern</h1>
+
+      <Counter>
+        <Counter.Label>My super flexible counter.</Counter.Label>
+        <Counter.Decrease icon="-"></Counter.Decrease>
+        <Counter.Count></Counter.Count>
+        <Counter.Increase icon="+"></Counter.Increase>
+      </Counter>
+    </div>
+  );
+}
+```
 
 
 
 
-    
-</details>    
+</details>
