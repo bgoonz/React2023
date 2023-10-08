@@ -5157,11 +5157,43 @@ export default function App() {
         <List title="Products" items={products} render={(product) => (
             <ProductItem key={product.productName} product={product} />
           )}/>
+          
       </div>
     </div>
   );
 }
 ```
+
+- This is called inversion of control, the list component no longer knows what it is rendering. All it knows is that it will call the render function for each item in the displayItems array.
+  - Now we can use the list component to render anything we want, not just products.
+
+```js
+export default function App() {
+  return (
+    <div>
+      <h1>Render Props Demo</h1>
+
+      <div className="col-2">
+        <List title="Products" items={products} render={(product) => (
+            <ProductItem key={product.productName} product={product} />
+          )}/>
+           <List title="Companies" items={companies} render={(company) => (
+            <CompanyItem key={company.companyName} company={company} defaultVisibility={true}/>
+          )}/>
+      </div>
+    </div>
+  );
+}
+```
+
+> This results in the following:
+
+![Render Props](./images/2023-10-08-12-38-53.png)
+
+
+### Higher Order Components (HOC):
+
+
 
 
     

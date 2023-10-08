@@ -38,9 +38,7 @@
     width: 100%;
   }
   
-  .list-container > button {
-    display: none;
-  }
+
   
   .list-container:has(.list) > button {
     display: block;
