@@ -5058,6 +5058,111 @@ export default FileInput;
 
 ![Reuse in React](./images/2023-10-08-11-08-25.png)
 
+### Render Props Pattern:
+- passing in a prop called render which is a function the component uses to know what it should render and how to do it. 
+- When you can't directly pass in JSX with the children component because you need to tell the component how to render something then use the render props pattern.
     
+
+>Example (original):
+
+```js
+function List({ title, items }) {
+  const [isOpen, setIsOpen] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const displayItems = isCollapsed ? items.slice(0, 3) : items;
+
+  function toggleOpen() {
+    setIsOpen((isOpen) => !isOpen);
+    setIsCollapsed(false);
+  }
+
+  return (
+    <div className="list-container">
+      <div className="heading">
+        <h2>{title}</h2>
+        <button onClick={toggleOpen}>
+          {isOpen ? <span>&or;</span> : <span>&and;</span>}
+        </button>
+      </div>
+      {isOpen && (
+        <ul className="list">
+          {displayItems.map((product) => (
+            <ProductItem key={product.productName} product={product} />
+          ))}
+        </ul>
+      )}
+
+      <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
+        {isCollapsed ? `Show all ${items.length}` : "Show less"}
+      </button>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <div>
+      <h1>Render Props Demo</h1>
+
+      <div className="col-2">
+        <List title="Products" items={products} />
+      </div>
+    </div>
+  );
+}
+```
+> Using render props pattern:
+
+```js
+
+function List({ title, items, render }) {
+  const [isOpen, setIsOpen] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const displayItems = isCollapsed ? items.slice(0, 3) : items;
+
+  function toggleOpen() {
+    setIsOpen((isOpen) => !isOpen);
+    setIsCollapsed(false);
+  }
+
+  return (
+    <div className="list-container">
+      <div className="heading">
+        <h2>{title}</h2>
+        <button onClick={toggleOpen}>
+          {isOpen ? <span>&or;</span> : <span>&and;</span>}
+        </button>
+      </div>
+      {isOpen && (
+        <ul className="list">
+          {displayItems.map(render)}
+        </ul>
+      )}
+
+      <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
+        {isCollapsed ? `Show all ${items.length}` : "Show less"}
+      </button>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <div>
+      <h1>Render Props Demo</h1>
+
+      <div className="col-2">
+        <List title="Products" items={products} render={(product) => (
+            <ProductItem key={product.productName} product={product} />
+          )}/>
+      </div>
+    </div>
+  );
+}
+```
+
+
     
 </details>    

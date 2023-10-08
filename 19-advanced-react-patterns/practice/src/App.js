@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { faker } from "@faker-js/faker";
-import "./styles.css";
+
 
 const products = Array.from({ length: 20 }, () => {
   return {
@@ -46,7 +46,7 @@ function CompanyItem({ company, defaultVisibility }) {
   );
 }
 
-function List({ title, items }) {
+function List({ title, items, render }) {
   const [isOpen, setIsOpen] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -67,9 +67,7 @@ function List({ title, items }) {
       </div>
       {isOpen && (
         <ul className="list">
-          {displayItems.map((product) => (
-            <ProductItem key={product.productName} product={product} />
-          ))}
+          {displayItems.map(render)}
         </ul>
       )}
 
@@ -86,7 +84,9 @@ export default function App() {
       <h1>Render Props Demo</h1>
 
       <div className="col-2">
-        <List title="Products" items={products} />
+        <List title="Products" items={products} render={(product) => (
+            <ProductItem key={product.productName} product={product} />
+          )}/>
       </div>
     </div>
   );
