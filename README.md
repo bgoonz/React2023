@@ -5305,4 +5305,161 @@ export default Modal;
 ```
 
 
+##### Converting Modal To Compound Component:
+
+**cloneElement**
+
+- cloneElement lets you create a new React element using another element as a starting point.
+
+`const clonedElement = cloneElement(element, props, ...children)`
+> Call cloneElement to create a React element based on the element, but with different props and children:
+
+#### [Parameters](https://react.dev/reference/react/cloneElement#parameters "Link for Parameters ")
+
+-   `element`: The `element` argument must be a valid React element. For example, it could be a JSX node like `<Something />`, the result of calling [`createElement`](https://react.dev/reference/react/createElement), or the result of another `cloneElement` call.
+    
+-   `props`: The `props` argument must either be an object or `null`. If you pass `null`, the cloned element will retain all of the original `element.props`. Otherwise, for every prop in the `props` object, the returned element will “prefer” the value from `props` over the value from `element.props`. The rest of the props will be filled from the original `element.props`. If you pass `props.key` or `props.ref`, they will replace the original ones.
+    
+-   **optional** `...children`: Zero or more child nodes. They can be any React nodes, including React elements, strings, numbers, [portals](https://react.dev/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes. If you don’t pass any `...children` arguments, the original `element.props.children` will be preserved.
+    
+
+#### [Returns](https://react.dev/reference/react/cloneElement#returns "Link for Returns ")
+
+`cloneElement` returns a React element object with a few properties:
+
+-   `type`: Same as `element.type`.
+-   `props`: The result of shallowly merging `element.props` with the overriding `props` you have passed.
+-   `ref`: The original `element.ref`, unless it was overridden by `props.ref`.
+-   `key`: The original `element.key`, unless it was overridden by `props.key`.
+
+Usually, you’ll return the element from your component or make it a child of another element. Although you may read the element’s properties, it’s best to treat every element as opaque after it’s created, and only render it.
+
+
+> Modal.jsx
+
+```jsx
+import { HiXMark } from "react-icons/hi2";
+import styled from "styled-components";
+import { createPortal } from "react-dom";
+import { cloneElement, createContext, useContext, useState } from "react";
+
+const StyledModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-grey-0);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 3.2rem 4rem;
+  transition: all 0.5s;
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--backdrop-color);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  transition: all 0.5s;
+`;
+
+const Button = styled.button`
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  border-radius: var(--border-radius-sm);
+  transform: translateX(0.8rem);
+  transition: all 0.2s;
+  position: absolute;
+  top: 1.2rem;
+  right: 1.9rem;
+
+  &:hover {
+    background-color: var(--color-grey-100);
+  }
+
+  & svg {
+    width: 2.4rem;
+    height: 2.4rem;
+    /* Sometimes we need both */
+    /* fill: var(--color-grey-500);
+    stroke: var(--color-grey-500); */
+    color: var(--color-grey-500);
+  }
+`;
+
+const ModalContext = createContext();
+
+function Modal({ children }) {
+  const [openName, setOpenName] = useState("");
+
+  const close = () => setOpenName("");
+  const open = setOpenName;
+
+  return (
+    <ModalContext.Provider value={{ openName, close, open }}>
+      {children}
+    </ModalContext.Provider>
+  );
+}
+
+function Open({ children, opens: opensWindowName }) {
+  const { open } = useContext(ModalContext);
+
+  return cloneElement(children, { onClick: () => open(opensWindowName) });
+}
+
+function Window({ children, name }) {
+  const { openName, close } = useContext(ModalContext);
+  if (name !== openName) return null;
+  return createPortal(
+    <Overlay>
+      <StyledModal>
+        <Button onClick={close}>
+          <HiXMark />
+        </Button>
+        <div>{cloneElement(children, { onCloseModal: close })}</div>
+      </StyledModal>
+    </Overlay>,
+    document.body,
+  );
+}
+
+Modal.Open = Open;
+Modal.Window = Window;
+
+export default Modal;
+```
+
+> AddCabin.jsx
+
+```jsx
+function AddCabin() {
+  return (
+    <Modal>
+      <Modal.Open opens="cabin-form">
+        <Button>Add New Cabin</Button>
+      </Modal.Open>
+      <Modal.Window name="cabin-form">
+        <CreateCabinForm />
+      </Modal.Window>
+
+      <Modal.Open opens="table">
+        <Button>Show Table</Button>
+      </Modal.Open>
+      <Modal.Window name="table">
+        <CabinTable />
+      </Modal.Window>
+    </Modal>
+  );
+}
+
+export default AddCabin;
+```
+
+
 </details>
