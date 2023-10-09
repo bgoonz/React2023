@@ -5463,3 +5463,17 @@ export default AddCabin;
 
 
 </details>
+
+
+---
+---
+
+## Features (Auth, Dark Mode, Dashboard):
+
+<details>
+    <summary>Click to expand</summary>
+    
+    
+    
+</details>
+    
