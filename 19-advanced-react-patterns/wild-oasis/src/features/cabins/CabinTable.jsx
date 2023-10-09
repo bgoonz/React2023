@@ -37,9 +37,10 @@ function CabinTable() {
         <div></div>
         <div></div>
       </Table.Header>
-      {cabins.map((cabin) => {
+      <Table.Body data={cabins} render={(cabin) => {
         return <CabinRow cabin={cabin} key={cabin.id} />;
-      })}
+      }}/>
+     
     </Table>
   );
 }

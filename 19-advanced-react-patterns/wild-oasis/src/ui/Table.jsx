@@ -71,17 +71,32 @@ function Table({ columns, children }) {
 }
 
 function Header({ children }) {
-const { columns } = useContext(TableContext);
-return <StyledHeader role="row" columns={columns} as='header'>{children}</StyledHeader>;
+  const { columns } = useContext(TableContext);
+  return (
+    <StyledHeader role="row" columns={columns} as="header">
+      {children}
+    </StyledHeader>
+  );
 }
 
 function Row({ children }) {
-    const { columns } = useContext(TableContext);
-    return <StyledRow role="row" columns={columns}>{children}</StyledRow>;
+  const { columns } = useContext(TableContext);
+  return (
+    <StyledRow role="row" columns={columns}>
+      {children}
+    </StyledRow>
+  );
 }
 
-function Body({ children }) {
-
+function Body({ data, render }) {
+  if (!data.length) {
+    return (
+      <StyledBody>
+        <Empty>No cabins found</Empty>
+      </StyledBody>
+    );
+  }
+  return <StyledBody>{data.map(render)}</StyledBody>;
 }
 
 Table.Header = Header;
