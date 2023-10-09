@@ -1,7 +1,7 @@
+import { cloneElement, createContext, useContext, useEffect, useState, useRef } from "react";
+import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
-import { createPortal } from "react-dom";
-import { cloneElement, createContext, useContext, useState } from "react";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -37,11 +37,9 @@ const Button = styled.button`
   position: absolute;
   top: 1.2rem;
   right: 1.9rem;
-
   &:hover {
     background-color: var(--color-grey-100);
   }
-
   & svg {
     width: 2.4rem;
     height: 2.4rem;
@@ -56,36 +54,44 @@ const ModalContext = createContext();
 
 function Modal({ children }) {
   const [openName, setOpenName] = useState("");
-
   const close = () => setOpenName("");
   const open = setOpenName;
-
-  return (
-    <ModalContext.Provider value={{ openName, close, open }}>
-      {children}
-    </ModalContext.Provider>
-  );
+  return <ModalContext.Provider value={{ openName, close, open }}>{children}</ModalContext.Provider>;
 }
 
 function Open({ children, opens: opensWindowName }) {
   const { open } = useContext(ModalContext);
-
   return cloneElement(children, { onClick: () => open(opensWindowName) });
 }
 
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
+  const ref = useRef();
+  useEffect(() => {
+    function handleClick(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        close();
+      }
+    }
+    //the third argument is true to capture the event in the capturing phase (and prevent bubbling up that would cause the click that opens the modal to close it immediately)
+    document.addEventListener("click", handleClick, true);
+
+    return () => {
+      document.removeEventListener("click", handleClick, true);
+    };
+  }, [close]);
   if (name !== openName) return null;
+
   return createPortal(
     <Overlay>
-      <StyledModal>
+      <StyledModal ref={ref}>
         <Button onClick={close}>
           <HiXMark />
         </Button>
         <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>
     </Overlay>,
-    document.body,
+    document.body
   );
 }
 
