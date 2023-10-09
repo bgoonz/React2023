@@ -7,18 +7,9 @@ import { useCreateCabin } from "./useCreateCabin";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Table from "../../ui/Table";
+import Menus from "../../ui/Menus";
 
-// const TableRow = styled.div`
-//   display: grid;
-//   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
-//   column-gap: 2.4rem;
-//   align-items: center;
-//   padding: 1.4rem 2.4rem;
-// 
-//   &:not(:last-child) {
-//     border-bottom: 1px solid var(--color-grey-100);
-//   }
-// `;
+
 
 const Img = styled.img`
   display: block;
@@ -65,7 +56,7 @@ function CabinRow({ cabin }) {
     });
   }
 
-  const handleDeleteClick = () => {
+  const handleDelete = () => {
     deleteCabin(cabinId);
   };
 
@@ -77,6 +68,7 @@ function CabinRow({ cabin }) {
       <Price>{formatCurrency(regularPrice)}</Price>
       {discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
       <div>
+        
         <button onClick={handleDuplicate} disabled={isCreating}>
           <HiSquare2Stack />
         </button>
@@ -97,9 +89,19 @@ function CabinRow({ cabin }) {
             </button>
           </Modal.Open>
           <Modal.Window name="delete">
-            <ConfirmDelete resourceName="cabins" disabled={isDeleting} onConfirm={handleDeleteClick} />
+            <ConfirmDelete resourceName="cabins" disabled={isDeleting} onConfirm={handleDelete} />
           </Modal.Window>
         </Modal>
+        
+        <Menus.Menu>
+            <Menus.Toggle id={cabinId}/>
+            <Menus.List id={cabinId}>
+                <Menus.Button>Duplicate</Menus.Button>
+                <Menus.Button>Edit</Menus.Button>
+                <Menus.Button>Delete</Menus.Button>
+            </Menus.List>
+        </Menus.Menu>
+        
       </div>
     </Table.Row>
   );
