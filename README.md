@@ -1880,7 +1880,7 @@ function Dashboard() {
 
 **An index route is the default child route if the last part of the nested route doesn't match any of the child routes.**
 
-- In React Router, the index prop on a ``<Route />``` component is used to specify a default child route that _should render when its parent route is matched exactly_.
+- In React Router, the index prop on a ```<Route />```` component is used to specify a default child route that _should render when its parent route is matched exactly_.
 - When you have nested routes, sometimes you want to render a specific child route by default when the parent's path is accessed. The index prop helps in achieving this behavior.
 
 ```js
@@ -5285,14 +5285,12 @@ import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
 import { createPortal } from "react-dom";
 
-
-
 function Modal({ children, onClose }) {
   return createPortal(
     <Overlay>
       <StyledModal>
         <Button onClick={onClose}>
-            <HiXMark />
+          <HiXMark />
         </Button>
         <div>{children}</div>
       </StyledModal>
@@ -5304,7 +5302,6 @@ function Modal({ children, onClose }) {
 export default Modal;
 ```
 
-
 ##### Converting Modal To Compound Component:
 
 **cloneElement**
@@ -5312,28 +5309,25 @@ export default Modal;
 - cloneElement lets you create a new React element using another element as a starting point.
 
 `const clonedElement = cloneElement(element, props, ...children)`
+
 > Call cloneElement to create a React element based on the element, but with different props and children:
 
 #### [Parameters](https://react.dev/reference/react/cloneElement#parameters "Link for Parameters ")
 
--   `element`: The `element` argument must be a valid React element. For example, it could be a JSX node like `<Something />`, the result of calling [`createElement`](https://react.dev/reference/react/createElement), or the result of another `cloneElement` call.
-    
--   `props`: The `props` argument must either be an object or `null`. If you pass `null`, the cloned element will retain all of the original `element.props`. Otherwise, for every prop in the `props` object, the returned element will “prefer” the value from `props` over the value from `element.props`. The rest of the props will be filled from the original `element.props`. If you pass `props.key` or `props.ref`, they will replace the original ones.
-    
--   **optional** `...children`: Zero or more child nodes. They can be any React nodes, including React elements, strings, numbers, [portals](https://react.dev/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes. If you don’t pass any `...children` arguments, the original `element.props.children` will be preserved.
-    
+- `element`: The `element` argument must be a valid React element. For example, it could be a JSX node like `<Something />`, the result of calling [`createElement`](https://react.dev/reference/react/createElement), or the result of another `cloneElement` call.
+- `props`: The `props` argument must either be an object or `null`. If you pass `null`, the cloned element will retain all of the original `element.props`. Otherwise, for every prop in the `props` object, the returned element will “prefer” the value from `props` over the value from `element.props`. The rest of the props will be filled from the original `element.props`. If you pass `props.key` or `props.ref`, they will replace the original ones.
+- **optional** `...children`: Zero or more child nodes. They can be any React nodes, including React elements, strings, numbers, [portals](https://react.dev/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes. If you don’t pass any `...children` arguments, the original `element.props.children` will be preserved.
 
 #### [Returns](https://react.dev/reference/react/cloneElement#returns "Link for Returns ")
 
 `cloneElement` returns a React element object with a few properties:
 
--   `type`: Same as `element.type`.
--   `props`: The result of shallowly merging `element.props` with the overriding `props` you have passed.
--   `ref`: The original `element.ref`, unless it was overridden by `props.ref`.
--   `key`: The original `element.key`, unless it was overridden by `props.key`.
+- `type`: Same as `element.type`.
+- `props`: The result of shallowly merging `element.props` with the overriding `props` you have passed.
+- `ref`: The original `element.ref`, unless it was overridden by `props.ref`.
+- `key`: The original `element.key`, unless it was overridden by `props.key`.
 
 Usually, you’ll return the element from your component or make it a child of another element. Although you may read the element’s properties, it’s best to treat every element as opaque after it’s created, and only render it.
-
 
 > Modal.jsx
 
@@ -5400,11 +5394,7 @@ function Modal({ children }) {
   const close = () => setOpenName("");
   const open = setOpenName;
 
-  return (
-    <ModalContext.Provider value={{ openName, close, open }}>
-      {children}
-    </ModalContext.Provider>
-  );
+  return <ModalContext.Provider value={{ openName, close, open }}>{children}</ModalContext.Provider>;
 }
 
 function Open({ children, opens: opensWindowName }) {
@@ -5425,7 +5415,7 @@ function Window({ children, name }) {
         <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>
     </Overlay>,
-    document.body,
+    document.body
   );
 }
 
@@ -5461,11 +5451,10 @@ function AddCabin() {
 export default AddCabin;
 ```
 
-
 </details>
 
-
 ---
+
 ---
 
 ## Features (Auth, Dark Mode, Dashboard):
@@ -5483,18 +5472,15 @@ import { useSearchParams } from "react-router-dom";
 export function useBookings() {
   const [searchParams] = useSearchParams();
   const filterValue = searchParams.get("status");
-  const filter =
-    !filterValue || filterValue === "all"
-      ? null
-      : { field: "status", value: filterValue };
+  const filter = !filterValue || filterValue === "all" ? null : { field: "status", value: filterValue };
 
   const {
     isLoading,
     data: bookings,
-    error,
+    error
   } = useQuery({
     queryKey: ["bookings", filter],
-    queryFn: () => getBookings({ filter }),
+    queryFn: () => getBookings({ filter })
   });
 
   return { isLoading, bookings, error };
@@ -5502,20 +5488,53 @@ export function useBookings() {
 ```
 
 - In the code above the queryKey array is like the useEffect dependency array, whenever the filter value changes the data will be refetched.
-    
 
 **Search Params Note**
 
 ```jsx
 function nextPage() {
-    const next = currentPage === pageCount ? currentPage : currentPage + 1;
-    //updates the search params in memory
-    searchParams.set("page", next);
-    //updates the search params in the URL
-    setSearchParams(searchParams);
+  const next = currentPage === pageCount ? currentPage : currentPage + 1;
+  //updates the search params in memory
+  searchParams.set("page", next);
+  //updates the search params in the URL
+  setSearchParams(searchParams);
+}
+```
+
+### Prefetching with React Query:
+
+- Prefetching is when you fetch data before it is needed.
+- In the context of pagination this means fetching the next page before it is needed.
+
+> In useBookings.js
+
+```javascript
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+const queryClient = useQueryClient();
+//QUERY
+const {
+  isLoading,
+  data: { data: bookings, count } = {},
+  error
+} = useQuery({
+  queryKey: ["bookings", filter, sortBy, page],
+  queryFn: () => getBookings({ filter, sortBy, page })
+});
+
+ //PRE FETCHING
+  const pageCount = Math.ceil(count / PAGE_SIZE);
+  if (page < pageCount) {
+    queryClient.prefetchQuery({
+      queryKey: ["bookings", filter, sortBy, page + 1],
+      queryFn: () => getBookings({ filter, sortBy, page: page + 1 })
+    });
+  }
+  if (page >1) {
+    queryClient.prefetchQuery({
+      queryKey: ["bookings", filter, sortBy, page - 1],
+      queryFn: () => getBookings({ filter, sortBy, page: page - 1 })
+    });
   }
 ```
-    
-    
+
 </details>
-    
