@@ -5503,6 +5503,18 @@ export function useBookings() {
 
 - In the code above the queryKey array is like the useEffect dependency array, whenever the filter value changes the data will be refetched.
     
+
+**Search Params Note**
+
+```jsx
+function nextPage() {
+    const next = currentPage === pageCount ? currentPage : currentPage + 1;
+    //updates the search params in memory
+    searchParams.set("page", next);
+    //updates the search params in the URL
+    setSearchParams(searchParams);
+  }
+```
     
     
 </details>
