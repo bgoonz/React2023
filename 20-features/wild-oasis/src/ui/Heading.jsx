@@ -5,6 +5,8 @@ const test = css`
 `;
 
 const Heading = styled.h1`
+  text-transform: capitalize;
+  line-height: 1.4;
   ${(props) =>
     props.type === "h1" &&
     css`

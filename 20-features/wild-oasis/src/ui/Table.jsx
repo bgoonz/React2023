@@ -92,7 +92,7 @@ function Body({ data, render }) {
   if (!data.length) {
     return (
       <StyledBody>
-        <Empty>No cabins found</Empty>
+        <Empty>No data to show at the moment</Empty>
       </StyledBody>
     );
   }
