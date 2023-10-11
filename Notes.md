@@ -195,3 +195,44 @@ So, to clarify: the method shorthand is standard JavaScript notation introduced 
       </TableHeader>
     </Table>
 ```
+
+
+---
+
+# Nullish Coalescing Operator in JavaScript
+
+In JavaScript, `??` is known as the "nullish coalescing operator." It's a logical operator that returns its right-hand side operand when its left-hand side operand is `null` or `undefined`, and otherwise returns its left-hand side operand.
+
+## Explanation:
+
+```javascript
+let result = a ?? b;
+```
+
+This means:
+
+- If `a` is neither `null` nor `undefined`, then `result` is `a`.
+- If `a` is either `null` or `undefined`, then `result` is `b`.
+
+This is particularly useful when you want to provide default values. For example:
+
+```javascript
+let userInput = null;
+let defaultInput = "Default Name";
+let name = userInput ?? defaultInput;  // name will be "Default Name"
+```
+
+This operator is different from the logical OR (`||`) operator. The `||` operator will return the right-hand side if the left-hand side is falsy (i.e., `false`, `0`, `""`, `null`, `undefined`, or `NaN`). The `??` operator only considers `null` and `undefined`.
+
+Example:
+
+```javascript
+let a = 0;
+let b = "hello";
+
+console.log(a || b);  // "hello", because 0 is falsy
+console.log(a ?? b);  // 0, because 0 is not null or undefined
+```
+
+Make sure to use the nullish coalescing operator in scenarios where you specifically want to handle `null` and `undefined` values, rather than all falsy values.
+

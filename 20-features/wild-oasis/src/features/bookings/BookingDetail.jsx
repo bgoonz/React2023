@@ -21,7 +21,7 @@ const HeadingGroup = styled.div`
 `;
 
 function BookingDetail() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const { booking, isLoading } = useBooking();
 
   const moveBack = useMoveBack();
@@ -49,11 +49,14 @@ function BookingDetail() {
       <BookingDataBox booking={booking} />
 
       <ButtonGroup>
-      {status === "unconfirmed" && (
-            <Button icon={<HiArrowDownOnSquare />} onClick={() => navigate(`/checkin/${bookingId}`)}>
-              Check In
-            </Button>
-          )}
+        {status === "unconfirmed" && (
+          <Button
+            icon={<HiArrowDownOnSquare />}
+            onClick={() => navigate(`/checkin/${bookingId}`)}
+          >
+            Check In
+          </Button>
+        )}
         <Button variation="secondary" onClick={moveBack}>
           Back
         </Button>
