@@ -1,13 +1,15 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-import BookingDataBox from "./BookingDataBox";
-import Row from "../../ui/Row";
-import Heading from "../../ui/Heading";
-import Tag from "../../ui/Tag";
-import ButtonGroup from "../../ui/ButtonGroup";
+import { HiArrowDownOnSquare } from "react-icons/hi2";
 import Button from "../../ui/Button";
+import ButtonGroup from "../../ui/ButtonGroup";
 import ButtonText from "../../ui/ButtonText";
+import Heading from "../../ui/Heading";
+import Row from "../../ui/Row";
 import Spinner from "../../ui/Spinner";
+import Tag from "../../ui/Tag";
+import BookingDataBox from "./BookingDataBox";
 
 import { useMoveBack } from "../../hooks/useMoveBack";
 import { useBooking } from "./useBooking";
@@ -19,6 +21,7 @@ const HeadingGroup = styled.div`
 `;
 
 function BookingDetail() {
+    const navigate = useNavigate();
   const { booking, isLoading } = useBooking();
 
   const moveBack = useMoveBack();
@@ -46,6 +49,11 @@ function BookingDetail() {
       <BookingDataBox booking={booking} />
 
       <ButtonGroup>
+      {status === "unconfirmed" && (
+            <Button icon={<HiArrowDownOnSquare />} onClick={() => navigate(`/checkin/${bookingId}`)}>
+              Check In
+            </Button>
+          )}
         <Button variation="secondary" onClick={moveBack}>
           Back
         </Button>
