@@ -5539,6 +5539,14 @@ const {
 
 - Remember that a mutationFn can only accept one argument so if you need it to accept multiple arguments you need to pass it an object with multiple properties.
 
+```js
+mutationFn: ({ bookingId, breakfast }) =>
+      updateBooking(bookingId, {
+        status: "checked-in",
+        isPaid: true,
+        ...breakfast,
+      }),
+```
 
 
 </details>
