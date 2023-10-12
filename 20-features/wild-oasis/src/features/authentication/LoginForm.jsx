@@ -8,7 +8,9 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleSubmit() {}
+  function handleSubmit() {
+    
+  }
 
   return (
     <Form onSubmit={handleSubmit}>

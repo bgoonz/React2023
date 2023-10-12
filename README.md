@@ -5548,5 +5548,12 @@ mutationFn: ({ bookingId, breakfast }) =>
       }),
 ```
 
+### Authentication & Authorization (with Supabase):
+
+
+
+
+
+
 
 </details>

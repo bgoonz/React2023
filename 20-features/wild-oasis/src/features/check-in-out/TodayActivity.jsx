@@ -40,7 +40,7 @@ function Today() {
   return (
     <StyledToday>
       <Row type="horizontal">
-        <Heading as="h2">Today</Heading>
+        <Heading type="h2">Today</Heading>
       </Row>
     </StyledToday>
   );
