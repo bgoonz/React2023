@@ -40,6 +40,8 @@ function Filter({ filterField, options }) {
   const currentFilter = searchParams.get(filterField) || options[0].value;
   function handleClick(value) {
     searchParams.set(filterField, value);
+    // reset page to 1 when filter changes
+    if (searchParams.get("page")) searchParams.set("page", 1);
     setSearchParams(searchParams);
   }
   return (

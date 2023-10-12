@@ -1,12 +1,13 @@
 import { format, isToday } from "date-fns";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 import Menus from "../../ui/Menus";
 import Table from "../../ui/Table";
 import Tag from "../../ui/Tag";
 
-import { HiArrowDownOnSquare, HiEye } from "react-icons/hi2";
+import { useCheckout } from "../check-in-out/useCheckout";
+import { HiArrowDownOnSquare, HiArrowUpOnSquare, HiEye } from "react-icons/hi2";
 
 import { formatCurrency, formatDistanceFromNow } from "../../utils/helpers";
 
@@ -39,6 +40,7 @@ const Amount = styled.div`
 
 function BookingRow({ booking }) {
   const navigate = useNavigate();
+  const { checkout, isCheckingOut } = useCheckout();
   const {
     id: bookingId,
     created_at,
@@ -99,6 +101,17 @@ function BookingRow({ booking }) {
               onClick={() => navigate(`/checkin/${bookingId}`)}
             >
               Check In
+            </Menus.Button>
+          )}
+          {status === "checked-in" && (
+            <Menus.Button
+              icon={<HiArrowUpOnSquare />}
+              onClick={() => {
+                checkout(bookingId);
+              }}
+              disabled={isCheckingOut}
+            >
+              Check Out
             </Menus.Button>
           )}
         </Menus.List>
