@@ -5550,7 +5550,107 @@ mutationFn: ({ bookingId, breakfast }) =>
 
 ### Authentication & Authorization (with Supabase):
 
+```js
+import supabase, { supabaseUrl } from "./supabase";
 
+export async function login({ email, password }) {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+  console.log(data);
+  return data;
+}
+
+```
+
+- When we call this function from our login form we get:
+
+```
+{
+    "user": {
+        "id": "b010cfac-d455-4693-b3f6-c0e151d7838a",
+        "aud": "authenticated",
+        "role": "authenticated",
+        "email": "bryan.guner@gmail.com",
+        "email_confirmed_at": "2023-10-12T21:03:35.92401Z",
+        "phone": "",
+        "confirmed_at": "2023-10-12T21:03:35.92401Z",
+        "last_sign_in_at": "2023-10-12T21:11:12.924982644Z",
+        "app_metadata": {
+            "provider": "email",
+            "providers": [
+                "email"
+            ]
+        },
+        "user_metadata": {},
+        "identities": [
+            {
+                "id": "b010cfac-d455-4693-b3f6-c0e151d7838a",
+                "user_id": "b010cfac-d455-4693-b3f6-c0e151d7838a",
+                "identity_data": {
+                    "email": "bryan.guner@gmail.com",
+                    "sub": "b010cfac-d455-4693-b3f6-c0e151d7838a"
+                },
+                "provider": "email",
+                "last_sign_in_at": "2023-10-12T21:03:35.9208Z",
+                "created_at": "2023-10-12T21:03:35.920848Z",
+                "updated_at": "2023-10-12T21:03:35.920848Z"
+            }
+        ],
+        "created_at": "2023-10-12T21:03:35.914348Z",
+        "updated_at": "2023-10-12T21:11:12.933324Z"
+    },
+    "session": {
+        "access_token": "eyJhbGciOiJIUzI1NiIsImtpZCI6ImVyNHdEckxseVo0bTZvZG8iLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjk3MTQ4NjcyLCJpYXQiOjE2OTcxNDUwNzIsImlzcyI6Imh0dHBzOi8vb25ucHRtbnpxc2RydGdwcmhqdXUuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6ImIwMTBjZmFjLWQ0NTUtNDY5My1iM2Y2LWMwZTE1MWQ3ODM4YSIsImVtYWlsIjoiYnJ5YW4uZ3VuZXJAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6e30sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwiYWFsIjoiYWFsMSIsImFtciI6W3sibWV0aG9kIjoicGFzc3dvcmQiLCJ0aW1lc3RhbXAiOjE2OTcxNDUwNzJ9XSwic2Vzc2lvbl9pZCI6ImUyM2IxNWY2LTUxNWMtNDgxOC04NDUyLWI3OWI4ZDZkODY5MSJ9.xn4iizROiH5XCWm4DlHBWBcvD1g3NhpfCnbS_50Syo0",
+        "token_type": "bearer",
+        "expires_in": 3600,
+        "expires_at": 1697148672,
+        "refresh_token": "-MMS0-7S0WA8RJ1dVAgLoQ",
+        "user": {
+            "id": "b010cfac-d455-4693-b3f6-c0e151d7838a",
+            "aud": "authenticated",
+            "role": "authenticated",
+            "email": "bryan.guner@gmail.com",
+            "email_confirmed_at": "2023-10-12T21:03:35.92401Z",
+            "phone": "",
+            "confirmed_at": "2023-10-12T21:03:35.92401Z",
+            "last_sign_in_at": "2023-10-12T21:11:12.924982644Z",
+            "app_metadata": {
+                "provider": "email",
+                "providers": [
+                    "email"
+                ]
+            },
+            "user_metadata": {},
+            "identities": [
+                {
+                    "id": "b010cfac-d455-4693-b3f6-c0e151d7838a",
+                    "user_id": "b010cfac-d455-4693-b3f6-c0e151d7838a",
+                    "identity_data": {
+                        "email": "bryan.guner@gmail.com",
+                        "sub": "b010cfac-d455-4693-b3f6-c0e151d7838a"
+                    },
+                    "provider": "email",
+                    "last_sign_in_at": "2023-10-12T21:03:35.9208Z",
+                    "created_at": "2023-10-12T21:03:35.920848Z",
+                    "updated_at": "2023-10-12T21:03:35.920848Z"
+                }
+            ],
+            "created_at": "2023-10-12T21:03:35.914348Z",
+            "updated_at": "2023-10-12T21:11:12.933324Z"
+        }
+    }
+}
+```
+
+- Where the access token in the session object is (a JWT token) what we need to make authenticated requests to our API.
+- We have a role of authenticated meaning that our user is now authenticated.
+- This JWT token is stored in our local storage and now when we make request to supabase we can pass this token in the headers and supabase will know that we are authenticated.
 
 
 

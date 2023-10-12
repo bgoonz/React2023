@@ -14,11 +14,13 @@ const LoginLayout = styled.main`
 `;
 
 function Login() {
-  return <LoginLayout>
-    <Logo />
-    <Heading type='h4'>Log into your account</Heading>
-    <LoginForm />
-  </LoginLayout>;
+  return (
+    <LoginLayout>
+      <Logo />
+      <Heading type="h4">Log into your account</Heading>
+      <LoginForm />
+    </LoginLayout>
+  );
 }
 
 export default Login;

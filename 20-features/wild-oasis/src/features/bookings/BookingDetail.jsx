@@ -36,7 +36,7 @@ function BookingDetail() {
   const statusToTagName = {
     unconfirmed: "blue",
     "checked-in": "green",
-    "checked-out": "silver"
+    "checked-out": "silver",
   };
 
   return (
@@ -53,7 +53,10 @@ function BookingDetail() {
 
       <ButtonGroup>
         {status === "unconfirmed" && (
-          <Button icon={<HiArrowDownOnSquare />} onClick={() => navigate(`/checkin/${bookingId}`)}>
+          <Button
+            icon={<HiArrowDownOnSquare />}
+            onClick={() => navigate(`/checkin/${bookingId}`)}
+          >
             Check In
           </Button>
         )}
@@ -80,8 +83,7 @@ function BookingDetail() {
               resourceName="booking"
               disabled={isDeleting}
               onConfirm={() => {
-                deleteBooking(bookingId,{onSettled:moveBack});
-                
+                deleteBooking(bookingId, { onSettled: moveBack });
               }}
             />
           </Modal.Window>
