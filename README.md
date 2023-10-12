@@ -90,7 +90,13 @@ function Form() {
           </option>
         ))}
       </select>
-      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <button>Add</button>
     </form>
   );
@@ -161,14 +167,23 @@ function Form() {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
+      <select
+        value={quantity}
+        onChange={(event) => setQuantity(Number(event.target.value))}
+      >
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <button>Add</button>
     </form>
   );
@@ -232,20 +247,30 @@ function Form({ onAddItem }) {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?🧳</h3>
-      <select value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
+      <select
+        value={quantity}
+        onChange={(event) => setQuantity(Number(event.target.value))}
+      >
         {Array.from({ length: 20 }, (_, index) => (
           <option key={index + 1} value={index + 1}>
             {index + 1}
           </option>
         ))}
       </select>
-      <input type="text" name="item" placeholder="Item..." value={description} onChange={(event) => setDescription(event.target.value)} />
+      <input
+        type="text"
+        name="item"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <button>Add</button>
     </form>
   );
 }
 const Item = ({ item }) => {
-  const description = item.quantity > 1 ? `${item.description}s` : item.description;
+  const description =
+    item.quantity > 1 ? `${item.description}s` : item.description;
   return (
     <li key={item.id}>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
@@ -369,13 +394,20 @@ function Tabbed({ content }) {
         <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
-      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} />
+      ) : (
+        <DifferentContent />
+      )}
     </div>
   );
 }
 function Tab({ num, activeTab, onClick }) {
   return (
-    <button className={activeTab === num ? "tab active" : "tab"} onClick={() => onClick(num)}>
+    <button
+      className={activeTab === num ? "tab active" : "tab"}
+      onClick={() => onClick(num)}
+    >
       Tab {num + 1}
     </button>
   );
@@ -499,7 +531,11 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} /> : <DifferentContent />}
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} />
+      ) : (
+        <DifferentContent />
+      )}
     </div>
   );
 }
@@ -572,7 +608,11 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
 
-      {activeTab <= 2 ? <TabContent item={content.at(activeTab)} key={activeTab} /> : <DifferentContent />}
+      {activeTab <= 2 ? (
+        <TabContent item={content.at(activeTab)} key={activeTab} />
+      ) : (
+        <DifferentContent />
+      )}
     </div>
   );
 }
@@ -775,7 +815,9 @@ useEffect(() => {
 ```js
 useEffect(() => {
   async function fetchMovies() {
-    const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+    const response = await fetch(
+      `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+    );
     const data = await response.json();
     setMovies(data.Search);
   }
@@ -791,8 +833,11 @@ useEffect(() => {
     try {
       setLoading(true);
       setError("");
-      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
-      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+      );
+      if (!response.ok)
+        throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -889,9 +934,13 @@ useEffect(() => {
       setLoading(true);
       setError("");
 
-      const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`, { signal: controller.signal });
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+        { signal: controller.signal },
+      );
 
-      if (!response.ok) throw new Error("Something went wrong while fetching the movies");
+      if (!response.ok)
+        throw new Error("Something went wrong while fetching the movies");
 
       const data = await response.json();
       if (data.Response === "False") throw new Error("No movies found");
@@ -1015,7 +1064,10 @@ useEffect(() => {
 //We do not need to do this because the useEffect runs every time the component is rendered and the state is updated... which does the same thing anyway.
 function handleDeleteWatched(id) {
   setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
-  localStorage.setItem("watched", JSON.stringify(watched.filter((movie) => movie.imdbID !== id)));
+  localStorage.setItem(
+    "watched",
+    JSON.stringify(watched.filter((movie) => movie.imdbID !== id)),
+  );
 }
 ```
 
@@ -1208,9 +1260,13 @@ export function useMovies(query, callback, key) {
         setLoading(true);
         setError("");
 
-        const response = await fetch(`https://www.omdbapi.com/?apikey=${key}&s=${query}`, { signal: controller.signal });
+        const response = await fetch(
+          `https://www.omdbapi.com/?apikey=${key}&s=${query}`,
+          { signal: controller.signal },
+        );
 
-        if (!response.ok) throw new Error("Something went wrong while fetching the movies");
+        if (!response.ok)
+          throw new Error("Something went wrong while fetching the movies");
 
         const data = await response.json();
         if (data.Response === "False") throw new Error("No movies found");
@@ -1365,7 +1421,7 @@ function reducer(state, action) {
 function DateCounter() {
   const initialState = {
     count: 0,
-    step: 1
+    step: 1,
   };
   const [state, dispatch] = useReducer(reducer, initialState);
   const { count, step } = state;
@@ -1398,7 +1454,13 @@ function DateCounter() {
     <div className="counter">
       <label htmlFor="step">Step Size</label>
       <div>
-        <input type="range" min="0" max="10" value={step} onChange={defineStep} />
+        <input
+          type="range"
+          min="0"
+          max="10"
+          value={step}
+          onChange={defineStep}
+        />
         <span>{step}</span>
       </div>
 
@@ -1447,7 +1509,7 @@ const initialState = {
   index: 0,
   answer: null,
   points: 0,
-  highscore: 0
+  highscore: 0,
 };
 
 function reducer(state, action) {
@@ -1464,7 +1526,10 @@ function reducer(state, action) {
       return {
         ...state,
         answer: action.payload,
-        points: action.payload === curQuestion.correctOption ? state.points + curQuestion.points : state.points
+        points:
+          action.payload === curQuestion.correctOption
+            ? state.points + curQuestion.points
+            : state.points,
       };
     case "nextQuestion":
       return { ...state, index: state.index + 1, answer: null };
@@ -1472,7 +1537,8 @@ function reducer(state, action) {
       return {
         ...state,
         status: "finished",
-        highscore: state.points > state.highscore ? state.points : state.highscore
+        highscore:
+          state.points > state.highscore ? state.points : state.highscore,
       };
     case "restart":
       return {
@@ -1480,7 +1546,7 @@ function reducer(state, action) {
         status: "ready",
         highscore: state.highscore,
         index: 0,
-        questions: state.questions
+        questions: state.questions,
       };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
@@ -1488,7 +1554,8 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [{ questions, status, index, answer, points, highscore }, dispatch] = useReducer(reducer, initialState);
+  const [{ questions, status, index, answer, points, highscore }, dispatch] =
+    useReducer(reducer, initialState);
 
   //derived state
   const numQuestions = questions.length;
@@ -1513,15 +1580,41 @@ function App() {
       <Main>
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
-        {status === "ready" && <StartScreen numQuestions={numQuestions} dispatch={dispatch} />}
+        {status === "ready" && (
+          <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
+        )}
         {status === "active" && (
           <>
-            <Progress index={index} numQuestions={numQuestions} points={points} maxPoints={maxPoints} answer={answer} />
-            <Question question={questions[index]} dispatch={dispatch} answer={answer} />
-            <NextButton dispatch={dispatch} answer={answer} index={index} numQuestions={numQuestions} />
+            <Progress
+              index={index}
+              numQuestions={numQuestions}
+              points={points}
+              maxPoints={maxPoints}
+              answer={answer}
+            />
+            <Question
+              question={questions[index]}
+              dispatch={dispatch}
+              answer={answer}
+            />
+            <NextButton
+              dispatch={dispatch}
+              answer={answer}
+              index={index}
+              numQuestions={numQuestions}
+            />
           </>
         )}
-        {status === "finished" && <FinishedScreen points={points} maxPoints={maxPoints} index={index} numQuestions={numQuestions} highscore={highscore} dispatch={dispatch} />}
+        {status === "finished" && (
+          <FinishedScreen
+            points={points}
+            maxPoints={maxPoints}
+            index={index}
+            numQuestions={numQuestions}
+            highscore={highscore}
+            dispatch={dispatch}
+          />
+        )}
       </Main>
     </div>
   );
@@ -1823,7 +1916,10 @@ export default Nav;
 
 ```js
 <Route path="app" element={<AppLayout />}>
-  <Route path="cities" element={<p>This could be a react component or just JSX</p>} />
+  <Route
+    path="cities"
+    element={<p>This could be a react component or just JSX</p>}
+  />
 </Route>
 ```
 
@@ -1835,7 +1931,12 @@ export default Nav;
 
 ```js
 // App.js
-import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Outlet,
+} from "react-router-dom";
 
 function App() {
   return (
@@ -1886,7 +1987,10 @@ function Dashboard() {
 ```js
 <Route path="app" element={<AppLayout />}>
   <Route index element={<p>Index Route</p>} />
-  <Route path="cities" element={<p>This could be a react component or just JSX</p>} />
+  <Route
+    path="cities"
+    element={<p>This could be a react component or just JSX</p>}
+  />
   <Route path="countries" element={<p>sibling route to cities</p>} />
   <Route path="form" element={<p>another sibling route</p>} />
 </Route>
@@ -1958,7 +2062,7 @@ const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
     month: "long",
-    year: "numeric"
+    year: "numeric",
   }).format(new Date(date));
 
 function CityItem({ city }) {
@@ -1966,7 +2070,10 @@ function CityItem({ city }) {
 
   return (
     <li>
-      <Link className={styles.cityItem} to={`${id}?lat=${position.lat}&lng=${position.lng}`}>
+      <Link
+        className={styles.cityItem}
+        to={`${id}?lat=${position.lat}&lng=${position.lng}`}
+      >
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>{formatDate(date)}</time>
@@ -2021,7 +2128,9 @@ function Map() {
       <h1>
         Position: {lat}, {lng}
       </h1>
-      <button onClick={() => setSearchParams({ lat: 24, lng: 50 })}>Change Position</button>
+      <button onClick={() => setSearchParams({ lat: 24, lng: 50 })}>
+        Change Position
+      </button>
     </div>
   );
 }
@@ -2076,11 +2185,20 @@ const PostContext = createContext();
 const PostContext = createContext();
 
 function App() {
-  const [posts, setPosts] = useState(() => Array.from({ length: 30 }, () => createRandomPost()));
+  const [posts, setPosts] = useState(() =>
+    Array.from({ length: 30 }, () => createRandomPost()),
+  );
   const [searchQuery, setSearchQuery] = useState("");
   const [isFakeDark, setIsFakeDark] = useState(false);
 
-  const searchedPosts = searchQuery.length > 0 ? posts.filter((post) => `${post.title} ${post.body}`.toLowerCase().includes(searchQuery.toLowerCase())) : posts;
+  const searchedPosts =
+    searchQuery.length > 0
+      ? posts.filter((post) =>
+          `${post.title} ${post.body}`
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()),
+        )
+      : posts;
 
   function handleAddPost(post) {
     setPosts((posts) => [post, ...posts]);
@@ -2096,15 +2214,23 @@ function App() {
         onClearPosts: handleClearPosts,
         onAddPost: handleAddPost,
         searchQuery,
-        setSearchQuery
+        setSearchQuery,
       }}
     >
       <section>
-        <button onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)} className="btn-fake-dark-mode">
+        <button
+          onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
+          className="btn-fake-dark-mode"
+        >
           {isFakeDark ? "☀️" : "🌙"}
         </button>
 
-        <Header posts={searchedPosts} onClearPosts={handleClearPosts} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <Header
+          posts={searchedPosts}
+          onClearPosts={handleClearPosts}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
         <Main posts={searchedPosts} onAddPost={handleAddPost} />
         <Archive onAddPost={handleAddPost} />
         <Footer />
@@ -2213,9 +2339,9 @@ function CitiesProvider({ children }) {
       const response = await fetch(`${BASE_URL}/cities/`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(newCity)
+        body: JSON.stringify(newCity),
       });
       const data = await response.json();
       setCities([...cities, data]);
@@ -2231,7 +2357,7 @@ function CitiesProvider({ children }) {
     try {
       setIsLoading(true);
       const response = await fetch(`${BASE_URL}/cities/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
       });
 
       setCities((cities) => cities.filter((city) => city.id !== id));
@@ -2251,7 +2377,7 @@ function CitiesProvider({ children }) {
         currentCity,
         getCity,
         createCity,
-        deleteCity
+        deleteCity,
       }}
     >
       {children}
@@ -2289,7 +2415,7 @@ const initialState = {
   cities: [],
   isLoading: false,
   error: "",
-  currentCity: {}
+  currentCity: {},
 };
 
 function reducer(state, action) {
@@ -2304,13 +2430,13 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: false,
-        cities: [...state.cities, action.payload]
+        cities: [...state.cities, action.payload],
       };
     case "cities/deleted":
       return {
         ...state,
         isLoading: false,
-        cities: state.cities.filter((city) => city.id !== action.payload)
+        cities: state.cities.filter((city) => city.id !== action.payload),
       };
     case "rejected":
       return { ...state, isLoading: false, error: action.payload };
@@ -2320,7 +2446,10 @@ function reducer(state, action) {
 }
 
 function CitiesProvider({ children }) {
-  const [{ cities, isLoading, currentCity }, dispatch] = useReducer(reducer, initialState);
+  const [{ cities, isLoading, currentCity }, dispatch] = useReducer(
+    reducer,
+    initialState,
+  );
   useEffect(() => {
     const fetchCities = async () => {
       dispatch({ type: "loading" });
@@ -2331,7 +2460,7 @@ function CitiesProvider({ children }) {
       } catch (error) {
         dispatch({
           type: "rejected",
-          payload: `There was an error fetching cities: ${error.message}`
+          payload: `There was an error fetching cities: ${error.message}`,
         });
       }
     };
@@ -2347,7 +2476,7 @@ function CitiesProvider({ children }) {
     } catch (error) {
       dispatch({
         type: "rejected",
-        payload: `There was an error getting city: ${error.message}`
+        payload: `There was an error getting city: ${error.message}`,
       });
     }
   }
@@ -2358,9 +2487,9 @@ function CitiesProvider({ children }) {
       const response = await fetch(`${BASE_URL}/cities/`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(newCity)
+        body: JSON.stringify(newCity),
       });
       const data = await response.json();
 
@@ -2368,7 +2497,7 @@ function CitiesProvider({ children }) {
     } catch (error) {
       dispatch({
         type: "rejected",
-        payload: `There was an error creating city: ${error.message}`
+        payload: `There was an error creating city: ${error.message}`,
       });
     }
   }
@@ -2377,14 +2506,14 @@ function CitiesProvider({ children }) {
     try {
       dispatch({ type: "loading" });
       const response = await fetch(`${BASE_URL}/cities/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
       });
 
       dispatch({ type: "cities/deleted", payload: id });
     } catch (error) {
       dispatch({
         type: "rejected",
-        payload: `There was an error deleting city: ${error.message}`
+        payload: `There was an error deleting city: ${error.message}`,
       });
       alert("Error deleting city");
     }
@@ -2398,7 +2527,7 @@ function CitiesProvider({ children }) {
         currentCity,
         getCity,
         createCity,
-        deleteCity
+        deleteCity,
       }}
     >
       {children}
@@ -2563,7 +2692,7 @@ import { useEffect, useState, memo } from "react";
 const Archive = memo(function Archive({ show }) {
   const [posts] = useState(() =>
     // 💥 WARNING: This might make your computer slow! Try a smaller `length` first
-    Array.from({ length: 10000 }, () => createRandomPost())
+    Array.from({ length: 10000 }, () => createRandomPost()),
   );
 
   const [showArchive, setShowArchive] = useState(show);
@@ -2571,7 +2700,9 @@ const Archive = memo(function Archive({ show }) {
   return (
     <aside>
       <h2>Post archive</h2>
-      <button onClick={() => setShowArchive((s) => !s)}>{showArchive ? "Hide archive posts" : "Show archive posts"}</button>
+      <button onClick={() => setShowArchive((s) => !s)}>
+        {showArchive ? "Hide archive posts" : "Show archive posts"}
+      </button>
 
       {showArchive && (
         <ul>
@@ -2632,7 +2763,7 @@ const archiveOptions = useMemo(() => {
 const Archive = memo(function Archive({ archiveOptions }) {
   const [posts] = useState(() =>
     // 💥 WARNING: This might make your computer slow! Try a smaller `length` first
-    Array.from({ length: 10000 }, () => createRandomPost())
+    Array.from({ length: 10000 }, () => createRandomPost()),
   );
 
   const [showArchive, setShowArchive] = useState(archiveOptions.show);
@@ -2640,7 +2771,9 @@ const Archive = memo(function Archive({ archiveOptions }) {
   return (
     <aside>
       <h2>{archiveOptions.title}</h2>
-      <button onClick={() => setShowArchive((s) => !s)}>{showArchive ? "Hide archive posts" : "Show archive posts"}</button>
+      <button onClick={() => setShowArchive((s) => !s)}>
+        {showArchive ? "Hide archive posts" : "Show archive posts"}
+      </button>
 
       {showArchive && (
         <ul>
@@ -2894,7 +3027,7 @@ import { createStore } from "redux";
 const initialState = {
   balance: 0,
   loan: 0,
-  loanPurpose: ""
+  loanPurpose: "",
 };
 
 //Remember reducers can't directly modify the state or fetch data from the server
@@ -2914,7 +3047,7 @@ function reducer(state = initialState, action) {
         ...state,
         laon: 0,
         loanPurpose: "",
-        balance: state.balance - state.loan
+        balance: state.balance - state.loan,
       };
     default:
       return state;
@@ -2950,8 +3083,8 @@ store.dispatch({
   type: "account/requestLoan",
   payload: {
     amount: 1000,
-    purpose: "Home Loan"
-  }
+    purpose: "Home Loan",
+  },
 });
 console.log("Action: Request Loan\nState:", store.getState());
 store.dispatch({ type: "account/payLoan" });
@@ -2972,8 +3105,8 @@ function requestLoan(amount, purpose) {
     type: "account/requestLoan",
     payload: {
       amount: amount,
-      purpose: purpose
-    }
+      purpose: purpose,
+    },
   };
 }
 function payLoan() {
@@ -3003,8 +3136,8 @@ function createCustomer(fullName, nationalId) {
     payload: {
       fullName: fullName,
       nationalId: nationalId,
-      createdAt: new Date().toISOString()
-    }
+      createdAt: new Date().toISOString(),
+    },
   };
 }
 ```
@@ -3024,14 +3157,14 @@ function accountReducer(state = initialStateAccount, action) {
         ...state,
         loan: action.payload.amount,
         loanPurpose: action.payload.purpose,
-        balance: state.balance + action.payload.amount
+        balance: state.balance + action.payload.amount,
       };
     case "account/payLoan":
       return {
         ...state,
         laon: 0,
         loanPurpose: "",
-        balance: state.balance - state.loan
+        balance: state.balance - state.loan,
       };
     default:
       return state;
@@ -3045,7 +3178,7 @@ function customerReducer(state = initialStateCustomer, action) {
         ...state,
         fullName: action.payload.fullName,
         nationalId: action.payload.nationalId,
-        createdAt: action.payload.createdAt
+        createdAt: action.payload.createdAt,
       };
     case "customer/updateName":
       return { ...state, fullName: action.payload };
@@ -3057,7 +3190,7 @@ function customerReducer(state = initialStateCustomer, action) {
 
 const rootReducer = combineReducers({
   account: accountReducer,
-  customer: customerReducer
+  customer: customerReducer,
 });
 
 const store = createStore(rootReducer);
@@ -3074,13 +3207,13 @@ import { createStore, combineReducers } from "redux";
 const initialStateAccount = {
   balance: 0,
   loan: 0,
-  loanPurpose: ""
+  loanPurpose: "",
 };
 
 const initialStateCustomer = {
   fullName: "",
   nationalId: "",
-  createdAt: ""
+  createdAt: "",
 };
 
 function accountReducer(state = initialStateAccount, action) {
@@ -3091,13 +3224,18 @@ function accountReducer(state = initialStateAccount, action) {
       return { ...state, balance: state.balance - action.payload };
     case "account/requestLoan":
       if (state.loan > 0) return state;
-      return { ...state, loan: action.payload.amount, loanPurpose: action.payload.purpose, balance: state.balance + action.payload.amount };
+      return {
+        ...state,
+        loan: action.payload.amount,
+        loanPurpose: action.payload.purpose,
+        balance: state.balance + action.payload.amount,
+      };
     case "account/payLoan":
       return {
         ...state,
         loan: 0,
         loanPurpose: "",
-        balance: state.balance - state.loan
+        balance: state.balance - state.loan,
       };
     default:
       return state;
@@ -3107,7 +3245,12 @@ function accountReducer(state = initialStateAccount, action) {
 function customerReducer(state = initialStateCustomer, action) {
   switch (action.type) {
     case "customer/createCustomer":
-      return { ...state, fullName: action.payload.fullName, nationalId: action.payload.nationalId, createdAt: action.payload.createdAt };
+      return {
+        ...state,
+        fullName: action.payload.fullName,
+        nationalId: action.payload.nationalId,
+        createdAt: action.payload.createdAt,
+      };
     case "customer/updateName":
       return { ...state, fullName: action.payload };
     default:
@@ -3117,7 +3260,7 @@ function customerReducer(state = initialStateCustomer, action) {
 
 const rootReducer = combineReducers({
   account: accountReducer,
-  customer: customerReducer
+  customer: customerReducer,
 });
 
 const store = createStore(rootReducer);
@@ -3135,8 +3278,8 @@ function requestLoan(amount, purpose) {
     type: "account/requestLoan",
     payload: {
       amount: amount,
-      purpose: purpose
-    }
+      purpose: purpose,
+    },
   };
 }
 
@@ -3159,15 +3302,15 @@ function createCustomer(fullName, nationalId) {
     payload: {
       fullName: fullName,
       nationalId: nationalId,
-      createdAt: new Date().toISOString()
-    }
+      createdAt: new Date().toISOString(),
+    },
   };
 }
 
 function updateName(fullName) {
   return {
     type: "customer/updateName",
-    payload: fullName
+    payload: fullName,
   };
 }
 
@@ -3196,7 +3339,7 @@ root.render(
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 //Customer.js
 
@@ -3250,7 +3393,7 @@ import customerReducer from "./features/customers/customerSlice";
 
 const rootReducer = combineReducers({
   account: accountReducer,
-  customer: customerReducer
+  customer: customerReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -3276,7 +3419,9 @@ export function deposit(amount, currency) {
   //This (function below) is the async action we want to preform before we dispatch the action
   return async function (dispatch, getState) {
     //API call
-    const result = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`);
+    const result = await fetch(
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`,
+    );
     const data = await result.json();
     console.log(data);
     const toUSD = data.rates.USD;
@@ -3303,10 +3448,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 const rootReducer = combineReducers({
   account: accountReducer,
-  customer: customerReducer
+  customer: customerReducer,
 });
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk)),
+);
 
 export default store;
 ```
@@ -3342,10 +3490,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 const rootReducer = combineReducers({
   account: accountReducer,
-  customer: customerReducer
+  customer: customerReducer,
 });
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk)),
+);
 
 export default store;
 ```
@@ -3361,8 +3512,8 @@ import customerReducer from "./features/customers/customerSlice";
 const store = configureStore({
   reducer: {
     account: accountReducer,
-    customer: customerReducer
-  }
+    customer: customerReducer,
+  },
 });
 
 export default store;
@@ -3377,7 +3528,7 @@ const initialStateAccount = {
   balance: 0,
   loan: 0,
   loanPurpose: "",
-  isLoading: false
+  isLoading: false,
 };
 
 export default function accountReducer(state = initialStateAccount, action) {
@@ -3386,7 +3537,7 @@ export default function accountReducer(state = initialStateAccount, action) {
       return {
         ...state,
         balance: state.balance + action.payload,
-        isLoading: false
+        isLoading: false,
       };
     case "account/withdraw":
       return { ...state, balance: state.balance - action.payload };
@@ -3396,14 +3547,14 @@ export default function accountReducer(state = initialStateAccount, action) {
         ...state,
         loan: action.payload.amount,
         loanPurpose: action.payload.purpose,
-        balance: state.balance + action.payload.amount
+        balance: state.balance + action.payload.amount,
       };
     case "account/payLoan":
       return {
         ...state,
         loan: 0,
         loanPurpose: "",
-        balance: state.balance - state.loan
+        balance: state.balance - state.loan,
       };
     case "account/convertingCurrency":
       return { ...state, isLoading: true };
@@ -3418,7 +3569,9 @@ export function deposit(amount, currency) {
   return async function (dispatch, getState) {
     dispatch({ type: "account/convertingCurrency" });
     //API call
-    const result = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`);
+    const result = await fetch(
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`,
+    );
     const data = await result.json();
     const toUSD = data.rates.USD;
     //dispatch the action
@@ -3435,8 +3588,8 @@ export function requestLoan(amount, purpose) {
     type: "account/requestLoan",
     payload: {
       amount: amount,
-      purpose: purpose
-    }
+      purpose: purpose,
+    },
   };
 }
 
@@ -3456,7 +3609,7 @@ const initialState = {
   balance: 0,
   loan: 0,
   loanPurpose: "",
-  isLoading: false
+  isLoading: false,
 };
 
 const accountSlice = createSlice({
@@ -3479,8 +3632,8 @@ const accountSlice = createSlice({
       state.loan = 0;
       state.loanPurpose = "";
       state.balance = state.balance - state.loan;
-    }
-  }
+    },
+  },
 });
 
 export const { deposit, withdraw, requestLoan, payLoan } = accountSlice.actions;
@@ -3515,7 +3668,7 @@ const initialState = {
   balance: 0,
   loan: 0,
   loanPurpose: "",
-  isLoading: false
+  isLoading: false,
 };
 
 const accountSlice = createSlice({
@@ -3537,7 +3690,7 @@ const accountSlice = createSlice({
         state.loan = action.payload.amount;
         state.loanPurpose = action.payload.purpose;
         state.balance = state.balance + action.payload.amount;
-      }
+      },
     },
     payLoan(state) {
       if (state.loan > 0) return;
@@ -3547,8 +3700,8 @@ const accountSlice = createSlice({
     },
     convertingCurrency(state) {
       state.isLoading = true;
-    }
-  }
+    },
+  },
 });
 
 export function deposit(amount, currency) {
@@ -3556,7 +3709,9 @@ export function deposit(amount, currency) {
   //This (function below) is the async action we want to preform before we dispatch the action
   return async function (dispatch, getState) {
     //API call
-    const result = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`);
+    const result = await fetch(
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`,
+    );
     const data = await result.json();
     console.log(data);
     const toUSD = data.rates.USD;
@@ -3647,16 +3802,16 @@ import Menu from "./features/menu/Menu";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />
+    element: <Home />,
   },
   {
     path: "/menu",
-    element: <Menu />
+    element: <Menu />,
   },
   {
     path: "/cart",
-    element: <Cart />
-  }
+    element: <Cart />,
+  },
 ]);
 
 function App() {
@@ -3679,26 +3834,26 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "/menu",
-        element: <Menu />
+        element: <Menu />,
       },
       {
         path: "/cart",
-        element: <Cart />
+        element: <Cart />,
       },
       {
         path: "/order/new",
-        element: <CreateOrder />
+        element: <CreateOrder />,
       },
       {
         path: "/order/:orderId",
-        element: <Order />
-      }
-    ]
-  }
+        element: <Order />,
+      },
+    ],
+  },
 ]);
 ```
 
@@ -3799,8 +3954,8 @@ const router = createBrowserRouter([
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
-    errorElement: <Error />
-  }
+    errorElement: <Error />,
+  },
   //...
 ]);
 //Error.jsx
@@ -3956,7 +4111,13 @@ npm install -D prettier prettier-plugin-tailwindcss
 > CreateOrder.jsx
 
 ```jsx
-<input type="text" placeholder="Your Address" name="address" required className="input" />
+<input
+  type="text"
+  placeholder="Your Address"
+  name="address"
+  required
+  className="input"
+/>
 ```
 
 #### Overiding Default Font Family:
@@ -3974,11 +4135,11 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      pizza: "Roboto Mono, monospace"
+      pizza: "Roboto Mono, monospace",
     },
-    extend: {}
+    extend: {},
   },
-  plugins: []
+  plugins: [],
 };
 ```
 
@@ -3999,11 +4160,11 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      sans: "Roboto Mono, monospace"
+      sans: "Roboto Mono, monospace",
     },
-    extend: {}
+    extend: {},
   },
-  plugins: []
+  plugins: [],
 };
 ```
 
@@ -4027,8 +4188,8 @@ const userSlice = createSlice({
   reducers: {
     updateName(state, action) {
       state.username = action.payload;
-    }
-  }
+    },
+  },
 });
 ```
 
@@ -4060,8 +4221,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./features/user/userSlice";
 const store = configureStore({
   reducer: {
-    user: userReducer
-  }
+    user: userReducer,
+  },
 });
 
 export default store;
@@ -4073,7 +4234,7 @@ export default store;
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  username: ""
+  username: "",
 };
 
 const userSlice = createSlice({
@@ -4082,8 +4243,8 @@ const userSlice = createSlice({
   reducers: {
     updateName(state, action) {
       state.username = action.payload;
-    }
-  }
+    },
+  },
 });
 export const { updateName } = userSlice.actions;
 export default userSlice.reducer;
@@ -4104,7 +4265,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 ```
 
@@ -4114,7 +4275,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 import { useSelector } from "react-redux";
 function Username() {
   const username = useSelector((state) => state.user.username);
-  return <div className="hidden text-sm font-semibold md:block">{username}</div>;
+  return (
+    <div className="hidden text-sm font-semibold md:block">{username}</div>
+  );
 }
 
 export default Username;
@@ -4174,7 +4337,7 @@ export const fetchAddress = createAsyncThunk("user/fetchAddress", async () => {
   const positionObj = await getPosition();
   const position = {
     latitude: positionObj.coords.latitude,
-    longitude: positionObj.coords.longitude
+    longitude: positionObj.coords.longitude,
   };
 
   // 2) Then we use a reverse geocoding API to get a description of the user's address, so we can display it the order form, so that the user can correct it if wrong
@@ -4195,7 +4358,7 @@ const userSlice = createSlice({
   reducers: {
     updateName(state, action) {
       state.username = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -4211,7 +4374,7 @@ const userSlice = createSlice({
         state.status = "error";
         state.error = action.error.message;
       });
-  }
+  },
 });
 ```
 
@@ -4601,7 +4764,7 @@ const Row = styled.div`
 `;
 
 Row.defaultProps = {
-  type: "vertical"
+  type: "vertical",
 };
 
 export default Row;
@@ -4609,7 +4772,7 @@ export default Row;
 
 ```js
 Row.defaultProps = {
-  type: "vertical"
+  type: "vertical",
 };
 // is equivalent to:
 
@@ -4773,9 +4936,9 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60 * 1000
-    }
-  }
+      staleTime: 60 * 1000,
+    },
+  },
 });
 
 function App() {
@@ -4802,7 +4965,11 @@ import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
 
 function CabinTable() {
-  const { isLoading, data: cabins, error } = useQuery({ queryKey: ["cabins"], queryFn: getCabins });
+  const {
+    isLoading,
+    data: cabins,
+    error,
+  } = useQuery({ queryKey: ["cabins"], queryFn: getCabins });
 
   if (isLoading) return <Spinner />;
 
@@ -4839,7 +5006,14 @@ import { useQueryClient } from "@tanstack/react-query";
 import { deleteCabin } from "../../services/apiCabins";
 
 function CabinRow({ cabin }) {
-  const { id: cabinId, name, maxCapacity, regularPrice, discount, image } = cabin;
+  const {
+    id: cabinId,
+    name,
+    maxCapacity,
+    regularPrice,
+    discount,
+    image,
+  } = cabin;
 
   const queryClient = useQueryClient();
 
@@ -4849,12 +5023,12 @@ function CabinRow({ cabin }) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["cabins"]
+        queryKey: ["cabins"],
       });
     },
     onError: (error) => {
       console.log(error);
-    }
+    },
   });
 
   return (
@@ -4899,13 +5073,13 @@ function CreateCabinForm() {
     onSuccess: () => {
       toast.success("New cabin sucessfully created");
       queryClient.invalidateQueries({
-        queryKey: ["cabins"]
+        queryKey: ["cabins"],
       });
       reset();
     },
     onError: () => {
       toast.error("Cabin could not be created");
-    }
+    },
   });
 
   function onSubmit(data) {
@@ -4931,12 +5105,22 @@ function CreateCabinForm() {
 
       <FormRow>
         <Label htmlFor="discount">Discount</Label>
-        <Input type="number" id="discount" defaultValue={0} {...register("discount")} />
+        <Input
+          type="number"
+          id="discount"
+          defaultValue={0}
+          {...register("discount")}
+        />
       </FormRow>
 
       <FormRow>
         <Label htmlFor="description">Description for website</Label>
-        <Textarea type="number" id="description" defaultValue="" {...register("description")} />
+        <Textarea
+          type="number"
+          id="description"
+          defaultValue=""
+          {...register("description")}
+        />
       </FormRow>
 
       <FormRow>
@@ -4965,7 +5149,11 @@ export default CreateCabinForm;
 ```jsx
 <FormRow>
   <Label htmlFor="name">Cabin name</Label>
-  <Input type="text" id="name" {...register("name", { required: "This field is required" })} />
+  <Input
+    type="text"
+    id="name"
+    {...register("name", { required: "This field is required" })}
+  />
 </FormRow>
 ```
 
@@ -4974,7 +5162,14 @@ export default CreateCabinForm;
 ```jsx
 <FormRow>
   <Label htmlFor="maxCapacity">Maximum capacity</Label>
-  <Input type="number" id="maxCapacity" {...register("maxCapacity", { required: "This field is required", min: { value: 1, message: "Capacity should be at least 1" } })} />
+  <Input
+    type="number"
+    id="maxCapacity"
+    {...register("maxCapacity", {
+      required: "This field is required",
+      min: { value: 1, message: "Capacity should be at least 1" },
+    })}
+  />
 </FormRow>
 ```
 
@@ -4987,7 +5182,12 @@ export default CreateCabinForm;
     type="number"
     id="discount"
     defaultValue={0}
-    {...register("discount", { required: "This field is required", validate: (value) => value <= getValues().regularPrice || "Discount should be less than regular price" })}
+    {...register("discount", {
+      required: "This field is required",
+      validate: (value) =>
+        value <= getValues().regularPrice ||
+        "Discount should be less than regular price",
+    })}
   />
 </FormRow>
 ```
@@ -5011,7 +5211,9 @@ const FileInput = styled.input.attrs({ type: "file" })`
     color: var(--color-brand-50);
     background-color: var(--color-brand-600);
     cursor: pointer;
-    transition: color 0.2s, background-color 0.2s;
+    transition:
+      color 0.2s,
+      background-color 0.2s;
 
     &:hover {
       background-color: var(--color-brand-700);
@@ -5062,7 +5264,9 @@ function List({ title, items }) {
     <div className="list-container">
       <div className="heading">
         <h2>{title}</h2>
-        <button onClick={toggleOpen}>{isOpen ? <span>∨</span> : <span>∧</span>}</button>
+        <button onClick={toggleOpen}>
+          {isOpen ? <span>∨</span> : <span>∧</span>}
+        </button>
       </div>
       {isOpen && (
         <ul className="list">
@@ -5072,7 +5276,9 @@ function List({ title, items }) {
         </ul>
       )}
 
-      <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>{isCollapsed ? `Show all ${items.length}` : "Show less"}</button>
+      <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
+        {isCollapsed ? `Show all ${items.length}` : "Show less"}
+      </button>
     </div>
   );
 }
@@ -5108,11 +5314,15 @@ function List({ title, items, render }) {
     <div className="list-container">
       <div className="heading">
         <h2>{title}</h2>
-        <button onClick={toggleOpen}>{isOpen ? <span>∨</span> : <span>∧</span>}</button>
+        <button onClick={toggleOpen}>
+          {isOpen ? <span>∨</span> : <span>∧</span>}
+        </button>
       </div>
       {isOpen && <ul className="list">{displayItems.map(render)}</ul>}
 
-      <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>{isCollapsed ? `Show all ${items.length}` : "Show less"}</button>
+      <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
+        {isCollapsed ? `Show all ${items.length}` : "Show less"}
+      </button>
     </div>
   );
 }
@@ -5123,7 +5333,13 @@ export default function App() {
       <h1>Render Props Demo</h1>
 
       <div className="col-2">
-        <List title="Products" items={products} render={(product) => <ProductItem key={product.productName} product={product} />} />
+        <List
+          title="Products"
+          items={products}
+          render={(product) => (
+            <ProductItem key={product.productName} product={product} />
+          )}
+        />
       </div>
     </div>
   );
@@ -5140,8 +5356,24 @@ export default function App() {
       <h1>Render Props Demo</h1>
 
       <div className="col-2">
-        <List title="Products" items={products} render={(product) => <ProductItem key={product.productName} product={product} />} />
-        <List title="Companies" items={companies} render={(company) => <CompanyItem key={company.companyName} company={company} defaultVisibility={true} />} />
+        <List
+          title="Products"
+          items={products}
+          render={(product) => (
+            <ProductItem key={product.productName} product={product} />
+          )}
+        />
+        <List
+          title="Companies"
+          items={companies}
+          render={(company) => (
+            <CompanyItem
+              key={company.companyName}
+              company={company}
+              defaultVisibility={true}
+            />
+          )}
+        />
       </div>
     </div>
   );
@@ -5177,11 +5409,15 @@ export default function withToggles(WrappedComponent) {
       <div className="list-container">
         <div className="heading">
           <h2>{props.title}</h2>
-          <button onClick={toggleOpen}>{isOpen ? <span>∨</span> : <span>∧</span>}</button>
+          <button onClick={toggleOpen}>
+            {isOpen ? <span>∨</span> : <span>∧</span>}
+          </button>
         </div>
         {isOpen && <WrappedComponent {...props} items={displayItems} />}
 
-        <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>{isCollapsed ? `Show all ${props.items.length}` : "Show less"}</button>
+        <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
+          {isCollapsed ? `Show all ${props.items.length}` : "Show less"}
+        </button>
       </div>
     );
   };
@@ -5295,7 +5531,7 @@ function Modal({ children, onClose }) {
         <div>{children}</div>
       </StyledModal>
     </Overlay>,
-    document.body
+    document.body,
   );
 }
 
@@ -5394,7 +5630,11 @@ function Modal({ children }) {
   const close = () => setOpenName("");
   const open = setOpenName;
 
-  return <ModalContext.Provider value={{ openName, close, open }}>{children}</ModalContext.Provider>;
+  return (
+    <ModalContext.Provider value={{ openName, close, open }}>
+      {children}
+    </ModalContext.Provider>
+  );
 }
 
 function Open({ children, opens: opensWindowName }) {
@@ -5415,7 +5655,7 @@ function Window({ children, name }) {
         <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>
     </Overlay>,
-    document.body
+    document.body,
   );
 }
 
@@ -5472,15 +5712,18 @@ import { useSearchParams } from "react-router-dom";
 export function useBookings() {
   const [searchParams] = useSearchParams();
   const filterValue = searchParams.get("status");
-  const filter = !filterValue || filterValue === "all" ? null : { field: "status", value: filterValue };
+  const filter =
+    !filterValue || filterValue === "all"
+      ? null
+      : { field: "status", value: filterValue };
 
   const {
     isLoading,
     data: bookings,
-    error
+    error,
   } = useQuery({
     queryKey: ["bookings", filter],
-    queryFn: () => getBookings({ filter })
+    queryFn: () => getBookings({ filter }),
   });
 
   return { isLoading, bookings, error };
@@ -5515,26 +5758,26 @@ const queryClient = useQueryClient();
 const {
   isLoading,
   data: { data: bookings, count } = {},
-  error
+  error,
 } = useQuery({
   queryKey: ["bookings", filter, sortBy, page],
-  queryFn: () => getBookings({ filter, sortBy, page })
+  queryFn: () => getBookings({ filter, sortBy, page }),
 });
 
- //PRE FETCHING
-  const pageCount = Math.ceil(count / PAGE_SIZE);
-  if (page < pageCount) {
-    queryClient.prefetchQuery({
-      queryKey: ["bookings", filter, sortBy, page + 1],
-      queryFn: () => getBookings({ filter, sortBy, page: page + 1 })
-    });
-  }
-  if (page >1) {
-    queryClient.prefetchQuery({
-      queryKey: ["bookings", filter, sortBy, page - 1],
-      queryFn: () => getBookings({ filter, sortBy, page: page - 1 })
-    });
-  }
+//PRE FETCHING
+const pageCount = Math.ceil(count / PAGE_SIZE);
+if (page < pageCount) {
+  queryClient.prefetchQuery({
+    queryKey: ["bookings", filter, sortBy, page + 1],
+    queryFn: () => getBookings({ filter, sortBy, page: page + 1 }),
+  });
+}
+if (page > 1) {
+  queryClient.prefetchQuery({
+    queryKey: ["bookings", filter, sortBy, page - 1],
+    queryFn: () => getBookings({ filter, sortBy, page: page - 1 }),
+  });
+}
 ```
 
 - Remember that a mutationFn can only accept one argument so if you need it to accept multiple arguments you need to pass it an object with multiple properties.
@@ -5556,7 +5799,7 @@ import supabase, { supabaseUrl } from "./supabase";
 export async function login({ email, password }) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
-    password
+    password,
   });
 
   if (error) {
@@ -5565,7 +5808,6 @@ export async function login({ email, password }) {
   console.log(data);
   return data;
 }
-
 ```
 
 - When we call this function from our login form we get:
@@ -5652,8 +5894,73 @@ export async function login({ email, password }) {
 - We have a role of authenticated meaning that our user is now authenticated.
 - This JWT token is stored in our local storage and now when we make request to supabase we can pass this token in the headers and supabase will know that we are authenticated.
 
+**Difference between Authentication & Authorization**
 
+- Authentication is the process of verifying who you are.
+- Authorization is the process of verifying what you can access.
 
+#### How we authorize routes:
 
+1. Load authenticated user
+2. Whil loading show a spinner
+3. Whil loading show a spinner 3. If there is no authenticated user redirect to login page
+4. If there is an authenticated user load the app.
+
+> App.jsx
+
+```jsx
+<Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
+```
+
+> ProtectedRoute.jsx
+
+```jsx
+import { useUser } from "./../features/authentication/useUser";
+import Spinner from "./Spinner";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
+const FullPage = styled.div`
+  height: 100vh;
+  background-color: var(--color-grey-50);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+function ProtectedRoute({ children }) {
+  const navigate = useNavigate();
+  //1. Load authenticated user
+  const { user, isLoading, isAuthenticated } = useUser();
+
+  //2. If there is no authenticated user redirect to login page
+  useEffect(() => {
+    if (!isAuthenticated && !isLoading) {
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate, isLoading]);
+
+  //3. Whil loading show a spinner
+  if (isLoading)
+    return (
+      <FullPage>
+        <Spinner />
+      </FullPage>
+    );
+  //4. If there is an authenticated user load the app.
+
+  if (isAuthenticated) return children;
+}
+
+export default ProtectedRoute;
+
+```
 
 </details>
