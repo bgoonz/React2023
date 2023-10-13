@@ -124,14 +124,9 @@ npm install react-datepicker
 />
 ```
 
-
-
 ### [Regex Library](https://uibakery.io/regex-library/email)
 
-
-
 ---
-
 
 # Redux Toolkit's `createSlice` and JavaScript Notation
 
@@ -152,6 +147,7 @@ is just standard JavaScript object notation with method shorthand. This syntax a
 ## Comparison
 
 1. **Standard JS Notation (prior to ES6)**:
+
 ```javascript
 var obj = {
     updateName: function(state, action) {
@@ -161,6 +157,7 @@ var obj = {
 ```
 
 2. **ES6 Method Shorthand**:
+
 ```javascript
 var obj = {
     updateName(state, action) {
@@ -191,11 +188,10 @@ So, to clarify: the method shorthand is standard JavaScript notation introduced 
         <div>Discount</div>
         <div></div>
         <div></div>
-        
+      
       </TableHeader>
     </Table>
 ```
-
 
 ---
 
@@ -236,3 +232,12 @@ console.log(a ?? b);  // 0, because 0 is not null or undefined
 
 Make sure to use the nullish coalescing operator in scenarios where you specifically want to handle `null` and `undefined` values, rather than all falsy values.
 
+
+
+---
+
+
+
+Creating temporary emails for testing purposes:
+
+>  https://temp-mail.org/en/
