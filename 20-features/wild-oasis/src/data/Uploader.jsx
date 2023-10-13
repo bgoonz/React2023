@@ -129,6 +129,7 @@ function Uploader() {
     <div
       style={{
         marginTop: "auto",
+        marginBottom: "30px",
         backgroundColor: "#e0e7ff",
         padding: "8px",
         borderRadius: "5px",
