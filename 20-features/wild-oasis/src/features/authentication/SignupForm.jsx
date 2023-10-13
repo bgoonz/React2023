@@ -17,7 +17,12 @@ function SignupForm() {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow label="Full name" error={errors?.fullName?.message}>
-        <Input disabled={isLoading} type="text" id="fullName" {...register("fullName", { required: "This field is required" })} />
+        <Input
+          disabled={isLoading}
+          type="text"
+          id="fullName"
+          {...register("fullName", { required: "This field is required" })}
+        />
       </FormRow>
 
       <FormRow label="Email address" error={errors?.email?.message}>
@@ -29,13 +34,16 @@ function SignupForm() {
             required: "This field is required",
             pattern: {
               value: /\S+@\S+\.\S+/,
-              message: "Please enter a valid email"
-            }
+              message: "Please enter a valid email",
+            },
           })}
         />
       </FormRow>
 
-      <FormRow label="Password (min 8 characters)" error={errors?.password?.message}>
+      <FormRow
+        label="Password (min 8 characters)"
+        error={errors?.password?.message}
+      >
         <Input
           disabled={isLoading}
           type="password"
@@ -44,8 +52,8 @@ function SignupForm() {
             required: "This field is required",
             minLength: {
               value: 8,
-              message: "The password must be at least 8 characters long"
-            }
+              message: "The password must be at least 8 characters long",
+            },
           })}
         />
       </FormRow>
@@ -57,7 +65,8 @@ function SignupForm() {
           id="passwordConfirm"
           {...register("passwordConfirm", {
             required: "This field is required",
-            validate: (value) => value === getValues().password || "The passwords do not match"
+            validate: (value) =>
+              value === getValues().password || "The passwords do not match",
           })}
         />
       </FormRow>
