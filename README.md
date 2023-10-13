@@ -5963,4 +5963,12 @@ export default ProtectedRoute;
 
 ```
 
+**How to manually set data in the React Query Cache**
+
+```js
+queryClient.setQueryData(["user"], user);
+```
+
+
+
 </details>
