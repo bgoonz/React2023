@@ -14,7 +14,16 @@ function LoginForm() {
   function handleSubmit(event) {
     event.preventDefault();
     if (!email || !password) return;
-    login({ email, password });
+    login(
+      { email, password },
+      //reset form after login (for case when credentials are incorrect)
+      {
+        onSettled: () => {
+          setEmail("");
+          setPassword("");
+        },
+      },
+    );
   }
 
   return (
