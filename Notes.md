@@ -188,7 +188,7 @@ So, to clarify: the method shorthand is standard JavaScript notation introduced 
         <div>Discount</div>
         <div></div>
         <div></div>
-      
+    
       </TableHeader>
     </Table>
 ```
@@ -232,12 +232,14 @@ console.log(a ?? b);  // 0, because 0 is not null or undefined
 
 Make sure to use the nullish coalescing operator in scenarios where you specifically want to handle `null` and `undefined` values, rather than all falsy values.
 
-
-
 ---
-
-
 
 Creating temporary emails for testing purposes:
 
->  https://temp-mail.org/en/
+> https://temp-mail.org/en/
+
+
+
+**document.documentElement**
+
+- The document.documentElement refers to the root html element of the document. It is equivalent to document.getElementsByTagName('html')[0].
