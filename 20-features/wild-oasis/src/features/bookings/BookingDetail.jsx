@@ -1,21 +1,27 @@
-import styled from "styled-components";
+import {
+  HiArrowDownOnSquare,
+  HiArrowUpOnSquare,
+  HiTrash,
+} from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
-import { HiTrash } from "react-icons/hi2";
-import { HiArrowDownOnSquare, HiArrowUpOnSquare } from "react-icons/hi2";
+import styled from "styled-components";
+
+import { useMoveBack } from "../../hooks/useMoveBack";
+
 import Button from "../../ui/Button";
 import ButtonGroup from "../../ui/ButtonGroup";
 import ButtonText from "../../ui/ButtonText";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 import Heading from "../../ui/Heading";
 import Modal from "../../ui/Modal";
-import ConfirmDelete from "../../ui/ConfirmDelete";
 import Row from "../../ui/Row";
 import Spinner from "../../ui/Spinner";
 import Tag from "../../ui/Tag";
-import BookingDataBox from "./BookingDataBox";
+
 import { useCheckout } from "../check-in-out/useCheckout";
-import { useDeleteBooking } from "./useDeleteBooking";
-import { useMoveBack } from "../../hooks/useMoveBack";
+import BookingDataBox from "./BookingDataBox";
 import { useBooking } from "./useBooking";
+import { useDeleteBooking } from "./useDeleteBooking";
 
 const HeadingGroup = styled.div`
   display: flex;

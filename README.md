@@ -5969,6 +5969,52 @@ export default ProtectedRoute;
 queryClient.setQueryData(["user"], user);
 ```
 
+#### Error Boundries:
+
+> We use this package because the built in error boundrys are still implemented using class based components and are kind of hard to use.
+```bash
+npm install react-error-boundary
+```
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "./ui/ErrorFallback";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <ErrorBoundary FallbackComponent={ErrorFallback} onReset={()=>{window.location.replace('/')}}>
+    <App />
+  </ErrorBoundary>
+);
+
+```
+
+
+```jsx
+import styled from "styled-components";
+import Heading from "./Heading";
+import GlobalStyles from "./../styles/GlobalStyles";
+function ErrorFallback({ error, resetErrorBoundary }) {
+  return (
+    <>
+      <GlobalStyles />
+      <StyledErrorFallback>
+        <Box>
+          <Heading type="h1">Something went wrong 🚫</Heading>
+          <p>{error.message}</p>
+          <Button size='large' onClick={resetErrorBoundary}>Try Again</Button>
+        </Box>
+      </StyledErrorFallback>
+    </>
+  );
+}
+
+export default ErrorFallback;
+```
+
+![Error Fallback Component](./images/2023-10-14-19-39-37.png)
 
 
 </details>
