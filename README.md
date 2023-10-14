@@ -2,6 +2,9 @@
 
 ### [Wild Oasis Repo](https://github.com/bgoonz/WildOasisDashboard)
 #### [Wild Oasis Website](https://wild-oasis-dashboard-1lq4zv16q-bgoonz.vercel.app/)
+**Login Credentials**
+> bryan.guner@gmail.com
+> Summer2015
 
 
 ## React v18 basic setup:
