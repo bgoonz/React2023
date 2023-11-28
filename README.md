@@ -19,6 +19,7 @@ function App() {
     </div>
   );
 }
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
 ```
@@ -5980,7 +5981,7 @@ queryClient.setQueryData(["user"], user);
 
 > We use this package because the built in error boundrys are still implemented using class based components and are kind of hard to use.
 ```bash
-npm install react-error-boundary
+npm install dx
 ```
 
 ```jsx
